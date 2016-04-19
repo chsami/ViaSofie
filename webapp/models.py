@@ -26,9 +26,9 @@ class Log(models.Model):
     def __str__(self):
         return self.id
 
- class Toegangslevel(models.Model):
-     toegangslevelnaam = models.charField(255)
-
+class Toegangslevel(models.Model):
+    toegangslevelnaam = models.charField(255)
+    
     def __str__(self):
         return self.id
 
