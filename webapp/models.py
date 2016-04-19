@@ -1,46 +1,40 @@
 from django.db import models
 
-
-# Create your models here.
-<<<<<<< HEAD
-<<<<<<< HEAD
 class Gebruiker(models.Model):
+    #Id implemented by django
     #userid = models.Autofield(primary_key=True)
-    voornaam = models.charField(max_length=50)
-    naam =  models.charField(max_length=50)
-    email = models.charField(max_length=50)
-    straatnaam = models.charField(max_length=50)
+    voornaam = models.charField(max_length=128)
+    naam =  models.charField(max_length=128)
+    email = models.charField(max_length=128)
+    straatnaam = models.charField(max_length=128)
     huisnr = models.IntegerField()
     postcode = models.IntegerField()
     busnr = models.charField(max_length=10)
     telefoonnr = models.IntegerField()
     password= models.charField(max_length=30) #ToDo: add hashes + saltes (import)
-    toegangslevel = models.ForeignKey(Toegangslevel, on_delete=models.CASCADE)
+    toegangslevel = models.ForeignKey(Toegangslevel)
 
-    def __str__(self):              # __unicode__ on Python
-        return self.name
-        #authentication https://docs.djangoproject.com/en/1.9/topics/auth/customizing/
+    def __str__(self):
+        return self.id
+#authentication https://docs.djangoproject.com/en/1.9/topics/auth/customizing/
 
-
-
-class TblUserLog(models.Model)
+class Log(models.Model):
     created = models.DateTimeField(auto_now_add=True)
-    gebruiker = models.ForeignKey(Gebruiker, on_delete=models.CASCADE)
-    tbllog = models.ForeignKey(TblLog, on_delete= models.CASCADE)
-
-
-class TblLog(models.Model)
+    gebruiker = models.ForeignKey(Gebruiker)
     logText = models.charField(255)
-    tblUserLogs = models.ManytoManyField(Gebruiker, through="TblUserLogs")
+    
+    def __str__(self):
+        return self.id
 
- class Toegangslevel
-    toegangslevelnaam = models.charField(255)
-=======
-class Panden(models.Model):
-=======
+ class Toegangslevel(models.Model):
+     toegangslevelnaam = models.charField(255)
+
+    def __str__(self):
+        return self.id
+
 class Pand(models.Model):
->>>>>>> origin/master
 	#id autocreated by django
+    gebruiker = models.ForeignKey(Gebruiker)
 	straatnaam = models.CharField(max_length=128)
 	huisnr = models.SmallIntegerField
 	postcodeID = models.ForeignKey(Steden)
@@ -92,12 +86,5 @@ class Handelstatus(models.Model)
 
 class Voortgang(models.Model)
 	status = models.Charfiels(max_length=128) #online, optie, bij notaris, ...
-
-<<<<<<< HEAD
->>>>>>> origin/master
-=======
 	def __str__(self):
         return self.id
-
-
->>>>>>> origin/master
