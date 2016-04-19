@@ -1,5 +1,31 @@
+/*
+    All html elements can use these class selectors
+*/
+.uppercase {
+    text-transform: uppercase;
+}
+
+.lowercase {
+    text-transform: lowercase;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+.thick {
+    font-weight: bold;
+}
+
+.thicker {
+    font-weight: 900;
+} 
+
+/*
+    Body styling
+*/
 body {
-    background-color: #e8e8e8;
+    background-color: #FFFFFF;
     font-family: 'Ropa Sans', sans-serif;
     color: #0d3532;
 }
@@ -36,4 +62,61 @@ h5 {
 h6 {
     font-size: 12px;
     line-height: 20px;
+}
+
+/*
+    Paragraph styling
+*/
+p.small-lh {
+    line-height: 0.8;
+}
+
+p.big-lh {
+    line-height: 1.8;
+}
+
+p.nowrap {
+    white-space: nowrap;
+}
+
+/*
+    Image styling
+*/
+img.top {
+    vertical-align: text-top;
+}
+
+img.bottom {
+    vertical-align: text-bottom;
+}
+
+/*
+    Link styling
+*/
+a {
+    font-weight: bold;
+}
+
+/* unvisited link */
+a:link {
+    text-decoration: none;
+    color: #bad5ce;
+}
+
+/* visited link */
+a:visited {
+    text-decoration: none;
+    color: #bad5ce;
+}
+
+/* mouse over link */
+a:hover {
+    text-decoration: underline;
+    color: #eac8c6;
+}
+
+/* selected link */
+a:active {
+    text-decoration: none;
+    color: blue;
 }
