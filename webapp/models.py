@@ -27,7 +27,7 @@ class Toegangslevel(models.Model):
 
 
 class Stad(models.Model):
-    postcode = models.SmallIntegerField
+    postcode = models.SmallIntegerField()
     stadsnaam = models.CharField(max_length=128)
 
     def __str__(self):
@@ -64,7 +64,7 @@ class Pand(models.Model):
     #id autocreated by django
     gebruiker = models.ForeignKey(Gebruiker)
     straatnaam = models.CharField(max_length=128)
-    huisnr = models.SmallIntegerField
+    huisnr = models.SmallIntegerField()
     postcodeID = models.ForeignKey(Stad)
     pandtype = models.ForeignKey(PandType)
     handelstatus = models.ForeignKey(Handelstatus)
