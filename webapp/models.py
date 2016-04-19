@@ -3,6 +3,7 @@ from django.db import models
 
 # Create your models here.
 <<<<<<< HEAD
+<<<<<<< HEAD
 class Gebruiker(models.Model):
     #userid = models.Autofield(primary_key=True)
     voornaam = models.charField(max_length=50)
@@ -36,6 +37,9 @@ class TblLog(models.Model)
     toegangslevelnaam = models.charField(255)
 =======
 class Panden(models.Model):
+=======
+class Pand(models.Model):
+>>>>>>> origin/master
 	#id autocreated by django
 	straatnaam = models.CharField(max_length=128)
 	huisnr = models.SmallIntegerField
@@ -44,28 +48,56 @@ class Panden(models.Model):
 	handelstatus = models.ForeignKey(Handelstatus)
 	voortgang = models.ForeignKey(Voortgang)
 
+	def __str__(self):
+        return self.id
 
-class Tags(models.Model):
+
+class Tag(models.Model):
     #id autocreated by django
     tagnaam = models.CharField(max_length=128)
     Pand = models.ManyToManyField(Panden)
 
+	def __str__(self):
+        return self.id
 
-class Steden(models.Model):
+
+class Stad(models.Model):
 	postcode = models.SmallIntegerField
 	stadsnaam = models.CharField(max_length=128)
 
-class Fotos(models.Model):
+	def __str__(self):
+        return self.id
+
+class Foto(models.Model):
 	url = models.CharField(max_length=256)
 	pand = models.ManyToManyField(Panden)
+
+	def __str__(self):
+        return self.id
+
 
 class PandType(model.Model):
 	pandtype = models.CharField(max_length=128) #kantoor,huis, appartement, ...
 
+	def __str__(self):
+        return self.id
+
+
 class Handelstatus(models.Model)
 	status = models.CharField(max_length=128) #verkoop, verhuur, verpachten, ...
 
+	def __str__(self):
+        return self.id
+
+
 class Voortgang(models.Model)
 	status = models.Charfiels(max_length=128) #online, optie, bij notaris, ...
+
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
+	def __str__(self):
+        return self.id
+
 
 >>>>>>> origin/master
