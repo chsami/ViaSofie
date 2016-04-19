@@ -1,0 +1,39 @@
+body {
+    background-color: #e8e8e8;
+    font-family: 'Ropa Sans', sans-serif;
+    color: #0d3532;
+}
+
+/*
+	Header styling
+*/
+h1 {
+    font-size: 36px;
+    line-height: 40px;
+}
+
+h2 {
+    font-size: 30px;
+    line-height: 40px;
+}
+
+h3 {
+    font-size: 24px;
+    line-height: 40px;
+}
+
+h4 {
+    font-size: 18px;
+    line-height: 20px;
+}
+
+
+h5 {
+    font-size: 14px;
+    line-height: 20px;
+}
+
+h6 {
+    font-size: 12px;
+    line-height: 20px;
+}
