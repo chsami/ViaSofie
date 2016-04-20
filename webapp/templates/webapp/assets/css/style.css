@@ -17,50 +17,47 @@
     font-weight: bold;
 }
 
-.thicker {
-    font-weight: 900;
-} 
 
 /*
     Body styling
 */
 body {
-    background-color: #FFFFFF;
+    background-color: #e8e8e8;
     font-family: 'Ropa Sans', sans-serif;
-    color: #0d3532;
+    color: #121212;
 }
 
 /*
 	Header styling
 */
 h1 {
-    font-size: 36px;
+    font-size: 48px;
     line-height: 40px;
 }
 
 h2 {
-    font-size: 30px;
+    font-size: 36px;
     line-height: 40px;
 }
 
 h3 {
-    font-size: 24px;
+    font-size: 32px;
     line-height: 40px;
 }
 
 h4 {
-    font-size: 18px;
+    font-size: 24px;
     line-height: 20px;
 }
 
 
 h5 {
-    font-size: 14px;
+    font-size: 18px;
     line-height: 20px;
 }
 
 h6 {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 20px;
 }
 
@@ -100,23 +97,31 @@ a {
 /* unvisited link */
 a:link {
     text-decoration: none;
-    color: #bad5ce;
+    color: #121212;
 }
 
 /* visited link */
 a:visited {
     text-decoration: none;
-    color: #bad5ce;
+    color: #65a191;
 }
 
 /* mouse over link */
 a:hover {
+    text-shadow: 1px 1px #111d1a;
     text-decoration: underline;
-    color: #eac8c6;
+    color: #65a191;
 }
 
 /* selected link */
 a:active {
     text-decoration: none;
     color: blue;
+}
+
+/*
+    Link styling
+*/
+ul {
+    list-style-image: url('../images/bullet.ico');
 }

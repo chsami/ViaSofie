@@ -6,51 +6,99 @@
 	<title>ViaSofie</title>
 	<meta name="description" content="Developer">
 	<meta name="author" content="Sacha">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 
 	<!-- CSS
     ================================================== -->
 	<link href='https://fonts.googleapis.com/css?family=Ropa+Sans:400,400italic' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
    	<link rel="stylesheet" href="assets/css/style.css">
+   	<link rel="stylesheet" href="assets/css/index.css">
+	<link rel='stylesheet' id='camera-css'  href='assets/css/camera.css' type='text/css' media='all'>
 
 
    <!-- Script
    ================================================== -->
-
+	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+	<script src="assets/scripts/index.js"></script>
+	<script type='text/javascript' src="assets/scripts/jquery.min.js"></script>
+	<script type='text/javascript' src="assets/scripts/jquery.mobile.customized.min.js"></script>
+	<script type='text/javascript' src="assets/scripts/jquery.easing.1.3.js"></script> 
+    <script type='text/javascript' src="assets/scripts/camera.min.js"></script> 
 
    <!-- Favicons
 	================================================== -->
+	<link rel='shortcut icon' type='image/x-icon' href='assets/images/favicon.jpg' />
 
 </head>
 <body>
-	<h1 class="uppercase">The quick brown fox jumps over the lazy dog - h1</h1>
-	<h1>The quick brown fox jumps over the lazy dog - h1</h1>
-	<h2>The quick brown fox jumps over the lazy dog - h2</h2>
-	<h3>The quick brown fox jumps over the lazy dog - h3</h3>
-	<h4>The quick brown fox jumps over the lazy dog - h4</h4>
-	<h5>The quick brown fox jumps over the lazy dog - h5</h5>
-	<h6>The quick brown fox jumps over the lazy dog - h6</h6>
+	<div id="header">
+		<h3 class="title">
+			<span>
+				Via Sofie
+			</span>
+			<span class="title--sub-title">
+				Vérdergaan in vastgoed...
+			</span>
+		</h3>
+	</div>
 
-	<p class="uppercase">The quick brown fox jumps over the lazy dog -  uppercase</p>
-	<p class="lowercase">The quick brown fox jumps over the lazy dog -  lowercase</p>
-	<p class="capitalize">The quick brown fox jumps over the lazy dog -  capitalize</p>
-	<p class="small-lh">
-		The quick brown fox jumps over the lazy dog <br>
-		The quick brown fox jumps over the lazy dog -  small-lh
-	</p>
-	<p class="big-lh">
-		The quick brown fox jumps over the lazy dog <br>
-		The quick brown fox jumps over the lazy dog -  big-lh
-	</p>
-	<p class="nowrap">
-		The quick brown fox jumps over the lazy dog
-		The quick brown fox jumps over the lazy dog
-		The quick brown fox jumps over the lazy dog
-		The quick brown fox jumps over the lazy dog - nowrap
-	</p>
-	<p>The quick brown <img src="https://drawception.com/pub/panels/2012/4-8/rMyjbZs1yL-4.png" width="270" height="50"> jumps over the lazy dog - default alignment</p>
-	<p>The quick brown <img class="top" src="https://drawception.com/pub/panels/2012/4-8/rMyjbZs1yL-4.png" width="270" height="50"> jumps over the lazy dog - top alignment</p>
-	<p>The quick brown <img class="bottom" src="https://drawception.com/pub/panels/2012/4-8/rMyjbZs1yL-4.png" width="270" height="50">jumps over the lazy dog - bottom alignment</p>
+	<div id='cssmenu'>
+		<ul>
+			<li class='active'><a href='#'>Home</a></li>
+			<li><a href='#'>Over</a></li>
+			<li><a href='#'>Contact</a></li>
+			<li><a href='#'>Partners</a></li>
+		</ul>
+	</div>
 
-	<a href="">This is a link</a>
+	<div class="container">
+		<div class="navbar-container">
+	    	<ul>
+				<li><span>Welkom</span></li>
+				<li><span>Kopen</span></li>
+				<li><span>Huren</span></li>
+				<li><span>Referenties</span></li>
+				<li><span>Advies</span></li>
+				<li><span>Account</span></li>
+	    	</ul>
+		</div>
+
+		<div class="fluid_container">
+	        <div class="camera_wrap camera_azure_skin" id="camera_wrap_1">
+				<div data-thumb="assets/images/camera/slides/thumbs/bridge.jpg" data-src="assets/images/camera/slides/bridge.jpg">
+	                <div class="camera_caption fadeFromBottom">
+	                    The Quick Brown Fox Jumps Over The Lazy Dog.
+	                </div>
+	            </div>
+	            <div data-thumb="assets/images/camera/slides/thumbs/leaf.jpg" data-src="assets/images/camera/slides/leaf.jpg">
+	                <div class="camera_caption fadeFromBottom">
+	                    The Quick Brown Fox Jumps Over The Lazy Dog.
+	                </div>
+	            </div>
+	            <div data-thumb="assets/images/camera/slides/thumbs/road.jpg" data-src="assets/images/camera/slides/road.jpg">
+	                <div class="camera_caption fadeFromBottom">
+	                    The Quick Brown Fox Jumps Over The Lazy Dog.
+	                </div>
+	            </div>
+	            <div data-thumb="assets/images/camera/slides/thumbs/sea.jpg" data-src="assets/images/camera/slides/sea.jpg">
+	                <div class="camera_caption fadeFromBottom">
+	                    The Quick Brown Fox Jumps Over The Lazy Dog.
+	                </div>
+	            </div>
+	            <div data-thumb="assets/images/camera/slides/thumbs/shelter.jpg" data-src="assets/images/camera/slides/shelter.jpg">
+	                <div class="camera_caption fadeFromBottom">
+	                    The Quick Brown Fox Jumps Over The Lazy Dog.
+	                </div>
+	            </div>
+	            <div data-thumb="assets/images/camera/slides/thumbs/tree.jpg" data-src="assets/images/camera/slides/tree.jpg">
+	                <div class="camera_caption fadeFromBottom">
+	                    The Quick Brown Fox Jumps Over The Lazy Dog.
+	                </div>
+	            </div>
+	        </div>
+		</div>
+	</div>
+	<div style="clear:both; display:block; height:100px"></div>
 </body>
