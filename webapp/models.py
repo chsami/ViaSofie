@@ -39,8 +39,8 @@ class Gebruiker(models.Model):
     email = models.CharField(max_length=128)
     straatnaam = models.CharField(max_length=128)
     huisnr = models.IntegerField()
-    postcode = models.ForeignKey(Stad)
-    busnr = models.CharField(max_length=10)
+    postcode = models.IntegerField()
+    busnr = models.CharField(max_length=10,  blank=True)
     telefoonnr = models.IntegerField()
     password= models.CharField(max_length=30) #ToDo: add hashes + saltes (import)
     toegangslevel = models.ForeignKey(Toegangslevel)
@@ -53,7 +53,7 @@ class Log(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     gebruiker = models.ForeignKey(Gebruiker)
     logText = models.CharField(max_length=255)
-    
+
     def __str__(self):
         return self.id
 
@@ -89,4 +89,3 @@ class Foto(models.Model):
 
     def __str__(self):
         return self.id
-
