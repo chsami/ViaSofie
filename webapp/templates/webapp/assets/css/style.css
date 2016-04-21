@@ -21,10 +21,20 @@
 /*
     Body styling
 */
+
+body,
+html {
+  max-width: 100%;
+  overflow-x: hidden;
+}
 body {
     background-color: #e8e8e8;
     font-family: 'Ropa Sans', sans-serif;
     color: #121212;
+    text-rendering: optimizeLegibility;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
 }
 
 /*
@@ -103,7 +113,7 @@ a:link {
 /* visited link */
 a:visited {
     text-decoration: none;
-    color: #65a191;
+    color: #121212;
 }
 
 /* mouse over link */
@@ -117,11 +127,4 @@ a:hover {
 a:active {
     text-decoration: none;
     color: blue;
-}
-
-/*
-    Link styling
-*/
-ul {
-    list-style-image: url('../images/bullet.ico');
 }
