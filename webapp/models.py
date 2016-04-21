@@ -39,7 +39,7 @@ class Gebruiker(models.Model):
     email = models.CharField(max_length=128)
     straatnaam = models.CharField(max_length=128)
     huisnr = models.IntegerField()
-    postcode = models.IntegerField()
+    postcode = models.ForeignKey(Stad)
     busnr = models.CharField(max_length=10,  blank=True)
     telefoonnr = models.IntegerField()
     password= models.CharField(max_length=30) #ToDo: add hashes + saltes (import)
