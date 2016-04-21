@@ -12,4 +12,5 @@ urlpatterns = [
     url(r'^login/$', views.login, name='login'),
     url(r'^partners/$', views.partners, name='partners'),
     url(r'^sander/$', views.sander, name='sander'),
+
 ]

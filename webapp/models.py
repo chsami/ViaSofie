@@ -23,15 +23,14 @@ class Voortgang(models.Model):
 class Toegangslevel(models.Model):
     toegangslevelnaam = models.CharField(max_length=255)
     def __str__(self):
-        return self.id
+        return self.toegangslevelnaam
 
 
 class Stad(models.Model):
     postcode = models.SmallIntegerField()
     stadsnaam = models.CharField(max_length=128)
-
     def __str__(self):
-        return self.id
+        return self.stadsnaam
 
 class Gebruiker(models.Model):
     #Id implemented by django
