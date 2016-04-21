@@ -31,6 +31,17 @@ def partners(request):
 
 def sander(request):
 	if request.method == "POST":
+		form = Stad(request.POST)
+		if form.is_valid():
+			model_instance = form.save(commit=False)
+			model_instance.save()
+			return redirect('index')
+	else:
+			form = Stad()
+	return render(request, "webapp/sander.html", {'form': form})
+
+def register(request):
+	if request.method == "POST":
 		form = Gebruiker(request.POST)
 		if form.is_valid():
 			model_instance = form.save(commit=False)
@@ -38,4 +49,4 @@ def sander(request):
 			return redirect('index')
 	else:
 			form = Gebruiker()
-	return render(request, "webapp/sander.html", {'form': form})
+	return render(request, "webapp/register.html", {'form': form})
