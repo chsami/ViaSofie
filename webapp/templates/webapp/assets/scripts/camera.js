@@ -27,7 +27,7 @@
 
 		gridDifference		: 250,	//to make the grid blocks slower than the slices, this value must be smaller than transPeriod
 		
-		height				: '50%',	//here you can type pixels (for instance '300px'), a percentage (relative to the width of the slideshow, for instance '50%') or 'auto'
+		height				: '100%',	//here you can type pixels (for instance '300px'), a percentage (relative to the width of the slideshow, for instance '50%') or 'auto'
 		
 		imagePath			: '../images/camera/',	//he path to the image folder (it serves for the blank.gif, when you want to display videos)
 		
