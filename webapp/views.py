@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django import forms
 
 from webapp.forms import Stad
-
+from webapp.forms import Gebruiker
 # Create your views here.
 def index(request):
 	return render(request, 'webapp/index.html')
@@ -31,11 +31,11 @@ def partners(request):
 
 def sander(request):
 	if request.method == "POST":
-		form = Stad(request.POST)
+		form = Gebruiker(request.POST)
 		if form.is_valid():
 			model_instance = form.save(commit=False)
 			model_instance.save()
 			return redirect('index')
 	else:
-			form = Stad()
+			form = Gebruiker()
 	return render(request, "webapp/sander.html", {'form': form})
