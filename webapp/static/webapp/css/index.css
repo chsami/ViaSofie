@@ -15,13 +15,16 @@
 	Title
 	#####################################################################################################################################################################
 */
+.title-container {
+  display: block;
+}
 
 .title {
 	border-bottom: 2px solid #ccc;
 	overflow: hidden;
 	max-width: 300px;
-    margin: 20px auto;
-    text-transform: uppercase;
+  margin: 20px auto;
+  text-transform: uppercase;
 }
 
 .title--sub-title {
@@ -43,6 +46,7 @@
 	width: 100%;
 	padding: 0;
   overflow: hidden;
+  margin: 0 auto;
 }
 
 /*
@@ -202,7 +206,7 @@ input{
 	/*original image size: width: 2276 height: 3333*/
 	width: 113.8px;
 	height: 166.65px;
-	position: absolute;
+	position: relative;
 	top: 2.5%;
 	left: 7.5%;
 	border-style: groove;

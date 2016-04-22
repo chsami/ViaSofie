@@ -37,29 +37,17 @@
 
 </head>
 <body>
+	<div class="wrap">
+  		<div class="container">
+    		<input class="form" type="text" placeholder="e-mail">
+    		<input class="form" type="paswoord" placeholder="password">
+    		<input id="login" type="button" value="Login">
+  		</div>
+	</div>
 	<div class="container">
 		<div class="wrapper">
 			<div id="header">
-				<div class="wrap">
-	  				<div class="container">
-	    				<input class="form" type="text" placeholder="e-mail">
-	    				<input class="form" type="password" placeholder="password">
-	    				<input id="login" type="button" value="Login">
-	  				</div>
-				</div>
-				<div class="container">
-					<div class="btn">Login</div>
-						<h1>The login form slides down when "login" is clicked</h1>
-				</div>
-				<h3 class="title">
-					<span>
-						Via Sofie
-					</span>
-					<span class="title--sub-title">
-						Vérdergaan in vastgoed...
-					</span>
-				</h3>
-				<img class="header-logo" src="{% static 'webapp/images/def logos via sofie - RGB-01.png' %}">
+				<div class="btn">Login</div>		
 				<div id='cssmenu' class="align-center">
 					<ul>
 						<li class='active'><a href='#'>Home</a></li>
@@ -68,6 +56,19 @@
 						<li><a href='#'>Partners</a></li>
 					</ul>
 				</div>
+
+				<div class="title-container">
+					<h3 class="title">
+						<span>
+							Via Sofie
+						</span>
+						<span class="title--sub-title">
+							Vérdergaan in vastgoed...
+						</span>
+					</h3>
+					<img class="header-logo" src="{% static 'webapp/images/def logos via sofie - RGB-01.png' %}">
+				</div>
+
 			</div>
 
 			<div id="body">
