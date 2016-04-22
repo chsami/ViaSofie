@@ -13,3 +13,8 @@ class Gebruiker(forms.ModelForm):
 	class Meta:
 		model = Gebruiker
 		fields = ['voornaam', 'naam', 'email', 'straatnaam', 'huisnr', 'postcode', 'busnr', 'toegangslevel', 'telefoonnr', 'password', ]
+
+class Ebook(forms.ModelForm):
+	class Meta:
+		model = Ebook
+		fields = ['naam', 'voornaam', 'email',]

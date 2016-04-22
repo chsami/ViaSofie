@@ -11,7 +11,8 @@ urlpatterns = [
     url(r'^kopen/$', views.kopen, name='kopen'),
     url(r'^login/$', views.login, name='login'),
     url(r'^partners/$', views.partners, name='partners'),
-    url(r'^sander/$', views.sander, name='sander'),
-    url(r'^register/$', views.register, name='register'),
+    url(r'^sander/$', views.stad, name='sander'),
+    url(r'^register/$', views.gebruiker, name='register'),
+    url(r'^ebook/$', views.ebook, name='register'),
 
 ]

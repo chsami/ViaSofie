@@ -81,11 +81,14 @@ class Tag(models.Model):
     def __str__(self):
         return self.id
 
-
-
 class Foto(models.Model):
     url = models.CharField(max_length=255)
     pand = models.ManyToManyField(Pand)
 
     def __str__(self):
         return self.id
+
+class Ebook(models.Model):
+    naam = models.charfield(max_length=255)
+    voornaam = models.charfield(max_length=255)
+    email = models.CharField(max_length=255)
