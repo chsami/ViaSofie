@@ -50,21 +50,22 @@ def register(request):
 	return render(request, "webapp/register.html", {'form': form})
 #authentication-------------------------------------
 def login(request):
-	c = {}
-    c.update(csrf(request))
-    return render_to_response('login.html', c)
+	c= {}
+	c.update(csrf(request))
+	return render_to_response('webapp/login.html', c)
+
 	#return render(request, 'webapp/login.html')
 
 def auth_view(request):
     username = request.POST.get('username', '')
     password = request.POST.get('password', '')
     user = auth.authenticate(username=username, password=password)
-    
+
     if user is not None:
         auth.login(request, user)
-        return HttpResponseRedirect('/accounts/loggedin')
+        return HttpResponseRedirect('/loggedin')
     else:
-        return HttpResponseRedirect('/accounts/invalid')
+        return HttpResponseRedirect('/invalid')
 
 def loggedin(request):
     return render_to_response('loggedin.html',

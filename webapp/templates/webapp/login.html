@@ -1,19 +1,30 @@
-{% extends "base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}My Base Template{% endblock %}</title>
 
-{% block content %}
+</head>
 
-  {% if form.errors %}
-    <p class="error">Sorry, that's not a valid username or password</p>
-  {% endif %}
+<body>
 
-  <form action="/accounts/auth/" method="post">{% csrf_token %}
-    <label for="username">User name:</label>
-    <input type="text" name="username" value="" id="username">
-    <label for="password">Password:</label>
-    <input type="password" name="password" value="" id="password">
+  {% block content %}
 
-    <input type="submit" value="login" />
+    {% if form.errors %}
+      <p class="error">Sorry, that's not a valid username or password</p>
+    {% endif %}
 
-  </form>
+    <form action="/auth/" method="post">{% csrf_token %}
+      <label for="username">User name:</label>
+      <input type="text" name="username" value="" id="username">
+      <label for="password">Password:</label>
+      <input type="password" name="password" value="" id="password">
 
-{% endblock %}
+      <input type="submit" value="login" />
+
+    </form>
+
+  {% endblock %}
+
+</body>
+</html>
