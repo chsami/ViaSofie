@@ -14,5 +14,5 @@ urlpatterns = [
     url(r'^sander/$', views.stad, name='sander'),
     url(r'^register/$', views.gebruiker, name='register'),
     url(r'^ebook/$', views.ebook, name='register'),
-
+    url(r'^formsucces/$', views.formsucces, name='formsucces'),
 ]
