@@ -1,10 +1,25 @@
-{% extends "base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}My Base Template{% endblock %}</title>
 
-{% block content %}
+    <link rel="stylesheet" type="text/css" href="{% get_static_prefix %}css/default.css" >
 
-  <h2>Hi {{full_name}} you are now logged in!</h2>
-  <p>Click <a href="/accounts/logout/">here</a> to logout.</p>
-  
-  <p>Click <a href="/accounts/profile/">here</a> to edit your profile information</p>
+    <script src="{% get_static_prefix %}js/jquery-2.0.0.min.js"></script>
+    <script src="{% get_static_prefix %}js/ajax.js"></script>
 
-{% endblock %}
+</head>
+
+<body>
+  {% block content %}
+
+    <h2>Hi {{full_name}} you are now logged in!</h2>
+    <p>Click <a href="/logout/">here</a> to logout.</p>
+
+    <p>Click <a href="/profile/">here</a> to edit your profile information</p>
+
+  {% endblock %}
+
+</body>
+</html>

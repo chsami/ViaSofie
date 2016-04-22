@@ -68,12 +68,12 @@ def auth_view(request):
         return HttpResponseRedirect('/invalid')
 
 def loggedin(request):
-    return render_to_response('loggedin.html',
+    return render_to_response('webapp/loggedin.html',
                               {'full_name': request.user.username})
 
 def invalid_login(request):
-    return render_to_response('invalid_login.html')
+    return render_to_response('webapp/invalid_login.html')
 
 def logout(request):
     auth.logout(request)
-    return render_to_response('logout.html')
+    return render_to_response('webapp/logout.html')

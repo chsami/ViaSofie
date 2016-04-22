@@ -1,8 +1,19 @@
-{% extends "base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}My Base Template{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% get_static_prefix %}css/default.css" >
 
-{% block content %}
+</head>
 
-  <h2>Logged out!</h2>
-  <p>Click <a href="/accounts/login/">here</a> to login again</p>
+<body>
+  {% block content %}
 
-{% endblock %}
+    <h2>Logged out!</h2>
+    <p>Click <a href="/login/">here</a> to login again</p>
+
+  {% endblock %}
+
+</body>
+</html>

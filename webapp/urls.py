@@ -16,8 +16,7 @@ urlpatterns = [
     # user auth urls
     url(r'^login/$', views.login, name='login'),
     url(r'^auth/$',  views.auth_view, name='auth'),
-    url(r'^logout/$', views.logout),
-    url(r'^loggedin/$', views.loggedin),
-    url(r'^invalid/$', views.invalid_login),
+    url(r'^loggedin/$', views.loggedin, name='loggedin'),
+    url(r'^invalid/$', views.invalid_login, name='invalid'),
 
 ]
