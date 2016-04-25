@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.base_user import AbstractBaseUser
+
 
 
 class PandType(models.Model):
@@ -32,7 +34,7 @@ class Stad(models.Model):
     def __str__(self):
         return self.stadsnaam
 
-class Gebruiker(models.Model):
+class Gebruiker(AbstractBaseUser):
     #Id implemented by django
     voornaam = models.CharField(max_length=128)
     naam =  models.CharField(max_length=128)
@@ -42,12 +44,10 @@ class Gebruiker(models.Model):
     postcode = models.ForeignKey(Stad)
     busnr = models.CharField(max_length=10,  blank=True)
     telefoonnr = models.IntegerField()
-    password= models.CharField(max_length=30) #ToDo: add hashes + saltes (import)
-    toegangslevel = models.ForeignKey(Toegangslevel)
+    REQUIRED_FIELDS = ['voornaam', 'naam', 'email', 'postcode', 'telefoonnr']
 
     def __str__(self):
         return self.id
-#authentication https://docs.djangoproject.com/en/1.9/topics/auth/customizing/
 
 class Log(models.Model):
     created = models.DateTimeField(auto_now_add=True)
