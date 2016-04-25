@@ -1,17 +1,27 @@
 /*
 	#####################################################################################################################################################################
-	Header
+	Header, body
 	#####################################################################################################################################################################
 */
-div#header {
-	margin: 40px auto;
+#header {
+   padding:10px;
 }
+
+#body {
+}
+
+/*
+	#####################################################################################################################################################################
+	Title
+	#####################################################################################################################################################################
+*/
 
 .title {
 	border-bottom: 2px solid #ccc;
 	overflow: hidden;
-	max-width: 500px;
-    margin: 40px auto;
+	max-width: 300px;
+    margin: 20px auto;
+    text-transform: uppercase;
 }
 
 .title--sub-title {
@@ -21,11 +31,11 @@ div#header {
 	float: right;
 	margin-top: 0px;
 	line-height: 0.8;
+	font-style: oblique;
 }
-
 /*
 	#####################################################################################################################################################################
-	container (carousel and navbar)
+	container (overkoepelende div)
 	#####################################################################################################################################################################
 */
 
@@ -65,7 +75,7 @@ div#header {
   text-align: center;
   position: absolute;
   z-index: 5;
-  width: inherit;
+  width: 100%;
 }
 
 .navbar-container ul {
@@ -127,6 +137,42 @@ div#header {
 
 /*
 	#####################################################################################################################################################################
+	Logo (in header)
+	#####################################################################################################################################################################
+*/
+.header-logo{
+	/*original image size: width: 2276 height: 3333*/
+	width: 113.8px;
+	height: 166.65px;
+	position: absolute;
+	top: 2.5%;
+	left: 7.5%;
+	border-style: groove;
+	border-width: 3px;
+  display: inline;
+}
+.header-logo-title{
+  width: 70px;
+  height: 102.50px;
+  float: left;
+  position: relative;
+
+
+  display: none;
+}
+
+@media only screen and (max-width: 1150px) {
+    .header-logo{
+      display: none;
+    }
+    .header-logo-title{
+      display: inline;
+    }
+}
+
+
+/*
+	#####################################################################################################################################################################
 	Menu
 	#####################################################################################################################################################################
 */
@@ -166,7 +212,7 @@ div#header {
 	background: #f7f7f7;
 	box-shadow: 1px 1px 0 #051514, 2px 2px 0 #051514, 3px 3px 3px rgba(0, 0, 0, 0.35);
   	margin: 0 auto 40px auto;
-	max-width: 900px;
+	max-width: 700px;
 	width: 90%;
 }
 #cssmenu > ul {
@@ -300,7 +346,6 @@ div#header {
 	float: right;
 	margin-top: 35px;
 	width: 100%;
-
 }
 
 .social-buttons {
@@ -386,3 +431,42 @@ div#header {
           transform: scale(1);
 }
 
+/*
+	#####################################################################################################################################################################
+	Footer & wrapper
+	#####################################################################################################################################################################
+*/
+
+.wrapper {
+  min-height: 135vh;
+  transform-origin: center bottom 0px;
+  transition: all 0.5s ease 0s;
+  box-shadow: 0px 22px 54px rgba(0, 0, 0, 0.5);
+}
+
+body.tight .wrapper {
+  transform: translateY(-60px) scale(0.9);
+}
+
+.footer {
+  width: 90%;
+  max-width: 1440px;
+  margin: 0px auto;
+  text-align: center;
+  min-height: 100px;
+  font-weight: bold;
+  padding-top: 20px;
+}
+
+ul {
+	list-style: none; /* Remove list bullets */
+}
+
+li {
+	display: inline;
+	padding-left: 50px;
+}
+
+.footer-list {
+	align-content: center;
+}
