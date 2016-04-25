@@ -7,7 +7,7 @@ from webapp.models import PandType
 from webapp.models import Handelstatus
 from webapp.models import Voortgang
 from webapp.models import Toegangslevel
-from webapp.models import Log, Pand, Tag, Foto
+from webapp.models import *
 
 
 class Stad(forms.ModelForm):
@@ -16,10 +16,7 @@ class Stad(forms.ModelForm):
 		fields = ['postcode', 'stadsnaam',]
 
 
-class Gebruiker(forms.ModelForm):
-	class Meta:
-		model = Gebruiker
-		fields = ['voornaam', 'naam', 'email', 'straatnaam', 'huisnr', 'postcode', 'busnr', 'toegangslevel', 'telefoonnr', 'password', ]
+
 
 class Ebook(forms.ModelForm):
 	class Meta:

@@ -11,8 +11,15 @@ urlpatterns = [
     url(r'^kopen/$', views.kopen, name='kopen'),
     url(r'^login/$', views.login, name='login'),
     url(r'^partners/$', views.partners, name='partners'),
-    url(r'^sander/$', views.stad, name='sander'),
-    url(r'^register/$', views.gebruiker, name='register'),
-    url(r'^ebook/$', views.ebook, name='register'),
+    
+    #Form urls
+    url(r'^stad/$', views.stad, name='stad'),
+    url(r'^pandtype/$', views.pandtype, name='pandtype'),
+    url(r'^handelstatus/$', views.handelstatus, name='handelstatus'),
+    url(r'^voortgang/$', views.voortgang, name='voortgang'),
+    url(r'^pand/$', views.pand, name='pand'),
+    url(r'^tag/$', views.tag, name='tag'),
+    url(r'^log/$', views.log, name='log'),
+    url(r'^foto/$', views.foto, name='foto'),
     url(r'^formsucces/$', views.formsucces, name='formsucces'),
 ]

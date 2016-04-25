@@ -2,9 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django import forms
 
-from webapp.forms import Stad
-from webapp.forms import Gebruiker
-from webapp.forms import Ebook
+from webapp.forms import *
 # Create your views here.
 def index(request):
 	return render(request, 'webapp/index.html')
@@ -32,6 +30,7 @@ def partners(request):
 def formsucces(request):
 	return render(request, 'webapp/formsucces.html')
 
+
 def stad(request):
 	if request.method == "POST":
 		form = Stad(request.POST)
@@ -43,17 +42,6 @@ def stad(request):
 			form = Stad()
 	return render(request, "webapp/forms.html", {'form': form})
 
-def gebruiker(request):
-	if request.method == "POST":
-		form = Gebruiker(request.POST)
-		if form.is_valid():
-			model_instance = form.save(commit=False)
-			model_instance.save()
-			return redirect('formsucces')
-	else:
-			form = Gebruiker()
-	return render(request, "webapp/register.html", {'form': form})
-
 def ebook(request):
 	if request.method == "POST":
 		form = Ebook(request.POST)
@@ -63,4 +51,82 @@ def ebook(request):
 			return redirect('formsucces')
 	else:
 			form = Ebook()
+	return render(request, "webapp/forms.html", {'form': form})
+
+def pandtype(request):
+	if request.method == "POST":
+		form = PandType(request.POST)
+		if form.is_valid():
+			model_instance = form.save(commit=False)
+			model_instance.save()
+			return redirect('formsucces')
+	else:
+			form = PandType()
+	return render(request, "webapp/forms.html", {'form': form})
+
+def handelstatus(request):
+	if request.method == "POST":
+		form = Handelstatus(request.POST)
+		if form.is_valid():
+			model_instance = form.save(commit=False)
+			model_instance.save()
+			return redirect('formsucces')
+	else:
+			form = Handelstatus()
+	return render(request, "webapp/forms.html", {'form': form})
+
+
+def voortgang(request):
+	if request.method == "POST":
+		form = Voortgang(request.POST)
+		if form.is_valid():
+			model_instance = form.save(commit=False)
+			model_instance.save()
+			return redirect('formsucces')
+	else:
+			form = Voortgang()
+	return render(request, "webapp/forms.html", {'form': form})
+
+def pand(request):
+	if request.method == "POST":
+		form = Pand(request.POST)
+		if form.is_valid():
+			model_instance = form.save(commit=False)
+			model_instance.save()
+			return redirect('formsucces')
+	else:
+			form = Pand()
+	return render(request, "webapp/forms.html", {'form': form})
+
+def tag(request):
+	if request.method == "POST":
+		form = Tag(request.POST)
+		if form.is_valid():
+			model_instance = form.save(commit=False)
+			model_instance.save()
+			return redirect('formsucces')
+	else:
+			form = Tag()
+	return render(request, "webapp/forms.html", {'form': form})
+
+def log(request):
+	if request.method == "POST":
+		form = Log(request.POST)
+		if form.is_valid():
+			model_instance = form.save(commit=False)
+			model_instance.save()
+			return redirect('formsucces')
+	else:
+			form = Log()
+	return render(request, "webapp/forms.html", {'form': form})
+
+def foto(request):
+	if request.method == "POST":
+		form = Foto(request.POST)
+		if form.is_valid():
+			model_instance = form.save(commit=False)
+			model_instance.save()
+			return redirect('formsucces')
+	else:
+			form = Foto()
 	return render(request, "webapp/forms.html", {'form': form})
