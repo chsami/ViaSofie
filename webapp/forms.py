@@ -8,12 +8,6 @@ class Stad(forms.ModelForm):
 		model = Stad
 		fields = ['postcode', 'stadsnaam',]
 
-
-# class User(forms.ModelForm):
-# 	class Meta:
-# 		model = User
-# 		fields = ['voornaam', 'naam', 'straatnaam', 'huisnr', 'postcode', 'busnr', 'telefoonnr', ]
-
 class RegistrationForm(forms.ModelForm):
     """
     Form for registering a new account.
