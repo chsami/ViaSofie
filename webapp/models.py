@@ -22,11 +22,6 @@ class Voortgang(models.Model):
     def __str__(self):
         return self.id
 
-class Toegangslevel(models.Model):
-    toegangslevelnaam = models.CharField(max_length=255)
-    def __str__(self):
-        return self.toegangslevelnaam
-
 
 class Stad(models.Model):
     postcode = models.SmallIntegerField()
@@ -34,24 +29,32 @@ class Stad(models.Model):
     def __str__(self):
         return self.stadsnaam
 
-class Gebruiker(AbstractBaseUser):
+class User(AbstractBaseUser):
     #Id implemented by django
+    USERNAME_FIELD = 'email'
+
     voornaam = models.CharField(max_length=128)
     naam =  models.CharField(max_length=128)
-    email = models.CharField(max_length=128)
+    email = models.CharField(max_length=128, unique=True)
+
+    is_active = models.BooleanField(default=True)
+    is_admin = models.BooleanField(default=False)
+
     straatnaam = models.CharField(max_length=128)
     huisnr = models.IntegerField()
     postcode = models.ForeignKey(Stad)
     busnr = models.CharField(max_length=10,  blank=True)
+
     telefoonnr = models.IntegerField()
-    REQUIRED_FIELDS = ['voornaam', 'naam', 'email', 'postcode', 'telefoonnr']
+
+    REQUIRED_FIELDS = ['voornaam', 'naam', 'postcode', 'telefoonnr', ]
 
     def __str__(self):
-        return self.id
+        return self.email
 
 class Log(models.Model):
     created = models.DateTimeField(auto_now_add=True)
-    gebruiker = models.ForeignKey(Gebruiker)
+    user = models.ForeignKey(User)
     logText = models.CharField(max_length=255)
 
     def __str__(self):
@@ -61,7 +64,7 @@ class Log(models.Model):
 
 class Pand(models.Model):
     #id autocreated by django
-    gebruiker = models.ForeignKey(Gebruiker)
+    user = models.ForeignKey(User)
     straatnaam = models.CharField(max_length=128)
     huisnr = models.SmallIntegerField()
     postcodeID = models.ForeignKey(Stad)
