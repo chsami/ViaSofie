@@ -1,29 +1,27 @@
 from django.db import models
+from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import PermissionsMixin
+
 
 
 class PandType(models.Model):
     pandtype = models.CharField(max_length=128) #kantoor,huis, appartement, ...
 
     def __str__(self):
-        return self.id
+        return self.pandtype
 
 
 class Handelstatus(models.Model):
     status = models.CharField(max_length=128) #verkoop, verhuur, verpachten, ...
 
     def __str__(self):
-        return self.id
+        return self.status
 
 
 class Voortgang(models.Model):
     status = models.CharField(max_length=128) #online, optie, bij notaris, ...
     def __str__(self):
-        return self.id
-
-class Toegangslevel(models.Model):
-    toegangslevelnaam = models.CharField(max_length=255)
-    def __str__(self):
-        return self.toegangslevelnaam
+        return self.status
 
 
 class Stad(models.Model):
@@ -32,36 +30,68 @@ class Stad(models.Model):
     def __str__(self):
         return self.stadsnaam
 
-class Gebruiker(models.Model):
+class User(AbstractBaseUser, PermissionsMixin):
     #Id implemented by django
+    USERNAME_FIELD = 'email'
+
     voornaam = models.CharField(max_length=128)
     naam =  models.CharField(max_length=128)
-    email = models.CharField(max_length=128)
+    email = models.CharField(max_length=128, unique=True)
+
+    is_active = models.BooleanField(default=True)
+    is_admin = models.BooleanField(default=True)
+
     straatnaam = models.CharField(max_length=128)
     huisnr = models.IntegerField()
     postcode = models.ForeignKey(Stad)
     busnr = models.CharField(max_length=10,  blank=True)
+
+    objects = BaseUserManager()
+
     telefoonnr = models.IntegerField()
-    password= models.CharField(max_length=30) #ToDo: add hashes + saltes (import)
-    toegangslevel = models.ForeignKey(Toegangslevel)
+
+    REQUIRED_FIELDS = ['voornaam', 'naam', 'postcode', 'telefoonnr', ]
 
     def __str__(self):
-        return self.id
-#authentication https://docs.djangoproject.com/en/1.9/topics/auth/customizing/
+        return self.email
+
+    def get_full_name(self):
+        # The user is identified by their email address
+        return self.email
+
+    def get_short_name(self):
+        # The user is identified by their email address
+        return self.email
+
+    def has_perm(self, perm, obj=None):
+        "Does the user have a specific permission?"
+        # Simplest possible answer: Yes, always
+        return True
+
+    def has_module_perms(self, app_label):
+        "Does the user have permissions to view the app `app_label`?"
+        # Simplest possible answer: Yes, always
+        return True
+
+    @property
+    def is_staff(self):
+        "Is the user a member of staff?"
+        # Simplest possible answer: All admins are staff
+        return self.is_admin
 
 class Log(models.Model):
     created = models.DateTimeField(auto_now_add=True)
-    gebruiker = models.ForeignKey(Gebruiker)
+    user = models.ForeignKey(User)
     logText = models.CharField(max_length=255)
 
     def __str__(self):
-        return self.id
+        return self.logText
 
 
 
 class Pand(models.Model):
     #id autocreated by django
-    gebruiker = models.ForeignKey(Gebruiker)
+    user = models.ForeignKey(User)
     straatnaam = models.CharField(max_length=128)
     huisnr = models.SmallIntegerField()
     postcodeID = models.ForeignKey(Stad)
@@ -70,7 +100,7 @@ class Pand(models.Model):
     voortgang = models.ForeignKey(Voortgang)
 
     def __str__(self):
-        return self.id
+        return str(self.id)
 
 
 class Tag(models.Model):
@@ -79,7 +109,7 @@ class Tag(models.Model):
     Pand = models.ManyToManyField(Pand)
 
     def __str__(self):
-        return self.id
+        return self.tagnaam
 
 
 
@@ -88,4 +118,4 @@ class Foto(models.Model):
     pand = models.ManyToManyField(Pand)
 
     def __str__(self):
-        return self.id
+        return str(self.id)
