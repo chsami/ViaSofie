@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.base_user import AbstractBaseUser
+from django.contrib.auth.base_user import AbstractBaseUser, UserManager
 
 
 
@@ -38,7 +38,8 @@ class User(AbstractBaseUser):
     email = models.CharField(max_length=128, unique=True)
 
     is_active = models.BooleanField(default=True)
-    is_admin = models.BooleanField(default=False)
+    is_admin = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=True)
 
     straatnaam = models.CharField(max_length=128)
     huisnr = models.IntegerField()
@@ -51,6 +52,11 @@ class User(AbstractBaseUser):
 
     def __str__(self):
         return self.email
+
+class UserManager(BaseUserManager)
+    def create_user(self, email, voornaam, password=None):
+
+    def create_superuser():
 
 class Log(models.Model):
     created = models.DateTimeField(auto_now_add=True)

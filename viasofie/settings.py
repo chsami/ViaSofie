@@ -84,4 +84,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'webapp.User'
-AUTHENTICATION_BACKENDS = ['webapp.backends.EmailAuthBackend', ]
+AUTHENTICATION_BACKENDS = ['webapp.backends.EmailAuthBackend', 'django.contrib.auth.backends.ModelBackend',]
