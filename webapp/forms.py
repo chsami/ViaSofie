@@ -12,9 +12,16 @@ class RegistrationForm(forms.ModelForm):
     """
     Form for registering a new account.
     """
-    email = forms.EmailField(label="Email")
-    password1 = forms.CharField(label="Password")
-    password2 = forms.CharField(label="Password (again)")
+    email = forms.EmailField(label="Email", widget=forms.EmailInput(attrs={'placeholder': 'Email'}))
+    password1 = forms.CharField(label="Password", widget=forms.PasswordInput(attrs={'placeholder': 'Paswoord'}))
+    password2 = forms.CharField(label="Password (again)", widget=forms.PasswordInput(attrs={'placeholder': 'Paswoord'}))
+    voornaam = forms.CharField(label="Password (again)", widget=forms.TextInput(attrs={'placeholder': 'Voornaam'}))
+    naam = forms.CharField(label="Password (again)", widget=forms.TextInput(attrs={'placeholder': 'Naam'}))
+    straatnaam = forms.CharField(label="Password (again)", widget=forms.TextInput(attrs={'placeholder': 'Straatnaam'}))
+    huisnr = forms.CharField(label="Password (again)", widget=forms.NumberInput(attrs={'placeholder': 'Bijv: 1'}))
+    postcode = forms.CharField(label="Password (again)", widget=forms.TextInput(attrs={'placeholder': 'Bijv: 2000'}))
+    busnr = forms.CharField(label="Password (again)", widget=forms.NumberInput(attrs={'placeholder': 'Bijv: 1'}))
+    telefoonnr = forms.CharField(label="Password (again)", widget=forms.TextInput(attrs={'placeholder': 'Telefoonnr'}))
 
     class Meta:
         model = User
