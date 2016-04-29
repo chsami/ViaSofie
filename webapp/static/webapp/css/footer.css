@@ -1,0 +1,173 @@
+/*
+	#####################################################################################################################################################################
+	Footer
+	#####################################################################################################################################################################
+*/
+
+.footer {
+  font-weight: bold;
+}
+
+.footer-top {
+  padding: 10px;
+  background-color: #F6F6F6;
+}
+
+.footer ul {
+  margin: 0;
+}
+
+.footer li {
+	display: inline;
+  margin-right: 40px;
+  list-style: none;
+}
+
+.footer-list {
+  padding-top: 10px;
+}
+
+.menu-list {
+  padding-top: 15px;
+}
+
+
+.row {
+    bottom: 0;
+    width: 100%;
+    height: 51px;
+    background-color: #F6F6F6;
+    text-align: left;
+    margin: 0px;
+}
+
+.footer-bottom {
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+    background-color: #eac8c6;/*#e7e7e7*/
+    text-align: center;
+}
+
+/*
+  #####################################################################################################################################################################
+  Social buttons
+  #####################################################################################################################################################################
+*/
+* {
+  box-sizing: border-box;
+}
+*:focus, *:active, *:focus:active {
+  outline: none;
+}
+
+.set {
+  margin: 5px;
+  float: right;
+}
+
+a.social {
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  margin-right: 10px;
+  overflow: hidden;
+  position: relative;
+  text-indent: -9999em;
+  visibility: hidden;
+  width: 40px;
+}
+a.social:before, a.social:after {
+  color: #fff;
+  content: "";
+  display: inline-block;
+  font-family: FontAwesome;
+  font-size: 30px;
+  height: 40px;
+  line-height: 44px;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  text-indent: 0;
+  visibility: visible;
+  width: 40px;
+}
+a.social:after {
+  left: 0;
+  position: absolute;
+}
+a.facebook:before {
+  background: #3b5998;
+}
+a.facebook:after {
+  content: "\f09a";
+  top: -1px;
+}
+a.twitter:before {
+  background: #00aced;
+}
+a.twitter:after {
+  content: "\f099";
+  left: 0;
+  top: 0;
+}
+a.pinterest:before {
+  background: #cc2127;
+}
+a.pinterest:after {
+  content: "\f0d2";
+  font-size: 34px;
+  left: -1px;
+  top: -1px;
+}
+a.linked-in:before {
+  background: #007bb6;
+}
+a.linked-in:after {
+  content: "\f0e1";
+  top: -1px;
+}
+
+.rounded a.social:before {
+  border-radius: 50%;
+}
+
+.fg-inflate a {
+  overflow: visible;
+}
+.fg-inflate a:after {
+  transform: scale(1);
+  transition: all .3s ease-in;
+}
+.fg-inflate a:hover:after {
+  transform: scale(1.5);
+}
+.fg-inflate.fg-tilt a:after {
+  transform: rotate(0deg) scale(1);
+  transition: all .3s ease-in;
+}
+.fg-inflate.fg-tilt a:hover:after {
+  transform: rotate(-7deg) scale(1.5);
+}
+.fg-inflate:not(.bg-fall):not(.fg-tilt) a.instagram:hover:after {
+  top: -2px;
+  transform: scale(1.68);
+}
+.fg-inflate:not(.bg-fall):not(.fg-tilt) a.linked-in:hover:after {
+  top: -1px;
+  transform: scale(1.6);
+}
+
+.fg-shadow a:hover.facebook:after {
+  text-shadow: 0 0 3px #3b5998;
+}
+.fg-shadow a:hover.twitter:after {
+  text-shadow: 0 0 3px #00aced;
+}
+.fg-shadow a:hover.pinterest:after {
+  text-shadow: 0 0 3px #cc2127;
+}
+.fg-shadow a:hover.linked-in:after {
+  text-shadow: 0 0 3px #007bb6;
+}
+

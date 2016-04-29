@@ -1,6 +1,7 @@
 /*
     All html elements can use these class selectors
 */
+
 .uppercase {
     text-transform: uppercase;
 }
@@ -24,9 +25,10 @@
 
 body,
 html {
-  max-width: 100%;
-  overflow-x: hidden;
+    max-width: 100%;
+    overflow-x: hidden;
 }
+
 body {
     background-color: #e8e8e8;
     font-family: 'Ropa Sans', sans-serif;
@@ -37,9 +39,15 @@ body {
     padding: 0px;
 }
 
+.background {
+    background-color: #bad5ce;
+}
+
+
 /*
-	Header styling
+    Header styling
 */
+
 h1 {
     font-size: 48px;
     line-height: 40px;
@@ -60,7 +68,6 @@ h4 {
     line-height: 20px;
 }
 
-
 h5 {
     font-size: 18px;
     line-height: 20px;
@@ -71,9 +78,11 @@ h6 {
     line-height: 20px;
 }
 
+
 /*
     Paragraph styling
 */
+
 p.small-lh {
     line-height: 0.8;
 }
@@ -86,9 +95,11 @@ p.nowrap {
     white-space: nowrap;
 }
 
+
 /*
     Image styling
 */
+
 img.top {
     vertical-align: text-top;
 }
@@ -97,34 +108,82 @@ img.bottom {
     vertical-align: text-bottom;
 }
 
+
 /*
     Link styling
 */
+
 a {
     font-weight: bold;
 }
 
+
 /* unvisited link */
+
 a:link {
     text-decoration: none;
     color: #121212;
 }
 
+
 /* visited link */
+
 a:visited {
     text-decoration: none;
     color: #121212;
 }
 
+
 /* mouse over link */
+
 a:hover {
     text-shadow: 1px 1px #111d1a;
     text-decoration: underline;
     color: #65a191;
 }
 
+
 /* selected link */
+
 a:active {
     text-decoration: none;
     color: blue;
 }
+
+
+/* Edit of bootstrap design */
+
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+    background-color: #F6F6F6;
+}
+
+
+/*==================================================
+=            Bootstrap 3 Media Queries             =
+==================================================*/
+
+
+/* Large Devices, Wide Screens */
+
+@media only screen and (max-width: 1200px) {}
+
+
+/* Medium Devices, Desktops */
+
+@media only screen and (max-width: 992px) {}
+
+
+/* Small Devices, Tablets */
+
+@media only screen and (max-width: 768px) {}
+
+
+/* Extra Small Devices, Phones */
+
+@media only screen and (max-width: 480px) {}
+
+
+/* Custom, iPhone Retina */
+
+@media only screen and (max-width: 320px) {}

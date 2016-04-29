@@ -1,0 +1,344 @@
+    /*
+  #####################################################################################################################################################################
+  Header, body
+  #####################################################################################################################################################################
+*/
+    
+    .header {
+        margin-top: 50px;
+        position: relative;
+    }
+    
+    #body {}
+    /*
+  #####################################################################################################################################################################
+  Title
+  #####################################################################################################################################################################
+*/
+    
+    .title {
+        border-bottom: 2px solid #ccc;
+        overflow: hidden;
+        max-width: 300px;
+        margin: 20px 20px 20px 0px;
+        position: relative;
+        text-transform: uppercase;
+        float: left;
+        left: 18%;
+    }
+    
+    .title--sub-title {
+        font-size: 70%;
+        color: #999;
+        width: 100%;
+        float: right;
+        margin-top: 0px;
+        line-height: 0.8;
+        font-style: oblique;
+    }
+    
+    @media only screen and (max-width: 1200px) {
+        .title {
+            display: none;
+        }
+    }
+    
+    @media only screen and (max-width: 960px) {
+        .title-container {
+            position: relative;
+        }
+        .title {
+            display: block;
+            margin: 20px auto;
+            vertical-align: middle;
+            float: none;
+            left: 10%;
+        }
+    }
+    
+    @media only screen and (max-width: 480px) {
+        .title {
+            display: block;
+            margin: 10px auto;
+            vertical-align: middle;
+            float: none;
+            left: 80px;
+            max-width: 220px;
+        }
+    }
+    /*
+  #####################################################################################################################################################################
+  container (overkoepelende div)
+  #####################################################################################################################################################################
+*/
+    
+    .container {
+        width: 100%;
+        padding: 0;
+    }
+    /*
+  #####################################################################################################################################################################
+  Logo (in header)
+  #####################################################################################################################################################################
+*/
+    
+    .header-logo {
+        /*original image size: width: 2276 height: 2276*/
+        width: 140px;
+        height: 140px;
+        padding: 10px;
+        background-color: #F6F6F6;
+        position: fixed;
+        z-index: 1030;
+        left: 5%;
+    }
+    
+    @media only screen and (max-width: 960px) {
+        .header-logo {
+            width: 80px;
+            height: 80px;
+            margin-top: 50px;
+            z-index: 1000;
+        }
+    }
+    /*
+  #####################################################################################################################################################################
+  Menu
+  #####################################################################################################################################################################
+*/
+    
+    #cssmenu,
+    #cssmenu ul,
+    #cssmenu ul li,
+    #cssmenu ul li a,
+    #cssmenu #menu-button {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        list-style: none;
+        line-height: 1;
+        display: block;
+        position: relative;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    
+    #cssmenu:after,
+    #cssmenu > ul:after {
+        content: ".";
+        display: block;
+        clear: both;
+        visibility: hidden;
+        line-height: 0;
+        height: 0;
+    }
+    
+    #cssmenu #menu-button {
+        display: none;
+    }
+    
+    #cssmenu {
+        border: 3px solid #0d3532;
+        border-radius: 3px;
+        line-height: 1;
+        background: #f7f7f7;
+        box-shadow: 1px 1px 0 #051514, 2px 2px 0 #051514, 3px 3px 3px rgba(0, 0, 0, 0.35);
+        margin: 20px auto;
+        max-width: 650px;
+        width: 70%;
+        float: right;
+        right: 5%;
+    }
+    
+    #cssmenu > ul {
+        background: url('../images/menu/bg.png');
+    }
+    
+    #cssmenu > ul > li {
+        float: left;
+    }
+    
+    #cssmenu.align-center > ul {
+        font-size: 0;
+        text-align: center;
+    }
+    
+    #cssmenu.align-center > ul > li {
+        display: inline-block;
+        float: none;
+    }
+    
+    #cssmenu.align-right > ul > li {
+        float: right;
+    }
+    
+    #cssmenu > ul > li > a {
+        padding: 20px 25px;
+        font-size: 14px;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: #0d3532;
+        -webkit-transition: all .2s ease;
+        -moz-transition: all .2s ease;
+        -ms-transition: all .2s ease;
+        -o-transition: all .2s ease;
+        transition: all .2s ease;
+    }
+    
+    #cssmenu > ul > li > a:hover,
+    #cssmenu > ul > li:hover > a,
+    #cssmenu > ul > li.active > a {
+        color: #444444;
+    }
+    
+    #cssmenu #menu-indicator {
+        position: absolute;
+        bottom: 0;
+        display: block;
+        height: 0;
+        width: 0;
+        border: 5px solid transparent;
+        border-bottom-color: #0d3532;
+        -webkit-transition: all 0.25s ease-out;
+        -moz-transition: all 0.25s ease-out;
+        -ms-transition: all 0.25s ease-out;
+        -o-transition: all 0.25s ease-out;
+        transition: all 0.25s ease-out;
+    }
+    
+    #cssmenu.small-screen > ul,
+    #cssmenu.small-screen.align-center > ul {
+        text-align: left;
+    }
+    
+    #cssmenu.small-screen > ul > li,
+    #cssmenu.small-screen.align-center > ul > li {
+        float: none;
+        display: block;
+        border-top: 1px solid rgba(100, 100, 100, 0.1);
+    }
+    
+    #cssmenu.small-screen > ul > li > a {
+        padding: 18px 25px;
+    }
+    
+    #cssmenu.small-screen > ul > li:after,
+    #cssmenu.small-screen > ul > li:before {
+        display: none;
+    }
+    
+    #cssmenu.small-screen #menu-button {
+        display: block;
+        padding: 18px 25px;
+        cursor: pointer;
+        font-size: 14px;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: #0d3532;
+        background: url('../images/menu/bg.png');
+    }
+    
+    #cssmenu.small-screen #menu-button.menu-opened {
+        color: #444444;
+    }
+    
+    #cssmenu.small-screen #menu-button:after {
+        content: "";
+        position: absolute;
+        right: 25px;
+        top: 19.5px;
+        display: block;
+        -webkit-box-sizing: content-box;
+        -moz-box-sizing: content-box;
+        box-sizing: content-box;
+        border-top: 2px solid #0d3532;
+        border-bottom: 2px solid #0d3532;
+        width: 18px;
+        height: 3px;
+    }
+    
+    #cssmenu.small-screen #menu-button.menu-opened:after {
+        border-top: 2px solid #444444;
+        border-bottom: 2px solid #444444;
+    }
+    
+    #cssmenu.small-screen #menu-button:before {
+        content: "";
+        position: absolute;
+        right: 25px;
+        top: 29.5px;
+        display: block;
+        width: 18px;
+        height: 2px;
+        background: #0d3532;
+    }
+    
+    #cssmenu.small-screen #menu-button.menu-opened:before {
+        background: #444444;
+    }
+    
+    #cssmenu.small-screen #menu-indicator {
+        display: none;
+    }
+    
+    @media only screen and (max-width: 1200px) {
+        #cssmenu {
+            right: 0px;
+        }
+    }
+    
+    @media only screen and (max-width: 992px) {
+        #cssmenu {
+            right: 0px;
+            width: 100%;
+            float: none;
+        }
+    }
+    
+    @media only screen and (max-width: 768px) {
+        #cssmenu {
+            width: 100%;
+            max-width: 100%;
+            float: none;
+        }
+    }
+
+    /*
+  #####################################################################################################################################################################
+  Bootstrap custom collapse
+  #####################################################################################################################################################################
+*/
+    
+    .navbar-collapse.collapse {
+        display: block!important;
+    }
+    
+    .navbar-nav>li,
+    .navbar-nav {
+        float: left !important;
+    }
+    
+    .navbar-nav.navbar-right:last-child {
+        margin-right: -15px !important;
+    }
+    
+    .navbar-right {
+        float: right!important;
+    }
+
+    .submenu {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    
+    .navbar-nav-submenu {
+        width: 100% !important;
+        margin: auto;
+        text-align: center !important;
+    }
+    
+    .navbar-nav-submenu li {
+        float: none !important;
+        display: inline-block !important;
+    }
