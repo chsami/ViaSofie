@@ -25,6 +25,9 @@ def huren(request):
 def kopen(request):
 	return render(request, 'webapp/kopen.html')
 
+def forms(request):
+	return render(request, 'webapp/forms.html')
+
 def login(request):
 	"""
     Log in view

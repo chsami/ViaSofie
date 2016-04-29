@@ -13,8 +13,8 @@ class RegistrationForm(forms.ModelForm):
     Form for registering a new account.
     """
     email = forms.EmailField(label="Email")
-    password1 = forms.CharField(label="Password")
-    password2 = forms.CharField(label="Password (again)")
+    password1 = forms.CharField(label="Wachtwoord")
+    password2 = forms.CharField(label="Wachtwoord (nogmaals)")
 
     class Meta:
         model = User
@@ -44,7 +44,7 @@ class AuthenticationForm(forms.Form):
     Login form
     """
     email = forms.EmailField(widget=forms.TextInput(attrs={'placeholder': 'Email'}))
-    password = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Paswoord'}))
+    password = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Wachtwoord'}))
 
     class Meta:
         fields = ['email', 'password']

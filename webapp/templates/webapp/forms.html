@@ -1,3 +1,6 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/forms.css' %}" />
+
 <form method="post" action="">
 {% csrf_token %}
 <table>
@@ -6,14 +9,30 @@
 <input type="submit" value="Submit Form"/>
 </form>
 
-
-
 <form method="post" action="">
-<input type='hidden' name='csrfmiddlewaretoken' value='5tsUsLhPeitBR3HMLQgnC9hPrzvUf1RY' />
+<input type="hidden" name="csrfmiddlewaretoken" value="nAEqIAhojX62Qh9FJRaxgUbAvAQ2UZw0">
 <table>
-<tr><th><label for="id_naam">Naam:</label></th><td><input id="id_naam" maxlength="255" name="naam" type="text" /></td></tr>
-<tr><th><label for="id_voornaam">Voornaam:</label></th><td><input id="id_voornaam" maxlength="255" name="voornaam" type="text" /></td></tr>
-<tr><th><label for="id_email">Email:</label></th><td><input id="id_email" maxlength="255" name="email" type="text" /></td></tr>
-</table>
-<input type="submit" value="Submit Form"/>
+<tbody><tr><th><label for="id_email">Email:</label></th><td><input id="id_email" name="email" placeholder="Email" type="text"></td></tr>
+<tr><th><label for="id_password">Password:</label></th><td><input id="id_password" name="password" placeholder="Wachtwoord" type="text"></td></tr>
+</tbody></table>
+<input type="submit" value="Log in">
 </form>
+
+<link href="http://fonts.googleapis.com/css?family=Oxygen:400,300,700" rel="stylesheet" type="text/css"/>
+<link href="http://code.ionicframework.com/ionicons/1.4.1/css/ionicons.min.css" rel="stylesheet" type="text/css"/>
+<div class="signin cf">
+  <div class="avatar"></div>
+  <form>
+    <div class="inputrow">
+      <input type="text" id="name" placeholder="Username"/>
+      <label for="name" class="ion-person"></label>
+    </div>
+    <div class="inputrow">
+      <input type="password" id="pass" placeholder="Password"/>
+      <label for="pass" class="ion-locked"></label>
+    </div>
+    <input type="checkbox" name="remember" id="remember"/>
+    <label for="remember" class="radio">Stay Logged In</label>
+    <input type="submit" value="Login"/>
+  </form>
+</div>
