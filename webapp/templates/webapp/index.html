@@ -1,127 +1,50 @@
- {% load staticfiles %}
-<!Doctype html>
-<head>
-	   <!--- Basic Page Needs
-   ================================================== -->
-	<meta charset="utf-8">
-	<title>ViaSofie</title>
-	<meta name="description" content="Developer">
-	<meta name="author" content="Sacha">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends 'webapp/base.html' %} 
+{% load staticfiles %} 
+{% block header %}
 
+<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/index.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/camera.css' %}" />
 
-	<!-- CSS
-    ================================================== -->
-	<link href='https://fonts.googleapis.com/css?family=Ropa+Sans:400,400italic' rel='stylesheet' type='text/css'>
+<script type='text/javascript' src="{% static 'webapp/scripts/index.js' %}"></script>
+<script type='text/javascript' src="{% static 'webapp/scripts/camera.js' %}"></script>
 
-	<link rel="stylesheet" href="{% static 'webapp/bootstrap/css/bootstrap.min.css' %}">
-	<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+{% endblock header %}
 
-	<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/style.css' %}" />
-	<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/index.css' %}" />
-	<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/camera.css' %}" />
+{% block content %}
+<div id="body">
 
-   <!-- Script
-   ================================================== -->
-	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<script type='text/javascript' src="{% static 'webapp/scripts/index.js' %}"></script>
-	<script type='text/javascript' src="{% static 'webapp/scripts/jquery.min.js' %}"></script>
-	<script type='text/javascript' src="{% static 'webapp/scripts/jquery.mobile.customized.min.js' %}"></script>
-	<script type='text/javascript' src="{% static 'webapp/scripts/jquery.easing.1.3.js' %}"></script>
-    <script type='text/javascript' src="{% static 'webapp/scripts/camera.min.js' %}"></script>
-
-   <!-- Favicons
-	================================================== -->
-	<link rel='shortcut icon' type='image/x-icon' href="{% static 'webapp/images/favicon.jpg' %}"/>
-
-</head>
-<body>
-	<div class="container">
-		<div class="wrapper">
-			<div id="header">
-        <img class="header-logo-title" src="{% static 'webapp/images/def logos via sofie - RGB-01.png' %}">
-				<h3 class="title">
-					<span>      
-						Via Sofie
-					</span>
-					<span class="title--sub-title">
-						Vérdergaan in vastgoed...
-					</span>
-				</h3>
-				<img class="header-logo" src="{% static 'webapp/images/def logos via sofie - RGB-01.png' %}">
-				<div id='cssmenu' class="align-center">
-					<ul>
-						<li class='active'><a href='#'>Home</a></li>
-						<li><a href='#'>Over</a></li>
-						<li><a href='#'>Contact</a></li>
-						<li><a href='#'>Partners</a></li>
-					</ul>
-				</div>
-			</div>
-
-			<div id="body">
-				<div class="navbar-container">
-			    	<ul>
-						<li><span>Welkom</span></li>
-						<li><span>Kopen</span></li>
-						<li><span>Huren</span></li>
-						<li><span>Referenties</span></li>
-						<li><span>Advies</span></li>
-						<li><span>Account</span></li>
-			    	</ul>
-				</div>
-
-				<div class="fluid_container">
-			        <div class="camera_wrap camera_azure_skin" id="camera_wrap_1">
-						<div data-thumb="http://i.picresize.com/images/2016/04/21/zjlWE.jpg" data-src="http://www.hdwallpaperspulse.com/wp-content/uploads/2012/10/big_house_wallpaper_99745.jpg">
-			                <div class="camera_caption fadeFromBottom">
-			                    The Quick Brown Fox Jumps Over The Lazy Dog.
-			                </div>
-			            </div>
-			            <div data-thumb="http://i.picresize.com/images/2016/04/21/oTPcZ.jpg" data-src="http://chainimage.com/images/house-wallpaper-desktop-background-houses-wallpapers-1280x1024.jpg">
-			                <div class="camera_caption fadeFromBottom">
-			                    The Quick Brown Fox Jumps Over The Lazy Dog.
-			                </div>
-			            </div>
-			            <div data-thumb="http://i.picresize.com/images/2016/04/21/bfVt4.jpg" data-src="http://www.beautifulwallpaper.co/wp-content/uploads/2016/02/backgrounds-Nice-Pictures-Of-Houses-HG5.jpg">
-			                <div class="camera_caption fadeFromBottom">
-			                    The Quick Brown Fox Jumps Over The Lazy Dog.
-			                </div>
-			            </div>
-			            <div data-thumb="http://i.picresize.com/images/2016/04/21/LfmVe.jpg" data-src="http://theworldofenvy.com/wp-content/uploads/2012/02/LVOceanFrontLuxurySuite.jpg">
-			                <div class="camera_caption fadeFromBottom">
-			                    The Quick Brown Fox Jumps Over The Lazy Dog.
-			                </div>
-			            </div>
-			            <div data-thumb="http://i.picresize.com/images/2016/04/21/STN72.jpg" data-src="http://dreamlovewallpapers.com/wp-content/uploads/2015/06/Beautiful-House-Reflection-In-Water-Wallpaper.jpg">
-			                <div class="camera_caption fadeFromBottom">
-			                    The Quick Brown Fox Jumps Over The Lazy Dog.
-			                </div>
-			            </div>
-			            <div data-thumb="http://i.picresize.com/images/2016/04/21/kJ5yq.jpg" data-src="http://uutubes.com/wp-content/uploads/2016/01/beautiful-house-wallpaper_015635431_148.jpg">
-			                <div class="camera_caption fadeFromBottom">
-			                    The Quick Brown Fox Jumps Over The Lazy Dog.
-			                </div>
-			            </div>
-			        </div>
-					<div class="social-container">
-						<div class="social-buttons">
-							<a href="#" class="social-button facebook"><i class="fa fa-facebook"></i></a>
-							<a href="#" class="social-button twitter"><i class="fa fa-twitter"></i></a>
-							<a href="#" class="social-button linkedin"><i class="fa fa-linkedin"></i></a>
-							<a href="#" class="social-button pinterest"><i class="fa fa-pinterest"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="footer">
-			<ul class="footer-list">
-				<li><a href="">Vastgoed & advies</a></li>
-				<li><a href="">Disclaimer</a></li>
-				<li><a href="">Privacybeleid</a></li>
-				<li>2016 © ViaSofie</li>
-			</ul>
-		</div>
-	</div>
-</body>
+    {% include "webapp/submenu.html" %}
+    <div class="fluid_container">
+        <div class="camera_wrap camera_azure_skin" id="camera_wrap_1">
+            <div data-thumb="http://i.picresize.com/images/2016/04/21/zjlWE.jpg" data-src="http://www.hdwallpaperspulse.com/wp-content/uploads/2012/10/big_house_wallpaper_99745.jpg">
+                <div class="camera_caption fadeFromBottom">The Quick Brown Fox Jumps Over The Lazy Dog.</div>
+            </div>
+            <div data-thumb="http://i.picresize.com/images/2016/04/21/oTPcZ.jpg" data-src="http://chainimage.com/images/house-wallpaper-desktop-background-houses-wallpapers-1280x1024.jpg">
+                <div class="camera_caption fadeFromBottom">
+                    The Quick Brown Fox Jumps Over The Lazy Dog.
+                </div>
+            </div>
+            <div data-thumb="http://i.picresize.com/images/2016/04/21/bfVt4.jpg" data-src="http://www.beautifulwallpaper.co/wp-content/uploads/2016/02/backgrounds-Nice-Pictures-Of-Houses-HG5.jpg">
+                <div class="camera_caption fadeFromBottom">
+                    The Quick Brown Fox Jumps Over The Lazy Dog.
+                </div>
+            </div>
+            <div data-thumb="http://i.picresize.com/images/2016/04/21/LfmVe.jpg" data-src="http://theworldofenvy.com/wp-content/uploads/2012/02/LVOceanFrontLuxurySuite.jpg">
+                <div class="camera_caption fadeFromBottom">
+                    The Quick Brown Fox Jumps Over The Lazy Dog.
+                </div>
+            </div>
+            <div data-thumb="http://i.picresize.com/images/2016/04/21/STN72.jpg" data-src="http://dreamlovewallpapers.com/wp-content/uploads/2015/06/Beautiful-House-Reflection-In-Water-Wallpaper.jpg">
+                <div class="camera_caption fadeFromBottom">
+                    The Quick Brown Fox Jumps Over The Lazy Dog.
+                </div>
+            </div>
+            <div data-thumb="http://i.picresize.com/images/2016/04/21/kJ5yq.jpg" data-src="http://uutubes.com/wp-content/uploads/2016/01/beautiful-house-wallpaper_015635431_148.jpg">
+                <div class="camera_caption fadeFromBottom">
+                    The Quick Brown Fox Jumps Over The Lazy Dog.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
