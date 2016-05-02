@@ -2,6 +2,7 @@ from django import forms
 from django.forms import ModelForm
 from webapp.models import Stad
 from webapp.models import User
+from django.contrib import admin
 
 class Stad(forms.ModelForm):
 	class Meta:
@@ -55,3 +56,12 @@ class AuthenticationForm(forms.Form):
 
     class Meta:
         fields = ['email', 'password']
+
+class FotoForm(forms.Form):
+
+	# class Meta:
+	# 	model: Foto
+	# 	fields['docfile']
+	docfile = forms.FileField(
+		label='Select a file'
+	)

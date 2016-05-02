@@ -48,6 +48,14 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    #'django.middleware.security.SecurityMiddleware',
+)
+
+TEMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+    'django.template.loaders.eggs.Loader',
+    'apptemplates.Loader'
 )
 
 ROOT_URLCONF = 'viasofie.urls'
@@ -79,6 +87,8 @@ USE_L10N = True
 USE_TZ = True
 
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
@@ -87,6 +97,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'webapp/static')
 
 AUTH_USER_MODEL = 'webapp.User'
 AUTHENTICATION_BACKENDS = ['webapp.backends.EmailAuthBackend', 'django.contrib.auth.backends.ModelBackend',]
+<<<<<<< HEAD
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
@@ -110,3 +121,5 @@ TEMPLATES = [
     },
 },
 ]
+=======
+>>>>>>> refs/remotes/origin/Jeff_origin
