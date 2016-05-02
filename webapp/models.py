@@ -115,10 +115,8 @@ class Tag(models.Model):
 
 class Foto(models.Model):
     url = models.CharField(max_length=255)
+    docfile = models.FileField(upload_to='documents/%Y/%m/%d', blank=True)
     pand = models.ManyToManyField(Pand)
 
     def __str__(self):
         return str(self.id)
-
-class Document(models.Model):
-    docfile = models.FileField(upload_to='documents/%Y/%m/%d')

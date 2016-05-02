@@ -4,8 +4,8 @@ from django.template import RequestContext
 from django.contrib.auth import login as django_login, authenticate, logout as django_logout
 from django.core.urlresolvers import reverse
 from django import forms
-from webapp.models import Document
-from webapp.forms import Stad, User, AuthenticationForm, RegistrationForm, DocumentForm
+from webapp.models import Foto
+from webapp.forms import Stad, User, AuthenticationForm, RegistrationForm, FotoForm
 # Create your views here.
 def index(request):
 	return render(request, 'webapp/index.html')
@@ -79,25 +79,49 @@ def logout(request):
     django_logout(request)
     return redirect('/')
 
-def list(request):
-    # Handle file upload
-    if request.method == 'POST':
-        form = DocumentForm(request.POST, request.FILES)
-        if form.is_valid():
-            newdoc = Document(docfile=request.FILES['docfile'])
-            newdoc.save()
+# def list(request):
+#     # Handle file upload
+#     if request.method == 'POST':
+#         form = DocumentForm(request.POST, request.FILES)
+# 		if form.is_valid():
+#             newdoc = Document(docfile=request.FILES['docfile'])
+#             newdoc.save()
+#
+#             # Redirect to the document list after POST
+#             return HttpResponseRedirect(reverse('list'))
+#     else:
+#         form = DocumentForm()  # A empty, unbound form
+#
+#     # Load documents for the list page
+#     documents = Document.objects.all()
+#
+#     # Render list page with the documents and the form
+#     return render(
+#         request,
+#         'webapp/list.html',
+#         {'documents': documents, 'form': form}
+#     )
 
-            # Redirect to the document list after POST
-            return HttpResponseRedirect(reverse('list'))
-    else:
-        form = DocumentForm()  # A empty, unbound form
 
-    # Load documents for the list page
-    documents = Document.objects.all()
+def foto(request):
+	# Handle file upload
+	if request.method == 'POST':
+		form = FotoForm(request.POST, request.FILES)
+		if form.is_valid():
+			newdoc = Foto(docfile=request.FILES['docfile'])
+			newdoc.save()
 
-    # Render list page with the documents and the form
-    return render(
-        request,
-        'webapp/list.html',
-        {'documents': documents, 'form': form}
-    )
+			# Redirect to the document list after POST
+			return HttpResponseRedirect(reverse('list'))
+	else:
+		form = FotoForm()  # A empty, unbound form
+
+	# Load documents for the list page
+	documents = Foto.objects.all()
+
+	# Render list page with the documents and the form
+	return render(
+		request,
+		'webapp/foto.html',
+		{'documents': documents, 'form': form}
+	)

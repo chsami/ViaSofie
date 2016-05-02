@@ -50,11 +50,11 @@ class AuthenticationForm(forms.Form):
     class Meta:
         fields = ['email', 'password']
 
-class DocumentForm(forms.Form):
-    docfile = forms.FileField(
-        label='Select a file'
-    )
+class FotoForm(forms.Form):
 
-class PersonAdmin(admin.ModelAdmin):
-    exclude = ['docfile']
-    form = DocumentForm
+	# class Meta:
+	# 	model: Foto
+	# 	fields['docfile']
+	docfile = forms.FileField(
+		label='Select a file'
+	)
