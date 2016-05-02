@@ -1,3 +1,8 @@
+/*
+  #####################################################################################################################################################################
+  Algemene opmaak van forms
+  #####################################################################################################################################################################
+*/
 form {
   display: block;
   position: relative;
@@ -45,7 +50,7 @@ input[name="password"]
   -webkit-text-security: disc;
 }
 
-input {
+input[type="text"], input[type="email"], input[type="password"], input[type="number"] {
   padding: 10px 12px 10px 12px;
   display: block;
   width: 100%;
@@ -88,4 +93,23 @@ input[type="submit"]:hover {
 }
 input[type="submit"]:active {
   background-color: #4a7b89;
+}
+
+/*
+  #####################################################################################################################################################################
+  Registreren form
+  #####################################################################################################################################################################
+*/
+.registration form {
+  width: 450px;
+  padding: 10px 20px 55px 20px;
+}
+
+.registration label {
+  display: block;
+}
+
+.registration h4 {
+  text-align: center;
+  padding-bottom: 10px;
 }
