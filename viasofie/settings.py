@@ -48,6 +48,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    #JEFFFFF
     #'django.middleware.security.SecurityMiddleware',
 )
 
@@ -97,7 +98,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'webapp/static')
 
 AUTH_USER_MODEL = 'webapp.User'
 AUTHENTICATION_BACKENDS = ['webapp.backends.EmailAuthBackend', 'django.contrib.auth.backends.ModelBackend',]
-<<<<<<< HEAD
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
@@ -121,5 +121,3 @@ TEMPLATES = [
     },
 },
 ]
-=======
->>>>>>> refs/remotes/origin/Jeff_origin

@@ -117,10 +117,7 @@ class Foto(models.Model):
     pand = models.ManyToManyField(Pand)
 
     def __str__(self):
-<<<<<<< HEAD
         return str(self.id)
-=======
-        return self.id
 
 class Ebook(models.Model):
     naam = models.CharField(max_length=255)
@@ -129,4 +126,3 @@ class Ebook(models.Model):
 
     def __str__(self):
         return self.id
->>>>>>> refs/remotes/origin/Sander

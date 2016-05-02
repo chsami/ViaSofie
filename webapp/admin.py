@@ -2,7 +2,26 @@ from django.contrib import admin
 from django.template import RequestContext
 from django.conf.urls import patterns
 from django.shortcuts import render_to_response
-from .models import User, Pand, PandType, Handelstatus, Voortgang, Stad, Log, Tag, Foto
+from .models import *
+
+admin.site.register(User)
+admin.site.register(Pand)
+admin.site.register(PandType)
+admin.site.register(Handelstatus)
+admin.site.register(Voortgang)
+admin.site.register(Stad)
+admin.site.register(Log)
+admin.site.register(Tag)
+admin.site.register(Foto)
+
+
+
+
+
+
+
+
+#JEFFFF
 
 # class FotoAdmin(admin.ModelAdmin):
 #     review_template = 'admin/foto.html'
@@ -91,13 +110,3 @@ from .models import User, Pand, PandType, Handelstatus, Voortgang, Stad, Log, Ta
 # @admin.register(Author, Reader, Editor, site=custom_admin_site)
 # class FotoAdmin(admin.ModelAdmin):
 #     pass
-
-admin.site.register(User)
-admin.site.register(Pand)
-admin.site.register(PandType)
-admin.site.register(Handelstatus)
-admin.site.register(Voortgang)
-admin.site.register(Stad)
-admin.site.register(Log)
-admin.site.register(Tag)
-admin.site.register(Foto)
