@@ -22,4 +22,8 @@ urlpatterns = [
     url(r'^log/$', views.log, name='log'),
     url(r'^foto/$', views.foto, name='foto'),
     url(r'^formsucces/$', views.formsucces, name='formsucces'),
+
+    #Ebook
+    url(r'^ebook/form$', views.ebooks, name='ebook'),
+    url(r'^ebook/lijst$', views.ebook_lijst, name='ebook_lijst'),
 ]

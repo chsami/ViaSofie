@@ -1,8 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, render_to_response, RequestContext
 from django.http import HttpResponse
 from django import forms
-
+from django.db import models
+from webapp.models import *
 from webapp.forms import *
+
 # Create your views here.
 def index(request):
 	return render(request, 'webapp/index.html')
@@ -42,16 +44,25 @@ def stad(request):
 			form = Stad()
 	return render(request, "webapp/forms.html", {'form': form})
 
-def ebook(request):
+def ebooks(request):
 	if request.method == "POST":
-		form = Ebook(request.POST)
+		form = Ebookform(request.POST)
 		if form.is_valid():
 			model_instance = form.save(commit=False)
 			model_instance.save()
-			return redirect('formsucces')
+			return redirect('ebook_lijst')
 	else:
-			form = Ebook()
+			form = Ebookform()
 	return render(request, "webapp/forms.html", {'form': form})
+
+def ebook_lijst(request):
+	ebooks = Ebook.objects.all()
+  	ebook_data = {
+  	"ebook_detail" : ebooks
+  	}
+
+  	return render_to_response('webapp/ebook_lijst.html', ebook_data, context_instance=RequestContext(request))
+
 
 def pandtype(request):
 	if request.method == "POST":

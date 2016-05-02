@@ -16,9 +16,7 @@ class Stad(forms.ModelForm):
 		fields = ['postcode', 'stadsnaam',]
 
 
-
-
-class Ebook(forms.ModelForm):
+class Ebookform(forms.ModelForm):
 	class Meta:
 		model = Ebook
 		fields = ['naam', 'voornaam', 'email',]
