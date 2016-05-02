@@ -1,5 +1,5 @@
-{% extends 'webapp/base.html' %} 
-{% load staticfiles %} 
+{% extends 'webapp/base.html' %}
+{% load staticfiles %}
 {% block header %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'webapp/css/index.css' %}" />
@@ -8,12 +8,22 @@
 <script type='text/javascript' src="{% static 'webapp/scripts/index.js' %}"></script>
 <script type='text/javascript' src="{% static 'webapp/scripts/camera.js' %}"></script>
 
-{% endblock header %}
 
+<style>
+.affix {
+    position: fixed;
+    top: 50px;
+    width: 100%;
+    z-index:1000;
+}
+</style>
+{% endblock header %}
 {% block content %}
+
 <div id="body">
 
     {% include "webapp/submenu.html" %}
+
     <div class="fluid_container">
         <div class="camera_wrap camera_azure_skin" id="camera_wrap_1">
             <div data-thumb="http://i.picresize.com/images/2016/04/21/zjlWE.jpg" data-src="http://www.hdwallpaperspulse.com/wp-content/uploads/2012/10/big_house_wallpaper_99745.jpg">
@@ -47,4 +57,5 @@
         </div>
     </div>
 </div>
+
 {% endblock content %}

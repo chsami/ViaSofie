@@ -91,6 +91,7 @@
         position: fixed;
         z-index: 1030;
         left: 5%;
+        margin-top: -50px;
     }
     
     @media only screen and (max-width: 960px) {
