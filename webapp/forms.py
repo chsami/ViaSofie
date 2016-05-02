@@ -20,7 +20,6 @@ class RegistrationForm(forms.ModelForm):
     naam = forms.CharField(label="Naam", widget=forms.TextInput(attrs={'placeholder': 'Naam'}))
     straatnaam = forms.CharField(label="Straatnaam", widget=forms.TextInput(attrs={'placeholder': 'Straatnaam'}))
     huisnr = forms.CharField(label="Huisnummer", widget=forms.NumberInput(attrs={'placeholder': 'Bijv: 1'}))
-    postcode = forms.CharField(label="Postcode")
     busnr = forms.CharField(label="Busnummer", widget=forms.NumberInput(attrs={'placeholder': 'Bijv: 1'}))
     telefoonnr = forms.CharField(label="Telefoonnummer", widget=forms.TextInput(attrs={'placeholder': 'Telefoonnr'}))
 

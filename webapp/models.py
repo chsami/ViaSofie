@@ -30,6 +30,10 @@ class Stad(models.Model):
     def __str__(self):
         return self.stadsnaam
 
+    def new_stad(self, postcode, stadsnaam):
+        self.postcode = postcode
+        self.stadsnaam = stadsnaam
+
 class User(AbstractBaseUser, PermissionsMixin):
     #Id implemented by django
     USERNAME_FIELD = 'email'
@@ -39,12 +43,12 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.CharField(max_length=128, unique=True)
 
     is_active = models.BooleanField(default=True)
-    is_admin = models.BooleanField(default=True)
+    is_admin = models.BooleanField(default=False)
 
     straatnaam = models.CharField(max_length=128)
     huisnr = models.IntegerField()
     postcode = models.ForeignKey(Stad)
-    busnr = models.CharField(max_length=10,  blank=True)
+    busnr = models.CharField(max_length=10)
 
     objects = BaseUserManager()
 
