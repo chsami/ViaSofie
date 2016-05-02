@@ -1,0 +1,10 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/forms.css' %}" />
+
+<form method="post" action="">
+{% csrf_token %}
+<table>
+{{form}}
+</table>
+<input type="submit" value="Submit Form"/>
+</form>

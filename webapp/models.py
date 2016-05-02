@@ -94,7 +94,7 @@ class Pand(models.Model):
     user = models.ForeignKey(User)
     straatnaam = models.CharField(max_length=128)
     huisnr = models.SmallIntegerField()
-    postcodeID = models.ForeignKey(Stad)
+    postcode = models.ForeignKey(Stad)
     pandtype = models.ForeignKey(PandType)
     handelstatus = models.ForeignKey(Handelstatus)
     voortgang = models.ForeignKey(Voortgang)
@@ -106,12 +106,10 @@ class Pand(models.Model):
 class Tag(models.Model):
     #id autocreated by django
     tagnaam = models.CharField(max_length=128)
-    Pand = models.ManyToManyField(Pand)
+    pand = models.ManyToManyField(Pand)
 
     def __str__(self):
         return self.tagnaam
-
-
 
 class Foto(models.Model):
     url = models.CharField(max_length=255)
@@ -119,4 +117,16 @@ class Foto(models.Model):
     pand = models.ManyToManyField(Pand)
 
     def __str__(self):
+<<<<<<< HEAD
         return str(self.id)
+=======
+        return self.id
+
+class Ebook(models.Model):
+    naam = models.CharField(max_length=255)
+    voornaam = models.CharField(max_length=255)
+    email = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.id
+>>>>>>> refs/remotes/origin/Sander

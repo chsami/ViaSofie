@@ -1,10 +1,25 @@
+<<<<<<< HEAD:webapp/templates/webapp/register.html
+{% extends 'webapp/base.html' %}
 {% load staticfiles %}
-<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/forms.css' %}" />
 
+{% block header %}
+	<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/forms.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/register.css' %}" />
+{% endblock header %}
+
+{% block content %}
+=======
+>>>>>>> refs/remotes/origin/Sander:webapp/templates/webapp/forms.html
 <form method="post" action="">
+<h1>Registreer</h1>
 {% csrf_token %}
 <table>
 {{form}}
 </table>
 <input type="submit" value="Submit Form"/>
 </form>
+<<<<<<< HEAD:webapp/templates/webapp/register.html
+{% endblock content %}
+=======
+>>>>>>> refs/remotes/origin/Sander:webapp/templates/webapp/forms.html
+

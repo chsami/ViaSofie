@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^huren/$', views.huren, name='huren'),
     url(r'^kopen/$', views.kopen, name='kopen'),
     url(r'^partners/$', views.partners, name='partners'),
+<<<<<<< HEAD
     url(r'^sander/$', views.sander, name='sander'),
     url(r'^register/$', views.register, name='register'),
     url(r'^login/$', views.login, name='login'),
@@ -34,3 +35,21 @@ urlpatterns = [
 
 ]
 >>>>>>> refs/remotes/origin/TinneOrigin
+=======
+    
+    #Form urls
+    url(r'^stad/$', views.stad, name='stad'),
+    url(r'^pandtype/$', views.pandtype, name='pandtype'),
+    url(r'^handelstatus/$', views.handelstatus, name='handelstatus'),
+    url(r'^voortgang/$', views.voortgang, name='voortgang'),
+    url(r'^pand/$', views.pand, name='pand'),
+    url(r'^tag/$', views.tag, name='tag'),
+    url(r'^log/$', views.log, name='log'),
+    url(r'^foto/$', views.foto, name='foto'),
+    url(r'^formsucces/$', views.formsucces, name='formsucces'),
+
+    #Ebook
+    url(r'^ebook/form$', views.ebooks, name='ebook'),
+    url(r'^ebook/lijst$', views.ebook_lijst, name='ebook_lijst'),
+]
+>>>>>>> refs/remotes/origin/Sander
