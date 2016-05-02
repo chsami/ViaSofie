@@ -103,13 +103,16 @@ input[type="submit"]:active {
 .registration form {
   width: 450px;
   padding: 10px 20px 55px 20px;
+  max-width: 100%;
 }
 
 .registration label {
-  display: block;
+  display: inherit;
+  width: 70px;
 }
 
 .registration h4 {
   text-align: center;
   padding-bottom: 10px;
+  font-weight: bold;
 }

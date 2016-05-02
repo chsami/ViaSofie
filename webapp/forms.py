@@ -13,9 +13,9 @@ class RegistrationForm(forms.ModelForm):
     """
     Form for registering a new account.
     """
-    email = forms.EmailField(label="Email", widget=forms.EmailInput(attrs={'placeholder': 'Email'}))
-    password1 = forms.CharField(label="Wachtwoord", widget=forms.PasswordInput(attrs={'placeholder': 'Paswoord'}))
-    password2 = forms.CharField(label="Wachtwoord (nogmaals)", widget=forms.PasswordInput(attrs={'placeholder': 'Paswoord'}))
+    email = forms.EmailField(label="E-mail", widget=forms.EmailInput(attrs={'placeholder': 'E-mail'}))
+    password1 = forms.CharField(label="Wachtwoord", widget=forms.PasswordInput(attrs={'placeholder': 'Wachtwoord'}))
+    password2 = forms.CharField(label="Wachtwoord (nogmaals)", widget=forms.PasswordInput(attrs={'placeholder': 'Wachtwoord'}))
     voornaam = forms.CharField(label="Voornaam", widget=forms.TextInput(attrs={'placeholder': 'Voornaam'}))
     naam = forms.CharField(label="Naam", widget=forms.TextInput(attrs={'placeholder': 'Naam'}))
     straatnaam = forms.CharField(label="Straatnaam", widget=forms.TextInput(attrs={'placeholder': 'Straatnaam'}))
