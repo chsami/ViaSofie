@@ -2,15 +2,18 @@
 {% load staticfiles %}
 
 {% block header %}
-
+	<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/forms.css' %}" />
 {% endblock header %}
 
 {% block content %}
 <form method="post" action="">
+	<img class="img-responsive" src="{% static 'webapp/images/def logos via sofie - RGB-092.png' %}">
 {% csrf_token %}
 <table>
 {{form}}
 </table>
-<input type="submit" value="Submit Form"/>
+<input type="submit" value="Log in"/>
+<p><a href="">Wachtwoord vergeten?</a></p>
+<p><a href="">Registreer</a></p>
 </form>
 {% endblock content %}

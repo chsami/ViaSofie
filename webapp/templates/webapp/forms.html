@@ -1,19 +1,10 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/forms.css' %}" />
+
 <form method="post" action="">
 {% csrf_token %}
 <table>
 {{form}}
-</table>
-<input type="submit" value="Submit Form"/>
-</form>
-
-
-
-<form method="post" action="">
-<input type='hidden' name='csrfmiddlewaretoken' value='5tsUsLhPeitBR3HMLQgnC9hPrzvUf1RY' />
-<table>
-<tr><th><label for="id_naam">Naam:</label></th><td><input id="id_naam" maxlength="255" name="naam" type="text" /></td></tr>
-<tr><th><label for="id_voornaam">Voornaam:</label></th><td><input id="id_voornaam" maxlength="255" name="voornaam" type="text" /></td></tr>
-<tr><th><label for="id_email">Email:</label></th><td><input id="id_email" maxlength="255" name="email" type="text" /></td></tr>
 </table>
 <input type="submit" value="Submit Form"/>
 </form>
