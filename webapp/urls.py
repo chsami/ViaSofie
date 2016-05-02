@@ -1,8 +1,9 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
 
 from . import views
 
 urlpatterns = [
+    
     url(r'^$', views.index, name='index'),
     url(r'^about/$', views.about, name='about'),
     url(r'^advies/$', views.advies, name='advies'),
@@ -32,6 +33,10 @@ urlpatterns = [
     url(r'^formsucces/$', views.formsucces, name='formsucces'),
 
     #Ebook
-    url(r'^ebook/form$', views.ebooks, name='ebook'),
-    url(r'^ebook/lijst$', views.ebook_lijst, name='ebook_lijst'),
+    url(r'^ebook/form/$', views.ebooks, name='ebooks'),
+    url(r'^ebook/lijst/$', views.ebook_lijst, name='ebook_lijst'),
+
+    #taal
+    url(r'^languageselector/$', views.languageselector, name='languageselector'),
+    url(r'^i18n/', include('django.conf.urls.i18n')),
 ]

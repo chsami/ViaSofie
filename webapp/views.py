@@ -6,9 +6,13 @@ from django import forms
 from django.shortcuts import render, redirect, render_to_response, RequestContext
 from django.db import models
 from webapp.models import *
+from django.utils.translation import ugettext as _
 from webapp.forms import *
 
 # Create your views here.
+def languageselector(request):
+    return render(request, 'webapp/languageselector.html')
+
 def index(request):
 	return render(request, 'webapp/index.html')
 
