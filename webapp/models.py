@@ -48,7 +48,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     straatnaam = models.CharField(max_length=128)
     huisnr = models.IntegerField()
     postcode = models.ForeignKey(Stad)
-    busnr = models.CharField(max_length=10)
+    busnr = models.CharField(max_length=10, null=True, blank=True)
 
     objects = BaseUserManager()
 
@@ -92,12 +92,12 @@ class Log(models.Model):
         return self.logText
 
 
-
 class Pand(models.Model):
     #id autocreated by django
     user = models.ForeignKey(User)
     straatnaam = models.CharField(max_length=128)
     huisnr = models.SmallIntegerField()
+    busnr = models.CharField(max_length=10, null=True, blank=True)
     postcodeID = models.ForeignKey(Stad)
     pandtype = models.ForeignKey(PandType)
     handelstatus = models.ForeignKey(Handelstatus)
