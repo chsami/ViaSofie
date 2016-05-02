@@ -52,7 +52,7 @@
             margin: 20px auto;
             vertical-align: middle;
             float: none;
-            left: 10%;
+            left: 0%;
         }
     }
     
@@ -62,7 +62,7 @@
             margin: 10px auto;
             vertical-align: middle;
             float: none;
-            left: 80px;
+            left: 20px;
             max-width: 220px;
         }
     }
@@ -98,8 +98,16 @@
         .header-logo {
             width: 80px;
             height: 80px;
-            margin-top: 50px;
+            margin-top: 0px;
             z-index: 1000;
+            float: left;
+            position: relative;
+        }
+    }
+
+    @media only screen and (max-width: 760px) {
+        .header-logo {
+            margin-top: 5px;
         }
     }
     /*

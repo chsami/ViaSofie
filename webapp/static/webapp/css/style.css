@@ -22,6 +22,9 @@
 /*
     Body styling
 */
+html {
+    height: 100%;
+}
 
 body,
 html {
