@@ -50,6 +50,7 @@ input[name="password"]
   -webkit-text-security: disc;
 }
 
+input[type="text"], input[type="email"], input[type="password"], input[type="number"], select {
   padding: 10px 12px 10px 12px;
   display: block;
   width: 100%;
