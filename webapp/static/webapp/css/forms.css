@@ -23,7 +23,7 @@ label {
 
 p {
   line-height: 0.8;
-  font-size: 80%;
+  font-size: 85%;
   padding: 3px;
   margin: 0 0 5px;
 }
@@ -32,12 +32,20 @@ p a {
   font-weight: normal;
 }
 
+.errorlist {
+  color: red;
+  list-style: none;
+  float: right;
+  font-size: 85%;
+  margin-bottom: 0px;
+}
+
 input[name="password"]
 {
   -webkit-text-security: disc;
 }
 
-input[type="text"] {
+input {
   padding: 10px 12px 10px 12px;
   display: block;
   width: 100%;
