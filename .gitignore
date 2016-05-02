@@ -6,3 +6,4 @@
 *.pyc
 webapp/migrations/0001_initial.py
 webapp/migrations/0002_pand_huisnr.pyc
+*.pyc

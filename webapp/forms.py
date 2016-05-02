@@ -86,15 +86,10 @@ class Voortgang(forms.ModelForm):
 		model = Voortgang
 		fields = ['status',]
 
-class Toegangslevel(forms.ModelForm):
-	class Meta:
-		model = Toegangslevel
-		fields = ['toegangslevelnaam',]
-
 class Pand(forms.ModelForm):
 	class Meta:
 		model = Pand
-		fields = ['gebruiker', 'straatnaam', 'huisnr', 'postcode', 'pandtype', 'handelstatus', 'voortgang',]
+		fields = ['user', 'straatnaam', 'huisnr', 'postcodeID', 'pandtype', 'handelstatus', 'voortgang',]
 
 class Tag(forms.ModelForm):
 	class Meta:
@@ -104,7 +99,7 @@ class Tag(forms.ModelForm):
 class Log(forms.ModelForm):
 	class Meta:
 		model = Log
-		fields = ['gebruiker', 'logText',]
+		fields = ['user', 'logText',]
 		exclude = ['created',]
 
 class Foto(forms.ModelForm):
