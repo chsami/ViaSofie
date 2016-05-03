@@ -112,7 +112,7 @@ input[type="submit"]:active {
 .registration form {
   width: 450px;
   margin: 20px;
-  padding: 10px 20px 55px 20px;
+  padding: 10px 20px 20px 20px;
   max-width: 100%;
 }
 
@@ -125,6 +125,10 @@ input[type="submit"]:active {
   text-align: center;
   padding-bottom: 10px;
   font-weight: bold;
+}
+
+.registration p {
+  padding-top: 15px;
 }
 
 /*
