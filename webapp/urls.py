@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^kopen/$', views.kopen, name='kopen'),
     url(r'^partners/$', views.partners, name='partners'),
 
+    #Auth
     url(r'^register/$', views.register, name='register'),
     url(r'^login/$', views.login, name='login'),
     url(r'^logout/$', views.logout, name='logout'),
