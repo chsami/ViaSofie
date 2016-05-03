@@ -5,21 +5,24 @@
 */
 
 .fluid_container {
-	margin: 0 auto;
-	max-width: 1500px;
-	width: 90%;
-
-	a {
-		color: #09f;
-	}
-	a:hover {
-		text-decoration: none;
-	}
+    margin: 0 auto;
+    max-width: 1500px;
+    width: 90%;
+    a {
+        color: #09f;
+    }
+    a:hover {
+        text-decoration: none;
+    }
 }
 
 .affix {
     position: fixed;
     top: 50px;
     width: 100%;
-    z-index:1000;
+    z-index: 1000;
+}
+
+.affix-top {
+    margin-bottom: 0px !important;
 }

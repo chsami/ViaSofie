@@ -209,3 +209,39 @@ a.linked-in:after {
 .fg-shadow a:hover.linked-in:after {
     text-shadow: 0 0 3px #007bb6;
 }
+
+
+/*
+  #####################################################################################################################################################################
+  Cookie monster
+  #####################################################################################################################################################################
+*/
+
+.cookie {
+    width: 499px;
+    height: 281px;
+    overflow:hidden;
+    right: 0;
+    bottom: -281px;
+    -webkit-transition: all 1.5s linear;
+    -moz-transition: all 1.5s linear;
+    -o-transition: all 1.5s linear;
+    transition: all 1.5s linear;
+    position: fixed;
+}
+
+.invisbutton {
+    position:fixed;
+    top:0px;
+    left:0;
+    background: transparent;
+    border: none !important;
+    width:20px;
+    font-size:0;
+    height: 20px;
+    z-index: 2000;
+}
+
+.invisbutton:focus + .cookie, .cookie:focus {
+    bottom: 0px !important;
+}

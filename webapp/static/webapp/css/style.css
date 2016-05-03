@@ -152,6 +152,14 @@ a:active {
     color: blue;
 }
 
+/* submenu */
+.affix {
+    position: fixed;
+    top: 50px;
+    width: 100%;
+    z-index:1000;
+}
+
 
 /* Edit of bootstrap design */
 
