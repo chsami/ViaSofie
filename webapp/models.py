@@ -31,15 +31,9 @@ class Stad(models.Model):
     def __str__(self):
         return self.stadsnaam
 
-<<<<<<< HEAD
-    # def new_stad(self, postcode, stadsnaam):
-    #     self.postcode = postcode
-    #     self.stadsnaam = stadsnaam
-=======
     def new_stad(self, postcode, stadsnaam):
         self.postcode = postcode
         self.stadsnaam = stadsnaam
->>>>>>> origin/Sprint-Week-3
 
 class User(AbstractBaseUser, PermissionsMixin):
     #Id implemented by django
@@ -54,11 +48,9 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     straatnaam = models.CharField(max_length=128)
     huisnr = models.IntegerField()
-<<<<<<< HEAD
+
     postcode = models.ForeignKey(Stad)
-=======
-    postcode = models.ForeignKey(Stad, choices=Stad.objects.all())
->>>>>>> origin/Sprint-Week-3
+
     busnr = models.CharField(max_length=10, null=True, blank=True)
 
     objects = BaseUserManager()
