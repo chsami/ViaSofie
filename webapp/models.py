@@ -27,12 +27,13 @@ class Voortgang(models.Model):
 class Stad(models.Model):
     postcode = models.CharField(max_length= 12)
     stadsnaam = models.CharField(max_length=128)
+
     def __str__(self):
         return self.stadsnaam
 
-    def new_stad(self, postcode, stadsnaam):
-        self.postcode = postcode
-        self.stadsnaam = stadsnaam
+    # def new_stad(self, postcode, stadsnaam):
+    #     self.postcode = postcode
+    #     self.stadsnaam = stadsnaam
 
 class User(AbstractBaseUser, PermissionsMixin):
     #Id implemented by django
