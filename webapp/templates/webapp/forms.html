@@ -3,11 +3,9 @@
 
 {% block header %}
 	<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/forms.css' %}" />
-	<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/register.css' %}" />
 {% endblock header %}
 
 {% block content %}
-
 <form method="post" action="">
 {% csrf_token %}
 <table>
