@@ -120,9 +120,7 @@
             }
 
             defaultPosition = indicatorPosition = activeElement.position().left + activeElement.width() / 2 - 5;
-            console.log(activeElement);
-            console.log(activeElement.position().left);
-            console.log(activeElement.width());
+
             indicator.css("left", indicatorPosition);
 
             $("#cssmenu > ul > li").hover(function() {

@@ -7,6 +7,10 @@
     .header {
         margin-top: 50px;
         position: relative;
+        width: 100%;
+        padding: 0;
+        margin-right: auto;
+        margin-left: auto;
     }
     
     #body {}
@@ -16,8 +20,7 @@
   #####################################################################################################################################################################
 */
     
-    .title {
-        border-bottom: 2px solid #ccc;
+    .headertitle {
         overflow: hidden;
         max-width: 300px;
         margin: 20px 20px 20px 0px;
@@ -25,6 +28,7 @@
         text-transform: uppercase;
         float: left;
         left: 18%;
+        color: #9197a8;
     }
     
     .title--sub-title {
@@ -38,7 +42,7 @@
     }
     
     @media only screen and (max-width: 1200px) {
-        .title {
+        .headertitle {
             display: none;
         }
     }
@@ -47,12 +51,12 @@
         .title-container {
             position: relative;
         }
-        .title {
+        .headertitle {
             display: block;
             margin: 20px auto;
             vertical-align: middle;
             float: none;
-            left: 0%;
+            left: 7%;
         }
     }
     
@@ -66,16 +70,7 @@
             max-width: 220px;
         }
     }
-    /*
-  #####################################################################################################################################################################
-  container (overkoepelende div)
-  #####################################################################################################################################################################
-*/
-    
-    .container {
-        width: 100%;
-        padding: 0;
-    }
+
     /*
   #####################################################################################################################################################################
   Logo (in header)
