@@ -1,9 +1,14 @@
+/*
+  #####################################################################################################################################################################
+  Algemene opmaak van forms
+  #####################################################################################################################################################################
+*/
 form {
   display: block;
   position: relative;
   width: 250px;
   margin: 20px auto;
-  padding: 0px 20px 20px 20px;
+  padding: 20px 20px 15px 20px;
   background-color: #e8e8e8;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -45,7 +50,7 @@ input[name="password"]
   -webkit-text-security: disc;
 }
 
-input {
+input[type="text"], input[type="email"], input[type="password"], input[type="number"], select {
   padding: 10px 12px 10px 12px;
   display: block;
   width: 100%;
@@ -88,4 +93,67 @@ input[type="submit"]:hover {
 }
 input[type="submit"]:active {
   background-color: #4a7b89;
+}
+
+/*
+  #####################################################################################################################################################################
+  Login form
+  #####################################################################################################################################################################
+*/
+
+
+
+
+/*
+  #####################################################################################################################################################################
+  Registreren form
+  #####################################################################################################################################################################
+*/
+.registration form {
+  width: 450px;
+  margin: 20px;
+  padding: 10px 20px 20px 20px;
+  max-width: 100%;
+}
+
+.registration label {
+  display: inherit;
+  width: 70px;
+}
+
+.registration h4 {
+  text-align: center;
+  padding-bottom: 10px;
+  font-weight: bold;
+}
+
+.registration p {
+  padding-top: 15px;
+}
+
+/*
+  #####################################################################################################################################################################
+  Wachtwoord reset form
+  #####################################################################################################################################################################
+*/
+.passwordreset form {
+  padding: 10px 20px 10px 20px;
+  width: 700px;
+  max-width: 75%;
+}
+
+.passwordreset h6, h4 {
+  padding-left: 3px;
+}
+
+.passwordreset p {
+  margin-bottom: 5px;
+}
+
+.passwordreset input {
+  margin-bottom: 5px;
+}
+
+.passwordreset input[type="submit"] {
+  margin-top: 5px;
 }

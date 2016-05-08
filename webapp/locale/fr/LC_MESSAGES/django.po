@@ -1,0 +1,134 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-05-02 13:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: viasofie/settings.py:83
+msgid "German"
+msgstr ""
+
+#: viasofie/settings.py:84
+msgid "English"
+msgstr ""
+
+#: viasofie/settings.py:85
+msgid "Frans"
+msgstr ""
+
+#: viasofie/settings.py:86
+msgid "Nederlands"
+msgstr ""
+
+#: webapp/templates/webapp/about.html:10
+msgid "vlinder"
+msgstr "papilon"
+
+#: webapp/templates/webapp/registration/password_reset_complete.html:3
+#: webapp/templates/webapp/registration/password_reset_confirm.html:3
+#: webapp/templates/webapp/registration/password_reset_done.html:3
+msgid "Home"
+msgstr ""
+
+#: webapp/templates/webapp/registration/password_reset_complete.html:4
+#: webapp/templates/webapp/registration/password_reset_done.html:4
+msgid "Password reset"
+msgstr ""
+
+#: webapp/templates/webapp/registration/password_reset_complete.html:13
+msgid "Your password has been set.  You may go ahead and log in now."
+msgstr ""
+
+#: webapp/templates/webapp/registration/password_reset_complete.html:15
+msgid "Log in"
+msgstr ""
+
+#: webapp/templates/webapp/registration/password_reset_confirm.html:4
+msgid "Password reset confirmation"
+msgstr ""
+
+#: webapp/templates/webapp/registration/password_reset_confirm.html:14
+msgid ""
+"Please enter your new password twice so we can verify you typed it in "
+"correctly."
+msgstr ""
+
+#: webapp/templates/webapp/registration/password_reset_confirm.html:18
+msgid "New password:"
+msgstr ""
+
+#: webapp/templates/webapp/registration/password_reset_confirm.html:20
+msgid "Confirm password:"
+msgstr ""
+
+#: webapp/templates/webapp/registration/password_reset_confirm.html:21
+msgid "Change my password"
+msgstr ""
+
+#: webapp/templates/webapp/registration/password_reset_confirm.html:26
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a new password reset."
+msgstr ""
+
+#: webapp/templates/webapp/registration/password_reset_done.html:12
+msgid ""
+"We've emailed you instructions for setting your password, if an account "
+"exists with the email you entered. You should receive them shortly."
+msgstr ""
+
+#: webapp/templates/webapp/registration/password_reset_done.html:14
+msgid ""
+"If you don't receive an email, please make sure you've entered the address "
+"you registered with, and check your spam folder."
+msgstr ""
+
+#: webapp/templates/webapp/registration/password_reset_email.html:2
+#, python-format
+msgid ""
+"You're receiving this email because you requested a password reset for your "
+"user account at %(site_name)s."
+msgstr ""
+
+#: webapp/templates/webapp/registration/password_reset_email.html:4
+msgid "Please go to the following page and choose a new password:"
+msgstr ""
+
+#: webapp/templates/webapp/registration/password_reset_email.html:8
+msgid "Your username, in case you've forgotten:"
+msgstr ""
+
+#: webapp/templates/webapp/registration/password_reset_email.html:10
+msgid "Thanks for using our site!"
+msgstr ""
+
+#: webapp/templates/webapp/registration/password_reset_email.html:12
+#, python-format
+msgid "The %(site_name)s team"
+msgstr ""
+
+#: webapp/templates/webapp/registration/password_reset_form.html:3
+msgid "Hallo"
+msgstr ""
+
+#: webapp/templates/webapp/registration/password_reset_form.html:7
+msgid "Email address:"
+msgstr ""
+
+#: webapp/templates/webapp/registration/password_reset_form.html:7
+msgid "Reset my password"
+msgstr ""

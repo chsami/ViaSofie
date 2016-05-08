@@ -25,10 +25,15 @@ class Voortgang(models.Model):
 
 
 class Stad(models.Model):
-    postcode = models.SmallIntegerField()
+    postcode = models.CharField(max_length= 12)
     stadsnaam = models.CharField(max_length=128)
+
     def __str__(self):
         return self.stadsnaam
+
+    def new_stad(self, postcode, stadsnaam):
+        self.postcode = postcode
+        self.stadsnaam = stadsnaam
 
 class User(AbstractBaseUser, PermissionsMixin):
     #Id implemented by django
@@ -39,12 +44,14 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.CharField(max_length=128, unique=True)
 
     is_active = models.BooleanField(default=True)
-    is_admin = models.BooleanField(default=True)
+    is_admin = models.BooleanField(default=False)
 
     straatnaam = models.CharField(max_length=128)
     huisnr = models.IntegerField()
+
     postcode = models.ForeignKey(Stad)
-    busnr = models.CharField(max_length=10,  blank=True)
+
+    busnr = models.CharField(max_length=10, null=True, blank=True)
 
     objects = BaseUserManager()
 
@@ -88,13 +95,13 @@ class Log(models.Model):
         return self.logText
 
 
-
 class Pand(models.Model):
     #id autocreated by django
     user = models.ForeignKey(User)
     straatnaam = models.CharField(max_length=128)
     huisnr = models.SmallIntegerField()
-    postcode = models.ForeignKey(Stad)
+    busnr = models.CharField(max_length=10, null=True, blank=True)
+    postcodeID = models.ForeignKey(Stad)
     pandtype = models.ForeignKey(PandType)
     handelstatus = models.ForeignKey(Handelstatus)
     voortgang = models.ForeignKey(Voortgang)
@@ -117,10 +124,7 @@ class Foto(models.Model):
     pand = models.ManyToManyField(Pand)
 
     def __str__(self):
-<<<<<<< HEAD
         return str(self.id)
-=======
-        return self.id
 
 class Ebook(models.Model):
     naam = models.CharField(max_length=255)
@@ -129,4 +133,3 @@ class Ebook(models.Model):
 
     def __str__(self):
         return self.id
->>>>>>> refs/remotes/origin/Sander

@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = (
     'webapp',
-    'grappelli',
+    #'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,12 +42,14 @@ INSTALLED_APPS = (
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    #JEFFFFF
     #'django.middleware.security.SecurityMiddleware',
 )
 
@@ -75,8 +77,17 @@ DATABASES = {
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
+from django.utils.translation import ugettext_lazy as _
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGES = [
+    ('de', _('German')),
+    ('en', _('English')),
+    ('fr', _('Frans')),
+    ('nl', _('Nederlands')),
+]
+LANGUAGE_CODE = 'nl-be'
+LOCALE_PATHS = (
+    'webapp/locale', )
 
 TIME_ZONE = 'UTC'
 
@@ -97,7 +108,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'webapp/static')
 
 AUTH_USER_MODEL = 'webapp.User'
 AUTHENTICATION_BACKENDS = ['webapp.backends.EmailAuthBackend', 'django.contrib.auth.backends.ModelBackend',]
-<<<<<<< HEAD
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
@@ -121,5 +131,3 @@ TEMPLATES = [
     },
 },
 ]
-=======
->>>>>>> refs/remotes/origin/Jeff_origin
