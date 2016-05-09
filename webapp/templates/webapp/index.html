@@ -1,52 +1,53 @@
-{% extends 'webapp/base.html' %}
-{% load staticfiles %}
-{% block header %}
-
+{% extends 'webapp/base.html' %} {% load staticfiles %} {% block header %}
+<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/index.css' %}" />
 <script type='text/javascript' src="{% static 'webapp/scripts/index.js' %}"></script>
-
-{% endblock header %}
-{% block content %}
-
+{% endblock header %} {% block content %}
 <div id="body">
-
-<div class=" header-right">
+    <div class=" header-right">
         <div class=" banner">
-             <div class="slider">
+            <div class="slider">
                 <div class="callbacks_container">
-                  <ul class="rslides" id="slider">             
-                     <li>
-                         <div class="banner1">
-                            <div class="caption">
-                                <h3><span>vivam</span>us site</h3>
-                                <p>Nunc dignissim risus idi</p>
+                    <ul class="rslides" id="slider">
+                        <li>
+                            <div class="banner1">
+                                <div class="caption">
+                                    <h3><span>vivam</span>us site</h3>
+                                    <p>Nunc dignissim risus idi</p>
+                                </div>
                             </div>
-                        </div>
-                     </li>
-                     <li>
-                         <div class="banner2">
-                            <div class="caption">
-                                <h3><span>vivam</span>us site</h3>
-                                <p>Nunc dignissim risus idi</p>
+                        </li>
+                        <li>
+                            <div class="banner2">
+                                <div class="caption">
+                                    <h3><span>vivam</span>us site</h3>
+                                    <p>Nunc dignissim risus idi</p>
+                                </div>
                             </div>
-                        </div>
-                     </li>
-                     <li>
-                         <div class="banner3">
-                            <div class="caption">
-                                <h3><span>vivam</span>us site</h3>
-                                <p>Nunc dignissim risus idi</p>
+                        </li>
+                        <li>
+                            <div class="banner3">
+                                <div class="caption">
+                                    <h3><span>vivam</span>us site</h3>
+                                    <p>Nunc dignissim risus idi</p>
+                                </div>
                             </div>
-                        </div>
-                     </li>      
-                  </ul>
-              </div>
+                        </li>
+                    </ul>
+                    <div class="search">
+                        <form class="searchform group">
+                            <label class="search-box" for="search-box">
+                                <span class="fa fa-2x fa-search"></span>
+                            </label>
+                            <input type="search" id="search-box" placeholder="Search">
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-     
     <!--header-bottom-->
     <div class="banner-bottom-top">
-            <div class="container">
+        <div class="container">
             <div class="bottom-header">
                 <div class="header-bottom">
                     <div class=" bottom-head">
@@ -60,185 +61,195 @@
                     <div class=" bottom-head">
                         <a href="buy.html">
                             <div class="buy-media">
-                            <i class="rent"> </i>
-                            <h6>Rent</h6>
+                                <i class="rent"> </i>
+                                <h6>Rent</h6>
                             </div>
                         </a>
                     </div>
                     <div class=" bottom-head">
                         <a href="buy.html">
                             <div class="buy-media">
-                            <i class="pg"> </i>
-                            <h6>Hostels</h6>
+                                <i class="pg"> </i>
+                                <h6>Hostels</h6>
                             </div>
                         </a>
                     </div>
                     <div class=" bottom-head">
                         <a href="buy.html">
                             <div class="buy-media">
-                            <i class="sell"> </i>
-                            <h6>Resale</h6>
+                                <i class="sell"> </i>
+                                <h6>Resale</h6>
                             </div>
                         </a>
                     </div>
                     <div class=" bottom-head">
                         <a href="loan.html">
                             <div class="buy-media">
-                            <i class="loan"> </i>
-                            <h6>Home Loans</h6>
+                                <i class="loan"> </i>
+                                <h6>Home Loans</h6>
                             </div>
                         </a>
                     </div>
                     <div class=" bottom-head">
                         <a href="buy.html">
                             <div class="buy-media">
-                            <i class="apart"> </i>
-                            <h6>Projects</h6>
+                                <i class="apart"> </i>
+                                <h6>Projects</h6>
                             </div>
                         </a>
                     </div>
                     <div class=" bottom-head">
                         <a href="dealers.html">
                             <div class="buy-media">
-                            <i class="deal"> </i>
-                            <h6>Dealers</h6>
+                                <i class="deal"> </i>
+                                <h6>Dealers</h6>
                             </div>
                         </a>
                     </div>
                     <div class="clearfix"> </div>
                 </div>
             </div>
+        </div>
     </div>
-    </div>
-            <!--//-->
-                
+    <!--//-->
     <!--//header-bottom-->
-    
-    
-<!--//header-->
-<!--content-->
-<div class="content">
-    <div class="content-grid">
-        <div class="container">
-            <h3>Most Popular</h3>
+    <!--//header-->
+    <!--content-->
+    <div class="content">
+        <div class="content-grid">
+            <div class="container">
+                <h3>Most Popular</h3>
                 <div class="col-md-4 box_2">
-                     <a href="single.html" class="mask">
+                    <a href="single.html" class="mask">
                         <img class="img-responsive zoom-img" src="{% static 'webapp/images/templateImg/pc4.jpg' %}" alt="">
                         <span class="four">40,000$</span>
-                     </a>
-                       <div class="most-1">
-                         <h5><a href="single.html">Contrary to popular</a></h5>
-                            <p>Lorem ipsum</p>
-                       </div>
-             </div>
-              <div class="col-md-4 box_2">
-                 <a href="single.html" class="mask">
+                    </a>
+                    <div class="most-1">
+                        <h5><a href="single.html">Contrary to popular</a></h5>
+                        <p>Lorem ipsum</p>
+                    </div>
+                </div>
+                <div class="col-md-4 box_2">
+                    <a href="single.html" class="mask">
                         <img class="img-responsive zoom-img" src="{% static 'webapp/images/templateImg/pc5.jpg' %}" alt="">
                         <span class="four">40,000$</span>
-                     </a>
-                   <div class="most-1">
+                    </a>
+                    <div class="most-1">
                         <h5><a href="single.html">Contrary to popular</a></h5>
-                            <p>Lorem ipsum</p>
-                       </div>
-                
-              </div>
-              <div class="col-md-4 box_2">
-                 <a href="single.html" class="mask">
-                        <img class="img-responsive zoom-img" src="{% static 'webapp/images/templateImg/pc3.jpg' %}" alt="" >
+                        <p>Lorem ipsum</p>
+                    </div>
+                </div>
+                <div class="col-md-4 box_2">
+                    <a href="single.html" class="mask">
+                        <img class="img-responsive zoom-img" src="{% static 'webapp/images/templateImg/pc3.jpg' %}" alt="">
                         <span class="four">40,000$</span>
-                     </a>
-                   <div class="most-1">
-                         <h5><a href="single.html">Contrary to popular</a></h5>
-                            <p>Lorem ipsum</p>
-                       </div>
-                
-              </div>
-            <div class="clearfix"> </div>
-        </div>
-    </div>
-<!--service-->
-    <div class="services">
-        <div class="container">
-            <div class="service-top">
-                <h3>Services</h3>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-            </div>
-            <div class="services-grid">
-                <div class="col-md-6 service-top1">
-                    <div class=" ser-grid"> 
-                        <a href="#" class="hi-icon hi-icon-archive glyphicon glyphicon-user"> </a>
+                    </a>
+                    <div class="most-1">
+                        <h5><a href="single.html">Contrary to popular</a></h5>
+                        <p>Lorem ipsum</p>
                     </div>
-                    <div  class="ser-top">
-                        <h4>Ut wisi enim ad</h4>
-                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. 
-                            It has roots in a piece of classical.Contrary to popular belief, Lorem Ipsum </p>
-                    </div>
-                    <div class="clearfix"> </div>
-               </div>
-                <div class="col-md-6 service-top1">
-                    <div class=" ser-grid"> 
-                        <a href="#" class="hi-icon hi-icon-archive glyphicon glyphicon-leaf"> </a>
-                    </div>
-                    <div  class="ser-top">
-                        <h4>Ut wisi enim ad</h4>
-                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. 
-                            It has roots in a piece of classical.Contrary to popular belief, Lorem Ipsum </p>
-                    </div>
-                    <div class="clearfix"> </div>
                 </div>
-            <div class="clearfix"> </div>
-         </div>
-         <div class="services-grid">
-                <div class="col-md-6 service-top1">
-                    <div class=" ser-grid"> 
-                        <a href="#" class="hi-icon hi-icon-archive glyphicon glyphicon-cog"> </a>
-                    </div>
-                    <div  class="ser-top">
-                        <h4>Ut wisi enim ad</h4>
-                            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. 
-                                It has roots in a piece of classical.Contrary to popular belief, Lorem Ipsum </p>
-                    </div>
-                    <div class="clearfix"> </div>
-                </div>
-                <div class="col-md-6 service-top1">
-                    <div class=" ser-grid"> 
-                        <a href="#" class="hi-icon hi-icon-archive glyphicon glyphicon-file"> </a>
-                    </div>
-                    <div  class="ser-top">
-                        <h4>Ut wisi enim ad</h4>
-                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. 
-                                It has roots in a piece of classical .Contrary to popular belief, Lorem Ipsum</p>
-                    </div>
-                    <div class="clearfix"> </div>
-                </div>
-              <div class="clearfix"> </div>
+                <div class="clearfix"> </div>
             </div>
         </div>
-    </div>
-<!--//services-->
-<!--partners-->
-    <div class="content-bottom1">
-        <h3>Our Partners</h3>
+        <!--service-->
+        <div class="services">
+            <div class="container">
+                <div class="service-top">
+                    <h3>Services</h3>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                </div>
+                <div class="services-grid">
+                    <div class="col-md-6 service-top1">
+                        <div class=" ser-grid">
+                            <a href="#" class="hi-icon hi-icon-archive glyphicon glyphicon-user"> </a>
+                        </div>
+                        <div class="ser-top">
+                            <h4>Ut wisi enim ad</h4>
+                            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical.Contrary to popular belief, Lorem Ipsum </p>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                    <div class="col-md-6 service-top1">
+                        <div class=" ser-grid">
+                            <a href="#" class="hi-icon hi-icon-archive glyphicon glyphicon-leaf"> </a>
+                        </div>
+                        <div class="ser-top">
+                            <h4>Ut wisi enim ad</h4>
+                            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical.Contrary to popular belief, Lorem Ipsum </p>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="services-grid">
+                    <div class="col-md-6 service-top1">
+                        <div class=" ser-grid">
+                            <a href="#" class="hi-icon hi-icon-archive glyphicon glyphicon-cog"> </a>
+                        </div>
+                        <div class="ser-top">
+                            <h4>Ut wisi enim ad</h4>
+                            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical.Contrary to popular belief, Lorem Ipsum </p>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                    <div class="col-md-6 service-top1">
+                        <div class=" ser-grid">
+                            <a href="#" class="hi-icon hi-icon-archive glyphicon glyphicon-file"> </a>
+                        </div>
+                        <div class="ser-top">
+                            <h4>Ut wisi enim ad</h4>
+                            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical .Contrary to popular belief, Lorem Ipsum</p>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+        </div>
+        <!--//services-->
+        <!--partners-->
+        <div class="content-bottom1">
+            <h3>Our Partners</h3>
             <div class="container">
                 <ul>
-                    <li><a href="#"><img class="img-responsive" src="{% static 'webapp/images/templateImg/lg.png' %}" alt=""></a></li>
-                    <li><a href="#"><img class="img-responsive" src="{% static 'webapp/images/templateImg/lg1.png' %}" alt=""></a></li>
-                    <li><a href="#"><img class="img-responsive" src="{% static 'webapp/images/templateImg/lg2.png' %}" alt=""></a></li>
-                    <li><a href="#"><img class="img-responsive" src="{% static 'webapp/images/templateImg/lg3.png' %}" alt=""></a></li>
-                    <li><a href="#"><img class="img-responsive" src="{% static 'webapp/images/templateImg/lg4.png' %}" alt=""></a></li>
-                <div class="clearfix"> </div>
+                    <li>
+                        <a href="#"><img class="img-responsive" src="{% static 'webapp/images/templateImg/lg.png' %}" alt=""></a>
+                    </li>
+                    <li>
+                        <a href="#"><img class="img-responsive" src="{% static 'webapp/images/templateImg/lg1.png' %}" alt=""></a>
+                    </li>
+                    <li>
+                        <a href="#"><img class="img-responsive" src="{% static 'webapp/images/templateImg/lg2.png' %}" alt=""></a>
+                    </li>
+                    <li>
+                        <a href="#"><img class="img-responsive" src="{% static 'webapp/images/templateImg/lg3.png' %}" alt=""></a>
+                    </li>
+                    <li>
+                        <a href="#"><img class="img-responsive" src="{% static 'webapp/images/templateImg/lg4.png' %}" alt=""></a>
+                    </li>
+                    <div class="clearfix"> </div>
                 </ul>
                 <ul>
-                    <li><a href="#"><img class="img-responsive" src="{% static 'webapp/images/templateImg/lg5.png' %}" alt=""></a></li>
-                    <li><a href="#"><img class="img-responsive" src="{% static 'webapp/images/templateImg/lg6.png' %}" alt=""></a></li>
-                    <li><a href="#"><img class="img-responsive" src="{% static 'webapp/images/templateImg/lg7.png' %}" alt=""></a></li>
-                    <li><a href="#"><img class="img-responsive" src="{% static 'webapp/images/templateImg/lg8.png' %}" alt=""></a></li>
-                    <li><a href="#"><img class="img-responsive" src="{% static 'webapp/images/templateImg/lg9.png' %}" alt=""></a></li>   
-                <div class="clearfix"> </div>
+                    <li>
+                        <a href="#"><img class="img-responsive" src="{% static 'webapp/images/templateImg/lg5.png' %}" alt=""></a>
+                    </li>
+                    <li>
+                        <a href="#"><img class="img-responsive" src="{% static 'webapp/images/templateImg/lg6.png' %}" alt=""></a>
+                    </li>
+                    <li>
+                        <a href="#"><img class="img-responsive" src="{% static 'webapp/images/templateImg/lg7.png' %}" alt=""></a>
+                    </li>
+                    <li>
+                        <a href="#"><img class="img-responsive" src="{% static 'webapp/images/templateImg/lg8.png' %}" alt=""></a>
+                    </li>
+                    <li>
+                        <a href="#"><img class="img-responsive" src="{% static 'webapp/images/templateImg/lg9.png' %}" alt=""></a>
+                    </li>
+                    <div class="clearfix"> </div>
                 </ul>
             </div>
-        </div>  
-<!--//partners-->   
+        </div>
+        <!--//partners-->
     </div>
-
-{% endblock content %}
+    {% endblock content %}
