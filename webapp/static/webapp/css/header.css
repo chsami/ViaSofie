@@ -13,7 +13,6 @@
         margin-left: auto;
     }
     
-    #body {}
     /*
   #####################################################################################################################################################################
   Title
@@ -346,3 +345,34 @@
         float: none !important;
         display: inline-block !important;
     }
+
+
+    .language_menu{
+    float: left;
+    position: relative;
+    left: 20%;
+    padding-top: 15px;
+  }
+  .language_menu p {
+    float:left;
+    display: inline;
+    font-size: 16px;
+    line-height: 1;
+    padding: 3px;
+  }
+  .language_menu form {
+    display: inline;
+    padding: 0 0 0 5px;
+    background-color: #e8e8e8;
+  }
+  .languageselect {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    color: #7C6060;
+    padding: 0;
+    margin-bottom: 0;
+    display: initial;
+    width: 20px;
+    border-radius: 0px;
+    border: 1px solid #000000;
+  }
