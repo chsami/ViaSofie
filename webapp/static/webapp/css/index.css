@@ -1,28 +1,65 @@
 /*
 	#####################################################################################################################################################################
-	carousel
+	Search
 	#####################################################################################################################################################################
 */
-
-.fluid_container {
-    margin: 0 auto;
-    max-width: 1500px;
-    width: 90%;
-    a {
-        color: #09f;
-    }
-    a:hover {
-        text-decoration: none;
-    }
-}
-
-.affix {
-    position: fixed;
-    top: 50px;
-    width: 100%;
+.search {
     z-index: 1000;
+    right: 0;
+        position: absolute;
+    top: 43%;
+    float: right;
+    margin-right: 750px;
 }
 
-.affix-top {
-    margin-bottom: 0px !important;
+.searchform {
+  display: block;
+  margin: 0;
+  width: 750px;
+  position: absolute;
+  background: rgba(18, 18, 18, .5);
+  padding: 40px;
 }
+label, input {
+  vertical-align: baseline;
+  color: #7e7e7e;
+}
+label {
+  margin: 0.125em 0.125em 0 0;
+  float: right;
+  
+}
+input[type="search"] {
+  border: 2px solid #7e7e7e;
+  border-width: 0 0 3px;
+  background-color: transparent;
+  font: 22px "Open Sans", sans-serif;
+  padding: 0.125em 0.225em;
+  width: 85%;
+  float: left;
+  
+}
+input[type="search"]:focus {
+  color: #c0c8c6;
+  border-color: #c0c8c6;
+  outline: none;
+}
+
+@media only screen and (max-width: 1200px) {
+        .search {
+            top: 5%;
+        }
+    }
+
+@media only screen and (max-width: 760px) {
+        #search-box {
+            display: none;
+        }
+        .searchform {
+            width: 100px;
+        }
+        .search {
+            margin-right: 100px;
+            top: 43%;
+        }
+    }

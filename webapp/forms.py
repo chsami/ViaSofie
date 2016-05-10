@@ -51,7 +51,7 @@ class AuthenticationForm(forms.Form):
     Login form
     """
     email = forms.EmailField(widget=forms.TextInput(attrs={'placeholder': 'Email'}))
-    password = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Wachtwoord'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Wachtwoord'}))
 
     class Meta:
         fields = ['email', 'password']

@@ -16,6 +16,9 @@ def languageselector(request):
 def index(request):
 	return render(request, 'webapp/index.html')
 
+def panddetail(request):
+	return render(request, 'webapp/panddetail.html')
+
 def about(request):
 	return render(request, 'webapp/about.html')
 

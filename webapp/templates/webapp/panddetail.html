@@ -1,0 +1,162 @@
+{% extends 'webapp/base.html' %} {% load staticfiles %} {% block header %}
+<script type='text/javascript' src="{% static 'webapp/scripts/index.js' %}"></script>
+<script type='text/javascript' src="{% static 'webapp/scripts/jquery.flexslider.js' %}"></script>
+<script type='text/javascript' src="{% static 'webapp/scripts/jquery.flexisel.js' %}"></script>
+<link rel="stylesheet" href="{% static 'webapp/css/flexslider.css' %}" type="text/css" media="screen" /> {% endblock header %} {% block content %}
+<div class="container">
+    <div class="buy-single-single">
+        <div class=" buying-top">
+            <div class="flexslider">
+                <ul class="slides">
+                    <li data-thumb="{% static 'webapp/images/templateImg/ss.jpg' %}">
+                        <img src="{% static 'webapp/images/templateImg/ss.jpg' %}" />
+                    </li>
+                    <li data-thumb="{% static 'webapp/images/templateImg/ss1.jpg' %}">
+                        <img src="{% static 'webapp/images/templateImg/ss1.jpg' %}" />
+                    </li>
+                    <li data-thumb="{% static 'webapp/images/templateImg/ss2.jpg' %}">
+                        <img src="{% static 'webapp/images/templateImg/ss2.jpg' %}" />
+                    </li>
+                    <li data-thumb="{% static 'webapp/images/templateImg/ss3.jpg' %}">
+                        <img src="{% static 'webapp/images/templateImg/ss3.jpg' %}" />
+                    </li>
+                </ul>
+            </div>
+            <!-- FlexSlider -->
+            <script>
+            // Can also be used with $(document).ready()
+            $(window).load(function() {
+                $('.flexslider').flexslider({
+                    animation: "slide",
+                    controlNav: "thumbnails"
+                });
+            });
+            </script>
+        </div>
+        <div class="buy-sin-single">
+            <div class="col-sm-5 middle-side immediate">
+                <h4>Huis</h4>
+                <p><span class="bath">Bed </span>: <span class="two">2 BHK</span></p>
+                <p> <span class="bath1">Baths </span>: <span class="two">2</span></p>
+                <p><span class="bath2">Built-up Area</span>: <span class="two">100 Sq.Yrds</span></p>
+                <p><span class="bath3">Plot Area </span>:<span class="two"> 150 Sq.Yrds</span></p>
+                <p><span class="bath4">Age of property</span> : <span class="two">4 - 10 Years</span></p>
+                <p><span class="bath5">Price </span>:<span class="two"> 30-40 Lacs</span></p>
+                <div class="   right-side">
+                    <a href="/contact" class="hvr-sweep-to-right more">Contact Builder</a>
+                </div>
+            </div>
+            <div class="col-sm-7 buy-sin">
+                <h4>Description</h4>
+                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature</p>
+                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC </p>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+        <div class="map-buy-single">
+            <h4>Neighborhood Info</h4>
+            <div class="map-buy-single1">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d37494223.23909492!2d103!3d55!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x453c569a896724fb%3A0x1409fdf86611f613!2sRussia!5e0!3m2!1sen!2sin!4v1415776049771"></iframe>
+            </div>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+</div>
+<!---->
+<div class="container">
+    <div class="future">
+        <h3>Related Projects</h3>
+        <div class="content-bottom-in">
+            <ul id="flexiselDemo1">
+                <li>
+                    <div class="project-fur">
+                        <a href="single.html"><img class="img-responsive" src="{% static 'webapp/images/templateImg/pi.jpg' %}" alt="" /> </a>
+                        <div class="fur">
+                            <div class="fur1">
+                                <span class="fur-money">$2.44 Lacs - 5.28 Lacs </span>
+                                <h6 class="fur-name"><a href="single.html">Contrary to popular</a></h6>
+                                <span>Paris</span>
+                            </div>
+                            <div class="fur2">
+                                <span>2 BHK</span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="project-fur">
+                        <a href="single.html"><img class="img-responsive" src="{% static 'webapp/images/templateImg/pi1.jpg' %}" alt="" /> </a>
+                        <div class="fur">
+                            <div class="fur1">
+                                <span class="fur-money">$2.44 Lacs - 5.28 Lacs </span>
+                                <h6 class="fur-name"><a href="single.html">Contrary to popular</a></h6>
+                                <span>Paris</span>
+                            </div>
+                            <div class="fur2">
+                                <span>2 BHK</span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="project-fur">
+                        <a href="single.html"><img class="img-responsive" src="{% static 'webapp/images/templateImg/pi2.jpg' %}" alt="" /> </a>
+                        <div class="fur">
+                            <div class="fur1">
+                                <span class="fur-money">$2.44 Lacs - 5.28 Lacs </span>
+                                <h6 class="fur-name"><a href="single.html">Contrary to popular</a></h6>
+                                <span>Paris</span>
+                            </div>
+                            <div class="fur2">
+                                <span>2 BHK</span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="project-fur">
+                        <a href="single.html"><img class="img-responsive" src="{% static 'webapp/images/templateImg/pi3.jpg' %}" alt="" /> </a>
+                        <div class="fur">
+                            <div class="fur1">
+                                <span class="fur-money">$2.44 Lacs - 5.28 Lacs </span>
+                                <h6 class="fur-name"><a href="single.html">Contrary to popular</a></h6>
+                                <span>Paris</span>
+                            </div>
+                            <div class="fur2">
+                                <span>2 BHK</span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <script type="text/javascript">
+            $(window).load(function() {
+                $("#flexiselDemo1").flexisel({
+                    visibleItems: 4,
+                    animationSpeed: 1000,
+                    autoPlay: true,
+                    autoPlaySpeed: 3000,
+                    pauseOnHover: true,
+                    enableResponsiveBreakpoints: true,
+                    responsiveBreakpoints: {
+                        portrait: {
+                            changePoint: 480,
+                            visibleItems: 1
+                        },
+                        landscape: {
+                            changePoint: 640,
+                            visibleItems: 2
+                        },
+                        tablet: {
+                            changePoint: 768,
+                            visibleItems: 3
+                        }
+                    }
+                });
+
+            });
+            </script>
+        </div>
+    </div>
+</div>
+{% endblock content %}
