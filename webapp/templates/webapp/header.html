@@ -1,64 +1,59 @@
 {% load staticfiles %}
 <header>
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        <div class="collapse navbar-collapse" id="myNavbar">
-          {% load i18n %}
-          <div class="language_menu">
-            <p>Language:</p>
-            <form  action="{% url 'set_language' %}" method="post">{% csrf_token %}
-                <input name="next" type="hidden" value="{{ redirect_to }}" />
-                <select name="language"  onchange='this.form.submit()' class="languageselect">
-                    {% get_current_language as LANGUAGE_CODE %}
-                    {% get_available_languages as LANGUAGES %}
-                    {% get_language_info_list for LANGUAGES as languages %}
-                    {% for language in languages %}
-                        <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected="selected"{% endif %}>
-                             <a type="submit" class="btn btn-default">{{ language.code }}</a>
-                        </option>
-                    {% endfor %}
-                </select>
-            </form>
-          </div>
-          <ul class="nav navbar-nav navbar-right">
-            {% if user.is_authenticated %}
-              <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
-            {%else%}
-              <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Registreren</a></li>
-              <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Aanmelden</a></li>
-            {% endif %}
-          </ul>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    {% if user.is_authenticated %}
+                    <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+                    {%else%}
+                    <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Registreren</a></li>
+                    <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Aanmelden</a></li>
+                    {% endif %}
+                    <li class="dropdown">
+                        {% load i18n %}
+                        <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+                            <input name="next" type="hidden" value="{{ redirect_to }}" />
+                            <select name="language" onchange='this.form.submit()' class="languageselect">
+                                {% get_current_language as LANGUAGE_CODE %} {% get_available_languages as LANGUAGES %} {% get_language_info_list for LANGUAGES as languages %} {% for language in languages %}
+                                <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected="selected" {% endif %}>
+                                    <a type="submit" class="btn btn-default">{{ language.code }}</a>
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </form>
+                    </li>
+                </ul>
+            </div>
         </div>
+    </nav>
+    <div class="header-logo" id="header-logo">
+        <img class="img-responsive" src="{% static 'webapp/images/def logos via sofie - RGB-08.png' %}">
     </div>
-</nav>
-<div class="header-logo" id="header-logo">
-    <img class="img-responsive" src="{% static 'webapp/images/def logos via sofie - RGB-08.png' %}">
-</div>
-<div class="header">
-    <div class="title-container">
-        <h3 class="headertitle">
+    <div class="header">
+        <div class="title-container">
+            <h3 class="headertitle">
         <span>Via Sofie</span>
         <span class="title--sub-title">Vérdergaan in vastgoed...</span>
     </h3>
-    </div>
-    <div class="cssmenu-container">
-        <div id='cssmenu' class="align-center">
-            <ul>
-                <li class='active'><a href='#'>Home</a></li>
-                <li><a href='#'>Over</a></li>
-                <li><a href='#'>Partners</a></li>
-                <li><a href='#'>Account</a></li>
-                <li><a href='#'>Contact</a></li>
-            </ul>
         </div>
-        <div class="clearfix"> </div>
+        <div class="cssmenu-container">
+            <div id='cssmenu' class="align-center">
+                <ul>
+                    <li class='active'><a href='#'>Home</a></li>
+                    <li><a href='#'>Over</a></li>
+                    <li><a href='#'>Partners</a></li>
+                    <li><a href='#'>Account</a></li>
+                    <li><a href='#'>Contact</a></li>
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
     </div>
-</div>
-
 </header>
