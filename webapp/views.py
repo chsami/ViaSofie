@@ -167,7 +167,7 @@ def register(request):
         return redirect('/')
     registration_form = RegistrationForm()
     if request.method == 'POST':
-        form = RegistrationForm(request.POST)
+        form = RegistrationForm(data=request.POST)
         if form.is_valid():
             datas={}
             datas['email']=form.cleaned_data['email']
@@ -190,6 +190,8 @@ def register(request):
             return redirect('/')
         else:
             registration_form = form #Display form with error messages (incorrect fields, etc)
+    else:
+    	form = RegistrationForm()
     return render(request, 'webapp/register.html', locals())
 
 #View called from activation email. Activate user if link didn't expire (48h default), or offer to
