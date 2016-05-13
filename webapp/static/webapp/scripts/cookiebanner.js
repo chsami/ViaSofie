@@ -245,7 +245,7 @@ THE SOFTWARE.
                 cookiePath: '/',
                 debug: false,
                 expires: Infinity,
-                zindex: 255,
+                zindex: 9999,
                 mask: false,
                 maskOpacity: 0.5,
                 maskBackground: '#000',

@@ -54,7 +54,7 @@ p {
     border-right: 1px solid #EBEBEB;
     padding: 0;
     float: left;
-    width: 14.285%;
+    width: 25%;
 }
 
 .banner-bottom-top {
@@ -69,7 +69,7 @@ p {
 .bottom-head a {
     text-decoration: none;
     display: block;
-    height: 120px;
+    height: 50px;
     position: relative;
     transition: 0.5s all;
     -webkit-transition: 0.5s all;
@@ -80,10 +80,8 @@ p {
 
 .buy-media {
     position: absolute;
-    bottom: 0;
-    height: 120px;
     overflow: hidden;
-    padding: 30px;
+    padding: 10px;
     width: 100%;
     background-color: #fff;
     -webkit-transform: translate3d(0, 0, 0);
@@ -109,13 +107,17 @@ p {
     background-color: #fff;
     position: absolute;
     z-index: 999;
-    top: -24px;
+    /*top: -24px;*/
     width: 100%;
     box-shadow: 0 0 4px rgba(164, 164, 164, .5);
 }
 
-.bottom-head a:hover .buy-media {
-    height: 170px;
+.buy-media i {
+    display: none;
+}
+
+.bottom-head .buy-media:hover {
+    height: 90px;
     transition: 0.5s all;
     -webkit-transition: 0.5s all;
     -o-transition: 0.5s all;
@@ -124,11 +126,11 @@ p {
     width: 100%;
     background-color: #fff;
     position: absolute;
-    bottom: 0;
+    top: 0;
     left: 0;
 }
 
-.bottom-head a:hover .buy-media h6 {
+.bottom-head .buy-media:hover h6 {
     color: #0d3532;
 }
 
@@ -136,7 +138,6 @@ i.buy {
     width: 32px;
     height: 32px;
     background: url(../images/templateImg/img-sprite.png) no-repeat -3px -39px;
-    display: block;
     margin: 0 auto;
 }
 
@@ -144,7 +145,6 @@ i.rent {
     width: 32px;
     height: 32px;
     background: url(../images/templateImg/img-sprite.png) no-repeat -37px -39px;
-    display: block;
     margin: 0 auto;
 }
 
@@ -152,7 +152,6 @@ i.pg {
     width: 32px;
     height: 32px;
     background: url(../images/templateImg/img-sprite.png) no-repeat -72px -39px;
-    display: block;
     margin: 0 auto;
 }
 
@@ -160,7 +159,6 @@ i.sell {
     width: 32px;
     height: 32px;
     background: url(../images/templateImg/img-sprite.png) no-repeat -142px -39px;
-    display: block;
     margin: 0 auto;
 }
 
@@ -168,7 +166,6 @@ i.loan {
     width: 32px;
     height: 32px;
     background: url(../images/templateImg/img-sprite.png) no-repeat -178px -39px;
-    display: block;
     margin: 0 auto;
 }
 
@@ -176,7 +173,6 @@ i.apart {
     width: 32px;
     height: 32px;
     background: url(../images/templateImg/img-sprite.png) no-repeat -212px -39px;
-    display: block;
     margin: 0 auto;
 }
 
@@ -184,36 +180,42 @@ i.deal {
     width: 32px;
     height: 32px;
     background: url(../images/templateImg/img-sprite.png) no-repeat -248px -39px;
-    display: block;
     margin: 0 auto;
 }
 
-.bottom-head a:hover i.buy {
+.bottom-head .buy-media:hover i.buy {
     background-position: -3px -83px;
+    display: block;
 }
 
-.bottom-head a:hover i.rent {
+.bottom-head .buy-media:hover i.rent {
     background-position: -37px -80px;
+    display: block;
 }
 
-.bottom-head a:hover i.pg {
+.bottom-head .buy-media:hover i.pg {
     background-position: -72px -80px;
+    display: block;
 }
 
-.bottom-head a:hover i.sell {
+.bottom-head .buy-media:hover i.sell {
     background-position: -142px -80px;
+    display: block;
 }
 
-.bottom-head a:hover i.loan {
+.bottom-head .buy-media:hover i.loan {
     background-position: -178px -80px;
+    display: block;
 }
 
-.bottom-head a:hover i.apart {
+.bottom-head .buy-media:hover i.apart {
     background-position: -212px -77px;
+    display: block;
 }
 
-.bottom-head a:hover i.deal {
+.bottom-head .buy-media:hover i.deal {
     background-position: -248px -80px;
+    display: block;
 }
 
 .logo h1 {
@@ -2025,37 +2027,37 @@ option.rm {
 
 .middle-side p span.bath {
     color: #000;
-    margin: 0 51% 0 0;
+    margin: 0 1em 0 0;
     font-weight: bold;
 }
 
 .middle-side p span.bath1 {
     color: #000;
-    margin: 0 47% 0 0;
+    margin: 0 1em 0 0;
     font-weight: bold;
 }
 
 .middle-side p span.bath2 {
     color: #000;
-    margin: 0 32% 0 0;
+    margin: 0 1em 0 0;
     font-weight: bold;
 }
 
 .middle-side p span.bath3 {
     color: #000;
-    margin: 0 40% 0 0;
+    margin: 0 1em 0 0;
     font-weight: bold;
 }
 
 .middle-side p span.bath4 {
     color: #000;
-    margin: 0 26% 0 0;
+    margin: 0 1em 0 0;
     font-weight: bold;
 }
 
 .middle-side p span.bath5 {
     color: #000;
-    margin: 0 50% 0 0;
+    margin: 0 1em 0 0;
     font-weight: bold;
 }
 
@@ -3854,7 +3856,6 @@ ul.nav.nav-pills {
         width: 100%;
     }
     .buy-media {
-        padding: 30px 10px;
     }
     /*--about--*/
     .about-mid1 {
@@ -3939,17 +3940,16 @@ ul.nav.nav-pills {
         top: 35%;
     }
     .buy-media {
-        height: 104px;
-        padding: 25px 10px;
+        padding: 10px 10px;
     }
     .bottom-head a {
-        height: 104px;
+        height: 50px;
     }
     .banner-bottom-top {
         min-height: 81px;
     }
     .bottom-head a:hover .buy-media {
-        height: 140px;
+        height: 70px;
     }
     .content-grid h3,
     .service-top h3,
@@ -4411,7 +4411,7 @@ ul.nav.nav-pills {
         font-size: 0.75em;
     }
     .buy-media {
-        padding: 25px 2px;
+        padding: 10px 2px;
     }
     .content-grid h3,
     .service-top h3,
@@ -4621,6 +4621,10 @@ ul.nav.nav-pills {
     .top-nav {
         margin-top: 1px;
     }
+.buy-media i {
+    display: block;
+}
+
     .banner1,
     .banner2,
     .banner3 {
@@ -4788,14 +4792,14 @@ ul.nav.nav-pills {
         width: 100%;
     }
     .buy-media {
-        padding: 15px 2px;
-        height: 70px;
+        padding: 5px 2px;
+        height: 50px;
     }
     .bottom-head a {
-        height: 70px;
+        height: 50px;
     }
     .bottom-head a:hover .buy-media {
-        height: 90px;
+        height: 60px;
     }
     .bottom-head h6 {
         display: none;
@@ -5191,7 +5195,7 @@ ul.nav.nav-pills {
         height: 50px;
     }
     .bottom-head a:hover .buy-media {
-        height: 100px;
+        height: 70px;
     }
     .banner-bottom-top {
         min-height: 49px;
@@ -5954,7 +5958,7 @@ ul.nav.nav-pills {
         height: 70px;
     }
     .header-bottom {
-        top: -14px;
+        /*top: -14px;*/
     }
     .banner-bottom-top {
         min-height: 35px;
