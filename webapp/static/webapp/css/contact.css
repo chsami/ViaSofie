@@ -1,0 +1,63 @@
+.faqHeader {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+
+    .panel-heading [data-toggle="collapse"]:after {
+        font-family: 'Glyphicons Halflings';
+        content: "+"; /* "play" icon */
+        float: right;
+        color: #eac8c6;
+        font-size: 18px;
+        line-height: 22px;
+        /* rotate "play" icon from > (right arrow) to down arrow */
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        transform: rotate(-90deg);
+    }
+
+    .panel-heading [data-toggle="collapse"].collapsed:after {
+        /* rotate "play" icon from > (right arrow) to ^ (up arrow) */
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        transform: rotate(90deg);
+        color: #0d3532;
+    }
+
+
+.contact-top1 h4 {
+    margin: 0px;
+}
+
+.contact-top {
+    padding-top: 0px;
+}
+
+.contact {
+    padding-top: 20px;
+}
+
+.contact h3 {
+    margin: 30px 0 20px 0;
+}
+
+hr {
+    border-top: 0px;
+}
+
+ul {
+    list-style: circle;
+    padding-left: 15px;
+}
+
+.panel-body a {
+    color: #333;
+}
+
+a {
+    font-weight: bold;
+}

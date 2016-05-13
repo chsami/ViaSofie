@@ -246,7 +246,7 @@ input[type="submit"]:active {
 .passwordresetdone {
   display: block;
   position: relative;
-  width: 700px;
+  width: 500px;
   max-width: 75%;
   text-align: center;
   margin: 20px auto;
