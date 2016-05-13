@@ -3,11 +3,14 @@ from django.template import RequestContext
 from django.contrib.auth import login as django_login, authenticate, logout as django_logout
 from django.core.urlresolvers import reverse
 from django import forms
-from django.shortcuts import render, redirect, render_to_response, RequestContext
+from django.shortcuts import render, redirect, render_to_response, RequestContext, get_object_or_404
 from django.db import models
 from webapp.models import *
 from django.utils.translation import ugettext as _
 from webapp.forms import *
+import hashlib
+import random
+from django.utils import timezone
 
 # Create your views here.
 def languageselector(request):
@@ -160,19 +163,81 @@ def log(request):
 	return render(request, "webapp/forms.html", {'form': form})
 
 def register(request):
-    """
-    User registration view.
-    """
+    if request.user.is_authenticated():
+        return redirect('/')
+    registration_form = RegistrationForm()
     if request.method == 'POST':
         form = RegistrationForm(data=request.POST)
         if form.is_valid():
-            user = form.save()
+            datas={}
+            datas['email']=form.cleaned_data['email']
+            datas['password1']=form.cleaned_data['password1']
+
+            #We will generate a random activation key
+            salt = hashlib.sha1(str(random.random())).hexdigest()[:5]
+            emailsalt = datas['email']
+            if isinstance(emailsalt, unicode):
+                emailsalt = emailsalt.encode('utf8')
+            datas['activation_key']= hashlib.sha1(salt+emailsalt).hexdigest()
+
+            datas['email_path']="\\ActivationEmail.py"
+            datas['email_subject']="Welkom bij ViaSofie"
+
+            form.sendEmail(datas) #Send validation email
+            form.save(datas) #Save the user and his profile
+
+            request.session['registered']=True #For display purposes
             return redirect('/')
+        else:
+            registration_form = form #Display form with error messages (incorrect fields, etc)
     else:
-        form = RegistrationForm()
-    return render_to_response('webapp/register.html', {
-        'form': form,
-    }, context_instance=RequestContext(request))
+    	form = RegistrationForm()
+    return render(request, 'webapp/register.html', locals())
+
+#View called from activation email. Activate user if link didn't expire (48h default), or offer to
+#send a second link if the first expired.
+def activation(request, key):
+    activation_expired = False
+    already_active = False
+    user = get_object_or_404(User, activation_key=key)
+    if user.is_active == False:
+        if timezone.now() > user.key_expires:
+            activation_expired = True #Display : offer to user to have another activation link (a link in template sending to the view new_activation_link)
+            id_user = user.id
+        else: #Activation successful
+            user.is_active = True
+            user.save()
+
+    #If user is already active, simply display error message
+    else:
+        already_active = True #Display : error message
+    return render(request, 'webapp/activation.html', locals())
+
+def new_activation_link(request, user_id):
+    form = RegistrationForm()
+    datas={}
+    user = User.objects.get(id=user_id)
+    if user is not None and not user.is_active:
+        datas['username']=user.username
+        datas['email']=user.email
+        datas['email_path']="\\ResendEmail.py"
+        datas['email_subject']="Nouveau lien d'activation yourdomain"
+
+        salt = hashlib.sha1(str(random.random())).hexdigest()[:5]
+        usernamesalt = datas['username']
+        if isinstance(usernamesalt, unicode):
+            usernamesalt = usernamesalt.encode('utf8')
+        datas['activation_key']= hashlib.sha1(salt+usernamesalt).hexdigest()
+
+        user = User.objects.get(user=user)
+        user.activation_key = datas['activation_key']
+        user.key_expires = datetime.datetime.strftime(datetime.datetime.now() + datetime.timedelta(days=2), "%Y-%m-%d %H:%M:%S")
+        user.save()
+
+        form.sendEmail(datas)
+        request.session['new_link']=True #Display : new link send
+
+    return redirect('/')
 
 def logout(request):
     """
@@ -200,5 +265,3 @@ def foto(request):
 		'webapp/foto.html',
 		{'form': form}
 	)
-
-	

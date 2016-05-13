@@ -2,6 +2,10 @@ from django import forms
 from django.forms import ModelForm
 from django.contrib import admin
 from webapp.models import *
+from django.template import Context, Template
+from django.conf import settings
+from django.core.mail import send_mail
+import datetime
 
 
 class Stad(forms.ModelForm):
@@ -39,12 +43,26 @@ class RegistrationForm(forms.ModelForm):
                 raise forms.ValidationError("Passwords don't match. Please enter both fields again.")
         return self.cleaned_data
 
-    def save(self, commit=True):
+    def save(self, datas):
         user = super(RegistrationForm, self).save(commit=False)
         user.set_password(self.cleaned_data['password1'])
-        if commit:
-            user.save()
+        user.is_active = False
+        user.activation_key=datas['activation_key']
+        user.key_expires=datetime.datetime.strftime(datetime.datetime.now() + datetime.timedelta(days=2), "%Y-%m-%d %H:%M:%S")
+        user.save()
         return user
+
+    #Handling of activation email sending ------>>>!! Warning : Domain name is hardcoded below !!<<<------
+    #I am using a text file to write the email (I write my email in the text file with templatetags and then populate it with the method below)
+    def sendEmail(self, datas):
+        link='http://localhost:8000/activate/'+datas['activation_key']
+        c=Context({'activation_link':link,'email':datas['email']})
+        f = open(settings.MEDIA_ROOT+datas['email_path'], 'r')
+        t = Template(f.read())
+        f.close()
+        message=t.render(c)
+        #print unicode(message).encode('utf8')
+        send_mail(datas['email_subject'], message, 'ViaSofie <viasofie.groep5@gmail.com>', [datas['email']], fail_silently=False)
 
 class AuthenticationForm(forms.Form):
     """

@@ -43,6 +43,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     naam =  models.CharField(max_length=128)
     email = models.CharField(max_length=128, unique=True)
 
+    activation_key = models.CharField(max_length=40)
+    key_expires = models.DateTimeField()
+
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
