@@ -20,11 +20,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 's#6!%(_6o=(x+r0(1jk!h2%$e^=*&s%*87qzg@0#xqh&k%i)di'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost']
 
 
 # Application definition
@@ -61,6 +61,7 @@ TEMPLATE_LOADERS = (
 )
 
 ROOT_URLCONF = 'viasofie.urls'
+handler404 = 'mysite.views.my_custom_page_not_found_view'
 
 WSGI_APPLICATION = 'viasofie.wsgi.application'
 

@@ -265,5 +265,3 @@ def foto(request):
 		'webapp/foto.html',
 		{'form': form}
 	)
-
-	
