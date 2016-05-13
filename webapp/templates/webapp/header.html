@@ -1,5 +1,18 @@
 {% load staticfiles %}
 <header>
+    {% load i18n %}
+    <div class="language_menu">
+        <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+            <input name="next" type="hidden" value="{{ redirect_to }}" />
+            <select name="language" onchange='this.form.submit()' class="languageselect">
+                {% get_current_language as LANGUAGE_CODE %} {% get_available_languages as LANGUAGES %} {% get_language_info_list for LANGUAGES as languages %} {% for language in languages %}
+                <option class="flag flag-{{ language.code }}" value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected="selected" {% endif %}>
+                    <img class="flag flag-{{ language.code }}" />{{ language.code }}
+                </option>
+                {% endfor %}
+            </select>
+        </form>
+    </div>
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar" aria-expanded="false" aria-controls="navbar">
@@ -16,19 +29,6 @@
                     <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Registreren</a></li>
                     <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Aanmelden</a></li>
                     {% endif %}
-                    <li class="dropdown">
-                        {% load i18n %}
-                        <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
-                            <input name="next" type="hidden" value="{{ redirect_to }}" />
-                            <select name="language" onchange='this.form.submit()' class="languageselect">
-                                {% get_current_language as LANGUAGE_CODE %} {% get_available_languages as LANGUAGES %} {% get_language_info_list for LANGUAGES as languages %} {% for language in languages %}
-                                <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected="selected" {% endif %}>
-                                    <a type="submit" class="btn btn-default">{{ language.code }}</a>
-                                </option>
-                                {% endfor %}
-                            </select>
-                        </form>
-                    </li>
                 </ul>
             </div>
         </div>
