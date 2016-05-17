@@ -13,6 +13,7 @@ import hashlib
 import random
 from django.utils import timezone
 from django.core.mail import send_mail, BadHeaderError
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 def languageselector(request):
@@ -42,7 +43,16 @@ def about(request):
 	return render(request, 'webapp/about.html')
 
 def panden(request):
-	return render(request, 'webapp/panden.html')
+	panden_list = PandModel.objects.all()
+	paginator = Paginator(panden_list, 15)
+	page = request.GET.get('page')
+	try:
+		panden = paginator.page(page)
+	except PageNotAnInteger:
+		panden = paginator.page(1)
+	except EmptyPage:
+		panden = paginator.page(paginator.num_pages)
+	return render(request, 'webapp/panden.html', {'panden': panden})
 
 def contact(request):
 	return render(request, 'webapp/contact.html')
