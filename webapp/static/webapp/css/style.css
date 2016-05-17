@@ -2618,14 +2618,14 @@ label.hvr-sweep-to-right {
 /*--about--*/
 
 .about-head {
-    padding: 5em 0;
+    padding: 2em 0;
 }
 
 .about-head h3 {
     font-size: 3em;
     text-align: center;
     font-family: 'Ropa Sans', sans-serif;
-    margin: 0 0 0.5em;
+    margin: 0 0 0.3em;
 }
 
 .about-head h3:after,
@@ -2671,7 +2671,7 @@ label.hvr-sweep-to-right {
 
 .about-in {
     text-align: center;
-    padding: 2em 0 0;
+    padding: 0;
 }
 
 .about-middle {
