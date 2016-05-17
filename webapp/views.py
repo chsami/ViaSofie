@@ -11,13 +11,27 @@ from webapp.forms import *
 import hashlib
 import random
 from django.utils import timezone
+from django.core.mail import send_mail, BadHeaderError
 
 # Create your views here.
 def languageselector(request):
     return render(request, 'webapp/languageselector.html')
 
 def index(request):
-	return render(request, 'webapp/index.html')
+	if request.method == 'POST':
+    		form = AuthenticationForm(data=request.POST)
+    		if form.is_valid():
+    			user = authenticate(email=request.POST['email'], password=request.POST['password'])
+    			if user is not None:
+    				if user.is_active:
+    					django_login(request, user)
+    					return redirect('/')
+    	else:
+    		form = AuthenticationForm()
+    	return render_to_response('webapp/index.html', {
+    		'form': form,
+    	}, context_instance=RequestContext(request))
+
 
 def panddetail(request):
 	return render(request, 'webapp/panddetail.html')
