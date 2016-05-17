@@ -25,6 +25,9 @@ def panddetail(request):
 def about(request):
 	return render(request, 'webapp/about.html')
 
+def panden(request):
+	return render(request, 'webapp/panden.html')
+
 def contact(request):
 	return render(request, 'webapp/contact.html')
 

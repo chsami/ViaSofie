@@ -25,4 +25,4 @@ if '%errorlevel%' NEQ '0' (
     CD /D "%~dp0"
 :--------------------------------------
 
-start python manage.py runserver
+start python manage.py runserver --insecure
