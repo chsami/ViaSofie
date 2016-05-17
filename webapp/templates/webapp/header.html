@@ -24,6 +24,7 @@
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
                     {% if user.is_authenticated %}
+                    <li><a href="/account"><span class="glyphicon glyphicon-user"></span> {{ user.email }} </a></li>
                     <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
                     {%else%}
                     <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Registreren</a></li>
@@ -49,7 +50,6 @@
                     <li class='active'><a href='/'>Home</a></li>
                     <li><a href='/about'>Over</a></li>
                     <li><a href='/partners'>Partners</a></li>
-                    <li><a href='/account'>Account</a></li>
                     <li><a href='/contact'>Contact</a></li>
                 </ul>
             </div>
