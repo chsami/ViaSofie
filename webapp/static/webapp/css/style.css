@@ -2640,9 +2640,9 @@ label.hvr-sweep-to-right {
 }
 
 .about-in h6 {
-    font-size: 1.3em;
+    font-size: 18px;
     width: 72%;
-    line-height: 1.6em;
+    line-height: 1.4em;
     font-family: 'Ropa Sans', sans-serif;
     margin: 0.5em auto;
 }
@@ -2657,7 +2657,7 @@ label.hvr-sweep-to-right {
 }
 
 .about-in p {
-    font-size: 0.9em;
+    font-size: 16px;
     color: #a3a3a3;
     padding: 0.3em 0 0;
     width: 70%;
@@ -2688,7 +2688,7 @@ label.hvr-sweep-to-right {
 
 .about-mid h6 {
     font-size: 1.4em;
-    margin: 1em 0 0.7em;
+    margin: 0.5em 0 0.7em;
     font-family: 'Ropa Sans', sans-serif;
     line-height: 1.5em;
 }
@@ -2703,7 +2703,7 @@ label.hvr-sweep-to-right {
 }
 
 .about-mid p {
-    font-size: 0.9em;
+    font-size: 16px;
     color: #a3a3a3;
     line-height: 2em;
 }
@@ -2768,7 +2768,7 @@ label.hvr-sweep-to-right {
 }
 
 .beautiful p {
-    font-size: 0.9em;
+    font-size: 16px;
     color: #a3a3a3;
     line-height: 2em;
 }
@@ -4117,10 +4117,13 @@ ul.nav.nav-pills {
     }
     /*--about--*/
     .about-head {
-        padding: 3em 0;
+        padding: 0 0 5em 0;
+    }
+    .about-in {
+        padding-top: 0px;
     }
     .about-in h6 {
-        font-size: 1.1em;
+        font-size: 18px;
         width: 100%;
     }
     .about-in p {
