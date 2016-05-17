@@ -862,6 +862,10 @@ a.mask {
     border: 1px solid #AEAEAE;
 }
 
+.project-grid {
+    margin-top: 20px;
+}
+
 .col-md1 {
     padding: 1.5em;
     background: #fff;
