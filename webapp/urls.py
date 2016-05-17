@@ -5,7 +5,8 @@ from . import views
 urlpatterns = [
     
     url(r'^$', views.index, name='index'),
-    url(r'^panddetail/$', views.panddetail, name='panddetail'),
+    #url(r'^pand/$', views.pand, name='pand'),
+    url(r'^pand/(?P<pand_id>[0-9]+)$', views.panddetail, name='panddetail'),
     url(r'^about/$', views.about, name='about'),
     url(r'^advies/$', views.advies, name='advies'),
     url(r'^contact/$', views.contact, name='contact'),
@@ -31,7 +32,7 @@ urlpatterns = [
     url(r'^pandtype/$', views.pandtype, name='pandtype'),
     url(r'^handelstatus/$', views.handelstatus, name='handelstatus'),
     url(r'^voortgang/$', views.voortgang, name='voortgang'),
-    url(r'^pand/$', views.pand, name='pand'),
+    #url(r'^pand/$', views.pand, name='pand'),
     url(r'^tag/$', views.tag, name='tag'),
     url(r'^log/$', views.log, name='log'),
     url(r'^foto/$', views.foto, name='foto'),

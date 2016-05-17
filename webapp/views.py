@@ -6,6 +6,7 @@ from django import forms
 from django.shortcuts import render, redirect, render_to_response, RequestContext, get_object_or_404
 from django.db import models
 from webapp.models import *
+from webapp.models import Pand as PandModel
 from django.utils.translation import ugettext as _
 from webapp.forms import *
 import hashlib
@@ -33,8 +34,9 @@ def index(request):
     	}, context_instance=RequestContext(request))
 
 
-def panddetail(request):
-	return render(request, 'webapp/panddetail.html')
+def panddetail(request, pand_id):
+	pand = PandModel.objects.get(pk=pand_id)
+	return render_to_response('webapp/pand.html', {'pand': pand})
 
 def about(request):
 	return render(request, 'webapp/about.html')
@@ -146,16 +148,16 @@ def voortgang(request):
 			form = Voortgang()
 	return render(request, "webapp/forms.html", {'form': form})
 
-def pand(request):
-	if request.method == "POST":
-		form = Pand(request.POST)
-		if form.is_valid():
-			model_instance = form.save(commit=False)
-			model_instance.save()
-			return redirect('formsucces')
-	else:
-			form = Pand()
-	return render(request, "webapp/forms.html", {'form': form})
+# def pand(request):
+# 	if request.method == "POST":
+# 		form = Pand(request.POST)
+# 		if form.is_valid():
+# 			model_instance = form.save(commit=False)
+# 			model_instance.save()
+# 			return redirect('formsucces')
+# 	else:
+# 			form = Pand()
+# 	return render(request, "webapp/forms.html", {'form': form})
 
 def tag(request):
 	if request.method == "POST":
