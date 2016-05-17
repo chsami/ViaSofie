@@ -1,12 +1,14 @@
+{% extends 'webapp/base.html' %}
 {% load staticfiles %}
 {% block content %}
+
 <link rel="stylesheet" type="text/css" href="{% static 'webapp/css/404.css' %}" />
 <link rel="stylesheet" type="text/css" href="{% static 'webapp/css/404_normalize.css' %}" />
 
 <div class="error">404</div>
 <br /><br />
 <span class="info">Page not found</span>
-<img src="http://images2.layoutsparks.com/1/160030/too-much-tv-static.gif" class="static" />
+
 
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 {% endblock content %}
