@@ -1,0 +1,51 @@
+.faqHeader {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+
+    .panel-heading [data-toggle="collapse"]:after {
+        font-family: 'Glyphicons Halflings';
+        content: "+"; /* "play" icon */
+        float: right;
+        color: #eac8c6;
+        font-size: 18px;
+        line-height: 22px;
+        /* rotate "play" icon from > (right arrow) to down arrow */
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        transform: rotate(-90deg);
+    }
+
+    .panel-heading [data-toggle="collapse"].collapsed:after {
+        /* rotate "play" icon from > (right arrow) to ^ (up arrow) */
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        transform: rotate(90deg);
+        color: #0d3532;
+    }
+
+.advies h3:after, .advies h3:before {
+    width: 200px;
+    height: 1px;
+    display: inline-block;
+    vertical-align: middle;
+    content: "";
+    background: #000;
+    margin: 0 1%;
+}
+
+.advies h3 {
+    font-size: 3em;
+    color: #000;
+    font-family: 'Ropa Sans', sans-serif;
+    text-align: center;
+    margin: 10px 0 15px 0;
+}
+
+.advies {
+    padding: 30px 0;
+}
