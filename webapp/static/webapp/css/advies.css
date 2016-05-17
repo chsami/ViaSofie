@@ -1,3 +1,4 @@
+/* FAQ */
 .faqHeader {
         font-size: 18px;
         margin-bottom: 20px;
@@ -48,4 +49,25 @@
 
 .advies {
     padding: 30px 0;
+}
+
+
+hr {
+    border-top: 0px;
+}
+
+
+ul {
+    list-style: circle;
+    padding-left: 15px;
+}
+
+
+a {
+    font-weight: bold;
+}
+
+
+.panel-body a {
+    color: #333;
 }

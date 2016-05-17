@@ -14,19 +14,6 @@
     margin: 10px 0 15px 0;
 }
 
-hr {
-    border-top: 0px;
-}
-
-ul {
-    list-style: circle;
-    padding-left: 15px;
-}
-
-.panel-body a {
-    color: #333;
-}
-
 a {
     font-weight: bold;
 }
