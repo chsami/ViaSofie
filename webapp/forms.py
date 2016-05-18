@@ -123,3 +123,24 @@ class Foto(forms.ModelForm):
 	class Meta:
 		model = Foto
 		fields = ['url', 'pand']
+
+class ContactForm(forms.ModelForm):
+	"""
+    Form for sending a mail via contactpage.
+    """
+	email = forms.EmailField(label="", widget=forms.EmailInput(attrs={'placeholder' : 'E-mail'}))
+	naam = forms.CharField(label="", widget=forms.TextInput(attrs={'placeholder': 'Naam'}))
+    onderwerp = forms.CharField(label="", widget=forms.TextInput(attrs={'placeholder' : 'Onderwerp'}))
+    bericht = forms.CharField(label="", widget=forms.TextInput(attrs={'placeholder': 'Bericht'}))
+
+    class Meta:
+
+	def sendEmail(self, datas):
+        link='http://localhost:8000/activate/'+datas['activation_key']
+        c=Context({'activation_link':link,'email':datas['email']})
+        f = open(settings.MEDIA_ROOT+datas['email_path'], 'r')
+        t = Template(f.read())
+        f.close()
+        message=t.render(c)
+        #print unicode(message).encode('utf8')
+        send_mail([datas['onderwerp']], [datas['bericht']], [datas['email']], '<liekensjeff@gmail.com>', fail_silently=False)
