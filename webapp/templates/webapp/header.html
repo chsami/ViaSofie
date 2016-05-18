@@ -28,7 +28,7 @@
                     <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
                     {%else%}
                     <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Registreren</a></li>
-                    <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Aanmelden</a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#login"><span class="glyphicon glyphicon-log-in"></span> Aanmelden</a></li>
                     {% endif %}
                 </ul>
             </div>
@@ -56,4 +56,22 @@
             <div class="clearfix"> </div>
         </div>
     </div>
+  <div class="modal fade" id="login" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <form method="post" action="">
+          	<img class="img-responsive" src="{% static 'webapp/images/def logos via sofie - RGB-092.png' %}">
+            {% csrf_token %}
+            <table>
+              {{form}}
+            </table>
+            <input type="submit" value="Log in"/>
+            <p><a href="/resetpassword">Wachtwoord vergeten?</a></p>
+            <p><a href="/register">Registreer</a></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </header>

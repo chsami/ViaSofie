@@ -3,7 +3,7 @@
   Header, body
   #####################################################################################################################################################################
 */
-    
+
     .header {
         margin-top: 50px;
         position: relative;
@@ -12,13 +12,13 @@
         margin-right: auto;
         margin-left: auto;
     }
-    
+
     /*
   #####################################################################################################################################################################
   Title
   #####################################################################################################################################################################
 */
-    
+
     .headertitle {
         overflow: hidden;
         max-width: 300px;
@@ -29,7 +29,7 @@
         left: 18%;
         color: #9197a8;
     }
-    
+
     .title--sub-title {
         font-size: 70%;
         color: #999;
@@ -39,13 +39,13 @@
         line-height: 0.8;
         font-style: oblique;
     }
-    
+
     @media only screen and (max-width: 1200px) {
         .headertitle {
             display: none;
         }
     }
-    
+
     @media only screen and (max-width: 960px) {
         .title-container {
             position: relative;
@@ -58,7 +58,7 @@
             left: 7%;
         }
     }
-    
+
     @media only screen and (max-width: 480px) {
         .title {
             display: block;
@@ -75,7 +75,7 @@
   Logo (in header)
   #####################################################################################################################################################################
 */
-    
+
     .header-logo {
         /*original image size: width: 2276 height: 2276*/
         width: 140px;
@@ -87,7 +87,7 @@
         left: 5%;
         margin-top: -50px;
     }
-    
+
     @media only screen and (max-width: 960px) {
         .header-logo {
             width: 80px;
@@ -109,7 +109,7 @@
   Menu
   #####################################################################################################################################################################
 */
-    
+
     #cssmenu,
     #cssmenu ul,
     #cssmenu ul li,
@@ -126,7 +126,7 @@
         -moz-box-sizing: border-box;
         box-sizing: border-box;
     }
-    
+
     #cssmenu:after,
     #cssmenu > ul:after {
         content: ".";
@@ -136,11 +136,11 @@
         line-height: 0;
         height: 0;
     }
-    
+
     #cssmenu #menu-button {
         display: none;
     }
-    
+
     #cssmenu {
         border: 3px solid #0d3532;
         border-radius: 3px;
@@ -153,29 +153,29 @@
         float: right;
         right: 5%;
     }
-    
+
     #cssmenu > ul {
         background: url('../images/menu/bg.png');
     }
-    
+
     #cssmenu > ul > li {
         float: left;
     }
-    
+
     #cssmenu.align-center > ul {
         font-size: 0;
         text-align: center;
     }
-    
+
     #cssmenu.align-center > ul > li {
         display: inline-block;
         float: none;
     }
-    
+
     #cssmenu.align-right > ul > li {
         float: right;
     }
-    
+
     #cssmenu > ul > li > a {
         padding: 20px 25px;
         font-size: 14px;
@@ -188,13 +188,13 @@
         -o-transition: all .2s ease;
         transition: all .2s ease;
     }
-    
+
     #cssmenu > ul > li > a:hover,
     #cssmenu > ul > li:hover > a,
     #cssmenu > ul > li.active > a {
         color: #444444;
     }
-    
+
     #cssmenu #menu-indicator {
         position: absolute;
         bottom: 0;
@@ -209,28 +209,28 @@
         -o-transition: all 0.25s ease-out;
         transition: all 0.25s ease-out;
     }
-    
+
     #cssmenu.small-screen > ul,
     #cssmenu.small-screen.align-center > ul {
         text-align: left;
     }
-    
+
     #cssmenu.small-screen > ul > li,
     #cssmenu.small-screen.align-center > ul > li {
         float: none;
         display: block;
         border-top: 1px solid rgba(100, 100, 100, 0.1);
     }
-    
+
     #cssmenu.small-screen > ul > li > a {
         padding: 18px 25px;
     }
-    
+
     #cssmenu.small-screen > ul > li:after,
     #cssmenu.small-screen > ul > li:before {
         display: none;
     }
-    
+
     #cssmenu.small-screen #menu-button {
         display: block;
         padding: 18px 25px;
@@ -241,11 +241,11 @@
         color: #0d3532;
         background: url('../images/menu/bg.png');
     }
-    
+
     #cssmenu.small-screen #menu-button.menu-opened {
         color: #444444;
     }
-    
+
     #cssmenu.small-screen #menu-button:after {
         content: "";
         position: absolute;
@@ -260,12 +260,12 @@
         width: 18px;
         height: 3px;
     }
-    
+
     #cssmenu.small-screen #menu-button.menu-opened:after {
         border-top: 2px solid #444444;
         border-bottom: 2px solid #444444;
     }
-    
+
     #cssmenu.small-screen #menu-button:before {
         content: "";
         position: absolute;
@@ -276,21 +276,21 @@
         height: 2px;
         background: #0d3532;
     }
-    
+
     #cssmenu.small-screen #menu-button.menu-opened:before {
         background: #444444;
     }
-    
+
     #cssmenu.small-screen #menu-indicator {
         display: none;
     }
-    
+
     @media only screen and (max-width: 1200px) {
         #cssmenu {
             right: 0px;
         }
     }
-    
+
     @media only screen and (max-width: 992px) {
         #cssmenu {
             right: 0px;
@@ -298,7 +298,7 @@
             float: none;
         }
     }
-    
+
     @media only screen and (max-width: 768px) {
         #cssmenu {
             width: 100%;
@@ -334,5 +334,23 @@
     width: 50px;
     height: 50px;
     border-radius: 0px;
-    border: 1px solid #f8f8f8; 
+    border: 1px solid #f8f8f8;
+  }
+  /*
+  #####################################################################################################################################################################
+  costumized modal
+  #####################################################################################################################################################################
+  */
+
+
+  .modal-content {
+    background-color: transparent;
+    box-shadow: none;
+    /*border: none;*/
+    width: 0px;
+    height: 0px;
+  }
+
+  .modal, .fade {
+    width: 118%;
   }
