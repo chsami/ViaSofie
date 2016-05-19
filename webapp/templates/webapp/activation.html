@@ -2,9 +2,15 @@
 {% load staticfiles %}
 
 {% block header %}
-
+<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/forms.css' %}" />
 {% endblock header %}
 
 {% block content %}
-Proficiat, je account is geactiveerd!
+<div class="forms">
+	<div class="activatedaccount">
+    	<h3>Proficiat</h3>
+    	<h4>Je account is geactiveerd!</h4>
+   		<a href="/login" class="buttonpasswordreset">Login</a>
+	</div>
+</div>
 {% endblock content %}
