@@ -19,20 +19,7 @@ def languageselector(request):
     return render(request, 'webapp/languageselector.html')
 
 def index(request):
-	if request.method == 'POST':
-    		form = AuthenticationForm(data=request.POST)
-    		if form.is_valid():
-    			user = authenticate(email=request.POST['email'], password=request.POST['password'])
-    			if user is not None:
-    				if user.is_active:
-    					django_login(request, user)
-    					return redirect('/')
-    	else:
-    		form = AuthenticationForm()
-    	return render_to_response('webapp/index.html', {
-    		'form': form,
-    	}, context_instance=RequestContext(request))
-
+	return render('webapp/index.html')
 
 def panddetail(request, pand_id):
 	pand = PandModel.objects.get(pk=pand_id)
@@ -45,25 +32,18 @@ def panden(request):
 	return render(request, 'webapp/panden.html')
 
 def contact(request):
-    # if request.method == 'POST':
-    #     form = ContactForm(data=request.POST)
-    #     if form.is_valid():
-    #         datas={}
-    #         datas['email']=form.cleaned_data['email']
-    #         datas['password1']=form.cleaned_data['password1']
-    #
-    #         datas['email_path']="\\ActivationEmail.py"
-    #         datas['email_subject']="Welkom bij ViaSofie"
-    #
-    #         form.sendEmail(datas) #Send validation email
-    #         form.save(datas) #Save the user and his profile
-    #
-    #         request.session['registered']=True #For display purposes
-    #         return redirect('/')
-    #     else:
-    #         registration_form = form #Display form with error messages (incorrect fields, etc)
-    # else:
-    # 	form = ContactForm()
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = ContactForm(data=request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+
+            return HttpResponseRedirect('/thanks/')
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = NameForm()
     email = EmailMessage('Hello', 'etetetqq', to=['liekensjeff@gmail.com'])
     email.send()
     return render(request, 'webapp/contact.html')
