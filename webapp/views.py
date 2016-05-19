@@ -44,7 +44,7 @@ def about(request):
 
 def panden(request):
 	panden_list = PandModel.objects.all()
-	paginator = Paginator(panden_list, 15)
+	paginator = Paginator(panden_list, 1)
 	page = request.GET.get('page')
 	try:
 		panden = paginator.page(page)
