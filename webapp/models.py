@@ -43,6 +43,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     naam =  models.CharField(max_length=128)
     email = models.CharField(max_length=128, unique=True)
 
+    activation_key = models.CharField(max_length=40)
+    key_expires = models.DateTimeField()
+
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
@@ -105,6 +108,9 @@ class Pand(models.Model):
     pandtype = models.ForeignKey(PandType)
     handelstatus = models.ForeignKey(Handelstatus)
     voortgang = models.ForeignKey(Voortgang)
+    beschrijving = models.CharField(max_length = 1000, blank=True, null=True)
+
+    objects = models.Manager()
 
     def __str__(self):
         return str(self.id)

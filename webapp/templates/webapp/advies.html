@@ -2,9 +2,192 @@
 {% load staticfiles %}
 
 {% block header %}
-
+<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/advies.css' %}" />
 {% endblock header %}
 
 {% block content %}
-Dit is tekst
+<!--header-bottom-->
+        <div class="container">
+            <div class="bottom-header">
+                <div class="header-bottom">
+                    <div class=" bottom-head">
+                        <a href="/panden">
+                            <div class="buy-media">
+                                <i class="buy"> </i>
+                                <h6>Kopen</h6>
+                            </div>
+                        </a>
+                    </div>
+                    <div class=" bottom-head">
+                        <a href="/panden">
+                            <div class="buy-media">
+                                <i class="rent"> </i>
+                                <h6>Huren</h6>
+                            </div>
+                        </a>
+                    </div>
+                    <div class=" bottom-head">
+                        <a href="/advies">
+                            <div class="buy-media">
+                                <i class="sell"> </i>
+                                <h6>Advies</h6>
+                            </div>
+                        </a>
+                    </div>
+                    <div class=" bottom-head">
+                        <a href="/panden">
+                            <div class="buy-media">
+                                <i class="deal"> </i>
+                                <h6>Referenties</h6>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+        </div>
+    <!--//--> 
+    <div class="advies">	
+	<div class="FAQ">
+        <h3>FAQ</h3>
+        <div class="container">
+            <div class="faqHeader">
+                <p>Wilt u een woning kopen/huren of verkopen/verhuren dan moet u rekening houden met een hele hoop zaken. Hieronder vindt u een aantal algemene begrippen en FAQ’s van belang bij de verkoop of verhuur.</p>
+                <p>Hebt u vragen over onderstaande topics of staat uw vraag hier niet tussen, aarzel niet om me te contacteren, ik help u graag verder.</p>
+            </div>
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Wat is een compromis?</a>
+                </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <p>De compromis of de onderhandse overeenkomst is in principe vormvrij. De compromis is een koop-verkoopovereenkomst waarbij koper en verkoper overeenkomen dat de verkoper er zich toe verbindt om de eigendom van een zaak over te dragen aan de koper. De koper van zijn kant verbindt zich ertoe om een geldprijs te betalen.</p>
+                            <p>In tegenstelling tot wat sommigen denken is de koop definitief vanaf de compromis.</p>
+                            <p>Omdat het belangrijk is dat de compromis alle essentiële elementen bevat, is het aan te raden samen te werken met een erkend makelaar die u kan begeleiden bij de opmaak van dit document.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTen">Waarom moet er nog een authentieke akte worden opgesteld nà de ondertekening van de compromis?</a>
+                </h4>
+                    </div>
+                    <div id="collapseTen" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            Na de compromis zal de notaris een authentieke akte opstellen. Het is enkel de notaris die daartoe gemachtigd is. Hij zal de authentieke akte laten overschrijven in de registers van het hypotheekkantoor. Vanaf dat ogenblik is de verkoop ‘tegenstelbaar aan derden’. Dit wil zeggen dat vanaf de overschrijving op het hypotheekkantoor, iedereen, ook diegenen die geen partij zijn bij de verkoopovereenkomst rekening zullen moeten houden met de rechten van de nieuwe eigenaar van het onroerend goed.
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseEleven">Wat indien ik mijn woning verkoop en ik een negatief keuringsverslag heb?</a>
+                </h4>
+                    </div>
+                    <div id="collapseEleven" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p><strong>Algemeen</strong></p>
+                            <p>Het keuringsverslag , afgeleverd na de keuring van de elektrische installatie, geeft informatie over de staat van de elektrische installatie, zodat de nieuwe eigenaar indien nodig de installatie kan aanpassen om zijn veiligheid te garanderen. Een keuringsverslag is in principe 25 jaar geldig op voorwaarde dat er geen wijziging of uitbreiding werd aangebracht aan de elektrische installatie. Dit document moet bij het verkoopdossier worden gevoegd. Enkel een erkend keuringsorganisme mag de keuring uitvoeren.<hr></p>
+
+                            <p><strong>Verhindert een negatief keuringsverslag de verkoop?</strong></p>
+                            <p>Neen, een negatief keuringsverslag verhindert de verkoop niet.
+							De notaris zal echter wel verplicht zijn om dit te melden aan een erkend keuringsorganisme. De nieuwe eigenaar zal in principe het nodige moeten doen om de elektrische installatie conform de opgelegde voorschriften in orde te maken. Het keuringsverslag vermeldt normaalgezien de datum waartegen de nieuwe keuring moet worden uitgevoerd.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Hoe lang blijft een energieprestatiecertificaat geldig?</a>
+                </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            Het EPC-attest is een document dat aangeeft hoe energiezuinig een gebouw of woning precies is. Hoe lager de score hoe energiezuiniger de woning. Het EPC-attest wordt opgesteld door een energiedeskundige en is in principe 10 jaar geldig. Het EPC –attest dient aanwezig te zijn vanaf het ogenblik dat een woning te koop of te huur wordt aangeboden. 
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Wat geeft het kadastraal inkomen weer?</a>
+                </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            Het kadastraal inkomen van een onroerend goed is het gemiddeld normaal netto-inkomen van één jaar van een onroerend goed, na aftrek van alle kosten, zoals geschat door de administratie van het kadaster en voor meerdere jaren vastgelegd. Het is aldus de administratie van het kadaster die op basis van de netto-huurwaarde op een bepaald referentietijdstip, door vergelijking met een aantal referentiepercelen met overeenstemmende omvang, ligging, aard, afwerking, enzovoort, het kadastraal inkomen van een bepaald perceel vastlegt. Tot op heden wordt als referentietijdstip het jaar 1975 genomen.
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">Welke notaris mag de verkoopakte verlijden?</a>
+                </h4>
+                    </div>
+                    <div id="collapseFive" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            Bij een verkoop uit de hand hebben zowel de eigenaar als de kandidaat-koper elk het recht om een notaris aan te duiden. Het compromis vermeld voor welke notaris de koper en de verkoper kiezen. Het is dus mogelijk om meerdere notarissen de koopakte te laten verlijden.
+                            <br />
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSix">U wilt een huis aankopen, hoe brengt u het best een bod uit?</a>
+                </h4>
+                    </div>
+                    <div id="collapseSix" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            Indien u een woning wenst aan te kopen kan u best op een aantal zaken letten:
+                            <ul>
+                                <li>Een bod kan je het beste schriftelijk uitbrengen, dit om eventuele discussies te vermijden.</li>
+                                <li>Vermeld duidelijk welke opschortende voorwaarden moeten vervuld zijn alvorens het bod geldt. Zo kan de o.m. bepaald worden dat  aan de koper eerst een lening moet worden toegestaan door de bank.</li>
+                                <li>Zeer belangrijk: vermeld steeds tot welke datum je bod geldt!</li>
+                                <li>Ga alvorens je een bod uitbrengt al eens informeren bij je bank welk bedrag je kan lenen.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseEight">Met welke notariskosten moet u rekening houden bij de aankoop van een woning?</a>
+                </h4>
+                    </div>
+                    <div id="collapseEight" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            Koopt u een woning dan betaalt u niet enkel de aankoopprijs van de woning, maar moet u ook rekening houden met de kosten die u aan de notaris moet betalen, hieonder moet begrepen worden:
+                            <ul>
+                                <li>De registratierechten of BTW</li>
+                                <li>Het ereloon van de notaris, het ereloon is bij wet bepaald</li>
+                                <li>De algemene kosten van de akte (dit zijn kosten die de notaris moet maken in het kader van kadastrale, hypothecaire, stedenbouwkundige en fiscale opzoekingen, enzovoort).</li>
+                            </ul>
+                            <p>Meer info kan u terugvinden op: <a href="http://www.notaris.be">www.notaris.be</a>.</p>
+							<p>Kijk ook op: <a href="https://www.notaris.be/rekenmodules/aankoop">www.notaris.be/rekenmodules/aankoop</a>, deze rekenmodule geeft een indicatie van de te verwachte aktekosten.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                    		<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseNine">Wie betaalt de kosten van de verkoop?</a>
+                		</h4>
+                </div>
+                <div id="collapseNine" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        De kosten van de koopovereenkomst en andere bijkomende kosten zijn in principe voor de koper (artikel 1593 van het burgerlijk wetboek). Het is echter aan de partijen toegestaan om dit anders te regelen. In het laatste geval is het aan te raden om dit op te nemen in de compromis.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h6>De inlichtingen zoals meegedeeld op deze pagina zijn louter van algemene aard en kunnen geenszins als sluitende professionele juridische adviesverlening aangepast aan specifieke of concrete persoonlijke omstandigheden worden beschouwd.</h6>
+    </div>
+</div>
+</div>
 {% endblock content %}

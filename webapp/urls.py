@@ -5,16 +5,20 @@ from . import views
 urlpatterns = [
     
     url(r'^$', views.index, name='index'),
-    url(r'^panddetail/$', views.panddetail, name='panddetail'),
+    #url(r'^pand/$', views.pand, name='pand'),
+    url(r'^pand/(?P<pand_id>[0-9]+)$', views.panddetail, name='panddetail'),
     url(r'^about/$', views.about, name='about'),
     url(r'^advies/$', views.advies, name='advies'),
     url(r'^contact/$', views.contact, name='contact'),
     url(r'^huren/$', views.huren, name='huren'),
     url(r'^kopen/$', views.kopen, name='kopen'),
     url(r'^partners/$', views.partners, name='partners'),
+    url(r'^panden/$', views.panden, name='panden'),
 
     #Auth
     url(r'^register/$', views.register, name='register'),
+    url(r'^activate/(?P<key>.+)$', views.activation, name='activation'),
+    url(r'^new-activation-link/(?P<user_id>\d+)/$', views.new_activation_link, name='new_activation_link'),
     url(r'^login/$', views.login, name='login'),
     url(r'^logout/$', views.logout, name='logout'),
     url(r'^resetpassword/$',  'django.contrib.auth.views.password_reset',  {'template_name': 'webapp/password_reset/password_reset_form.html', 'post_reset_redirect' : 'passwordsent/'}, name='password_reset'),
@@ -28,7 +32,7 @@ urlpatterns = [
     url(r'^pandtype/$', views.pandtype, name='pandtype'),
     url(r'^handelstatus/$', views.handelstatus, name='handelstatus'),
     url(r'^voortgang/$', views.voortgang, name='voortgang'),
-    url(r'^pand/$', views.pand, name='pand'),
+    #url(r'^pand/$', views.pand, name='pand'),
     url(r'^tag/$', views.tag, name='tag'),
     url(r'^log/$', views.log, name='log'),
     url(r'^foto/$', views.foto, name='foto'),

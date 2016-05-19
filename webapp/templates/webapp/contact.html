@@ -1,10 +1,51 @@
-{% extends 'webapp/base.html' %}
-{% load staticfiles %}
-
-{% block header %}
-
-{% endblock header %}
-
-{% block content %}
-Dit is tekst
+{% extends 'webapp/base.html' %} {% load staticfiles %} {% block header %}
+<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/contact.css' %}" /> {% endblock header %} {% block content %}
+<div class="contact">
+    <div class="container">
+        <h3>Contact</h3>
+        <div class="contact-top">
+            <div class="col-md-6 contact-top1">
+                <h4>Info</h4>
+                <p class="text-contact">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the when an unknown printer took.</p>
+                <div class="contact-address">
+                    <div class="col-md-6 contact-address1">
+                        <h5>Adres</h5>
+                        <p><b>Via Sofie</b></p>
+                        <p>Meistraat 5</p>
+                        <p>2000 Antwerpen</p>
+                    </div>
+                    <div class="col-md-6 contact-address1">
+                        <h5>E-mail</h5>
+                        <p>General :<a href="malito:mail@demolink.org"> info(at)Lorem.com</a></p>
+                        <p>Office :<a href="malito:mail@demolink.org"> info(at)Lorem.com</a></p>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="contact-address">
+                    <div class="col-md-6 contact-address1">
+                        <h5>Telefoon</h5>
+                        <p>Landline : 254-8974-5847</p>
+                        <p>Mobile : +174 1478 74755</p>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="col-md-6 contact-right">
+                <form>
+                    <input type="text" placeholder="Naam" required="">
+                    <input type="text" placeholder="E-mail" required="">
+                    <input type="text" placeholder="Onderwerp" required="">
+                    <textarea placeholder="Bericht" requried=""></textarea>
+                    <label class="hvr-sweep-to-right">
+                        <input type="submit" value="Verzenden">
+                    </label>
+                </form>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2499.15997834044!2d4.408338515615595!3d51.216128539779035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c3f6fc0f575f23%3A0xe812b07562ac9aa5!2sMeistraat+5%2C+2000+Antwerpen!5e0!3m2!1snl!2sbe!4v1463130836294" frameborder="0" style="border:0" allowfullscreen></iframe>
+    </div>
+</div>
 {% endblock content %}

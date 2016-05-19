@@ -1,0 +1,19 @@
+.contact-top1 h4 {
+    margin: 0px;
+}
+
+.contact-top {
+    padding-top: 0px;
+}
+
+.contact {
+    padding-top: 30px;
+}
+
+.contact h3 {
+    margin: 10px 0 15px 0;
+}
+
+a {
+    font-weight: bold;
+}

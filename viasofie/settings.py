@@ -24,7 +24,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost']
 
 
 # Application definition
@@ -61,6 +61,7 @@ TEMPLATE_LOADERS = (
 )
 
 ROOT_URLCONF = 'viasofie.urls'
+handler404 = 'mysite.views.my_custom_page_not_found_view'
 
 WSGI_APPLICATION = 'viasofie.wsgi.application'
 
