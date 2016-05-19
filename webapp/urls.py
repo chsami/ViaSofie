@@ -14,11 +14,8 @@ urlpatterns = [
     url(r'^kopen/$', views.kopen, name='kopen'),
     url(r'^partners/$', views.partners, name='partners'),
     url(r'^panden/$', views.panden, name='panden'),
-<<<<<<< HEAD
     url(r'^referenties/$', views.referenties, name='referenties'),
-=======
     url(r'^loginpopup/$', views.loginpopup, name='loginpopup'),
->>>>>>> origin/Sprint-Week-4
 
     #Auth
     url(r'^register/$', views.register, name='register'),
