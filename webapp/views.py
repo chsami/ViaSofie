@@ -20,7 +20,7 @@ def languageselector(request):
     return render(request, 'webapp/languageselector.html')
 
 def index(request):
-	return render('webapp/index.html')
+	return render(request ,'webapp/index.html')
 
 def panddetail(request, pand_id):
 	pand = PandModel.objects.get(pk=pand_id)
@@ -88,6 +88,25 @@ def login(request):
 	return render_to_response('webapp/login.html', {
 		'form': form,
 	}, context_instance=RequestContext(request))
+
+def loginpopup(request):
+	"""
+    Log in view
+    """
+	if request.method == 'POST':
+		form = AuthenticationForm(data=request.POST)
+		if form.is_valid():
+			user = authenticate(email=request.POST['email'], password=request.POST['password'])
+			if user is not None:
+				if user.is_active:
+					django_login(request, user)
+					return redirect('/')
+	else:
+		form = AuthenticationForm()
+	return render_to_response('webapp/loginpopup.html', {
+		'form': form,
+	}, context_instance=RequestContext(request))
+
 
 def partners(request):
 	return render(request, 'webapp/partners.html')
