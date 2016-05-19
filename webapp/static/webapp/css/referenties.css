@@ -1,0 +1,21 @@
+.referenties h3:after, .referenties h3:before {
+    width: 200px;
+    height: 1px;
+    display: inline-block;
+    vertical-align: middle;
+    content: "";
+    background: #000;
+    margin: 0 1%;
+}
+
+.referenties h3 {
+    font-size: 3em;
+    color: #000;
+    font-family: 'Ropa Sans', sans-serif;
+    text-align: center;
+    margin: 10px 0 15px 0;
+}
+
+.referenties {
+    padding: 70px 0;
+}

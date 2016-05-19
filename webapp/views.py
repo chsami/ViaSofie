@@ -13,14 +13,27 @@ import hashlib
 import random
 from django.utils import timezone
 from django.core.mail import send_mail, BadHeaderError
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 # Create your views here.
 def languageselector(request):
     return render(request, 'webapp/languageselector.html')
 
 def index(request):
-	return render(request ,'webapp/index.html')
+	if request.method == 'POST':
+    		form = AuthenticationForm(data=request.POST)
+    		if form.is_valid():
+    			user = authenticate(email=request.POST['email'], password=request.POST['password'])
+    			if user is not None:
+    				if user.is_active:
+    					django_login(request, user)
+    					return redirect('/')
+    	else:
+    		form = AuthenticationForm()
+    	return render_to_response('webapp/index.html', {
+    		'form': form,
+    	}, context_instance=RequestContext(request))
+
 
 def panddetail(request, pand_id):
 	pand = PandModel.objects.get(pk=pand_id)
@@ -30,34 +43,21 @@ def about(request):
 	return render(request, 'webapp/about.html')
 
 def panden(request):
-	panden_list = PandModel.objects.all()
-	paginator = Paginator(panden_list, 1)
-	page = request.GET.get('page')
-	try:
-		panden = paginator.page(page)
-	except PageNotAnInteger:
-		panden = paginator.page(1)
-	except EmptyPage:
-		panden = paginator.page(paginator.num_pages)
-	return render(request, 'webapp/panden.html', {'panden': panden})
+	panden = PandModel.objects.all()
+	return render_to_response('webapp/pand.html', {'panden': panden})
+	#panden_list = PandModel.objects.all()
+	#paginator = Paginator(panden_list, 1)
+	#page = request.GET.get('page')
+	#try:
+	#	panden = paginator.page(page)
+	#except PageNotAnInteger:
+	#	panden = paginator.page(1)
+	#except EmptyPage:
+	#	panden = paginator.page(paginator.num_pages)
+	#return render(request, 'webapp/panden.html', {'panden': panden})
 
 def contact(request):
-    # if this is a POST request we need to process the form data
-    # if request.method == 'POST':
-    #     # create a form instance and populate it with data from the request:
-    #     form = ContactForm(data=request.POST)
-    #     # check whether it's valid:
-    #     if form.is_valid():
-    #
-    #         return HttpResponseRedirect('/thanks/')
-    #
-    # # if a GET (or any other method) we'll create a blank form
-    # else:
-    #     form = NameForm()
-    # email = EmailMessage('Hello', 'etetetqq', to=['liekensjeff@gmail.com'])
-    # email.send()
-    return render(request, 'webapp/contact.html')
-
+	return render(request, 'webapp/contact.html')
 
 def advies(request):
 	return render(request, 'webapp/advies.html')
@@ -88,25 +88,6 @@ def login(request):
 	return render_to_response('webapp/login.html', {
 		'form': form,
 	}, context_instance=RequestContext(request))
-
-def loginpopup(request):
-	"""
-    Log in view
-    """
-	if request.method == 'POST':
-		form = AuthenticationForm(data=request.POST)
-		if form.is_valid():
-			user = authenticate(email=request.POST['email'], password=request.POST['password'])
-			if user is not None:
-				if user.is_active:
-					django_login(request, user)
-					return redirect('/')
-	else:
-		form = AuthenticationForm()
-	return render_to_response('webapp/loginpopup.html', {
-		'form': form,
-	}, context_instance=RequestContext(request))
-
 
 def partners(request):
 	return render(request, 'webapp/partners.html')

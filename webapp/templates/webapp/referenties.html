@@ -1,0 +1,14 @@
+{% extends 'webapp/base.html' %}
+{% load staticfiles %}
+
+{% block header %}
+<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/referenties.css' %}" />
+{% endblock header %}
+{% block content %}
+
+{% include "webapp/submenu.html" %}
+
+<div class="referenties">
+	<h3>Referenties</h3>
+</div>
+{% endblock content %}
