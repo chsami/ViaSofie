@@ -71,3 +71,8 @@ a {
 .panel-body a {
     color: #333;
 }
+
+p {
+    font-size: 100%;
+    line-height: 1;
+}
