@@ -71,19 +71,20 @@
                     </div>
                 </div>  
             </div>
-            {% endfor %}
             <div class="clearfix"> </div>
+            {% endfor %}
+           <div class="clearfix"> </div><div class="clearfix"> </div><div class="clearfix"> </div><div class="clearfix"> </div><div class="clearfix"> </div><div class="clearfix"> </div><div class="clearfix"> </div> 
         </div>
         <div class="pagination">
             <span class="step-links">
-        {% if contacts.has_previous %}
-            <a href="?page={{ contacts.previous_page_number }}">previous</a>
+        {% if panden.has_previous %}
+            <a href="?page={{ panden.previous_page_number }}">previous</a>
         {% endif %}
 
         <span class="current">
-            Page {{ contacts.number }} of {{ contacts.paginator.num_pages }}.
-        </span> {% if contacts.has_next %}
-            <a href="?page={{ contacts.next_page_number }}">next</a> {% endif %}
+            Page {{ panden.number }} of {{ panden.paginator.num_pages }}.
+        </span> {% if panden.has_next %}
+            <a href="?page={{ panden.next_page_number }}">next</a> {% endif %}
             </span>
         </div>
     </div>
@@ -105,6 +106,11 @@ $('.button-group').each(function(i, buttonGroup) {
     $buttonGroup.on('click', 'button', function() {
         $buttonGroup.find('.is-checked').removeClass('is-checked');
         $(this).addClass('is-checked');
+    });
+});
+$(function() {
+    $grid.isotope({
+        filter: '*'
     });
 });
 </script>
