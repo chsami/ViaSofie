@@ -6,6 +6,7 @@
 {% endblock header %}
 
 {% block content %}
+<div class="forms">
 <form method="post" action="">
 	<img class="img-responsive" src="{% static 'webapp/images/def logos via sofie - RGB-092.png' %}">
 {% csrf_token %}
@@ -16,4 +17,5 @@
 <p><a href="/resetpassword">Wachtwoord vergeten?</a></p>
 <p><a href="/register">Registreer</a></p>
 </form>
+</div>
 {% endblock content %}
