@@ -43,19 +43,19 @@ def panden(request):
 
 def contact(request):
     # if this is a POST request we need to process the form data
-    if request.method == 'POST':
-        # create a form instance and populate it with data from the request:
-        form = ContactForm(data=request.POST)
-        # check whether it's valid:
-        if form.is_valid():
-
-            return HttpResponseRedirect('/thanks/')
-
-    # if a GET (or any other method) we'll create a blank form
-    else:
-        form = NameForm()
-    email = EmailMessage('Hello', 'etetetqq', to=['liekensjeff@gmail.com'])
-    email.send()
+    # if request.method == 'POST':
+    #     # create a form instance and populate it with data from the request:
+    #     form = ContactForm(data=request.POST)
+    #     # check whether it's valid:
+    #     if form.is_valid():
+    #
+    #         return HttpResponseRedirect('/thanks/')
+    #
+    # # if a GET (or any other method) we'll create a blank form
+    # else:
+    #     form = NameForm()
+    # email = EmailMessage('Hello', 'etetetqq', to=['liekensjeff@gmail.com'])
+    # email.send()
     return render(request, 'webapp/contact.html')
 
 
