@@ -43,18 +43,16 @@ def about(request):
 	return render(request, 'webapp/about.html')
 
 def panden(request):
-	panden = PandModel.objects.all()
-	return render_to_response('webapp/pand.html', {'panden': panden})
-	#panden_list = PandModel.objects.all()
-	#paginator = Paginator(panden_list, 1)
-	#page = request.GET.get('page')
-	#try:
-	#	panden = paginator.page(page)
-	#except PageNotAnInteger:
-	#	panden = paginator.page(1)
-	#except EmptyPage:
-	#	panden = paginator.page(paginator.num_pages)
-	#return render(request, 'webapp/panden.html', {'panden': panden})
+	panden_list = PandModel.objects.all()
+	paginator = Paginator(panden_list, 1)
+	page = request.GET.get('page')
+	try:
+		panden = paginator.page(page)
+	except PageNotAnInteger:
+		panden = paginator.page(1)
+	except EmptyPage:
+		panden = paginator.page(paginator.num_pages)
+	return render(request, 'webapp/panden.html', {'panden': panden})
 
 def contact(request):
 	return render(request, 'webapp/contact.html')

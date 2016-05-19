@@ -1,11 +1,10 @@
-{% extends 'webapp/base.html' %} {% load staticfiles %} {% load endless %} {% block header %} {% endblock header %} {% block content %}
+{% extends 'webapp/base.html' %} {% load staticfiles %} {% block header %} {% endblock header %} {% block content %}
 <!--header-bottom-->
 {% include "webapp/submenu.html" %}
 <!--//-->
 <div class="project">
     <div class="container">
         <h3>Panden</h3>
-        {% paginate panden %}
         <div class="project-top">
             {% for pand in panden %}
             <div class="col-md-3 project-grid tehuur">
@@ -31,7 +30,6 @@
             {% endfor %}
             <div class="clearfix"> </div>
         </div>
-        {% show_pages %}
     </div>
 </div>
 {% endblock content %}
