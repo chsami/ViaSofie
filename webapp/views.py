@@ -69,6 +69,9 @@ def kopen(request):
 def forms(request):
 	return render(request, 'webapp/forms.html')
 
+def referenties(request):
+	return render(request, 'webapp/referenties.html')	
+
 def login(request):
 	"""
     Log in view
