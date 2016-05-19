@@ -6,47 +6,9 @@
 {% endblock header %}
 
 {% block content %}
-<!--header-bottom-->
-        <div class="container">
-            <div class="bottom-header">
-                <div class="header-bottom">
-                    <div class=" bottom-head">
-                        <a href="/panden">
-                            <div class="buy-media">
-                                <i class="buy"> </i>
-                                <h6>Kopen</h6>
-                            </div>
-                        </a>
-                    </div>
-                    <div class=" bottom-head">
-                        <a href="/panden">
-                            <div class="buy-media">
-                                <i class="rent"> </i>
-                                <h6>Huren</h6>
-                            </div>
-                        </a>
-                    </div>
-                    <div class=" bottom-head">
-                        <a href="/advies">
-                            <div class="buy-media">
-                                <i class="sell"> </i>
-                                <h6>Advies</h6>
-                            </div>
-                        </a>
-                    </div>
-                    <div class=" bottom-head">
-                        <a href="/referenties">
-                            <div class="buy-media">
-                                <i class="deal"> </i>
-                                <h6>Referenties</h6>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="clearfix"> </div>
-                </div>
-            </div>
-        </div>
-    <!--//--> 
+
+{% include "webapp/submenu.html" %}
+
     <div class="advies">	
 	<div class="FAQ">
         <h3>FAQ</h3>
