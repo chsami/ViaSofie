@@ -45,33 +45,29 @@ def panden(request):
 	return render(request, 'webapp/panden.html')
 
 def contact(request):
-    if request.method == 'POST':
-        form = ContactForm(data=request.POST)
-        if form.is_valid():
-            datas={}
-            datas['email']=form.cleaned_data['email']
-            datas['password1']=form.cleaned_data['password1']
+    # if request.method == 'POST':
+    #     form = ContactForm(data=request.POST)
+    #     if form.is_valid():
+    #         datas={}
+    #         datas['email']=form.cleaned_data['email']
+    #         datas['password1']=form.cleaned_data['password1']
+    #
+    #         datas['email_path']="\\ActivationEmail.py"
+    #         datas['email_subject']="Welkom bij ViaSofie"
+    #
+    #         form.sendEmail(datas) #Send validation email
+    #         form.save(datas) #Save the user and his profile
+    #
+    #         request.session['registered']=True #For display purposes
+    #         return redirect('/')
+    #     else:
+    #         registration_form = form #Display form with error messages (incorrect fields, etc)
+    # else:
+    # 	form = ContactForm()
+    email = EmailMessage('Hello', 'etetetqq', to=['liekensjeff@gmail.com'])
+    email.send()
+    return render(request, 'webapp/contact.html')
 
-            #We will generate a random activation key
-            salt = hashlib.sha1(str(random.random())).hexdigest()[:5]
-            emailsalt = datas['email']
-            if isinstance(emailsalt, unicode):
-                emailsalt = emailsalt.encode('utf8')
-            datas['activation_key']= hashlib.sha1(salt+emailsalt).hexdigest()
-
-            datas['email_path']="\\ActivationEmail.py"
-            datas['email_subject']="Welkom bij ViaSofie"
-
-            form.sendEmail(datas) #Send validation email
-            form.save(datas) #Save the user and his profile
-
-            request.session['registered']=True #For display purposes
-            return redirect('/')
-        else:
-            registration_form = form #Display form with error messages (incorrect fields, etc)
-    else:
-    	form = RegistrationForm()
-	return render(request, 'webapp/contact.html', locals())
 
 def advies(request):
 	return render(request, 'webapp/advies.html')
