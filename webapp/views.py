@@ -7,6 +7,7 @@ from django.shortcuts import render, redirect, render_to_response, RequestContex
 from django.db import models
 from webapp.models import *
 from webapp.models import Pand as PandModel
+from webapp.models import Foto as FotoModel
 from django.utils.translation import ugettext as _
 from webapp.forms import *
 import hashlib
@@ -34,9 +35,10 @@ def index(request):
     	}, context_instance=RequestContext(request))
 
 
-def panddetail(request, pand_id):
-	pand = PandModel.objects.get(pk=pand_id)
-	return render_to_response('webapp/pand.html', {'pand': pand})
+def panddetail(request, pand_referentienummer):
+	pand = PandModel.objects.get(referentienummer=pand_referentienummer)
+	fotos = FotoModel.objects.filter(pand_id=pand.id)
+	return render_to_response('webapp/pand.html', {'pand': pand, 'fotos': fotos})
 
 def about(request):
 	return render(request, 'webapp/about.html')

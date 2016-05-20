@@ -6,7 +6,7 @@ urlpatterns = [
     
     url(r'^$', views.index, name='index'),
     #url(r'^pand/$', views.pand, name='pand'),
-    url(r'^pand/(?P<pand_id>[0-9]+)$', views.panddetail, name='panddetail'),
+    url(r'^pand/(?P<pand_referentienummer>[a-zA-Z0-9_]+)$', views.panddetail, name='panddetail'),
     url(r'^about/$', views.about, name='about'),
     url(r'^advies/$', views.advies, name='advies'),
     url(r'^contact/$', views.contact, name='contact'),
