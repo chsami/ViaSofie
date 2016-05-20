@@ -3,7 +3,7 @@ from django.conf.urls import url, include
 from . import views
 
 urlpatterns = [
-    
+
     url(r'^$', views.index, name='index'),
     #url(r'^pand/$', views.pand, name='pand'),
     url(r'^pand/(?P<pand_referentienummer>[a-zA-Z0-9_]+)$', views.panddetail, name='panddetail'),
@@ -14,6 +14,8 @@ urlpatterns = [
     url(r'^kopen/$', views.kopen, name='kopen'),
     url(r'^partners/$', views.partners, name='partners'),
     url(r'^panden/$', views.panden, name='panden'),
+    url(r'^referenties/$', views.referenties, name='referenties'),
+    url(r'^loginpopup/$', views.loginpopup, name='loginpopup'),
 
     #Auth
     url(r'^register/$', views.register, name='register'),
