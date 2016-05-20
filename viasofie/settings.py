@@ -72,6 +72,8 @@ TEMPLATE_CONTEXT_PROCESSORS += (
     'django.core.context_processors.request',
 )
 
+ENDLESS_PAGINATION_PER_PAGE = 1;
+
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
