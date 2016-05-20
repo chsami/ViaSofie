@@ -38,6 +38,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrap_pagination',
+    'endless_pagination',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -49,6 +51,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'bootstrap_pagination.middleware.PaginationMiddleware',
     #JEFFFFF
     #'django.middleware.security.SecurityMiddleware',
 )
@@ -64,6 +67,12 @@ ROOT_URLCONF = 'viasofie.urls'
 handler404 = 'mysite.views.my_custom_page_not_found_view'
 
 WSGI_APPLICATION = 'viasofie.wsgi.application'
+
+# pagination
+from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
+TEMPLATE_CONTEXT_PROCESSORS += (
+    'django.core.context_processors.request',
+)
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases

@@ -35,24 +35,24 @@ def index(request):
     	}, context_instance=RequestContext(request))
 
 
-def panddetail(request, pand_id):
+def panddetail(request):
 	pand = PandModel.objects.get(pk=pand_id)
 	return render_to_response('webapp/pand.html', {'pand': pand})
 
 def about(request):
 	return render(request, 'webapp/about.html')
 
-def panden(request):
+def panden(request, query=None):
 	panden_list = PandModel.objects.all()
-	paginator = Paginator(panden_list, 1)
-	page = request.GET.get('page')
-	try:
-		panden = paginator.page(page)
-	except PageNotAnInteger:
-		panden = paginator.page(1)
-	except EmptyPage:
-		panden = paginator.page(paginator.num_pages)
-	return render(request, 'webapp/panden.html', {'panden': panden})
+	#paginator = Paginator(panden_list, 1)
+	#page = request.GET.get('page')
+	#try:
+	#	panden = paginator.page(page)
+	#except PageNotAnInteger:
+	#	panden = paginator.page(1)
+	#except EmptyPage:
+	#	panden = paginator.page(paginator.num_pages)
+	return render_to_response('webapp/panden.html', {'panden': panden_list}, context_instance=RequestContext(request))
 
 def contact(request):
     if request.method == 'POST':
