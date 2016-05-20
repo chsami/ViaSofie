@@ -147,7 +147,7 @@ class Foto(forms.ModelForm):
 
 # https://docs.djangoproject.com/ja/1.9/topics/forms/
 class ContactForm(forms.Form):
-	name = forms.CharField(max_length=100)
-	email = forms.EmailField()
-	subject = forms.CharField(max_length=100)
-	message = forms.CharField(widget=forms.Textarea)
+	name = forms.CharField( max_length=100, widget=forms.TextInput(attrs={'placeholder': 'Naam'}))
+	email = forms.EmailField(widget=forms.TextInput(attrs={'placeholder': 'Email'}))
+	subject = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'placeholder': 'Onderwerp'}))
+	message = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Onderwerp'}))

@@ -354,11 +354,11 @@
   .modal, .fade {
     width: 118%;
   }
-  
-  #popupiframe {
 
+  #popupiframe {
     margin: 0px;
     padding: 0px;
     border: 0px;
     display: block;
+    border-radius: 5%;
   }

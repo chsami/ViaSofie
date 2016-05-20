@@ -40,22 +40,28 @@
               <form>
                 {% csrf_token %}
                 <table>
-                {{form}}
+                  {{ form.non_field_errors }}
+                  <div class="fieldWrapper">
+                      {{ form.subject.errors }}
+                      {{ form.subject }}
+                  </div>
+                  <div class="fieldWrapper">
+                      {{ form.message.errors }}
+                      {{ form.message }}
+                  </div>
+                  <div class="fieldWrapper">
+                      {{ form.email.errors }}
+                      {{ form.email }}
+                  </div>
+                  <div class="fieldWrapper">
+                      {{ form.name.errors }}
+                      {{ form.name }}
+                  </div>
                 </table>
                 <label class="hvr-sweep-to-right">
                     <input type="submit" value="Verzenden">
                 </label>
               </form>
-                <!-- <form>
-                    <input type="text" placeholder="Naam" required="">
-                    <input type="text" placeholder="E-mail" required="">
-                    <input type="text" placeholder="Onderwerp" required="">
-                    <textarea placeholder="Bericht" requried=""></textarea>
-                    <label class="hvr-sweep-to-right">
-                        <input type="submit" value="Verzenden">
-                    </label>
-
-                </form> -->
             </div>
             <div class="clearfix"> </div>
         </div>
