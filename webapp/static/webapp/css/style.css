@@ -549,10 +549,8 @@ ul.callbacks_tabs.callbacks1_tabs {
 
 
 /*----*/
-
 .content-grid h3 {
     text-align: center;
-    color: #fff;
     font-size: 3em;
     padding: 0 0 1.3em;
     font-family: 'Ropa Sans', sans-serif;
@@ -565,12 +563,12 @@ ul.callbacks_tabs.callbacks1_tabs {
     display: inline-block;
     vertical-align: middle;
     content: "";
-    background: #fff;
+    background: #000;
     margin: 0 1%;
 }
 
 .content-grid {
-    background: url(../images/templateImg/back1.jpg);
+    background-color: #f7f7f7;
     width: 100%;
     min-height: 500px;
     background-size: cover;
@@ -584,6 +582,7 @@ ul.callbacks_tabs.callbacks1_tabs {
     background-color: #fff;
     color: #000;
     padding: 1em;
+    border: 1px solid #e7e7e7;
 }
 
 .most-1 h5 {
