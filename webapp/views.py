@@ -35,17 +35,10 @@ def index(request):
     		'form': form,
     	}, context_instance=RequestContext(request))
 
-
-<<<<<<< HEAD
 def panddetail(request, pand_referentienummer):
 	pand = PandModel.objects.get(referentienummer=pand_referentienummer)
 	fotos = FotoModel.objects.filter(pand_id=pand.id)
 	return render_to_response('webapp/pand.html', {'pand': pand, 'fotos': fotos})
-=======
-def panddetail(request):
-	pand = PandModel.objects.get(pk=pand_id)
-	return render_to_response('webapp/pand.html', {'pand': pand})
->>>>>>> origin/Sprint-Week-4
 
 def about(request):
 	return render(request, 'webapp/about.html')
