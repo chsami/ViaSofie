@@ -55,7 +55,25 @@ def panden(request):
 	return render(request, 'webapp/panden.html', {'panden': panden})
 
 def contact(request):
-	return render(request, 'webapp/contact.html')
+    if request.method == 'POST':
+        form = ContactForm(data=request.POST)
+        if form.is_valid():
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+            sender = form.cleaned_data['sender']
+            name = form.cleaned_data['name']
+            fullmessage = "name: " + name + "\tmessage:"+ message
+            to = 'liekensjeff@gmail.com'
+            send_mail(subject, message, sender, to, fail_silently=False )
+    else:
+		form = ContactForm()
+    return render_to_response('webapp/contact.html', {
+	   'form': form,
+	}, context_instance=RequestContext(request))
+
+
+
+
 
 def advies(request):
 	return render(request, 'webapp/advies.html')

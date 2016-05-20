@@ -1,9 +1,9 @@
-{% extends 'webapp/base.html' %} 
-{% load staticfiles %} 
+{% extends 'webapp/base.html' %}
+{% load staticfiles %}
 
 {% block header %}
-<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/contact.css' %}" /> 
-{% endblock header %} 
+<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/contact.css' %}" />
+{% endblock header %}
 
 {% block content %}
 <div class="contact">
@@ -37,7 +37,16 @@
                 </div>
             </div>
             <div class="col-md-6 contact-right">
-                <form>
+              <form>
+                {% csrf_token %}
+                <table>
+                {{form}}
+                </table>
+                <label class="hvr-sweep-to-right">
+                    <input type="submit" value="Verzenden">
+                </label>
+              </form>
+                <!-- <form>
                     <input type="text" placeholder="Naam" required="">
                     <input type="text" placeholder="E-mail" required="">
                     <input type="text" placeholder="Onderwerp" required="">
@@ -45,7 +54,8 @@
                     <label class="hvr-sweep-to-right">
                         <input type="submit" value="Verzenden">
                     </label>
-                </form>
+
+                </form> -->
             </div>
             <div class="clearfix"> </div>
         </div>
