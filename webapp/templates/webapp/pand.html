@@ -7,8 +7,12 @@
 <div class="container">
     <div class="buy-single-single">
         <div class=" buying-top">
+<<<<<<< HEAD
             <p>{{pand.pandtype}} - {{pand.postcodeID.stadsnaam}}</p>
             <div class="flexslider">
+=======
+            <div id="slider" class="flexslider">
+>>>>>>> origin/Sprint-Week-4
                 <ul class="slides">
                     {% for foto in fotos %}
                     <li data-thumb="{{foto.url}}">
@@ -17,14 +21,44 @@
                     {% endfor %}
                 </ul>
             </div>
+            <div id="carousel" class="flexslider">
+                <ul class="slides">
+                    {% for foto in fotos %}
+                    <li data-thumb="{{foto.url}}" style="padding-left: 10px">
+                        <img src="{{foto.url}}"/>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
             <!-- FlexSlider -->
             <script>
             // Can also be used with $(document).ready()
+            //$(window).load(function() {
+            //    $('.flexslider').flexslider({
+            //        animation: "slide",
+            //        controlNav: "thumbnails"
+            //    });
+            //});
+
             $(window).load(function() {
-                $('.flexslider').flexslider({
-                    animation: "slide",
-                    controlNav: "thumbnails"
-                });
+              // The slider being synced must be initialized first
+              $('#carousel').flexslider({
+                animation: "slide",
+                controlNav: false,
+                animationLoop: false,
+                slideshow: false,
+                itemWidth: 169,
+                itemMargin: 5,
+                asNavFor: '#slider'
+              });
+             
+              $('#slider').flexslider({
+                animation: "slide",
+                controlNav: false,
+                animationLoop: true,
+                slideshow: true,
+                sync: "#carousel"
+              });
             });
             </script>
         </div>
