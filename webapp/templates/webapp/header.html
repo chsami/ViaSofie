@@ -28,19 +28,22 @@
                     <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
                     {%else%}
                     <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Registreren</a></li>
-                    <li><a href="#" data-toggle="modal" data-target="#login"><span class="glyphicon glyphicon-log-in"></span> Aanmelden</a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#login"  id="loginbutton"><span class="glyphicon glyphicon-log-in"></span> Aanmelden</a></li>
                     {% endif %}
+
                 </ul>
             </div>
         </div>
     </nav>
     <div class="header-logo" id="header-logo">
-        <img class="img-responsive" src="{% static 'webapp/images/def logos via sofie - RGB-08.png' %}">
+        <a href="/">
+            <img class="img-responsive" src="{% static 'webapp/images/def logos via sofie - RGB-08.png' %}">
+        </a>
     </div>
     <div class="header">
         <div class="title-container">
             <h3 class="headertitle">
-        <span>Via Sofie</span>
+        <span class="slogan">Via Sofie</span>
         <span class="title--sub-title">Vérdergaan in vastgoed...</span>
     </h3>
         </div>
@@ -56,24 +59,15 @@
             <div class="clearfix"> </div>
         </div>
     </div>
-  <div class="modal fade" id="login" role="dialog">
+    <div class="modal fade" id="login" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-body">
-          <div class="forms">
-          <form method="post" action="">
-          	<img class="img-responsive" src="{% static 'webapp/images/def logos via sofie - RGB-092.png' %}">
-            {% csrf_token %}
-            <table>
-              {{form}}
-            </table>
-            <input type="submit" value="Log in"/>
-            <p><a href="/resetpassword">Wachtwoord vergeten?</a></p>
-            <p><a href="/register">Registreer</a></p>
-          </form>
-          </div>
+          <!-- <iframe src="/loginpopup" height="425px" id="popupiframe" frameBorder="0" > </iframe> -->
+          <iframe src="/loginpopup" height="405px" width="250px" id="popupiframe" scrolling= "no" frameBorder="0" ALLOWTRANSPARENCY="true" style="display:block"> </iframe>
         </div>
       </div>
     </div>
   </div>
+
 </header>

@@ -1,54 +1,11 @@
-{% extends 'webapp/base.html' %} {% load staticfiles %} {% block header %} {% endblock header %} {% block content %}
+{% extends 'webapp/base.html' %} {% load staticfiles %} {% load endless %} {% block header %} {% endblock header %} {% block content %}
 <!--header-bottom-->
-<div class="container">
-    <div class="bottom-header">
-        <div class="header-bottom">
-            <div class=" bottom-head">
-                <a href="/panden">
-                    <div class="buy-media">
-                        <i class="buy"> </i>
-                        <h6>Kopen</h6>
-                    </div>
-                </a>
-            </div>
-            <div class=" bottom-head">
-                <a href="/panden">
-                    <div class="buy-media">
-                        <i class="rent"> </i>
-                        <h6>Huren</h6>
-                    </div>
-                </a>
-            </div>
-            <div class=" bottom-head">
-                <a href="/panden">
-                    <div class="buy-media">
-                        <i class="sell"> </i>
-                        <h6>Advies</h6>
-                    </div>
-                </a>
-            </div>
-            <div class=" bottom-head">
-                <a href="/panden">
-                    <div class="buy-media">
-                        <i class="deal"> </i>
-                        <h6>Referenties</h6>
-                    </div>
-                </a>
-            </div>
-            <div class="clearfix"> </div>
-        </div>
-    </div>
-</div>
+{% include "webapp/submenu.html" %}
 <!--//-->
 <div class="project">
     <div class="container">
         <h3>Panden</h3>
-        <div class="button-group filters-button-group">
-            <button class="button is-checked" data-filter="*">Toon alles</button>
-            <button class="button" data-filter=".tehuur">Huren</button>
-            <button class="button" data-filter=".tekoop">Kopen</button>
-        </div>
-
+        {% paginate panden %}
         <div class="project-top">
             {% for pand in panden %}
             <div class="col-md-3 project-grid tehuur">
@@ -71,47 +28,10 @@
                     </div>
                 </div>  
             </div>
-            <div class="clearfix"> </div>
             {% endfor %}
-           <div class="clearfix"> </div><div class="clearfix"> </div><div class="clearfix"> </div><div class="clearfix"> </div><div class="clearfix"> </div><div class="clearfix"> </div><div class="clearfix"> </div> 
-        </div>
-        <div class="pagination">
-            <span class="step-links">
-        {% if panden.has_previous %}
-            <a href="?page={{ panden.previous_page_number }}">previous</a>
-        {% endif %}
-
-        <span class="current">
-            Page {{ panden.number }} of {{ panden.paginator.num_pages }}.
-        </span> {% if panden.has_next %}
-            <a href="?page={{ panden.next_page_number }}">next</a> {% endif %}
-            </span>
+            <div class="clearfix"> </div>
+            {% show_pages %}
         </div>
     </div>
 </div>
-<script type='text/javascript' src="{% static 'webapp/scripts/isotope.pkgd.min.js' %}"></script>
-<script>
-var $grid = $('.project-top').isotope({
-    itemSelector: '.project-grid',
-    layoutMode: 'fitRows'
-});
-$('.filters-button-group').on('click', 'button', function() {
-    var filterValue = $(this).attr('data-filter');
-    $grid.isotope({
-        filter: filterValue
-    });
-});
-$('.button-group').each(function(i, buttonGroup) {
-    var $buttonGroup = $(buttonGroup);
-    $buttonGroup.on('click', 'button', function() {
-        $buttonGroup.find('.is-checked').removeClass('is-checked');
-        $(this).addClass('is-checked');
-    });
-});
-$(function() {
-    $grid.isotope({
-        filter: '*'
-    });
-});
-</script>
 {% endblock content %}

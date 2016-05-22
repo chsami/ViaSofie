@@ -1,0 +1,66 @@
+{% load staticfiles %}
+
+<meta charset="utf-8">
+<title>ViaSofie</title>
+<meta name="description" content="Developer">
+<meta name="author" content="Sacha, Tinne, Jeff, Diemas, Sander">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- CSS
+	================================================== -->
+<link href='https://fonts.googleapis.com/css?family=Ropa+Sans:400,400italic' rel='stylesheet' type='text/css'>
+
+<link rel="stylesheet" href="{% static 'webapp/bootstrap/css/bootstrap.min.css' %}">
+<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+
+<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/styles.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/style.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/header.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/flags.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/forms.css' %}" />
+<!--link rel="stylesheet" type="text/css" href="{% static 'webapp/css/footer.css' %}" /-->
+<style>
+ body {
+		background-color: transparent;
+ }
+</style>
+
+ <!-- Script
+ ================================================== -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type='text/javascript' src="{% static 'webapp/scripts/jquery.min.js' %}"></script>
+<script type='text/javascript' src="{% static 'webapp/scripts/jquery.mobile.customized.min.js' %}"></script>
+<script type='text/javascript' src="{% static 'webapp/scripts/jquery.easing.1.3.js' %}"></script>
+<script type='text/javascript' src="{% static 'webapp/bootstrap/js/bootstrap.min.js' %}"></script>
+<script type='text/javascript' src="{% static 'webapp/scripts/header.js' %}"></script>
+<script type='text/javascript' src="{% static 'webapp/scripts/responsiveslides.min.js' %}"></script>
+
+<!-- Cookie Monster
+================================================= -->
+{% load  i18n %}
+<script type='text/javascript' id="cookiebanner" src="{% static 'webapp/scripts/cookiebanner.js' %}" data-message="{% trans 'We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.' %}"></script>
+
+ <!-- Favicons
+================================================== -->
+<link rel='shortcut icon' type='image/x-icon' href="{% static 'webapp/images/favicon.jpg' %}"/>
+
+<!-- Page blocks
+================================================== -->
+{% block header %}
+{% endblock header %}
+
+
+{% block content %}
+<div class="forms">
+<form method="post" action="">
+	<img class="img-responsive" src="{% static 'webapp/images/def logos via sofie - RGB-092.png' %}">
+{% csrf_token %}
+<table>
+{{form}}
+</table>
+<input type="submit" value="Log in"/>
+<p><a href="/resetpassword">Wachtwoord vergeten?</a></p>
+<p><a href="/register">Registreer</a></p>
+</form>
+</div>
+{% endblock content %}

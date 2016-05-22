@@ -118,7 +118,7 @@ html[xmlns] .flexslider .slides {
     width: 35px;
   height: 35px;
   display: block;
-  background: url('../images/img-sprite.png') no-repeat;
+  background: url('../images/templateImg/img-sprite.png') no-repeat;
   position: absolute;
   top: 47%;
   z-index: 10;

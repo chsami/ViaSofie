@@ -7,13 +7,14 @@ from django.shortcuts import render, redirect, render_to_response, RequestContex
 from django.db import models
 from webapp.models import *
 from webapp.models import Pand as PandModel
+from webapp.models import Foto as FotoModel
 from django.utils.translation import ugettext as _
 from webapp.forms import *
 import hashlib
 import random
 from django.utils import timezone
 from django.core.mail import send_mail, BadHeaderError
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 # Create your views here.
 def languageselector(request):
@@ -34,28 +35,46 @@ def index(request):
     		'form': form,
     	}, context_instance=RequestContext(request))
 
-
-def panddetail(request, pand_id):
-	pand = PandModel.objects.get(pk=pand_id)
-	return render_to_response('webapp/pand.html', {'pand': pand})
+def panddetail(request, pand_referentienummer):
+	pand = PandModel.objects.get(referentienummer=pand_referentienummer)
+	fotos = FotoModel.objects.filter(pand_id=pand.id)
+	return render_to_response('webapp/pand.html', {'pand': pand, 'fotos': fotos})
 
 def about(request):
 	return render(request, 'webapp/about.html')
 
-def panden(request):
+def panden(request, query=None):
 	panden_list = PandModel.objects.all()
-	paginator = Paginator(panden_list, 1)
-	page = request.GET.get('page')
-	try:
-		panden = paginator.page(page)
-	except PageNotAnInteger:
-		panden = paginator.page(1)
-	except EmptyPage:
-		panden = paginator.page(paginator.num_pages)
-	return render(request, 'webapp/panden.html', {'panden': panden})
+	#paginator = Paginator(panden_list, 1)
+	#page = request.GET.get('page')
+	#try:
+	#	panden = paginator.page(page)
+	#except PageNotAnInteger:
+	#	panden = paginator.page(1)
+	#except EmptyPage:
+	#	panden = paginator.page(paginator.num_pages)
+	return render_to_response('webapp/panden.html', {'panden': panden_list}, context_instance=RequestContext(request))
 
 def contact(request):
-	return render(request, 'webapp/contact.html')
+    if request.method == 'POST':
+        form = ContactForm(data=request.POST)
+        if form.is_valid():
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+            sender = form.cleaned_data['sender']
+            name = form.cleaned_data['name']
+            fullmessage = "name: " + name + "\tmessage:"+ message
+            to = 'liekensjeff@gmail.com'
+            send_mail(subject, message, sender, to, fail_silently=False )
+    else:
+		form = ContactForm()
+    return render_to_response('webapp/contact.html', {
+	   'form': form,
+	}, context_instance=RequestContext(request))
+
+
+
+
 
 def advies(request):
 	return render(request, 'webapp/advies.html')
@@ -68,6 +87,9 @@ def kopen(request):
 
 def forms(request):
 	return render(request, 'webapp/forms.html')
+
+def referenties(request):
+	return render(request, 'webapp/referenties.html')
 
 def login(request):
 	"""
@@ -84,6 +106,24 @@ def login(request):
 	else:
 		form = AuthenticationForm()
 	return render_to_response('webapp/login.html', {
+		'form': form,
+	}, context_instance=RequestContext(request))
+
+def loginpopup(request):
+	"""
+    Log in view
+    """
+	if request.method == 'POST':
+		form = AuthenticationForm(data=request.POST)
+		if form.is_valid():
+			user = authenticate(email=request.POST['email'], password=request.POST['password'])
+			if user is not None:
+				if user.is_active:
+					django_login(request, user)
+					return redirect('/')
+	else:
+		form = AuthenticationForm()
+	return render_to_response('webapp/loginpopup.html', {
 		'form': form,
 	}, context_instance=RequestContext(request))
 

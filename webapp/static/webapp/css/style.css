@@ -549,10 +549,8 @@ ul.callbacks_tabs.callbacks1_tabs {
 
 
 /*----*/
-
 .content-grid h3 {
     text-align: center;
-    color: #fff;
     font-size: 3em;
     padding: 0 0 1.3em;
     font-family: 'Ropa Sans', sans-serif;
@@ -565,12 +563,12 @@ ul.callbacks_tabs.callbacks1_tabs {
     display: inline-block;
     vertical-align: middle;
     content: "";
-    background: #fff;
+    background: #000;
     margin: 0 1%;
 }
 
 .content-grid {
-    background: url(../images/templateImg/back1.jpg);
+    background-color: #f7f7f7;
     width: 100%;
     min-height: 500px;
     background-size: cover;
@@ -584,6 +582,7 @@ ul.callbacks_tabs.callbacks1_tabs {
     background-color: #fff;
     color: #000;
     padding: 1em;
+    border: 1px solid #e7e7e7;
 }
 
 .most-1 h5 {
@@ -1761,6 +1760,25 @@ figure.effect-layla h4.effect3 {
 
 /*----*/
 
+.buying-top p {
+    font-size: 3em;
+    color: #000;
+    margin: 0 0 1em;
+    font-family: 'Ropa Sans', sans-serif;
+    text-align: center;
+}
+
+.buying-top p:after,
+.buying-top p:before {
+    width: 200px;
+    height: 1px;
+    display: inline-block;
+    vertical-align: middle;
+    content: "";
+    background: #000;
+    margin: 0 1%;
+}
+
 .future h3 {
     font-size: 3em;
     color: #000;
@@ -1836,6 +1854,10 @@ span.fur-money {
 }
 
 .future {
+    padding: 5em 0;
+}
+
+.buying-top {
     padding: 5em 0;
 }
 
@@ -3977,6 +3999,7 @@ ul.nav.nav-pills {
     .dealers h3,
     .top-grid h3,
     .future h3,
+    .buying-top p,
     h3.typo1 {
         font-size: 2.5em;
     }
@@ -4022,6 +4045,8 @@ ul.nav.nav-pills {
     .top-grid h3:before,
     .future h3:after,
     .future h3:before,
+    .buying-top p:after,
+    .buying-top p:before,
     h3.typo1:after,
     h3.typo1:before {
         width: 145px;
@@ -4370,6 +4395,9 @@ ul.nav.nav-pills {
     .future {
         padding: 3em 0;
     }
+    .buying-top {
+        padding: 3em 0;
+    }
     .single-buy {
         padding: 2em 1em;
     }
@@ -4442,6 +4470,7 @@ ul.nav.nav-pills {
     .dealers h3,
     .top-grid h3,
     .future h3,
+    .buying-top p,
     h3.typo1 {
         font-size: 2.3em;
     }
@@ -4487,6 +4516,8 @@ ul.nav.nav-pills {
     .top-grid h3:before,
     .future h3:after,
     .future h3:before,
+    .buying-top p:after,
+    .buying-top p:before,
     h3.typo1:after,
     h3.typo1:before {
         width: 103px;
@@ -4670,6 +4701,7 @@ ul.nav.nav-pills {
     .dealers h3,
     .top-grid h3,
     .future h3,
+    .buying-top p,
     h3.typo1 {
         font-size: 2em;
     }
@@ -4715,6 +4747,8 @@ ul.nav.nav-pills {
     .top-grid h3:before,
     .future h3:after,
     .future h3:before,
+    .buying-top p:after,
+    .buying-top p:before,
     h3.typo1:after,
     h3.typo1:before {
         width: 50px;
@@ -5019,6 +5053,9 @@ ul.nav.nav-pills {
     .future {
         padding: 2em 0;
     }
+    .buying-top {
+        padding: 2em 0;
+    }
     .top-grid {
         padding: 0 0 2em;
     }
@@ -5228,6 +5265,7 @@ ul.nav.nav-pills {
     .dealers h3,
     .top-grid h3,
     .future h3,
+    .buying-top p,
     h3.typo1 {
         font-size: 1.4em;
     }
@@ -5275,6 +5313,10 @@ ul.nav.nav-pills {
     .feedback h3:before,
     .future h3:after,
     .future h3:before {
+        width: 25px;
+    }
+    .buying-top p:after,
+    .buying-top p:before {
         width: 25px;
     }
     .box_2 {
@@ -5799,6 +5841,9 @@ ul.nav.nav-pills {
     .future h3 {
         margin: 0 0 0.5em;
     }
+    .buying-top p {
+        margin: 0 0 0.5em;
+    }
     .project-fur {
         margin: 0 12px;
     }
@@ -5812,6 +5857,9 @@ ul.nav.nav-pills {
         padding: 0 1em 0.8em;
     }
     .future {
+        padding: 1.5em 0;
+    }
+    .buying-top {
         padding: 1.5em 0;
     }
     .single-buy {

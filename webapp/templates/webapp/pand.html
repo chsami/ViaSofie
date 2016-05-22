@@ -2,36 +2,63 @@
 <script type='text/javascript' src="{% static 'webapp/scripts/index.js' %}"></script>
 <script type='text/javascript' src="{% static 'webapp/scripts/jquery.flexslider.js' %}"></script>
 <script type='text/javascript' src="{% static 'webapp/scripts/jquery.flexisel.js' %}"></script>
-<script type='text/javascript' src="{% static 'webapp/scripts/jquery.min.js' %}"></script>
 <script src="http://maps.googleapis.com/maps/api/js"></script>
 <link rel="stylesheet" href="{% static 'webapp/css/flexslider.css' %}" type="text/css" media="screen" /> {% endblock header %} {% block content %}
 <div class="container">
     <div class="buy-single-single">
         <div class=" buying-top">
+<<<<<<< HEAD
+            <p>{{pand.pandtype}} - {{pand.postcodeID.stadsnaam}}</p>
             <div class="flexslider">
+=======
+            <div id="slider" class="flexslider">
+>>>>>>> origin/Sprint-Week-4
                 <ul class="slides">
-                    <li data-thumb="{% static 'webapp/images/templateImg/ss.jpg' %}">
-                        <img src="{% static 'webapp/images/templateImg/ss.jpg' %}" />
+                    {% for foto in fotos %}
+                    <li data-thumb="{{foto.url}}">
+                        <img src="{{foto.url}}"/>
                     </li>
-                    <li data-thumb="{% static 'webapp/images/templateImg/ss1.jpg' %}">
-                        <img src="{% static 'webapp/images/templateImg/ss1.jpg' %}" />
+                    {% endfor %}
+                </ul>
+            </div>
+            <div id="carousel" class="flexslider">
+                <ul class="slides">
+                    {% for foto in fotos %}
+                    <li data-thumb="{{foto.url}}" style="padding-left: 10px">
+                        <img src="{{foto.url}}"/>
                     </li>
-                    <li data-thumb="{% static 'webapp/images/templateImg/ss2.jpg' %}">
-                        <img src="{% static 'webapp/images/templateImg/ss2.jpg' %}" />
-                    </li>
-                    <li data-thumb="{% static 'webapp/images/templateImg/ss3.jpg' %}">
-                        <img src="{% static 'webapp/images/templateImg/ss3.jpg' %}" />
-                    </li>
+                    {% endfor %}
                 </ul>
             </div>
             <!-- FlexSlider -->
             <script>
             // Can also be used with $(document).ready()
+            //$(window).load(function() {
+            //    $('.flexslider').flexslider({
+            //        animation: "slide",
+            //        controlNav: "thumbnails"
+            //    });
+            //});
+
             $(window).load(function() {
-                $('.flexslider').flexslider({
-                    animation: "slide",
-                    controlNav: "thumbnails"
-                });
+              // The slider being synced must be initialized first
+              $('#carousel').flexslider({
+                animation: "slide",
+                controlNav: false,
+                animationLoop: false,
+                slideshow: false,
+                itemWidth: 169,
+                itemMargin: 5,
+                asNavFor: '#slider'
+              });
+             
+              $('#slider').flexslider({
+                animation: "slide",
+                controlNav: false,
+                animationLoop: true,
+                slideshow: true,
+                sync: "#carousel"
+              });
             });
             </script>
         </div>
@@ -80,7 +107,7 @@
             <h4>Neighborhood Info</h4>
             <div class="map-buy-single1">
                 <iframe
-                     src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDUBedm7kPj8hfOMT9Z4qXrMCvdpLiEPHE&amp;q={{pand.postcodeID.stadsnaam}},{{pand.straatnaam}}"
+                     src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDUBedm7kPj8hfOMT9Z4qXrMCvdpLiEPHE&amp;q={{pand.postcodeID.stadsnaam}},{{pand.straatnaam}},{{pand.huisnr}}"
                      streetViewControl=true
                      width="100%"
                      height="370px"

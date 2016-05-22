@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.models import PermissionsMixin
+import uuid
 
 
 
@@ -101,6 +102,9 @@ class Log(models.Model):
 class Pand(models.Model):
     #id autocreated by django
     user = models.ForeignKey(User)
+
+    referentienummer = models.UUIDField(unique=True, default=uuid.uuid4, editable=False)
+
     straatnaam = models.CharField(max_length=128)
     huisnr = models.SmallIntegerField()
     busnr = models.CharField(max_length=10, null=True, blank=True)
@@ -127,7 +131,7 @@ class Tag(models.Model):
 class Foto(models.Model):
     url = models.CharField(max_length=255)
     docfile = models.FileField(upload_to='documents/%Y/%m/%d', blank=True)
-    pand = models.ManyToManyField(Pand)
+    pand = models.ForeignKey(Pand)
 
     def __str__(self):
         return str(self.id)
