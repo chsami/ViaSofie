@@ -19,11 +19,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'webapp/css/flags.css' %}" />
 <link rel="stylesheet" type="text/css" href="{% static 'webapp/css/forms.css' %}" />
 <!--link rel="stylesheet" type="text/css" href="{% static 'webapp/css/footer.css' %}" /-->
-<style>
- body {
-		background-color: transparent;
- }
-</style>
+
 
  <!-- Script
  ================================================== -->
@@ -58,9 +54,15 @@
 <table>
 {{form}}
 </table>
-<input type="submit" value="Log in"/>
+<input id="submitbutton" type="submit" value="Log in" onClick='trigger();'/>
 <p><a href="/resetpassword">Wachtwoord vergeten?</a></p>
 <p><a href="/register">Registreer</a></p>
 </form>
 </div>
+<script>
+	function trigger(){
+
+		 parent.$('#login').modal('hide');
+	}
+</script>
 {% endblock content %}

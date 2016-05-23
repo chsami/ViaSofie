@@ -63,11 +63,16 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-body">
-          <!-- <iframe src="/loginpopup" height="425px" id="popupiframe" frameBorder="0" > </iframe> -->
-          <iframe src="/loginpopup" height="405px" width="250px" id="popupiframe" scrolling= "no" frameBorder="0" ALLOWTRANSPARENCY="true" style="display:block"> </iframe>
+          <iframe src="/loginpopup" height="405px" width="250px" id="iframelogin" scrolling= "no" frameBorder="0" ALLOWTRANSPARENCY="true" style="overflow:hidden"> </iframe>
         </div>
       </div>
     </div>
   </div>
+<script>
+$('#login').on('hidden.bs.modal', function (e) {
+   location.href= "/";
+   location.href = "#";
+})
 
+</script>
 </header>
