@@ -4,34 +4,14 @@
 <!--//-->
 <div class="project">
     <div class="container">
-        <h3>Panden</h3>
-        {% paginate panden %}
-        <div class="project-top">
-            {% for pand in panden %}
-            <div class="col-md-3 project-grid tehuur">
-                <div class="project-grid-top">
-                    <a href="/pand" class="mask"><img src="{% static 'webapp/images/templateImg/ga.jpg' %}" class="img-responsive zoom-img" alt="" /></a>
-                    <div class="col-md1">
-                        <div class="col-md2">
-                            <div class="col-md3">
-                                <span class="star"> 4.5</span>
-                            </div>
-                            <div class="col-md4">
-                                <strong>{{ pand.straatnaam }}</strong>
-                                <small>50 Reviews</small>
-                            </div>
-                            <div class="clearfix"> </div>
-                        </div>
-                        <p>2, 3, 4 BHK Flats</p>
-                        <p class="cost">$65,000</p>
-                        <a href="/pand" class="hvr-sweep-to-right more">See Details</a>
-                    </div>
-                </div>  
-            </div>
-            {% endfor %}
-            <div class="clearfix"> </div>
-            {% show_pages %}
-        </div>
+        <h3>Panden</h3> {% include panden_item %}
     </div>
 </div>
+<script src="{% static 'webapp/scripts/endless-pagination.js' %}"></script>
+<script>
+$.endlessPaginate({
+    paginateOnScroll: true,
+    paginateOnScrollChunkSize: 2
+});
+</script>
 {% endblock content %}

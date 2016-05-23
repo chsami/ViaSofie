@@ -33,8 +33,18 @@ def panddetail(request, pand_referentienummer):
 def about(request):
 	return render(request, 'webapp/about.html')
 
-def panden(request, query=None):
-	panden_list = PandModel.objects.all()
+def panden(request):
+    context = {
+        'panden': PandModel.objects.all(),
+        'panden_item': 'webapp/panden_item.html',
+    }
+    template = 'webapp/panden.html'
+    if request.is_ajax():
+        template = 'webapp/panden_item.html'
+    return render_to_response(template, context, context_instance=RequestContext(request))
+
+#def panden(request, query=None):
+#	panden_list = PandModel.objects.all()
 	#paginator = Paginator(panden_list, 1)
 	#page = request.GET.get('page')
 	#try:
@@ -43,7 +53,7 @@ def panden(request, query=None):
 	#	panden = paginator.page(1)
 	#except EmptyPage:
 	#	panden = paginator.page(paginator.num_pages)
-	return render_to_response('webapp/panden.html', {'panden': panden_list}, context_instance=RequestContext(request))
+	#return render_to_response('webapp/panden.html', {'panden': panden_list}, context_instance=RequestContext(request))
 
 def contact(request):
     if request.method == 'POST':
