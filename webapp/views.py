@@ -43,18 +43,6 @@ def panden(request):
         template = 'webapp/panden_item.html'
     return render_to_response(template, context, context_instance=RequestContext(request))
 
-#def panden(request, query=None):
-#	panden_list = PandModel.objects.all()
-	#paginator = Paginator(panden_list, 1)
-	#page = request.GET.get('page')
-	#try:
-	#	panden = paginator.page(page)
-	#except PageNotAnInteger:
-	#	panden = paginator.page(1)
-	#except EmptyPage:
-	#	panden = paginator.page(paginator.num_pages)
-	#return render_to_response('webapp/panden.html', {'panden': panden_list}, context_instance=RequestContext(request))
-
 def contact(request):
     if request.method == 'POST':
         form = ContactForm(data=request.POST)
