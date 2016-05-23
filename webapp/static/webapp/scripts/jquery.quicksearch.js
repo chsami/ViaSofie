@@ -16,10 +16,10 @@
 				return;
 			},
 			show: function () {
-				this.style.display = "";
+				this.parentNode.parentNode.style.display = "";
 			},
 			hide: function () {
-				this.style.display = "none";
+				this.parentNode.parentNode.style.display = "none";
 			},
 			prepareQuery: function (val) {
 				return val.toLowerCase().split(' ');
