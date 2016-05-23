@@ -144,3 +144,8 @@ class Faq(models.Model):
 
     def __str__(self):
         return str(self.id)
+
+class Partner(models.Model):
+    naam = models.CharField(max_length=128)
+    onderschrift = models.CharField(max_length=128)
+    foto_url =  models.CharField(max_length=255)
