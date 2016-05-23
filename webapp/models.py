@@ -3,15 +3,6 @@ from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.models import PermissionsMixin
 import uuid
 
-
-
-class PandType(models.Model):
-    pandtype = models.CharField(max_length=128) #kantoor,huis, appartement, ...
-
-    def __str__(self):
-        return self.pandtype
-
-
 class Handelstatus(models.Model):
     status = models.CharField(max_length=128) #verkoop, verhuur, verpachten, ...
 
@@ -109,7 +100,6 @@ class Pand(models.Model):
     huisnr = models.SmallIntegerField()
     busnr = models.CharField(max_length=10, null=True, blank=True)
     postcodeID = models.ForeignKey(Stad)
-    pandtype = models.ForeignKey(PandType)
     handelstatus = models.ForeignKey(Handelstatus)
     voortgang = models.ForeignKey(Voortgang)
     beschrijving = models.CharField(max_length = 1000, blank=True, null=True)

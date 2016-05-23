@@ -88,11 +88,6 @@ class Ebookform(forms.ModelForm):
 		model = Ebook
 		fields = ['naam', 'voornaam', 'email',]
 
-class PandType(forms.ModelForm):
-	class Meta:
-		model = PandType
-		fields = ['pandtype',]
-
 class Handelstatus(forms.ModelForm):
 	class Meta:
 		model = Handelstatus
@@ -106,7 +101,7 @@ class Voortgang(forms.ModelForm):
 class Pand(forms.ModelForm):
 	class Meta:
 		model = Pand
-		fields = ['user', 'straatnaam', 'huisnr', 'postcodeID', 'pandtype', 'handelstatus', 'voortgang',]
+		fields = ['user', 'straatnaam', 'huisnr', 'postcodeID', 'handelstatus', 'voortgang',]
 
 class Tag(forms.ModelForm):
 	class Meta:

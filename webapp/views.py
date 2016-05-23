@@ -163,18 +163,6 @@ def ebook_lijst(request):
 
   	return render_to_response('webapp/ebook_lijst.html', ebook_data, context_instance=RequestContext(request))
 
-
-def pandtype(request):
-	if request.method == "POST":
-		form = PandType(request.POST)
-		if form.is_valid():
-			model_instance = form.save(commit=False)
-			model_instance.save()
-			return redirect('formsucces')
-	else:
-			form = PandType()
-	return render(request, "webapp/forms.html", {'form': form})
-
 def handelstatus(request):
 	if request.method == "POST":
 		form = Handelstatus(request.POST)

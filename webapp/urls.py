@@ -31,7 +31,6 @@ urlpatterns = [
     #Form urls
     url(r'^forms/$', views.forms, name='forms'),
     url(r'^stad/$', views.stad, name='stad'),
-    url(r'^pandtype/$', views.pandtype, name='pandtype'),
     url(r'^handelstatus/$', views.handelstatus, name='handelstatus'),
     url(r'^voortgang/$', views.voortgang, name='voortgang'),
     #url(r'^pand/$', views.pand, name='pand'),
