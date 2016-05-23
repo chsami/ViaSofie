@@ -40,7 +40,13 @@
 </div>
 <script type="text/javascript">
     $('input#search').quicksearch('.panel-group .panel .panel-heading .panel-title', {
-        selector: 'a'
+        selector: 'a',
+        show: function () {
+            this.parentNode.parentNode.style.display = "";
+        },
+        hide: function () {
+            this.parentNode.parentNode.style.display = "none";
+        }
     });
 </script>
 {% endblock content %}
