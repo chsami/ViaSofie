@@ -21,19 +21,8 @@ def languageselector(request):
     return render(request, 'webapp/languageselector.html')
 
 def index(request):
-	if request.method == 'POST':
-    		form = AuthenticationForm(data=request.POST)
-    		if form.is_valid():
-    			user = authenticate(email=request.POST['email'], password=request.POST['password'])
-    			if user is not None:
-    				if user.is_active:
-    					django_login(request, user)
-    					return redirect('/')
-    	else:
-    		form = AuthenticationForm()
-    	return render_to_response('webapp/index.html', {
-    		'form': form,
-    	}, context_instance=RequestContext(request))
+    return render(request, 'webapp/index.html')
+
 
 def panddetail(request, pand_referentienummer):
 	pand = PandModel.objects.get(referentienummer=pand_referentienummer)
@@ -61,16 +50,33 @@ def contact(request):
         if form.is_valid():
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
-            sender = form.cleaned_data['sender']
+            sender = form.cleaned_data['email']
             name = form.cleaned_data['name']
             fullmessage = "name: " + name + "\tmessage:"+ message
-            to = 'liekensjeff@gmail.com'
-            send_mail(subject, message, sender, to, fail_silently=False )
+            try:
+                send_mail(subject, fullmessage, sender, ['liekensjeff@gmail.com'])
+            except BadHeaderError:
+                return HttpResponse("invalid.")
+
+            # template = get_template('contact_template.txt')
+            # context = Context({
+            #     'contact_email': sender,
+            #     'contact_name': name,
+            #     'subject': subject,
+            #     'form_content': message,
+            # })
+            #
+            # content = template.render(context)
+            # content = template.render(context)
+
+            # to = 'liekensjeff@gmail.com'
+            # send_mail(subject, message, sender, to, fail_silently=False )
     else:
 		form = ContactForm()
     return render_to_response('webapp/contact.html', {
 	   'form': form,
 	}, context_instance=RequestContext(request))
+
 
 
 
