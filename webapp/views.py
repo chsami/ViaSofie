@@ -8,6 +8,7 @@ from django.db import models
 from webapp.models import *
 from webapp.models import Pand as PandModel
 from webapp.models import Foto as FotoModel
+from webapp.models import Faq as FaqModel
 from django.utils.translation import ugettext as _
 from webapp.forms import *
 import hashlib
@@ -77,12 +78,9 @@ def contact(request):
 	}, context_instance=RequestContext(request))
 
 
-
-
-
-
 def advies(request):
-	return render(request, 'webapp/advies.html')
+	faq_list = FaqModel.objects.all()
+	return render_to_response('webapp/advies.html', {'faq_list': faq_list})
 
 def huren(request):
 	return render(request, 'webapp/huren.html')

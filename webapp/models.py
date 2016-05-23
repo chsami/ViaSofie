@@ -113,10 +113,14 @@ class Pand(models.Model):
 class Tag(models.Model):
     #id autocreated by django
     tagnaam = models.CharField(max_length=128)
-    pand = models.ManyToManyField(Pand)
 
     def __str__(self):
         return self.tagnaam
+
+class TagPand(models.Model):
+    tag = models.ForeignKey(Tag)
+    pand = models.ForeignKey(Pand)
+    value = models.CharField(max_length=255)
 
 class Foto(models.Model):
     url = models.CharField(max_length=255)
@@ -133,3 +137,10 @@ class Ebook(models.Model):
 
     def __str__(self):
         return self.id
+
+class Faq(models.Model):
+    titel = models.CharField(max_length=128)
+    content = models.CharField(max_length=2500)
+
+    def __str__(self):
+        return str(self.id)
