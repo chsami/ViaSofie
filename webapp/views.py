@@ -71,8 +71,7 @@ def contact(request):
 
             # to = 'liekensjeff@gmail.com'
             # send_mail(subject, message, sender, to, fail_silently=False )
-    else:
-		form = ContactForm()
+	form = ContactForm()
     return render_to_response('webapp/contact.html', {
 	   'form': form,
 	}, context_instance=RequestContext(request))
