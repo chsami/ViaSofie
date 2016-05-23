@@ -94,6 +94,9 @@ def forms(request):
 def referenties(request):
 	return render(request, 'webapp/referenties.html')
 
+def disclaimer(request):
+	return render(request, 'webapp/disclaimer.html')
+
 def login(request):
 	"""
     Log in view

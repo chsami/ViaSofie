@@ -15,6 +15,7 @@ urlpatterns = [
     url(r'^partners/$', views.partners, name='partners'),
     url(r'^panden/$', views.panden, name='panden'),
     url(r'^referenties/$', views.referenties, name='referenties'),
+    url(r'^disclaimer/$', views.disclaimer, name='disclaimer'),
     url(r'^loginpopup/$', views.loginpopup, name='loginpopup'),
 
     #Auth
