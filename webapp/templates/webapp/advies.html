@@ -2,24 +2,29 @@
 {% load staticfiles %}
 {% block header %}
 <link rel="stylesheet" type="text/css" href="{% static 'webapp/css/advies.css' %}" />
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script type="text/javascript" src="{% static 'webapp/scripts/jquery.quicksearch.js' %}""></script>
 {% endblock header %}
 {% block content %}
 {% include "webapp/submenu.html" %}
 <div class="advies">
-    <div class="FAQ">
+    <div class="FAQ" ng-app="SearchFAQ">
         <h3>FAQ</h3>
         <div class="container">
             <div class="faqHeader">
                 <p>Wilt u een woning kopen/huren of verkopen/verhuren dan moet u rekening houden met een hele hoop zaken. Hieronder vindt u een aantal algemene begrippen en FAQ’s van belang bij de verkoop of verhuur.</p>
                 <p>Hebt u vragen over onderstaande topics of staat uw vraag hier niet tussen? Aarzel niet om me te contacteren, ik help u graag verder.</p>
             </div>
-            <div class="panel-group" id="accordion">
+            <form>
+                <input type="text" id="search">
+            </form>
+            <div class="panel-group" id="accordion" filter-list="search">
                 {% for faq in faq_list %}
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#{{faq.id}}">{{ faq.titel }}</a>
-                    </h4>
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#{{faq.id}}">{{ faq.titel }}</a>
+                            </h4>
                         </div>
                         <div id="{{faq.id}}" class="panel-collapse collapse">
                             <div class="panel-body">
@@ -33,4 +38,9 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $('input#search').quicksearch('.panel-group .panel .panel-heading .panel-title', {
+        selector: 'a'
+    });
+</script>
 {% endblock content %}
