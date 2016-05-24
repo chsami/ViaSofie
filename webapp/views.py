@@ -110,6 +110,9 @@ def referenties(request):
 def disclaimer(request):
 	return render(request, 'webapp/disclaimer.html')
 
+def privacy(request):
+    return render(request, 'webapp/privacy.html')
+
 def login(request):
 	"""
     Log in view
