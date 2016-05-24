@@ -9,6 +9,12 @@
                 {{ language.code }}
             </option>
         {% endfor %}
+
+    </select>
+    <select name="url">
+      <option value="webapp/templates/admin/index.html"{% if language.code == LANGUAGE_CODE %} selected="selected"{% endif %}>
+          <p>webapp/templates/admin/index.html<p>
+      </option>
     </select>
     <input type="submit" value="Confirm" />
 </form>

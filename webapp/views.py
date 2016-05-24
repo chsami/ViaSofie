@@ -18,18 +18,28 @@ from django.utils import timezone
 from django.core.mail import send_mail, BadHeaderError
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
+
 # Create your views here.
 def languageselector(request):
     if request.method == 'POST':
         language = form.cleaned_data['language.code']
         path = 'webapp/locale/' + language + '/LC_MESSAGES/django.po'
-        filepath = os.path.join(BASE_DIR, path)
-        file = open('filepath', 'r')
-        base = file.read()
-        file.close()
+        # filepath = os.path.join(BASE_DIR, path)
+        # file = open('filepath', 'r')
+        # base = file.read()
+        # file.close()
+        # link = form.cleaned_data['url']
+
+        lines = tuple(open(filename, 'r'))
+
+        # with open(fname) as f:
+        #     content = f.readlines()
 
         #edit file here
-        
+        # for line in open('base'):
+        #     if(line == "#: webapp/templates/admin/index.html")
+
+
 
         # file = open(filepath, 'w')
         # file.write(puzzleSolution)
