@@ -19,6 +19,20 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 # Create your views here.
 def languageselector(request):
+    if request.method == 'POST':
+        language = form.cleaned_data['language.code']
+        path = 'webapp/locale/' + language + '/LC_MESSAGES/django.po'
+        filepath = os.path.join(BASE_DIR, path)
+        file = open('filepath', 'r')
+        base = file.read()
+        file.close()
+
+        #edit file here
+        
+
+        # file = open(filepath, 'w')
+        # file.write(puzzleSolution)
+        # file.close()
     return render(request, 'webapp/languageselector.html')
 
 def index(request):
