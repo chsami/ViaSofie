@@ -1,0 +1,41 @@
+.account h3:after, .account h3:before {
+    width: 200px;
+    height: 1px;
+    display: inline-block;
+    vertical-align: middle;
+    content: "";
+    background: #000;
+    margin: 0 1%;
+}
+
+.account h3 {
+    font-size: 3em;
+    color: #000;
+    font-family: 'Ropa Sans', sans-serif;
+    text-align: center;
+    margin: 10px 0 15px 0;
+}
+
+.account input {
+
+}
+
+.account {
+    padding: 20px 0;
+}
+
+#accountform {
+    margin: 50px;
+}
+
+.tabs-account {
+    margin: 0 50px 50px 50px;
+}
+
+.nav-tabs .glyphicon:not(.no-margin) { margin-right:10px; }
+.tab-pane .list-group .glyphicon { margin-right:5px; }
+.tab-pane .list-group .glyphicon:hover { color:#FFBC00; }
+
+.container-fluid {
+    max-width: 80%;
+}
