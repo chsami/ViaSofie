@@ -1,0 +1,35 @@
+{% extends 'webapp/base.html' %}
+{% load staticfiles %}
+
+{% block header %}
+{% endblock header %}
+
+{% block content %}
+<div class="dealers">
+<div class="container">
+	<h3>Partners</h3>
+	<div class="dealer-top">
+			<div class="deal-top-top">
+			{% for partner in partner_list %}
+				<div class="col-md-3 top-deal-top">
+					<div class="top-deal">
+						<a href="" class="mask"><img src="{{ partner.foto_url }}" class="img-responsive zoom-img" alt=""></a>
+						<div class="deal-bottom">
+							<div class="top-deal1">
+								<h5><a href="">{{ partner.naam }}</a></h5>
+								<p>{{ partner.onderschrift }}</p>
+							</div>
+							<div class="top-deal2">
+								<a href="" class="hvr-sweep-to-right more">Meer</a>
+							</div>
+						<div class="clearfix"> </div>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			<div class="clearfix"> </div>
+		</div>		
+</div>
+</div>
+</div>
+{% endblock content %}

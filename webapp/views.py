@@ -359,3 +359,9 @@ def foto(request):
 		'webapp/foto.html',
 		{'form': form}
 	)
+
+# EDIT VIEWS
+def panddetail_edit(request, pand_referentienummer):
+	pand = PandModel.objects.get(referentienummer=pand_referentienummer)
+	fotos = FotoModel.objects.filter(pand_id=pand.id)
+	return render_to_response('webapp/edit/pand.html', {'pand': pand, 'fotos': fotos})

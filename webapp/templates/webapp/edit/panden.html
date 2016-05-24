@@ -1,0 +1,17 @@
+{% extends 'webapp/base.html' %} {% load staticfiles %} {% load endless %} {% block header %} {% endblock header %} {% block content %}
+<!--header-bottom-->
+{% include "webapp/submenu.html" %}
+<!--//-->
+<div class="project">
+    <div class="container">
+        <h3>Panden</h3> {% include panden_item %}
+    </div>
+</div>
+<script src="{% static 'webapp/scripts/endless-pagination.js' %}"></script>
+<script>
+$.endlessPaginate({
+    paginateOnScroll: true,
+    paginateOnScrollChunkSize: 2
+});
+</script>
+{% endblock content %}
