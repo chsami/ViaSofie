@@ -367,3 +367,47 @@
     display: block;
     border-radius: 5%;
   }
+
+  /*
+  #####################################################################################################################################################################
+  Zoekfunctie
+  #####################################################################################################################################################################
+  */
+
+
+        
+        .slideout {
+            position: fixed;
+            top: 50%;
+            z-index: 9999;
+            right: 0;
+            padding: 20px;
+            text-align: center;
+            transform: translateY(-50%);
+            background: #0d3532;
+            -webkit-transition-duration: 0.3s;
+            -moz-transition-duration: 0.3s;
+            -o-transition-duration: 0.3s;
+            transition-duration: 0.3s;
+        }
+        .slideout_inner {
+            position: fixed;
+            z-index: 9998;
+            top: 50%;
+            right: -868px;
+            width: 800px;
+            background: #0d3532;
+            padding: 20px;
+            opacity: 0.90;
+            margin-right: 68px;
+            transform: translateY(-50%);
+            -webkit-transition-duration: 0.3s;
+            -moz-transition-duration: 0.3s;
+            -o-transition-duration: 0.3s;
+            transition-duration: 0.3s;
+            text-align: left;
+        }
+        .slideout:hover .slideout_inner {
+            right: 0;
+        }
+        
