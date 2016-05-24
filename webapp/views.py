@@ -9,6 +9,7 @@ from webapp.models import *
 from webapp.models import Pand as PandModel
 from webapp.models import Foto as FotoModel
 from webapp.models import Faq as FaqModel
+from webapp.models import Partner as PartnerModel
 from django.utils.translation import ugettext as _
 from webapp.forms import *
 import hashlib
@@ -146,7 +147,9 @@ def loginpopup(request):
 	}, context_instance=RequestContext(request))
 
 def partners(request):
-	return render(request, 'webapp/partners.html')
+	partner_list = PartnerModel.objects.all()
+	return render_to_response('webapp/partners.html', {'partner_list': partner_list})
+
 def formsucces(request):
 	return render(request, 'webapp/formsucces.html')
 
@@ -255,7 +258,7 @@ def register(request):
                 emailsalt = emailsalt.encode('utf8')
             datas['activation_key']= hashlib.sha1(salt+emailsalt).hexdigest()
 
-            datas['email_path']="\\ActivationEmail.py"
+            datas['email_path']="/ActivationEmail.py"
             datas['email_subject']="Welkom bij ViaSofie"
 
             form.sendEmail(datas) #Send validation email
@@ -295,8 +298,8 @@ def new_activation_link(request, user_id):
     if user is not None and not user.is_active:
         datas['username']=user.username
         datas['email']=user.email
-        datas['email_path']="\\ResendEmail.py"
-        datas['email_subject']="Nouveau lien d'activation yourdomain"
+        datas['email_path']="/ResendEmail.py"
+        datas['email_subject']="Jou nieuwe activatielink bij ViaSofie"
 
         salt = hashlib.sha1(str(random.random())).hexdigest()[:5]
         usernamesalt = datas['username']
