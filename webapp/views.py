@@ -113,6 +113,9 @@ def disclaimer(request):
 def privacy(request):
     return render(request, 'webapp/privacy.html')
 
+def account(request):
+    return render(request, 'webapp/account.html')
+
 def login(request):
 	"""
     Log in view
