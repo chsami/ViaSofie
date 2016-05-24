@@ -4431,6 +4431,10 @@ ul.nav.nav-pills {
     h1.grid2 {
         font-size: 2.3em;
     }
+
+    .adviesSearchForm {
+        padding: 0 !important;
+    }
 }
 
 @media(max-width:640px) {
@@ -6040,6 +6044,7 @@ ul.nav.nav-pills {
         padding: 0.3em 0.7em;
         margin: 0.5em 0 0;
     }
+
 }
 
 /* Meer panden knop */
@@ -6115,4 +6120,14 @@ div.endless_loading {
     padding: 10px 30px;
     display: inline-block;
     margin: 2em 0 0;
+}
+
+.adviesSearchForm {
+    padding: 0 5em;
+}
+
+.adviesSearch {
+    border: 1px solid #9C9C9C !important;
+    font-size: 1.3em !important;
+    color: #333 !important;
 }
