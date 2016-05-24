@@ -6116,3 +6116,32 @@ div.endless_loading {
     display: inline-block;
     margin: 2em 0 0;
 }
+
+/* Disclaimer */
+.disclaimer {
+    padding: 50px 100px;
+    text-align: center;
+
+}
+
+.disclaimer h3:after, .disclaimer h3:before {
+    width: 200px;
+    height: 1px;
+    display: inline-block;
+    vertical-align: middle;
+    content: "";
+    background: #000;
+    margin: 0 1%;
+}
+
+.disclaimer h3 {
+    font-size: 3em;
+    color: #000;
+    font-family: 'Ropa Sans', sans-serif;
+    text-align: center;
+    margin: 0px 0 15px 0;
+}
+
+.disclaimer hr {
+    border-top: 0px;
+}
