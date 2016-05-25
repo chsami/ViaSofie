@@ -22,16 +22,27 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 # Create your views here.
 def languageselector(request):
     if request.method == 'POST':
-        language = form.cleaned_data['language.code']
-        path = 'webapp/locale/' + language + '/LC_MESSAGES/django.po'
+        languager = form.cleaned_data['language.code']
+        path = 'webapp/locale/' + languager + '/LC_MESSAGES/django.po'
+        lines = tuple(open(filename, 'r'))
+        for(line in lines):
+            if(line.startswith("#: webapp/templates/admin/index.html") ):
+                i = 1
+                while(i != 3):
+                    output = lines[line+i]
+                    i++
+
+        return render_to_response('webapp/languageselector.html', {'lines': output})
+
+
         # filepath = os.path.join(BASE_DIR, path)
         # file = open('filepath', 'r')
         # base = file.read()
         # file.close()
         # link = form.cleaned_data['url']
 
-        lines = tuple(open(filename, 'r'))
-
+        # lines = tuple(open(filename, 'r'))
+        # lines = tuple(open('webapp/locale/nl/LC_MESSAGES/django.po', 'r'))
         # with open(fname) as f:
         #     content = f.readlines()
 
@@ -44,7 +55,11 @@ def languageselector(request):
         # file = open(filepath, 'w')
         # file.write(puzzleSolution)
         # file.close()
+
+
+
     return render(request, 'webapp/languageselector.html')
+
 
 def index(request):
     return render(request, 'webapp/index.html')
