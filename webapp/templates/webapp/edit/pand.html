@@ -5,11 +5,11 @@
 <script src="http://maps.googleapis.com/maps/api/js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <link rel="stylesheet" href="{% static 'webapp/css/flexslider.css' %}" type="text/css" media="screen" /> {% endblock header %} {% block content %}
-{% verbatim %}
 <div class="container">
-<div ng-app="">
- 
-<p>Input something in the input box:</p>
+
+<!-- Werkend voorbeeld -->
+{% verbatim %}
+<div>
 <p>Eigenaar (gebruiker): <input type="text" ng-model="user"></p>
 <p>Straatnaam: <input type="text" ng-model="straatnaam"></p>
 <p>Huisnr: <input type="text" ng-model="huisnr"></p>
@@ -18,14 +18,17 @@
 <p>Beschrijving: <input type="text" ng-model="beschrijving"></p>
 <p>Handelstatus: <input type="text" ng-model="handelstatus"></p>
 <p>Voortgang: <input type="text" ng-model="voortgang"></p>
-<p ng-bind="user"></p>
-<label ng-bind-template="Hello! {{straatnaam}} {{huisnr}}"></label>
-
-
 </div>
+{% endverbatim %}
+<!-- Einde werkend voorbeeld -->
+
     <div class="buy-single-single">
         <div class=" buying-top">
-            <p ng-bind-template="Hello! {{straatnaam}} {{huisnr}}"></p>
+        <!-- GEWENST RESULTAAT -->
+        {% verbatim %}
+            <p ng-bind-template="{{straatnaam}} {{huisnr}}"></p>
+            {% endverbatim %}
+            <!-- EINDE GEWENST RESULTAAT -->
             <div class="flexslider">
             <div id="slider" class="flexslider">
                 <ul class="slides">
@@ -230,5 +233,4 @@
         </div>
     </div>
 </div>
-{% endverbatim %}
 {% endblock content %}
