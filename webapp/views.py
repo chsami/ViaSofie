@@ -143,7 +143,6 @@ def disclaimer(request):
 def privacy(request):
     return render(request, 'webapp/privacy.html')
 
-<<<<<<< HEAD
 def account(request):
     current_user = request.user
     if request.user.is_authenticated():
@@ -153,8 +152,6 @@ def account(request):
         # Do something for anonymous users.
         return render_to_response('webapp/account.html', {'user': current_user})
 
-=======
->>>>>>> origin/Sprint-Week-6
 def login(request):
 	"""
     Log in view
