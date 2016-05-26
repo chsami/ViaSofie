@@ -6388,3 +6388,26 @@ div.endless_loading {
     -webkit-transform: translateY(-50%) translateZ(1px);
     transform: translateY(-50%) translateZ(1px);
 }
+
+@media (max-width: 480px) {
+    .searchDiv {
+        top: 35%;
+        left: 53%;
+    }
+    .searchForm {
+        top: 65%;
+        width: 60%;
+        left: 35%;
+    }
+    .mega-search {
+        background: rgba(76, 81, 90, 0.95);
+    }
+    .setSearchHeight {
+        height: 150px !important;
+    }
+    .mega-search fieldset .button {
+        font-size: 1em;
+        width: 25px;
+        padding-top: 10px;
+    }
+}
