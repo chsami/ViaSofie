@@ -1,39 +1,76 @@
+{% load staticfiles %}
 <div class="container">
-            <div class="bottom-header">
-                <div class="header-bottom">
-                    <div class=" bottom-head">
-                        <a href="/panden">
-                            <div class="buy-media">
-                                <i class="buy"> </i>
-                                <h6>Kopen</h6>
-                            </div>
-                        </a>
+    <div class="bottom-header">
+        <div class="header-bottom">
+            <div class=" bottom-head">
+                <a href="/panden">
+                    <div class="buy-media">
+                        <i class="buy"> </i>
+                        <h6>Kopen</h6>
                     </div>
-                    <div class=" bottom-head">
-                        <a href="/panden">
-                            <div class="buy-media">
-                                <i class="rent"> </i>
-                                <h6>Huren</h6>
-                            </div>
-                        </a>
+                </a>
+            </div>
+            <div class=" bottom-head">
+                <a href="/panden">
+                    <div class="buy-media">
+                        <i class="rent"> </i>
+                        <h6>Huren</h6>
                     </div>
-                    <div class=" bottom-head">
-                        <a href="/advies">
-                            <div class="buy-media">
-                                <i class="sell"> </i>
-                                <h6>Advies</h6>
-                            </div>
-                        </a>
+                </a>
+            </div>
+            <div id="searchButton" class="sparkley bottom-head middle">
+                <img class="img-responsive" src="{% static 'webapp/images/templateImg/search.png' %}">
+            </div>
+            <div class="bottom-head bottom-head-right">
+                <a href="/advies">
+                    <div class="buy-media">
+                        <i class="sell"> </i>
+                        <h6>Advies</h6>
                     </div>
-                    <div class=" bottom-head">
-                        <a href="/referenties">
-                            <div class="buy-media">
-                                <i class="deal"> </i>
-                                <h6>Referenties</h6>
-                            </div>
-                        </a>
+                </a>
+            </div>
+            <div class="bottom-head bottom-head-right">
+                <a href="/referenties">
+                    <div class="buy-media">
+                        <i class="deal"> </i>
+                        <h6>Referenties</h6>
                     </div>
-                    <div class="clearfix"> </div>
+                </a>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+        <section class="mega-search open" id="mega-search">
+            <div class="searchDiv">
+                <div id="mega-productsearch" class="search-form products active">
+                    <fieldset>
+                        <label for="mega-p-s" class="search-form-input">Kopen</label>
+                    </fieldset>
+                </div>
+                <label class="search-form-slach">/</label>
+                <div id="mega-sitesearch" class="search-form products inactive">
+                    <fieldset>
+                        <label for="mega-p-s" class="search-form-input">Huren</label>
+                    </fieldset>
                 </div>
             </div>
-        </div>
+            <div class="searchForm">
+                <form class="search-form search-input-form" action="#" role="search">
+                    <fieldset>
+                        <input type="search" class="search-form-input" name="s" value="" id="s" placeholder="Type, plaats, postcode">
+                        <hr class="searchhr">
+                        <button id="searchButtonOk" class="button" type="submit"><i class="fa fa-search"></i></button>
+                    </fieldset>
+                </form>
+            </div>
+        </section>
+    </div>
+</div>
+<script>
+$("#searchButton").click(function() {
+    $(".buy-media").toggleClass("no-pointerevent");
+    $("#mega-search").toggleClass("setSearchHeight");
+});
+// $("#searchButtonOk").click(function() {
+//     $("#mega-search").toggleClass("setSearchHeight");
+// });
+</script>
