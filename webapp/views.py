@@ -143,9 +143,8 @@ def disclaimer(request):
 def privacy(request):
     return render(request, 'webapp/privacy.html')
 
-<<<<<<< HEAD
 def account(request):
-    current_user = request.user
+    current_user = UserModel.objects.filter(pk=request.user.id)
     if request.user.is_authenticated():
         # Do something for authenticated users.
         return render_to_response('webapp/account.html', {'user': current_user})
@@ -153,8 +152,6 @@ def account(request):
         # Do something for anonymous users.
         return render_to_response('webapp/account.html', {'user': current_user})
 
-=======
->>>>>>> origin/Sprint-Week-6
 def login(request):
 	"""
     Log in view
