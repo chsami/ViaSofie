@@ -105,6 +105,10 @@ def advies(request):
 	faq_list = FaqModel.objects.all()
 	return render_to_response('webapp/advies.html', {'faq_list': faq_list})
 
+def account(request):
+    account = AcccountModel.objects.filter()
+    return render_to_response('webapp/account.html', {'faq_list': faq_list})
+
 def huren(request):
 	return render(request, 'webapp/huren.html')
 
@@ -122,9 +126,6 @@ def disclaimer(request):
 
 def privacy(request):
     return render(request, 'webapp/privacy.html')
-
-def account(request):
-    return render(request, 'webapp/account.html')
 
 def login(request):
 	"""
