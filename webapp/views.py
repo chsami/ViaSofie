@@ -144,7 +144,7 @@ def privacy(request):
     return render(request, 'webapp/privacy.html')
 
 def account(request):
-    current_user = request.user
+    current_user = UserModel.objects.filter(pk=request.user.id)
     if request.user.is_authenticated():
         # Do something for authenticated users.
         return render_to_response('webapp/account.html', {'user': current_user})
