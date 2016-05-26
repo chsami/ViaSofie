@@ -10,6 +10,7 @@ from webapp.models import Pand as PandModel
 from webapp.models import Foto as FotoModel
 from webapp.models import Faq as FaqModel
 from webapp.models import Partner as PartnerModel
+from webapp.models import Account as AccountModel
 from django.utils.translation import ugettext as _
 from webapp.forms import *
 import hashlib
@@ -124,7 +125,13 @@ def privacy(request):
     return render(request, 'webapp/privacy.html')
 
 def account(request):
-    return render(request, 'webapp/account.html')
+    current_user = request.user
+    if request.user.is_authenticated():
+        # Do something for authenticated users.
+        return render_to_response('webapp/account.html', {'user': current_user})
+    else:
+        # Do something for anonymous users.
+        return render_to_response('webapp/account.html', {'user': current_user})
 
 def login(request):
 	"""
