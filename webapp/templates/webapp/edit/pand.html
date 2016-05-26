@@ -1,4 +1,4 @@
-{% extends 'webapp/base.html' %} {% load staticfiles %} {% block header %}
+{% extends 'webapp/base.html' %} {% load staticfiles %} {% block header %} {% load djng_tags %}
 <script type='text/javascript' src="{% static 'webapp/scripts/index.js' %}"></script>
 <script type='text/javascript' src="{% static 'webapp/scripts/jquery.flexslider.js' %}"></script>
 <script type='text/javascript' src="{% static 'webapp/scripts/jquery.flexisel.js' %}"></script>
@@ -8,7 +8,7 @@
 <div class="container">
 
 <!-- Werkend voorbeeld -->
-{% verbatim %}
+{% angularjs %}
 <div>
 <p>Eigenaar (gebruiker): <input type="text" ng-model="user"></p>
 <p>Straatnaam: <input type="text" ng-model="straatnaam"></p>
@@ -19,15 +19,13 @@
 <p>Handelstatus: <input type="text" ng-model="handelstatus"></p>
 <p>Voortgang: <input type="text" ng-model="voortgang"></p>
 </div>
-{% endverbatim %}
+{% endangularjs %}
 <!-- Einde werkend voorbeeld -->
 
     <div class="buy-single-single">
         <div class=" buying-top">
         <!-- GEWENST RESULTAAT -->
-        {% verbatim %}
-            <p ng-bind-template="{{straatnaam}} {{huisnr}}"></p>
-            {% endverbatim %}
+            <p>{{ pand.straatnaam }} - {{pand.postcodeID.stadsnaam}}</p>
             <!-- EINDE GEWENST RESULTAAT -->
             <div class="flexslider">
             <div id="slider" class="flexslider">

@@ -39,3 +39,38 @@
 .container-fluid {
     max-width: 80%;
 }
+
+.account p {
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+hr {
+    border-top: 0px;
+}
+
+
+.panel-heading [data-toggle="collapse"]:after {
+        font-family: 'Glyphicons Halflings';
+        content: "+"; /* "play" icon */
+        float: right;
+        color: #eac8c6;
+        font-size: 20px;
+        line-height: 22px;
+        /* rotate "play" icon from > (right arrow) to down arrow */
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        transform: rotate(-90deg);
+    }
+
+    .panel-heading [data-toggle="collapse"].collapsed:after {
+        /* rotate "play" icon from > (right arrow) to ^ (up arrow) */
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        transform: rotate(90deg);
+        color: #0d3532;
+    }

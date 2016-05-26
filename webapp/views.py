@@ -10,6 +10,7 @@ from webapp.models import Pand as PandModel
 from webapp.models import Foto as FotoModel
 from webapp.models import Faq as FaqModel
 from webapp.models import Partner as PartnerModel
+from webapp.models import User as UserModel
 from django.utils.translation import ugettext as _
 from webapp.forms import *
 import hashlib
@@ -22,16 +23,21 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 # Create your views here.
 def languageselector(request):
     if request.method == 'POST':
-        language = form.cleaned_data['language.code']
-        path = 'webapp/locale/' + language + '/LC_MESSAGES/django.po'
+        # languager = form.cleaned_data['selected']
+        path = 'webapp/locale/nl/LC_MESSAGES/django.po'
+        lines = tuple(open(filename, 'r'))
+
+        return render_to_response('webapp/languageselector.html', {'lines': lines})
+
+
         # filepath = os.path.join(BASE_DIR, path)
         # file = open('filepath', 'r')
         # base = file.read()
         # file.close()
         # link = form.cleaned_data['url']
 
-        lines = tuple(open(filename, 'r'))
-
+        # lines = tuple(open(filename, 'r'))
+        # lines = tuple(open('webapp/locale/nl/LC_MESSAGES/django.po', 'r'))
         # with open(fname) as f:
         #     content = f.readlines()
 
@@ -44,7 +50,11 @@ def languageselector(request):
         # file = open(filepath, 'w')
         # file.write(puzzleSolution)
         # file.close()
+
+
+
     return render(request, 'webapp/languageselector.html')
+
 
 def index(request):
     return render(request, 'webapp/index.html')
@@ -105,6 +115,10 @@ def advies(request):
 	faq_list = FaqModel.objects.all()
 	return render_to_response('webapp/advies.html', {'faq_list': faq_list})
 
+def account(request):
+    faq_list = FaqModel.objects.all()
+    return render_to_response('webapp/account.html', {'faq_list': faq_list})
+
 def huren(request):
 	return render(request, 'webapp/huren.html')
 
@@ -124,7 +138,13 @@ def privacy(request):
     return render(request, 'webapp/privacy.html')
 
 def account(request):
-    return render(request, 'webapp/account.html')
+    current_user = UserModel.objects.filter(pk=request.user.id)
+    if request.user.is_authenticated():
+        # Do something for authenticated users.
+        return render_to_response('webapp/account.html', {'user': current_user})
+    else:
+        # Do something for anonymous users.
+        return render_to_response('webapp/account.html', {'user': current_user})
 
 def login(request):
 	"""

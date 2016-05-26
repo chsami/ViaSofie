@@ -3,7 +3,7 @@ from django.conf.urls import url, include
 from . import views
 
 urlpatterns = [
-
+    url(r'^rosetta/', include('rosetta.urls')),
     url(r'^$', views.index, name='index'),
     url(r'^pand/(?P<pand_referentienummer>[a-zA-Z0-9_]+)/$', views.panddetail, name='panddetail'),
     url(r'^about/$', views.about, name='about'),
@@ -62,4 +62,6 @@ urlpatterns = [
     url(r'^referenties/edit/$', views.referenties, name='referenties'),
     url(r'^disclaimer/edit/$', views.disclaimer, name='disclaimer'),
     url(r'^loginpopup/edit/$', views.loginpopup, name='loginpopup'),
+    #Edit languages
+
 ]
