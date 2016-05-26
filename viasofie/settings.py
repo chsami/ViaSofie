@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['localhost']
 
 INSTALLED_APPS = (
     'webapp',
+    'djng',
     #'grappelli',
     'rosetta',
     'django.contrib.admin',

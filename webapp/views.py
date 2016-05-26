@@ -10,6 +10,7 @@ from webapp.models import Pand as PandModel
 from webapp.models import Foto as FotoModel
 from webapp.models import Faq as FaqModel
 from webapp.models import Partner as PartnerModel
+from webapp.models import User as UserModel
 from django.utils.translation import ugettext as _
 from webapp.forms import *
 import hashlib
@@ -25,14 +26,8 @@ def languageselector(request):
         # languager = form.cleaned_data['selected']
         path = 'webapp/locale/nl/LC_MESSAGES/django.po'
         lines = tuple(open(filename, 'r'))
-        # for(line in lines):
-        #     if(line.startswith("#: webapp/templates/admin/index.html") ):
-        #         i = 1
-        #         while(i != 3):
-        #             output = lines[line+i]
-        #             i++
 
-        return render_to_response('webapp/languageselector.html', {'lines': output})
+        return render_to_response('webapp/languageselector.html', {'lines': lines})
 
 
         # filepath = os.path.join(BASE_DIR, path)
@@ -120,6 +115,10 @@ def advies(request):
 	faq_list = FaqModel.objects.all()
 	return render_to_response('webapp/advies.html', {'faq_list': faq_list})
 
+def account(request):
+    faq_list = FaqModel.objects.all()
+    return render_to_response('webapp/account.html', {'faq_list': faq_list})
+
 def huren(request):
 	return render(request, 'webapp/huren.html')
 
@@ -139,7 +138,13 @@ def privacy(request):
     return render(request, 'webapp/privacy.html')
 
 def account(request):
-    return render(request, 'webapp/account.html')
+    current_user = UserModel.objects.filter(pk=request.user.id)
+    if request.user.is_authenticated():
+        # Do something for authenticated users.
+        return render_to_response('webapp/account.html', {'user': current_user})
+    else:
+        # Do something for anonymous users.
+        return render_to_response('webapp/account.html', {'user': current_user})
 
 def login(request):
 	"""
