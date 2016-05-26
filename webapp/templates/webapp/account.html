@@ -19,24 +19,46 @@
 <form id="accountForm" method="post" class="form-horizontal">
     <div class="tab-content">
         <div class="tab-pane active" id="info-tab">
+        <p>Hier kan u een overzicht vinden van de gegevens die geregistreerd zijn bij Via Sofie. Indien u deze gegevens wilt aanpassen, mag u altijd contact opnemen: <a href="mailto:info@viasofie.be">info@viasofie.be</a></p>
             <div class="form-group">
-                <label class="col-xs-3 control-label">Naam</label>
-                <div class="col-xs-5">
-                    <input type="text" class="form-control" name="naam" readonly="" value="" />
+                <label class="col-xs-6 col-md-4 control-label">E-mailadres</label>
+                <div class="col-xs-6 col-md-4">
+                    <input type="text" class="form-control" name="naam" readonly value="{{ user.email }}" />
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="col-xs-3 control-label">Voornaam</label>
-                <div class="col-xs-5">
-                    <input type="text" class="form-control" name="voornaam" readonly="" />
+                <label class="col-xs-6 col-md-4 control-label">Naam</label>
+                <div class="col-xs-6 col-md-4">
+                    <input type="text" class="form-control" name="naam" readonly value="{{ user.naam }}" />
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="col-xs-3 control-label">Adres</label>
-                <div class="col-xs-5">
-                    <input type="text" class="form-control" name="adres" readonly="" />
+                <label class="col-xs-6 col-md-4 control-label">Voornaam</label>
+                <div class="col-xs-6 col-md-4">
+                    <input type="text" class="form-control" name="voornaam" readonly value="{{ user.voornaam }}" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-xs-6 col-md-4 control-label">Straat + nr</label>
+                <div class="col-xs-6 col-md-4">
+                    <input type="text" class="form-control" name="adres" readonly value="{{ user.straatnaam }}" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-xs-6 col-md-4 control-label">Gemeente</label>
+                <div class="col-xs-6 col-md-4">
+                    <input type="text" class="form-control" name="gemeente" readonly value="{{ user.gemeente }}" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-xs-6 col-md-4 control-label">Telefoonnummer</label>
+                <div class="col-xs-6 col-md-4">
+                    <input type="text" class="form-control" name="telefoonnummer" readonly value="{{ user.telefoonnr }}" />
                 </div>
             </div>
         </div>

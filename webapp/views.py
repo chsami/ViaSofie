@@ -25,12 +25,12 @@ def languageselector(request):
         languager = form.cleaned_data['language.code']
         path = 'webapp/locale/' + languager + '/LC_MESSAGES/django.po'
         lines = tuple(open(filename, 'r'))
-        for(line in lines):
+        for line in lines:
             if(line.startswith("#: webapp/templates/admin/index.html") ):
                 i = 1
                 while(i != 3):
                     output = lines[line+i]
-                    i++
+                    i += 1
 
         return render_to_response('webapp/languageselector.html', {'lines': output})
 
@@ -121,7 +121,7 @@ def advies(request):
 	return render_to_response('webapp/advies.html', {'faq_list': faq_list})
 
 def account(request):
-    account = AcccountModel.objects.filter()
+    faq_list = FaqModel.objects.all()
     return render_to_response('webapp/account.html', {'faq_list': faq_list})
 
 def huren(request):
