@@ -10,7 +10,7 @@ from webapp.models import Pand as PandModel
 from webapp.models import Foto as FotoModel
 from webapp.models import Faq as FaqModel
 from webapp.models import Partner as PartnerModel
-from webapp.models import Account as AccountModel
+from webapp.models import User as UserModel
 from django.utils.translation import ugettext as _
 from webapp.forms import *
 import hashlib
