@@ -22,15 +22,15 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 # Create your views here.
 def languageselector(request):
     if request.method == 'POST':
-        languager = form.cleaned_data['language.code']
-        path = 'webapp/locale/' + languager + '/LC_MESSAGES/django.po'
+        # languager = form.cleaned_data['selected']
+        path = 'webapp/locale/nl/LC_MESSAGES/django.po'
         lines = tuple(open(filename, 'r'))
-        for(line in lines):
-            if(line.startswith("#: webapp/templates/admin/index.html") ):
-                i = 1
-                while(i != 3):
-                    output = lines[line+i]
-                    i++
+        # for(line in lines):
+        #     if(line.startswith("#: webapp/templates/admin/index.html") ):
+        #         i = 1
+        #         while(i != 3):
+        #             output = lines[line+i]
+        #             i++
 
         return render_to_response('webapp/languageselector.html', {'lines': output})
 
