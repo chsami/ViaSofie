@@ -33,6 +33,7 @@ INSTALLED_APPS = (
     'webapp',
     'djng',
     #'grappelli',
+    'rosetta',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -141,3 +142,5 @@ TEMPLATES = [
     },
 },
 ]
+
+ROSETTA_REQUIRES_AUTH= False;
