@@ -39,6 +39,7 @@ def index(request):
 def panddetail(request, pand_referentienummer):
 	pand = PandModel.objects.get(referentienummer=pand_referentienummer)
 	fotos = FotoModel.objects.filter(pand_id=pand.id)
+    # relatedPands = PandModel.objects.filter(pand_postcodeID_id=pand.postcodeID && pand_voortgang_id.status != 'Verkocht' && geld...)
 	return render_to_response('webapp/pand.html', {'pand': pand, 'fotos': fotos},  context_instance=RequestContext(request))
 
 def about(request):
