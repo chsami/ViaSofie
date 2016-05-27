@@ -92,13 +92,6 @@ def advies(request):
 	faq_list = FaqModel.objects.all()
 	return render_to_response('webapp/advies.html', {'faq_list': faq_list}, context_instance=RequestContext(request))
 
-<<<<<<< HEAD
-=======
-def account(request):
-    faq_list = FaqModel.objects.all()
-    return render_to_response('webapp/account.html', {'faq_list': faq_list}, context_instance=RequestContext(request))
-
->>>>>>> origin/Sprint-Week-6
 def huren(request):
 	return render(request, 'webapp/huren.html')
 
