@@ -29,30 +29,6 @@ def languageselector(request):
 
         return render_to_response('webapp/languageselector.html', {'lines': lines})
 
-
-        # filepath = os.path.join(BASE_DIR, path)
-        # file = open('filepath', 'r')
-        # base = file.read()
-        # file.close()
-        # link = form.cleaned_data['url']
-
-        # lines = tuple(open(filename, 'r'))
-        # lines = tuple(open('webapp/locale/nl/LC_MESSAGES/django.po', 'r'))
-        # with open(fname) as f:
-        #     content = f.readlines()
-
-        #edit file here
-        # for line in open('base'):
-        #     if(line == "#: webapp/templates/admin/index.html")
-
-
-
-        # file = open(filepath, 'w')
-        # file.write(puzzleSolution)
-        # file.close()
-
-
-
     return render(request, 'webapp/languageselector.html')
 
 
@@ -63,7 +39,7 @@ def index(request):
 def panddetail(request, pand_referentienummer):
 	pand = PandModel.objects.get(referentienummer=pand_referentienummer)
 	fotos = FotoModel.objects.filter(pand_id=pand.id)
-	return render_to_response('webapp/pand.html', {'pand': pand, 'fotos': fotos})
+	return render_to_response('webapp/pand.html', {'pand': pand, 'fotos': fotos},  context_instance=RequestContext(request))
 
 def about(request):
 	return render(request, 'webapp/about.html')
@@ -113,11 +89,11 @@ def contact(request):
 
 def advies(request):
 	faq_list = FaqModel.objects.all()
-	return render_to_response('webapp/advies.html', {'faq_list': faq_list})
+	return render_to_response('webapp/advies.html', {'faq_list': faq_list}, context_instance=RequestContext(request))
 
 def account(request):
     faq_list = FaqModel.objects.all()
-    return render_to_response('webapp/account.html', {'faq_list': faq_list})
+    return render_to_response('webapp/account.html', {'faq_list': faq_list}, context_instance=RequestContext(request))
 
 def huren(request):
 	return render(request, 'webapp/huren.html')
@@ -141,10 +117,10 @@ def account(request):
     current_user = UserModel.objects.filter(pk=request.user.id)
     if request.user.is_authenticated():
         # Do something for authenticated users.
-        return render_to_response('webapp/account.html', {'user': current_user})
+        return render_to_response('webapp/account.html', {'current_user': current_user}, context_instance=RequestContext(request))
     else:
         # Do something for anonymous users.
-        return render_to_response('webapp/account.html', {'user': current_user})
+        return render_to_response('webapp/account.html', {'current_user': current_user}, context_instance=RequestContext(request))
 
 def login(request):
 	"""
@@ -184,7 +160,7 @@ def loginpopup(request):
 
 def partners(request):
 	partner_list = PartnerModel.objects.all()
-	return render_to_response('webapp/partners.html', {'partner_list': partner_list})
+	return render_to_response('webapp/partners.html', {'partner_list': partner_list}, context_instance=RequestContext(request))
 
 def formsucces(request):
 	return render(request, 'webapp/formsucces.html')
@@ -384,4 +360,4 @@ def foto(request):
 def panddetail_edit(request, pand_referentienummer):
 	pand = PandModel.objects.get(referentienummer=pand_referentienummer)
 	fotos = FotoModel.objects.filter(pand_id=pand.id)
-	return render_to_response('webapp/edit/pand.html', {'pand': pand, 'fotos': fotos})
+	return render_to_response('webapp/edit/pand.html', {'pand': pand, 'fotos': fotos}, context_instance=RequestContext(request))
