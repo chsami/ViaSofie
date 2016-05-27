@@ -144,3 +144,8 @@ TEMPLATES = [
 ]
 
 ROSETTA_REQUIRES_AUTH= False;
+
+INSTALLED_APPS += ('lockdown', )
+MIDDLEWARE_CLASSES += ('lockdown.middleware.LockdownMiddleware', )
+LOCKDOWN_PASSWORDS = ('BlackLabelZero', )
+LOCKDOWN_FORM = 'lockdown.forms.LockdownForm'
