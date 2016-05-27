@@ -27,6 +27,8 @@ TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = ['localhost']
 
 
+
+
 # Application definition
 
 INSTALLED_APPS = (
@@ -140,3 +142,8 @@ TEMPLATES = [
     },
 },
 ]
+
+INSTALLED_APPS += ('lockdown', )
+MIDDLEWARE_CLASSES += ('lockdown.middleware.LockdownMiddleware', )
+LOCKDOWN_PASSWORDS = ('BlackLabelZero', )
+LOCKDOWN_FORM = 'lockdown.forms.LockdownForm'
