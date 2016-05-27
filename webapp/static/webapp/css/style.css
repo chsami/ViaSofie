@@ -887,6 +887,10 @@ a.mask {
     border: 1px solid #AEAEAE;
 }
 
+.project-grid {
+    margin-bottom: 2em;
+}
+
 .col-md1 {
     padding: 1.5em;
     background: #fff;
@@ -4835,6 +4839,7 @@ ul.nav.nav-pills {
     .project-grid {
         margin-bottom: 1em;
         padding: 0 8px;
+        width: 100%
     }
     .content-bottom {
         padding: 2em 0;
@@ -6152,13 +6157,14 @@ a.endless_more:active:before {
 }
 
 div.endless_loading {
-    text-decoration: none;
-    font-size: 1.3em;
-    border: 1px solid #0d3532;
-    color: #0d3532;
-    padding: 10px 30px;
+    background-image: url("../images/loading_image.gif");
+    background-repeat: no-repeat; 
+    background-position: center; 
     display: inline-block;
-    margin: 2em 0 0;
+    width: 100%;
+    height: 80px;
+    padding-top: 80px;
+    margin-bottom: 10px;
 }
 
 .adviesSearchForm {

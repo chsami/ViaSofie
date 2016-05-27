@@ -47,7 +47,7 @@ def about(request):
 
 def panden(request):
     context = {
-        'panden': PandModel.objects.all(),
+        'panden': PandModel.objects.all().values(),
         'panden_item': 'webapp/panden_item.html',
     }
     template = 'webapp/panden.html'

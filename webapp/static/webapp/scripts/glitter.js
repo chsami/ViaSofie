@@ -22,6 +22,11 @@ $(function() {
     color: ["#ff0080","#ff0080","#0000FF"]
   });
   
+  $("body").sparkleh({
+    count: 5000,
+    color: ["#F44336","#E91E63","#9C27B0","#673AB7","#3F51B5","#2196F3","#03A9F4","#00BCD4","#009688","#4CAF50","#8BC34A","#CDDC39","#FFEB3B","#FFC107","#FF9800","#FF5722"],
+    speed: 0.05
+  });
   
   
   $("p").sparkleh({
