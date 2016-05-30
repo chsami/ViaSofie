@@ -60,13 +60,7 @@ def about(request):
 
 def panden(request):
     panden = PandModel.objects.all().values()
-    referentienummer_lijst = []
-    for pand in panden:
-        referentienummer = (pand['referentienummer'])
-        referentienummer = str(referentienummer).translate(None, '-')
-        referentienummer_lijst.append(referentienummer)
     context = {
-        'ref_lijst' : referentienummer_lijst,
         'panden': PandModel.objects.all().values(),
         'panden_item': 'webapp/panden_item.html',
     }
