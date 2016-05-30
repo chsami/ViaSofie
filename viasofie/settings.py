@@ -31,7 +31,8 @@ ALLOWED_HOSTS = ['localhost']
 
 INSTALLED_APPS = (
     'webapp',
-    'djng',
+    'captcha',
+    #'djng',
     #'grappelli',
     'rosetta',
     'django.contrib.admin',
@@ -42,6 +43,11 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'endless_pagination',
 )
+
+RECAPTCHA_PUBLIC_KEY = '6Ld9RSETAAAAADhIFfv20Hmaj4eaOVpBLRHD4rY9'
+RECAPTCHA_PRIVATE_KEY = '6Ld9RSETAAAAAArjY-t3DwRSUcAlLpXL8Y5Ay3Ql'
+NOCAPTCHA = True
+
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
