@@ -3,10 +3,9 @@ from django.conf.urls import url, include
 from . import views
 
 urlpatterns = [
-
+    url(r'^rosetta/', include('rosetta.urls')),
     url(r'^$', views.index, name='index'),
-    #url(r'^pand/$', views.pand, name='pand'),
-    url(r'^pand/(?P<pand_referentienummer>[a-zA-Z0-9_]+)$', views.panddetail, name='panddetail'),
+    url(r'^pand/(?P<pand_referentienummer>[a-zA-Z0-9_]+)/$', views.panddetail, name='panddetail'),
     url(r'^about/$', views.about, name='about'),
     url(r'^advies/$', views.advies, name='advies'),
     url(r'^contact/$', views.contact, name='contact'),
@@ -15,6 +14,9 @@ urlpatterns = [
     url(r'^partners/$', views.partners, name='partners'),
     url(r'^panden/$', views.panden, name='panden'),
     url(r'^referenties/$', views.referenties, name='referenties'),
+    url(r'^disclaimer/$', views.disclaimer, name='disclaimer'),
+    url(r'^privacy/$', views.privacy, name='privacy'),
+    url(r'^account/$', views.account, name='account'),
     url(r'^loginpopup/$', views.loginpopup, name='loginpopup'),
 
     #Auth
@@ -46,4 +48,20 @@ urlpatterns = [
     #taal
     url(r'^languageselector/$', views.languageselector, name='languageselector'),
     url(r'^i18n/', include('django.conf.urls.i18n')),
+
+    #Edit pages
+    url(r'^edit/$', views.index, name='index'),
+    url(r'^pand/(?P<pand_referentienummer>[a-zA-Z0-9_]+)/edit/$', views.panddetail_edit, name='panddetail_edit'),
+    url(r'^about/edit/$', views.about, name='about'),
+    url(r'^advies/edit/$', views.advies, name='advies'),
+    url(r'^contact/edit/$', views.contact, name='contact'),
+    url(r'^huren/edit/$', views.huren, name='huren'),
+    url(r'^kopen/edit/$', views.kopen, name='kopen'),
+    url(r'^partners/edit/$', views.partners, name='partners'),
+    url(r'^panden/edit/$', views.panden, name='panden'),
+    url(r'^referenties/edit/$', views.referenties, name='referenties'),
+    url(r'^disclaimer/edit/$', views.disclaimer, name='disclaimer'),
+    url(r'^loginpopup/edit/$', views.loginpopup, name='loginpopup'),
+    #Edit languages
+
 ]

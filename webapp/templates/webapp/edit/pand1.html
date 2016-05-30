@@ -1,0 +1,24 @@
+{% load front_edit_tags %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    {% load front_edit_tags %}
+    <div class="pagelet pagelet-text">
+    {% edit object.text_field object.char_field "class_name" %}
+        <div class="title">
+            {{ pand.straatnaam }}
+        </div>
+        <div class="richtext">
+            {{ pand.postcodeID.stadsnaam|safe }}
+        </div>
+    {% endedit %}
+    </div>
+    {% edit_loader %}
+</body>
+
+</html>

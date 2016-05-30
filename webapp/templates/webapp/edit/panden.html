@@ -4,18 +4,14 @@
 <!--//-->
 <div class="project">
     <div class="container">
-        <h3>Panden</h3>
-        <div class="project-top">  {% include panden_item %}
-        </div>
-
-    <div class="clearfix"> </div>
+        <h3>Panden</h3> {% include panden_item %}
     </div>
 </div>
 <script src="{% static 'webapp/scripts/endless-pagination.js' %}"></script>
 <script>
 $.endlessPaginate({
     paginateOnScroll: true,
-    // paginateOnScrollChunkSize: 1
+    paginateOnScrollChunkSize: 2
 });
 </script>
 {% endblock content %}

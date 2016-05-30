@@ -1,7 +1,7 @@
 {% load staticfiles %}
 <header>
     {% load i18n %}
-    <div class="language_menu">
+    <div id="language_menu" class="language_menu">
         <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
             <input name="next" type="hidden" value="{{ redirect_to }}" />
             <select name="language" onchange='this.form.submit()' class="languageselect">
@@ -15,7 +15,7 @@
     </div>
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar" aria-expanded="false" aria-controls="navbar">
+            <button type="button" id="collapseButton" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -35,18 +35,12 @@
             </div>
         </div>
     </nav>
-    <div class="header-logo" id="header-logo">
+    <div id="header-logo" class="header-logo centered">
         <a href="/">
             <img class="img-responsive" src="{% static 'webapp/images/def logos via sofie - RGB-08.png' %}">
         </a>
     </div>
     <div class="header">
-        <div class="title-container">
-            <h3 class="headertitle">
-        <span class="slogan">Via Sofie</span>
-        <span class="title--sub-title">Vérdergaan in vastgoed...</span>
-    </h3>
-        </div>
         <div class="cssmenu-container">
             <div id='cssmenu' class="align-center">
                 <ul>
@@ -68,6 +62,12 @@
       </div>
     </div>
   </div>
+  <script>
+$("#collapseButton").click(function() {
+  $("#language_menu").toggleClass( "lowZindex" );
+  $("#header-logo").toggleClass( "lowZindex" );
+});
+</script>
 <script>
 $('#login').on('hidden.bs.modal', function (e) {
    location.href= "/";

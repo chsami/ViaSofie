@@ -103,7 +103,8 @@ class Pand(models.Model):
     handelstatus = models.ForeignKey(Handelstatus)
     voortgang = models.ForeignKey(Voortgang)
     beschrijving = models.CharField(max_length = 1000, blank=True, null=True)
-
+    uitgelicht = models.BooleanField(default= False)
+    prijs = models.DecimalField(default=0, max_digits=18, decimal_places=2)
     objects = models.Manager()
 
     def __str__(self):
@@ -113,13 +114,18 @@ class Pand(models.Model):
 class Tag(models.Model):
     #id autocreated by django
     tagnaam = models.CharField(max_length=128)
-    pand = models.ManyToManyField(Pand)
 
     def __str__(self):
         return self.tagnaam
 
+class TagPand(models.Model):
+    tag = models.ForeignKey(Tag)
+    pand = models.ForeignKey(Pand)
+    value = models.CharField(max_length=255)
+
 class Foto(models.Model):
     url = models.CharField(max_length=255)
+    thumbnail = models.BooleanField(default=False)
     docfile = models.FileField(upload_to='documents/%Y/%m/%d', blank=True)
     pand = models.ForeignKey(Pand)
 
@@ -133,3 +139,15 @@ class Ebook(models.Model):
 
     def __str__(self):
         return self.id
+
+class Faq(models.Model):
+    titel = models.CharField(max_length=128)
+    content = models.CharField(max_length=2500)
+
+    def __str__(self):
+        return str(self.id)
+
+class Partner(models.Model):
+    naam = models.CharField(max_length=128)
+    onderschrift = models.CharField(max_length=128)
+    foto_url =  models.CharField(max_length=255)

@@ -8,6 +8,9 @@ from django.db import models
 from webapp.models import *
 from webapp.models import Pand as PandModel
 from webapp.models import Foto as FotoModel
+from webapp.models import Faq as FaqModel
+from webapp.models import Partner as PartnerModel
+from webapp.models import User as UserModel
 from django.utils.translation import ugettext as _
 from webapp.forms import *
 import hashlib
@@ -16,33 +19,52 @@ from django.utils import timezone
 from django.core.mail import send_mail, BadHeaderError
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
+
 # Create your views here.
 def languageselector(request):
+    if request.method == 'POST':
+        # languager = form.cleaned_data['selected']
+        path = 'webapp/locale/nl/LC_MESSAGES/django.po'
+        lines = tuple(open(filename, 'r'))
+
+        return render_to_response('webapp/languageselector.html', {'lines': lines})
+
     return render(request, 'webapp/languageselector.html')
+
 
 def index(request):
     return render(request, 'webapp/index.html')
 
 
 def panddetail(request, pand_referentienummer):
-	pand = PandModel.objects.get(referentienummer=pand_referentienummer)
-	fotos = FotoModel.objects.filter(pand_id=pand.id)
-	return render_to_response('webapp/pand.html', {'pand': pand, 'fotos': fotos})
+    pand = PandModel.objects.get(referentienummer=pand_referentienummer)
+    #voeg extra gegevens toe
+    relatedPands= PandModel.objects.filter(postcodeID=pand.postcodeID)
+    relatedPandsfotos = []
+    for relatedPand in relatedPands:
+        relatedPandsfotos.append(FotoModel.objects.filter(pand_id=relatedPand.id, thumbnail='True'))
+    fotos = FotoModel.objects.filter(pand_id=pand.id)
+    return render_to_response('webapp/pand.html', {'pand': pand, 'fotos' : fotos, 'relatedPands' : relatedPands, 'relatedPandsfotos': relatedPandsfotos}, context_instance=RequestContext(request))
 
 def about(request):
 	return render(request, 'webapp/about.html')
 
-def panden(request, query=None):
-	panden_list = PandModel.objects.all()
-	#paginator = Paginator(panden_list, 1)
-	#page = request.GET.get('page')
-	#try:
-	#	panden = paginator.page(page)
-	#except PageNotAnInteger:
-	#	panden = paginator.page(1)
-	#except EmptyPage:
-	#	panden = paginator.page(paginator.num_pages)
-	return render_to_response('webapp/panden.html', {'panden': panden_list}, context_instance=RequestContext(request))
+def panden(request):
+    panden = PandModel.objects.all().values()
+    referentienummer_lijst = []
+    for pand in panden:
+        referentienummer = (pand['referentienummer'])
+        referentienummer = str(referentienummer).translate(None, '-')
+        referentienummer_lijst.append(referentienummer)
+    context = {
+        'ref_lijst' : referentienummer_lijst,
+        'panden': PandModel.objects.all().values(),
+        'panden_item': 'webapp/panden_item.html',
+    }
+    template = 'webapp/panden.html'
+    if request.is_ajax():
+        template = 'webapp/panden_item.html'
+    return render_to_response(template, context, context_instance=RequestContext(request))
 
 def contact(request):
     if request.method == 'POST':
@@ -71,19 +93,15 @@ def contact(request):
 
             # to = 'liekensjeff@gmail.com'
             # send_mail(subject, message, sender, to, fail_silently=False )
-    else:
-		form = ContactForm()
+	form = ContactForm()
     return render_to_response('webapp/contact.html', {
 	   'form': form,
 	}, context_instance=RequestContext(request))
 
 
-
-
-
-
 def advies(request):
-	return render(request, 'webapp/advies.html')
+	faq_list = FaqModel.objects.all()
+	return render_to_response('webapp/advies.html', {'faq_list': faq_list}, context_instance=RequestContext(request))
 
 def huren(request):
 	return render(request, 'webapp/huren.html')
@@ -96,6 +114,21 @@ def forms(request):
 
 def referenties(request):
 	return render(request, 'webapp/referenties.html')
+
+def disclaimer(request):
+	return render(request, 'webapp/disclaimer.html')
+
+def privacy(request):
+    return render(request, 'webapp/privacy.html')
+
+def account(request):
+    current_user = request.user
+    if current_user.is_authenticated():
+        # Do something for authenticated users.
+        return render_to_response('webapp/account.html', {'current_user': current_user}, context_instance=RequestContext(request))
+    else:
+        # Do something for anonymous users.
+        return render_to_response('webapp/account.html', {'current_user': current_user}, context_instance=RequestContext(request))
 
 def login(request):
 	"""
@@ -134,7 +167,9 @@ def loginpopup(request):
 	}, context_instance=RequestContext(request))
 
 def partners(request):
-	return render(request, 'webapp/partners.html')
+	partner_list = PartnerModel.objects.all()
+	return render_to_response('webapp/partners.html', {'partner_list': partner_list}, context_instance=RequestContext(request))
+
 def formsucces(request):
 	return render(request, 'webapp/formsucces.html')
 
@@ -243,7 +278,7 @@ def register(request):
                 emailsalt = emailsalt.encode('utf8')
             datas['activation_key']= hashlib.sha1(salt+emailsalt).hexdigest()
 
-            datas['email_path']="\\ActivationEmail.py"
+            datas['email_path']="/ActivationEmail.py"
             datas['email_subject']="Welkom bij ViaSofie"
 
             form.sendEmail(datas) #Send validation email
@@ -283,8 +318,8 @@ def new_activation_link(request, user_id):
     if user is not None and not user.is_active:
         datas['username']=user.username
         datas['email']=user.email
-        datas['email_path']="\\ResendEmail.py"
-        datas['email_subject']="Nouveau lien d'activation yourdomain"
+        datas['email_path']="/ResendEmail.py"
+        datas['email_subject']="Jou nieuwe activatielink bij ViaSofie"
 
         salt = hashlib.sha1(str(random.random())).hexdigest()[:5]
         usernamesalt = datas['username']
@@ -328,3 +363,9 @@ def foto(request):
 		'webapp/foto.html',
 		{'form': form}
 	)
+
+# EDIT VIEWS
+def panddetail_edit(request, pand_referentienummer):
+	pand = PandModel.objects.get(referentienummer=pand_referentienummer)
+	fotos = FotoModel.objects.filter(pand_id=pand.id)
+	return render_to_response('webapp/edit/pand.html', {'pand': pand, 'fotos': fotos}, context_instance=RequestContext(request))

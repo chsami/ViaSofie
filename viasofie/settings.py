@@ -31,7 +31,9 @@ ALLOWED_HOSTS = ['localhost']
 
 INSTALLED_APPS = (
     'webapp',
+    'djng',
     #'grappelli',
+    'rosetta',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -140,3 +142,10 @@ TEMPLATES = [
     },
 },
 ]
+
+ROSETTA_REQUIRES_AUTH= False;
+
+# INSTALLED_APPS += ('lockdown', )
+# MIDDLEWARE_CLASSES += ('lockdown.middleware.LockdownMiddleware', )
+# LOCKDOWN_PASSWORDS = ('BlackLabelZero', )
+# LOCKDOWN_FORM = 'lockdown.forms.LockdownForm'

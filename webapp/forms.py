@@ -104,9 +104,9 @@ class Pand(forms.ModelForm):
 		fields = ['user', 'straatnaam', 'huisnr', 'postcodeID', 'handelstatus', 'voortgang',]
 
 class Tag(forms.ModelForm):
-	class Meta:
-		model = Tag
-		fields = ['tagnaam', 'pand',]
+    class Meta:
+        model = Tag
+        fields = ['tagnaam']
 
 class Log(forms.ModelForm):
 	class Meta:

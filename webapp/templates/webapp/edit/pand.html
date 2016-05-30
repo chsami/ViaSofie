@@ -1,13 +1,32 @@
-{% extends 'webapp/base.html' %} {% load staticfiles %} {% block header %}
+{% extends 'webapp/base.html' %} {% load staticfiles %} {% block header %} {% load djng_tags %}
 <script type='text/javascript' src="{% static 'webapp/scripts/index.js' %}"></script>
 <script type='text/javascript' src="{% static 'webapp/scripts/jquery.flexslider.js' %}"></script>
 <script type='text/javascript' src="{% static 'webapp/scripts/jquery.flexisel.js' %}"></script>
 <script src="http://maps.googleapis.com/maps/api/js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <link rel="stylesheet" href="{% static 'webapp/css/flexslider.css' %}" type="text/css" media="screen" /> {% endblock header %} {% block content %}
 <div class="container">
+
+<!-- Werkend voorbeeld -->
+{% angularjs %}
+<div>
+<p>Eigenaar (gebruiker): <input type="text" ng-model="user"></p>
+<p>Straatnaam: <input type="text" ng-model="straatnaam"></p>
+<p>Huisnr: <input type="text" ng-model="huisnr"></p>
+<p>Bus: <input type="text" ng-model="bus"></p>
+<p>Postcode: <input type="text" ng-model="postcode"></p>
+<p>Beschrijving: <input type="text" ng-model="beschrijving"></p>
+<p>Handelstatus: <input type="text" ng-model="handelstatus"></p>
+<p>Voortgang: <input type="text" ng-model="voortgang"></p>
+</div>
+{% endangularjs %}
+<!-- Einde werkend voorbeeld -->
+
     <div class="buy-single-single">
         <div class=" buying-top">
+        <!-- GEWENST RESULTAAT -->
             <p>{{ pand.straatnaam }} - {{pand.postcodeID.stadsnaam}}</p>
+            <!-- EINDE GEWENST RESULTAAT -->
             <div class="flexslider">
             <div id="slider" class="flexslider">
                 <ul class="slides">
@@ -48,7 +67,7 @@
                 itemMargin: 5,
                 asNavFor: '#slider'
               });
-
+             
               $('#slider').flexslider({
                 animation: "slide",
                 controlNav: false,
@@ -86,7 +105,7 @@
                         </tr>
                         <tr>
                             <td>Price :</td>
-                            <td>{{pand.prijs}}</td>
+                            <td>30-40 lacs</td>
                         </tr>
                     </tbody>
                 </table>
@@ -121,15 +140,14 @@
         <h3>Related Projects</h3>
         <div class="content-bottom-in">
             <ul id="flexiselDemo1">
-              {% for pand in relatedPands %}
                 <li>
                     <div class="project-fur">
-                        <a href="/pand/"><img class="img-responsive" src="{{relatedPandsfotos}}[{{forloop.counter0}}]" alt="" /> </a>
+                        <a href="single.html"><img class="img-responsive" src="{% static 'webapp/images/templateImg/pi.jpg' %}" alt="" /> </a>
                         <div class="fur">
                             <div class="fur1">
-                                <span class="fur-money">{{pand.prijs}}</span>
-                                <h6 class="fur-name"><a href="/pand/">{{ pand.straatnaam }}</a></h6>
-                                <!-- <span>België</span> -->
+                                <span class="fur-money">$2.44 Lacs - 5.28 Lacs </span>
+                                <h6 class="fur-name"><a href="single.html">Contrary to popular</a></h6>
+                                <span>Paris</span>
                             </div>
                             <div class="fur2">
                                 <span>2 BHK</span>
@@ -137,8 +155,7 @@
                         </div>
                     </div>
                 </li>
-                {% endfor %}
-                <!-- <li>
+                <li>
                     <div class="project-fur">
                         <a href="single.html"><img class="img-responsive" src="{% static 'webapp/images/templateImg/pi1.jpg' %}" alt="" /> </a>
                         <div class="fur">
@@ -182,7 +199,7 @@
                             </div>
                         </div>
                     </div>
-                </li> -->
+                </li>
             </ul>
             <script type="text/javascript">
             $(window).load(function() {
