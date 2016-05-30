@@ -18,6 +18,8 @@ urlpatterns = [
     url(r'^privacy/$', views.privacy, name='privacy'),
     url(r'^account/$', views.account, name='account'),
     url(r'^loginpopup/$', views.loginpopup, name='loginpopup'),
+    url(r'^sander/(?P<pand_referentienummer>[a-zA-Z0-9_]+)/$', views.sander, name='sander'),
+
 
     #Auth
     url(r'^register/$', views.register, name='register'),

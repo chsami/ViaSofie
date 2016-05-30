@@ -1,0 +1,217 @@
+{% extends 'webapp/base.html' %} {% load inplace_edit %} {% load staticfiles %} {% block header %} {% inplace_toolbar %}
+<script type='text/javascript' src="{% static 'webapp/scripts/index.js' %}"></script>
+<script type='text/javascript' src="{% static 'webapp/scripts/jquery.flexslider.js' %}"></script>
+<script type='text/javascript' src="{% static 'webapp/scripts/jquery.flexisel.js' %}"></script>
+<script src="http://maps.googleapis.com/maps/api/js"></script>
+<link rel="stylesheet" href="{% static 'webapp/css/flexslider.css' %}" type="text/css" media="screen" /> {% endblock header %} {% block content %}
+<div class="container">
+    <div class="buy-single-single">
+        <div class=" buying-top">
+            <p>{% inplace_edit "pand.straatnaam" %} - {{pand.postcodeID.stadsnaam}}</p>
+            <div class="flexslider">
+            <div id="slider" class="flexslider">
+                <ul class="slides">
+                    {% for foto in fotos %}
+                    <li data-thumb="{{foto.url}}">
+                        <img src="{{foto.url}}"/>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div id="carousel" class="flexslider">
+                <ul class="slides">
+                    {% for foto in fotos %}
+                    <li data-thumb="{{foto.url}}" style="padding-left: 10px">
+                        <img src="{{foto.url}}"/>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <!-- FlexSlider -->
+            <script>
+            // Can also be used with $(document).ready()
+            //$(window).load(function() {
+            //    $('.flexslider').flexslider({
+            //        animation: "slide",
+            //        controlNav: "thumbnails"
+            //    });
+            //});
+
+            $(window).load(function() {
+              // The slider being synced must be initialized first
+              $('#carousel').flexslider({
+                animation: "slide",
+                controlNav: false,
+                animationLoop: false,
+                slideshow: false,
+                itemWidth: 169,
+                itemMargin: 5,
+                asNavFor: '#slider'
+              });
+
+              $('#slider').flexslider({
+                animation: "slide",
+                controlNav: false,
+                animationLoop: true,
+                slideshow: true,
+                sync: "#carousel"
+              });
+            });
+            </script>
+        </div>
+        <div class="buy-sin-single">
+            <div class="col-sm-5 middle-side immediate">
+                <h4>Huis</h4>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>Bed :</td>
+                            <td>2 BHK</td>
+                        </tr>
+                        <tr>
+                            <td>Baths :</td>
+                            <td>5</td>
+                        </tr>
+                        <tr>
+                            <td>Build-up Area :</td>
+                            <td>100 Sq.Yrds</td>
+                        </tr>
+                        <tr>
+                            <td>Plot Area :</td>
+                            <td>150Sq.Yrds</td>
+                        </tr>
+                        <tr>
+                            <td>Age of property :</td>
+                            <td>4 - 10 years</td>
+                        </tr>
+                        <tr>
+                            <td>Price :</td>
+                            <td>{{pand.prijs}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="   right-side">
+                    <a href="/contact" class="hvr-sweep-to-right more">Contact Builder</a>
+                </div>
+            </div>
+            <div class="col-sm-7 buy-sin">
+                <h4>Description</h4>
+                <p>{{ pand.beschrijving }}</p>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+        <div class="map-buy-single">
+            <h4>Neighborhood Info</h4>
+            <div class="map-buy-single1">
+                <iframe
+                     src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDUBedm7kPj8hfOMT9Z4qXrMCvdpLiEPHE&amp;q={{pand.postcodeID.stadsnaam}},{{pand.straatnaam}},{{pand.huisnr}}"
+                     streetViewControl=true
+                     width="100%"
+                     height="370px"
+                     style="border:0">
+                </iframe>
+            </div>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+</div>
+<!---->
+<div class="container">
+    <div class="future">
+        <h3>Related Projects</h3>
+        <div class="content-bottom-in">
+            <ul id="flexiselDemo1">
+              {% for pand in relatedPands %}
+                <li>
+                    <div class="project-fur">
+                        <a href="/pand/"><img class="img-responsive" src="{{relatedPandsfotos}}[{{forloop.counter0}}]" alt="" /> </a>
+                        <div class="fur">
+                            <div class="fur1">
+                                <span class="fur-money">{{pand.prijs}}</span>
+                                <h6 class="fur-name"><a href="/pand/">{{ pand.straatnaam }}</a></h6>
+                                <!-- <span>België</span> -->
+                            </div>
+                            <div class="fur2">
+                                <span>2 BHK</span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+                <!-- <li>
+                    <div class="project-fur">
+                        <a href="single.html"><img class="img-responsive" src="{% static 'webapp/images/templateImg/pi1.jpg' %}" alt="" /> </a>
+                        <div class="fur">
+                            <div class="fur1">
+                                <span class="fur-money">$2.44 Lacs - 5.28 Lacs </span>
+                                <h6 class="fur-name"><a href="single.html">Contrary to popular</a></h6>
+                                <span>Paris</span>
+                            </div>
+                            <div class="fur2">
+                                <span>2 BHK</span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="project-fur">
+                        <a href="single.html"><img class="img-responsive" src="{% static 'webapp/images/templateImg/pi2.jpg' %}" alt="" /> </a>
+                        <div class="fur">
+                            <div class="fur1">
+                                <span class="fur-money">$2.44 Lacs - 5.28 Lacs </span>
+                                <h6 class="fur-name"><a href="single.html">Contrary to popular</a></h6>
+                                <span>Paris</span>
+                            </div>
+                            <div class="fur2">
+                                <span>2 BHK</span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="project-fur">
+                        <a href="single.html"><img class="img-responsive" src="{% static 'webapp/images/templateImg/pi3.jpg' %}" alt="" /> </a>
+                        <div class="fur">
+                            <div class="fur1">
+                                <span class="fur-money">$2.44 Lacs - 5.28 Lacs </span>
+                                <h6 class="fur-name"><a href="single.html">Contrary to popular</a></h6>
+                                <span>Paris</span>
+                            </div>
+                            <div class="fur2">
+                                <span>2 BHK</span>
+                            </div>
+                        </div>
+                    </div>
+                </li> -->
+            </ul>
+            <script type="text/javascript">
+            $(window).load(function() {
+                $("#flexiselDemo1").flexisel({
+                    visibleItems: 4,
+                    animationSpeed: 1000,
+                    autoPlay: true,
+                    autoPlaySpeed: 3000,
+                    pauseOnHover: true,
+                    enableResponsiveBreakpoints: true,
+                    responsiveBreakpoints: {
+                        portrait: {
+                            changePoint: 480,
+                            visibleItems: 1
+                        },
+                        landscape: {
+                            changePoint: 640,
+                            visibleItems: 2
+                        },
+                        tablet: {
+                            changePoint: 768,
+                            visibleItems: 3
+                        }
+                    }
+                });
+
+            });
+            </script>
+        </div>
+    </div>
+</div>
+{% endblock content %}

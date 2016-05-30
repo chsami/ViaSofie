@@ -1,4 +1,6 @@
+{% load inplace_edit %}
 {% load staticfiles %}
+{% inplace_toolbar %}
 <html>
 <head>
 	<!--- Basic Page Needs
@@ -8,6 +10,8 @@
 	<meta name="description" content="Developer">
 	<meta name="author" content="Sacha, Tinne, Jeff, Diemas, Sander">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
 
 	<!-- CSS
     ================================================== -->
@@ -25,7 +29,7 @@
 
    <!-- Script
    ================================================== -->
-	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<!-- <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script> -->
 	<script type='text/javascript' src="{% static 'webapp/scripts/jquery.min.js' %}"></script>
 	<script type='text/javascript' src="{% static 'webapp/scripts/jquery.mobile.customized.min.js' %}"></script>
 	<script type='text/javascript' src="{% static 'webapp/scripts/jquery.easing.1.3.js' %}"></script>

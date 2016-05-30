@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['localhost']
 INSTALLED_APPS = (
     'webapp',
     'captcha',
+    'inplaceeditform',
     #'djng',
     #'grappelli',
     'rosetta',
@@ -155,3 +156,5 @@ ROSETTA_REQUIRES_AUTH= False;
 # MIDDLEWARE_CLASSES += ('lockdown.middleware.LockdownMiddleware', )
 # LOCKDOWN_PASSWORDS = ('BlackLabelZero', )
 # LOCKDOWN_FORM = 'lockdown.forms.LockdownForm'
+
+# inplaceedit
