@@ -103,7 +103,8 @@ class Pand(models.Model):
     handelstatus = models.ForeignKey(Handelstatus)
     voortgang = models.ForeignKey(Voortgang)
     beschrijving = models.CharField(max_length = 1000, blank=True, null=True)
-
+    uitgelicht = models.BooleanField(default= False)
+    prijs = models.DecimalField(default=0, max_digits=18, decimal_places=2)
     objects = models.Manager()
 
     def __str__(self):
@@ -124,6 +125,7 @@ class TagPand(models.Model):
 
 class Foto(models.Model):
     url = models.CharField(max_length=255)
+    thumbnail = models.BooleanField(default=False)
     docfile = models.FileField(upload_to='documents/%Y/%m/%d', blank=True)
     pand = models.ForeignKey(Pand)
 

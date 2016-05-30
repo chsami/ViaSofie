@@ -48,7 +48,7 @@
                 itemMargin: 5,
                 asNavFor: '#slider'
               });
-             
+
               $('#slider').flexslider({
                 animation: "slide",
                 controlNav: false,
@@ -86,7 +86,7 @@
                         </tr>
                         <tr>
                             <td>Price :</td>
-                            <td>30-40 lacs</td>
+                            <td>{{pand.prijs}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -121,14 +121,15 @@
         <h3>Related Projects</h3>
         <div class="content-bottom-in">
             <ul id="flexiselDemo1">
+              {% for pand in relatedPands %}
                 <li>
                     <div class="project-fur">
-                        <a href="single.html"><img class="img-responsive" src="{% static 'webapp/images/templateImg/pi.jpg' %}" alt="" /> </a>
+                        <a href="/pand/"><img class="img-responsive" src="{{relatedPandsfotos}}[{{forloop.counter0}}]" alt="" /> </a>
                         <div class="fur">
                             <div class="fur1">
-                                <span class="fur-money">$2.44 Lacs - 5.28 Lacs </span>
-                                <h6 class="fur-name"><a href="single.html">Contrary to popular</a></h6>
-                                <span>Paris</span>
+                                <span class="fur-money">{{pand.prijs}}</span>
+                                <h6 class="fur-name"><a href="/pand/">{{ pand.straatnaam }}</a></h6>
+                                <!-- <span>België</span> -->
                             </div>
                             <div class="fur2">
                                 <span>2 BHK</span>
@@ -136,7 +137,8 @@
                         </div>
                     </div>
                 </li>
-                <li>
+                {% endfor %}
+                <!-- <li>
                     <div class="project-fur">
                         <a href="single.html"><img class="img-responsive" src="{% static 'webapp/images/templateImg/pi1.jpg' %}" alt="" /> </a>
                         <div class="fur">
@@ -180,7 +182,7 @@
                             </div>
                         </div>
                     </div>
-                </li>
+                </li> -->
             </ul>
             <script type="text/javascript">
             $(window).load(function() {

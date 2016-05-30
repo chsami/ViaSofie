@@ -37,16 +37,27 @@ def index(request):
 
 
 def panddetail(request, pand_referentienummer):
-	pand = PandModel.objects.get(referentienummer=pand_referentienummer)
-	fotos = FotoModel.objects.filter(pand_id=pand.id)
-    # relatedPands = PandModel.objects.filter(pand_postcodeID_id=pand.postcodeID && pand_voortgang_id.status != 'Verkocht' && geld...)
-	return render_to_response('webapp/pand.html', {'pand': pand, 'fotos': fotos},  context_instance=RequestContext(request))
+    pand = PandModel.objects.get(referentienummer=pand_referentienummer)
+    #voeg extra gegevens toe
+    relatedPands= PandModel.objects.filter(postcodeID=pand.postcodeID)
+    relatedPandsfotos = []
+    for relatedPand in relatedPands:
+        relatedPandsfotos.append(FotoModel.objects.filter(pand_id=relatedPand.id, thumbnail='True'))
+    fotos = FotoModel.objects.filter(pand_id=pand.id)
+    return render_to_response('webapp/pand.html', {'pand': pand, 'fotos' : fotos, 'relatedPands' : relatedPands, 'relatedPandsfotos': relatedPandsfotos}, context_instance=RequestContext(request))
 
 def about(request):
 	return render(request, 'webapp/about.html')
 
 def panden(request):
+    panden = PandModel.objects.all().values()
+    referentienummer_lijst = []
+    for pand in panden:
+        referentienummer = (pand['referentienummer'])
+        referentienummer = str(referentienummer).translate(None, '-')
+        referentienummer_lijst.append(referentienummer)
     context = {
+        'ref_lijst' : referentienummer_lijst,
         'panden': PandModel.objects.all().values(),
         'panden_item': 'webapp/panden_item.html',
     }
