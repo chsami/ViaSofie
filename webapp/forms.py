@@ -2,7 +2,7 @@ from django import forms
 from django.forms import ModelForm
 from django.contrib import admin
 from webapp.models import *
-from captcha.fields import ReCaptchaField
+# from captcha.fields import ReCaptchaField
 from django.template import Context, Template
 from django.conf import settings
 from django.core.mail import send_mail
@@ -27,11 +27,12 @@ class RegistrationForm(forms.ModelForm):
     huisnr = forms.CharField(label="*Huisnummer", widget=forms.NumberInput(attrs={'placeholder': 'Bijv: 1'}))
     busnr = forms.CharField(required=False, label="Busnummer", widget=forms.NumberInput(attrs={'placeholder': 'Bijv: 1'}))
     telefoonnr = forms.CharField(label="*Telefoonnummer", widget=forms.TextInput(attrs={'placeholder': 'Telefoonnr'}))
-    captcha = ReCaptchaField()
+    # captcha = ReCaptchaField()
 
     class Meta:
         model = User
-        fields = ['email', 'password1', 'password2', 'voornaam', 'naam', 'straatnaam', 'huisnr', 'postcode', 'busnr', 'telefoonnr', 'captcha', ]
+		# fields = ['email', 'password1', 'password2', 'voornaam', 'naam', 'straatnaam', 'huisnr', 'postcode', 'busnr', 'telefoonnr', 'captcha', ]
+        fields = ['email', 'password1', 'password2', 'voornaam', 'naam', 'straatnaam', 'huisnr', 'postcode', 'busnr', 'telefoonnr', ]
 
     def clean(self):
         """

@@ -31,7 +31,7 @@ ALLOWED_HOSTS = ['localhost']
 
 INSTALLED_APPS = (
     'webapp',
-    'captcha',
+    # 'captcha',
     #'djng',
     #'grappelli',
     'rosetta',

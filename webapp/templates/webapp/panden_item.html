@@ -1,5 +1,6 @@
 {% load staticfiles %} {% load endless %}
 {% paginate panden %}
+
     {% for pand in panden %}
     <div class="col-md-3 project-grid">
         <div class="project-grid-top">
@@ -17,7 +18,7 @@
                 </div>
                 <p>2, 3, 4 BHK Flats</p>
                 <p class="cost">$65,000</p>
-                <a href="/pand/{{ref_lijst.0}}" class="hvr-sweep-to-right more">See Details</a>
+                <a href="/pand/{{ pand.referentienummer|cut:"-"}}" class="hvr-sweep-to-right more">See Details</a>
             </div>
         </div>
     </div>
