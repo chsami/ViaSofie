@@ -4,7 +4,7 @@
     {% for pand in panden %}
     <div class="col-md-3 project-grid">
         <div class="project-grid-top">
-            <a href="/pand" class="mask"><img src="{% static 'webapp/images/templateImg/ga.jpg' %}" class="img-responsive zoom-img" alt="" /></a>
+            <a href="/pand/{{ pand.referentienummer|cut:"-"}}" class="mask"><img src="{% static 'webapp/images/templateImg/ga.jpg' %}" class="img-responsive zoom-img" alt="" /></a>
             <div class="col-md1">
                 <div class="col-md2">
                     <div class="col-md3">
