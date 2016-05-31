@@ -125,7 +125,7 @@ class TagPand(models.Model):
 
 class Foto(models.Model):
     url = models.CharField(max_length=255)
-    thumbnail = models.BooleanField(default=False)
+    thumbnail = models.BooleanField(default= False)
     docfile = models.FileField(upload_to='documents/%Y/%m/%d', blank=True)
     pand = models.ForeignKey(Pand)
 

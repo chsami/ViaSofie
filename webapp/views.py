@@ -79,7 +79,8 @@ def contact(request):
                 send_mail(subject, fullmessage, sender, ['liekensjeff@gmail.com'])
             except BadHeaderError:
                 return HttpResponse("invalid.")
-
+    else:
+        form = ContactForm()
             # template = get_template('contact_template.txt')
             # context = Context({
             #     'contact_email': sender,
@@ -93,7 +94,7 @@ def contact(request):
 
             # to = 'liekensjeff@gmail.com'
             # send_mail(subject, message, sender, to, fail_silently=False )
-	form = ContactForm()
+
     return render_to_response('webapp/contact.html', {
 	   'form': form,
 	}, context_instance=RequestContext(request))
