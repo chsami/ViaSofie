@@ -11,6 +11,7 @@ from webapp.models import Foto as FotoModel
 from webapp.models import Faq as FaqModel
 from webapp.models import Partner as PartnerModel
 from webapp.models import User as UserModel
+from webapp.models import GoedDoel as GoedDoelModel
 from django.utils.translation import ugettext as _
 from webapp.forms import *
 import hashlib
@@ -41,7 +42,10 @@ def index(request):
         if len(panden_lijst) > 0:
             uitgelichte_panden.append(panden_lijst.pop(random.randint(0, len(panden_lijst) -1)))
 
-    return render_to_response('webapp/index.html', {'uitgelichte_panden': uitgelichte_panden}, context_instance=RequestContext(request))
+    # GOEDE DOELEN
+    goede_doelen = GoedDoelModel.objects.all()
+
+    return render_to_response('webapp/index.html', {'uitgelichte_panden': uitgelichte_panden, 'goede_doelen': goede_doelen}, context_instance=RequestContext(request))
 
 def panddetail(request, pand_referentienummer):
     pand = PandModel.objects.get(referentienummer=pand_referentienummer)

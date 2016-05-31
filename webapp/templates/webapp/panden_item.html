@@ -4,7 +4,7 @@
     {% for pand in panden %}
     <div class="col-md-3 project-grid">
         <div class="project-grid-top">
-            <a href="/pand/{{ pand.referentienummer|cut:"-"}}" class="mask"><img src="{% static 'webapp/images/templateImg/ga.jpg' %}" class="img-responsive zoom-img" alt="" /></a>
+            <a href="/pand/{{ pand.referentienummer|cut:"-"}}" class="mask"><img src="{{pand.thumbnail_url}}" class="img-responsive zoom-img" alt="" /></a>
             <div class="col-md1">
                 <div class="col-md2">
                     <div class="col-md3">
@@ -17,7 +17,7 @@
                     <div class="clearfix"> </div>
                 </div>
                 <p>2, 3, 4 BHK Flats</p>
-                <p class="cost">$65,000</p>
+                <p class="cost">€ {{pand.prijs}}</p>
                 <a href="/pand/{{ pand.referentienummer|cut:"-"}}" class="hvr-sweep-to-right more">See Details</a>
             </div>
         </div>
