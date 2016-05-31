@@ -54,7 +54,7 @@
                 {% for uitgelicht_pand in uitgelichte_panden %}
                 <div class="col-md-4 box_2">
                     <a href="single.html" class="mask">
-                        <img class="img-responsive zoom-img" src="{{uitgelichte_panden_fotos.forloop.counter0.url}}" alt="">
+                        <img class="img-responsive zoom-img" src="{{uitgelicht_pand.thumbnail_url}}" alt="">
                         <span class="four">{{uitgelicht_pand.prijs}}</span>
                     </a>
                     <div class="most-1">
@@ -70,53 +70,23 @@
         <div class="services">
             <div class="container">
                 <div class="service-top">
-                    <h3>Service</h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                    <h3>Goede doelen</h3>
+                    <p>Halloooo mijn naam is Sacha! (die kleine met zijn grote kuif)</p>
                 </div>
                 <div class="services-grid">
+                    {% for goed_doel in goede_doelen %}
                     <div class="col-md-6 service-top1">
                         <div class=" ser-grid">
-                            <a href="#" class="hi-icon hi-icon-archive glyphicon glyphicon-user"> </a>
+                            <!-- <a href="#" class="hi-icon hi-icon-archive glyphicon glyphicon-user"> </a> -->
+                            <a href="{{goed_doel.url}}"><img class="img-responsive" src="goed_doel.foto_url"></a>
                         </div>
                         <div class="ser-top">
-                            <h4>Ut wisi enim ad</h4>
-                            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical.Contrary to popular belief, Lorem Ipsum </p>
+                            <h4>{{goed_doel.naam}}</h4>
+                            <p>{{goed_doel.bijschrift}}</p>
                         </div>
                         <div class="clearfix"> </div>
                     </div>
-                    <div class="col-md-6 service-top1">
-                        <div class=" ser-grid">
-                            <a href="#" class="hi-icon hi-icon-archive glyphicon glyphicon-leaf"> </a>
-                        </div>
-                        <div class="ser-top">
-                            <h4>Ut wisi enim ad</h4>
-                            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical.Contrary to popular belief, Lorem Ipsum </p>
-                        </div>
-                        <div class="clearfix"> </div>
-                    </div>
-                    <div class="clearfix"> </div>
-                </div>
-                <div class="services-grid">
-                    <div class="col-md-6 service-top1">
-                        <div class=" ser-grid">
-                            <a href="#" class="hi-icon hi-icon-archive glyphicon glyphicon-cog"> </a>
-                        </div>
-                        <div class="ser-top">
-                            <h4>Ut wisi enim ad</h4>
-                            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical.Contrary to popular belief, Lorem Ipsum </p>
-                        </div>
-                        <div class="clearfix"> </div>
-                    </div>
-                    <div class="col-md-6 service-top1">
-                        <div class=" ser-grid">
-                            <a href="#" class="hi-icon hi-icon-archive glyphicon glyphicon-file"> </a>
-                        </div>
-                        <div class="ser-top">
-                            <h4>Ut wisi enim ad</h4>
-                            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical .Contrary to popular belief, Lorem Ipsum</p>
-                        </div>
-                        <div class="clearfix"> </div>
-                    </div>
+                    {% endfor %}
                     <div class="clearfix"> </div>
                 </div>
             </div>

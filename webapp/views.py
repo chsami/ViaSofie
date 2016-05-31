@@ -11,6 +11,7 @@ from webapp.models import Foto as FotoModel
 from webapp.models import Faq as FaqModel
 from webapp.models import Partner as PartnerModel
 from webapp.models import User as UserModel
+from webapp.models import GoedDoel as GoedDoelModel
 from django.utils.translation import ugettext as _
 from webapp.forms import *
 import hashlib
@@ -36,25 +37,23 @@ def index(request):
     panden = PandModel.objects.filter(uitgelicht=True)
     panden_lijst = list(panden)
     uitgelichte_panden = []
-    uitgelichte_panden_fotos = []
 
     for i in range (0,3):
         if len(panden_lijst) > 0:
             uitgelichte_panden.append(panden_lijst.pop(random.randint(0, len(panden_lijst) -1)))
-    for uitgelicht_pand in uitgelichte_panden:
-        uitgelichte_panden_fotos.append(list(FotoModel.objects.filter(pand_id=uitgelicht_pand.id))[0])
 
-    return render_to_response('webapp/index.html', {'uitgelichte_panden': uitgelichte_panden, 'uitgelichte_panden_fotos': uitgelichte_panden_fotos}, context_instance=RequestContext(request))
+    # GOEDE DOELEN
+    goede_doelen = GoedDoelModel.objects.all()
+
+    return render_to_response('webapp/index.html', {'uitgelichte_panden': uitgelichte_panden, 'goede_doelen': goede_doelen}, context_instance=RequestContext(request))
 
 def panddetail(request, pand_referentienummer):
     pand = PandModel.objects.get(referentienummer=pand_referentienummer)
     #voeg extra gegevens toe
     relatedPands= PandModel.objects.filter(postcodeID=pand.postcodeID)
-    relatedPandsfotos = []
-    for relatedPand in relatedPands:
-        relatedPandsfotos.append(list(FotoModel.objects.filter(pand_id=relatedPand.id))[0])
+
     fotos = FotoModel.objects.filter(pand_id=pand.id)
-    return render_to_response('webapp/pand.html', {'pand': pand, 'fotos' : fotos, 'relatedPands' : relatedPands, 'relatedPandsfotos': relatedPandsfotos}, context_instance=RequestContext(request))
+    return render_to_response('webapp/pand.html', {'pand': pand, 'fotos' : fotos, 'relatedPands' : relatedPands}, context_instance=RequestContext(request))
 
 def about(request):
 	return render(request, 'webapp/about.html')
