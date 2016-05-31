@@ -33,17 +33,18 @@ def languageselector(request):
 
 
 def index(request):
-    return render(request, 'webapp/index.html')
+    panden = PandModel.objects.filter(uitgelicht=True)
+    panden_lijst = list(panden)
+    uitgelichte_panden = []
+    uitgelichte_panden_fotos = []
 
-def sander(request, pand_referentienummer):
-    pand = PandModel.objects.get(referentienummer=pand_referentienummer)
-    #voeg extra gegevens toe
-    relatedPands= PandModel.objects.filter(postcodeID=pand.postcodeID)
-    relatedPandsfotos = []
-    for relatedPand in relatedPands:
-        relatedPandsfotos.append(FotoModel.objects.filter(pand_id=relatedPand.id, thumbnail='True'))
-    fotos = FotoModel.objects.filter(pand_id=pand.id)
-    return render_to_response('webapp/sander.html', {'pand': pand, 'fotos' : fotos, 'relatedPands' : relatedPands, 'relatedPandsfotos': relatedPandsfotos}, context_instance=RequestContext(request))
+    for i in range (0,3):
+        if len(panden_lijst) > 0:
+            uitgelichte_panden.append(panden_lijst.pop(random.randint(0, len(panden_lijst) -1)))
+    for uitgelicht_pand in uitgelichte_panden:
+        uitgelichte_panden_fotos.append(list(FotoModel.objects.filter(pand_id=uitgelicht_pand.id))[0])
+
+    return render_to_response('webapp/index.html', {'uitgelichte_panden': uitgelichte_panden, 'uitgelichte_panden_fotos': uitgelichte_panden_fotos}, context_instance=RequestContext(request))
 
 def panddetail(request, pand_referentienummer):
     pand = PandModel.objects.get(referentienummer=pand_referentienummer)
@@ -51,7 +52,7 @@ def panddetail(request, pand_referentienummer):
     relatedPands= PandModel.objects.filter(postcodeID=pand.postcodeID)
     relatedPandsfotos = []
     for relatedPand in relatedPands:
-        relatedPandsfotos.append(FotoModel.objects.filter(pand_id=relatedPand.id, thumbnail='True'))
+        relatedPandsfotos.append(list(FotoModel.objects.filter(pand_id=relatedPand.id))[0])
     fotos = FotoModel.objects.filter(pand_id=pand.id)
     return render_to_response('webapp/pand.html', {'pand': pand, 'fotos' : fotos, 'relatedPands' : relatedPands, 'relatedPandsfotos': relatedPandsfotos}, context_instance=RequestContext(request))
 

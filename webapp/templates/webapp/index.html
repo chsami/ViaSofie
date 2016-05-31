@@ -50,37 +50,19 @@
     <div class="content">
         <div class="content-grid">
             <div class="container">
-                <h3>Meest populair</h3>
+                <h3>In de spotlights</h3>
+                {% for uitgelicht_pand in uitgelichte_panden %}
                 <div class="col-md-4 box_2">
                     <a href="single.html" class="mask">
-                        <img class="img-responsive zoom-img" src="{% static 'webapp/images/templateImg/pc4.jpg' %}" alt="">
-                        <span class="four">40,000$</span>
+                        <img class="img-responsive zoom-img" src="{{uitgelichte_panden_fotos.forloop.counter0.url}}" alt="">
+                        <span class="four">{{uitgelicht_pand.prijs}}</span>
                     </a>
                     <div class="most-1">
-                        <h5><a href="single.html">Contrary to popular</a></h5>
-                        <p>Lorem ipsum</p>
+                        <h5><a href="single.html">{{uitgelicht_pand.straatnaam}}</a></h5>
+                        <p>{{uitgelicht_pand.postcodeID.stadsnaam}}</p>
                     </div>
                 </div>
-                <div class="col-md-4 box_2">
-                    <a href="single.html" class="mask">
-                        <img class="img-responsive zoom-img" src="{% static 'webapp/images/templateImg/pc5.jpg' %}" alt="">
-                        <span class="four">40,000$</span>
-                    </a>
-                    <div class="most-1">
-                        <h5><a href="single.html">Contrary to popular</a></h5>
-                        <p>Lorem ipsum</p>
-                    </div>
-                </div>
-                <div class="col-md-4 box_2">
-                    <a href="single.html" class="mask">
-                        <img class="img-responsive zoom-img" src="{% static 'webapp/images/templateImg/pc3.jpg' %}" alt="">
-                        <span class="four">40,000$</span>
-                    </a>
-                    <div class="most-1">
-                        <h5><a href="single.html">Contrary to popular</a></h5>
-                        <p>Lorem ipsum</p>
-                    </div>
-                </div>
+                {% endfor %}
                 <div class="clearfix"> </div>
             </div>
         </div>
