@@ -12,12 +12,15 @@ urlpatterns = [
     url(r'^huren/$', views.huren, name='huren'),
     url(r'^kopen/$', views.kopen, name='kopen'),
     url(r'^partners/$', views.partners, name='partners'),
+    url(r'^partnersform/$', views.partnersform, name='partnersform'),
     url(r'^panden/$', views.panden, name='panden'),
     url(r'^referenties/$', views.referenties, name='referenties'),
     url(r'^disclaimer/$', views.disclaimer, name='disclaimer'),
     url(r'^privacy/$', views.privacy, name='privacy'),
     url(r'^account/$', views.account, name='account'),
     url(r'^loginpopup/$', views.loginpopup, name='loginpopup'),
+    url(r'^sander/(?P<pand_referentienummer>[a-zA-Z0-9_]+)/$', views.sander, name='sander'),
+
 
     #Auth
     url(r'^register/$', views.register, name='register'),

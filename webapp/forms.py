@@ -8,6 +8,13 @@ from django.conf import settings
 from django.core.mail import send_mail
 import datetime
 
+class PartnersForm(forms.ModelForm):
+	naam = forms.CharField(label="Naam", widget=forms.TextInput(attrs={'placeholder': 'Naam'}))
+	onderschrift = forms.CharField(label="Onderschrift", widget=forms.TextInput(attrs={'placeholder': 'Onderschrift'}))
+	foto_url = forms.CharField(label="foto_url", widget=forms.TextInput(attrs={'placeholder': 'foto_url'}))
+	class Meta:
+		model = Partner
+		fields = ['naam', 'onderschrift', 'foto_url',]
 
 class Stad(forms.ModelForm):
 	class Meta:

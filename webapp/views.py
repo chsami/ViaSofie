@@ -35,6 +35,15 @@ def languageselector(request):
 def index(request):
     return render(request, 'webapp/index.html')
 
+def sander(request, pand_referentienummer):
+    pand = PandModel.objects.get(referentienummer=pand_referentienummer)
+    #voeg extra gegevens toe
+    relatedPands= PandModel.objects.filter(postcodeID=pand.postcodeID)
+    relatedPandsfotos = []
+    for relatedPand in relatedPands:
+        relatedPandsfotos.append(FotoModel.objects.filter(pand_id=relatedPand.id, thumbnail='True'))
+    fotos = FotoModel.objects.filter(pand_id=pand.id)
+    return render_to_response('webapp/sander.html', {'pand': pand, 'fotos' : fotos, 'relatedPands' : relatedPands, 'relatedPandsfotos': relatedPandsfotos}, context_instance=RequestContext(request))
 
 def panddetail(request, pand_referentienummer):
     pand = PandModel.objects.get(referentienummer=pand_referentienummer)
@@ -51,13 +60,7 @@ def about(request):
 
 def panden(request):
     panden = PandModel.objects.all().values()
-    referentienummer_lijst = []
-    for pand in panden:
-        referentienummer = (pand['referentienummer'])
-        referentienummer = str(referentienummer).translate(None, '-')
-        referentienummer_lijst.append(referentienummer)
     context = {
-        'ref_lijst' : referentienummer_lijst,
         'panden': PandModel.objects.all().values(),
         'panden_item': 'webapp/panden_item.html',
     }
@@ -170,6 +173,18 @@ def loginpopup(request):
 def partners(request):
 	partner_list = PartnerModel.objects.all()
 	return render_to_response('webapp/partners.html', {'partner_list': partner_list}, context_instance=RequestContext(request))
+
+def partnersform(request):
+	if request.method == "POST":
+		form = PartnersForm(request.POST)
+		if form.is_valid():
+			model_instance = form.save(commit=False)
+			model_instance.save()
+			return redirect('partners')
+	else:
+			form = PartnersForm()
+	return render(request, "webapp/forms.html", {'form': form})
+
 
 def formsucces(request):
 	return render(request, 'webapp/formsucces.html')
