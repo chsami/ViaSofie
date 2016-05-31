@@ -173,6 +173,18 @@ def partners(request):
 	partner_list = PartnerModel.objects.all()
 	return render_to_response('webapp/partners.html', {'partner_list': partner_list}, context_instance=RequestContext(request))
 
+def partnersform(request):
+	if request.method == "POST":
+		form = PartnersForm(request.POST)
+		if form.is_valid():
+			model_instance = form.save(commit=False)
+			model_instance.save()
+			return redirect('partners')
+	else:
+			form = PartnersForm()
+	return render(request, "webapp/forms.html", {'form': form})
+
+
 def formsucces(request):
 	return render(request, 'webapp/formsucces.html')
 

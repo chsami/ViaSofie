@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^huren/$', views.huren, name='huren'),
     url(r'^kopen/$', views.kopen, name='kopen'),
     url(r'^partners/$', views.partners, name='partners'),
+    url(r'^partnersform/$', views.partnersform, name='partnersform'),
     url(r'^panden/$', views.panden, name='panden'),
     url(r'^referenties/$', views.referenties, name='referenties'),
     url(r'^disclaimer/$', views.disclaimer, name='disclaimer'),
