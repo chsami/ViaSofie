@@ -121,10 +121,10 @@
         <h3>Related Projects</h3>
         <div class="content-bottom-in">
             <ul id="flexiselDemo1">
-              {% for pand in relatedPands %}
+              {% for related_pand in relatedPands %}
                 <li>
                     <div class="project-fur">
-                        <a href="/pand/"><img class="img-responsive" src="{{relatedPandsfotos.0.url}}" alt="" /> </a>
+                        <a href="/pand/"><img class="img-responsive" src="{{ related_pand.thumbnail_url }}" alt="" /> </a>
                         <div class="fur">
                             <div class="fur1">
                                 <span class="fur-money">{{pand.prijs}}</span>
@@ -189,7 +189,7 @@
                 $("#flexiselDemo1").flexisel({
                     visibleItems: 4,
                     animationSpeed: 1000,
-                    autoPlay: true,
+                    autoPlay: false,
                     autoPlaySpeed: 3000,
                     pauseOnHover: true,
                     enableResponsiveBreakpoints: true,

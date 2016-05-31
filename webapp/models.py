@@ -105,6 +105,7 @@ class Pand(models.Model):
     beschrijving = models.CharField(max_length = 1000, blank=True, null=True)
     uitgelicht = models.BooleanField(default= False)
     prijs = models.DecimalField(default=0, max_digits=18, decimal_places=2)
+    thumbnail_url = models.CharField(max_length=256, null=True, blank=True)
     objects = models.Manager()
 
     def __str__(self):
