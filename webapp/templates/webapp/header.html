@@ -6,8 +6,8 @@
             <input name="next" type="hidden" value="{{ redirect_to }}" />
             <select name="language" onchange='this.form.submit()' class="languageselect">
                 {% get_current_language as LANGUAGE_CODE %} {% get_available_languages as LANGUAGES %} {% get_language_info_list for LANGUAGES as languages %} {% for language in languages %}
-                <option class="flag flag-{{ language.code }}" value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected="selected" {% endif %}>
-                    <img class="flag flag-{{ language.code }}" />{{ language.code }}
+                <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected="selected" {% endif %}>
+                    {{ language.code }}
                 </option>
                 {% endfor %}
             </select>
@@ -30,7 +30,6 @@
                     <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Registreren</a></li>
                     <li><a href="#" data-toggle="modal" data-target="#login"  id="loginbutton"><span class="glyphicon glyphicon-log-in"></span> Aanmelden</a></li>
                     {% endif %}
-
                 </ul>
             </div>
         </div>
@@ -48,9 +47,15 @@
                     <li><a href='/about'>Over</a></li>
                     <li><a href='/partners'>Partners</a></li>
                     <li><a href='/contact'>Contact</a></li>
+                    <li class="ebookmenu"><a href='/ebook'>EBook</a></li>
                 </ul>
             </div>
             <div class="clearfix"> </div>
+        </div>
+        <div id="ebook" class="ebook">
+            <a href="/">
+                <img class="img-responsive" src="{% static 'webapp/images/book-icon.png' %}">
+            </a>
         </div>
     </div>
     <div class="modal fade" id="login" role="dialog">
