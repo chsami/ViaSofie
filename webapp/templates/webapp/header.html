@@ -62,7 +62,19 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-body">
-          <iframe src="/loginpopup" height="405px" width="250px" id="iframelogin" scrolling= "no" frameBorder="0" ALLOWTRANSPARENCY="true" style="overflow:hidden"> </iframe>
+          <div class="forms">
+          <form method="post" action="">
+          	<img class="img-responsive" src="{% static 'webapp/images/def logos via sofie - RGB-092.png' %}">
+          {% csrf_token %}
+          <table>
+          {{formlogin}}
+          </table>
+          <input id="submitbutton" name='loginbtn' type="submit" value="Log in" onClick='trigger();'/>
+          <p><a href="/resetpassword">Wachtwoord vergeten?</a></p>
+          <p><a href="/register">Registreer</a></p>
+          </form>
+          </div>
+          <!-- <iframe src="/loginpopup" height="405px" width="250px" id="iframelogin" scrolling= "no" frameBorder="0" ALLOWTRANSPARENCY="true" style="overflow:hidden"> </iframe> -->
         </div>
       </div>
     </div>
@@ -73,11 +85,11 @@ $("#collapseButton").click(function() {
   $("#header-logo").toggleClass( "lowZindex" );
 });
 </script>
-<script>
+<!-- <script>
 $('#login').on('hidden.bs.modal', function (e) {
    location.href= "/";
    location.href = "#";
 })
 
-</script>
+</script> -->
 </header>

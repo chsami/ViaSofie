@@ -21,18 +21,21 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
 # Create your views here.
-def languageselector(request):
-    if request.method == 'POST':
-        # languager = form.cleaned_data['selected']
-        path = 'webapp/locale/nl/LC_MESSAGES/django.po'
-        lines = tuple(open(filename, 'r'))
-
-        return render_to_response('webapp/languageselector.html', {'lines': lines})
-
-    return render(request, 'webapp/languageselector.html')
-
-
 def index(request):
+    if request.method == 'POST' and 'loginbtn' in request.POST:
+        formlogin = AuthenticationForm(data=request.POST)
+        if formlogin.is_valid():
+            user = authenticate(email=request.POST['email'], password=request.POST['password'])
+            if user is not None:
+                if user.is_active:
+                    django_login(request, user)
+            else:
+                return redirect("/login")
+        else:
+            return redirect("/login")
+    else:
+        formlogin=AuthenticationForm()
+
     panden = PandModel.objects.filter(uitgelicht=True)
     panden_lijst = list(panden)
     uitgelichte_panden = []
@@ -41,32 +44,97 @@ def index(request):
         if len(panden_lijst) > 0:
             uitgelichte_panden.append(panden_lijst.pop(random.randint(0, len(panden_lijst) -1)))
 
-    return render_to_response('webapp/index.html', {'uitgelichte_panden': uitgelichte_panden}, context_instance=RequestContext(request))
+    return render_to_response('webapp/index.html', {'uitgelichte_panden': uitgelichte_panden, 'formlogin':formlogin }, context_instance=RequestContext(request))
 
 def panddetail(request, pand_referentienummer):
+    if request.method == 'POST' and 'loginbtn' in request.POST:
+        formlogin = AuthenticationForm(data=request.POST)
+        if formlogin.is_valid():
+            user = authenticate(email=request.POST['email'], password=request.POST['password'])
+            if user is not None:
+                if user.is_active:
+                    django_login(request, user)
+                else:
+                    return redirect("/login")
+            else:
+                return redirect("/login")
+        else:
+            return redirect("/login")
+    else:
+        formlogin=AuthenticationForm()
+
     pand = PandModel.objects.get(referentienummer=pand_referentienummer)
     #voeg extra gegevens toe
     relatedPands= PandModel.objects.filter(postcodeID=pand.postcodeID)
 
     fotos = FotoModel.objects.filter(pand_id=pand.id)
-    return render_to_response('webapp/pand.html', {'pand': pand, 'fotos' : fotos, 'relatedPands' : relatedPands}, context_instance=RequestContext(request))
+    return render_to_response('webapp/pand.html', {'pand': pand, 'fotos' : fotos, 'relatedPands' : relatedPands, 'formlogin':formlogin}, context_instance=RequestContext(request))
 
+
+#HELP ME, I AM BROKE :'(
 def about(request):
-	return render(request, 'webapp/about.html')
+    if request.method == 'POST' and 'loginbtn' in request.POST:
+        formlogin = AuthenticationForm(data=request.POST)
+        if formlogin.is_valid():
+            user = authenticate(email=request.POST['email'], password=request.POST['password'])
+            if user is not None:
+                if user.is_active:
+                    django_login(request, user)
+                    return render_to_response('webapp/about.html', {'formlogin': formlogin }, context_instance=RequestContext(request))
+                else:
+                    return redirect("/login")
+            else:
+                return redirect("/login")
+    else:
+        formlogin=AuthenticationForm()
+	return render_to_response('webapp/about.html', {'formlogin': formlogin }, context_instance=RequestContext(request))
+
+
 
 def panden(request):
+    if request.method == 'POST' and 'loginbtn' in request.POST:
+        formlogin = AuthenticationForm(data=request.POST)
+        if formlogin.is_valid():
+            user = authenticate(email=request.POST['email'], password=request.POST['password'])
+            if user is not None:
+                if user.is_active:
+                    django_login(request, user)
+                else:
+                    return redirect("/login")
+            else:
+                return redirect("/login")
+    else:
+        formlogin=AuthenticationForm()
+
     panden = PandModel.objects.all().values()
     context = {
         'panden': PandModel.objects.all().values(),
         'panden_item': 'webapp/panden_item.html',
+        'formlogin': formlogin,
     }
     template = 'webapp/panden.html'
     if request.is_ajax():
         template = 'webapp/panden_item.html'
     return render_to_response(template, context, context_instance=RequestContext(request))
 
+
+
+
 def contact(request):
-    if request.method == 'POST':
+    if request.method == 'POST' and 'loginbtn' in request.POST:
+        form = ContactForm()
+        formlogin = AuthenticationForm(data=request.POST)
+        if formlogin.is_valid():
+            user = authenticate(email=request.POST['email'], password=request.POST['password'])
+            if user is not None:
+                if user.is_active:
+                    django_login(request, user)
+                else:
+                    return redirect("/login")
+            else:
+                return redirect("/login")
+    elif(request.method == 'POST'):
+        formlogin = AuthenticationForm(data=request.POST)
         form = ContactForm(data=request.POST)
         if form.is_valid():
             subject = form.cleaned_data['subject']
@@ -78,8 +146,11 @@ def contact(request):
                 send_mail(subject, fullmessage, sender, ['liekensjeff@gmail.com'])
             except BadHeaderError:
                 return HttpResponse("invalid.")
+        form = ContactForm()
     else:
         form = ContactForm()
+        formlogin = AuthenticationForm()
+            #====================voor template toe te voegen=========================
             # template = get_template('contact_template.txt')
             # context = Context({
             #     'contact_email': sender,
@@ -87,88 +158,182 @@ def contact(request):
             #     'subject': subject,
             #     'form_content': message,
             # })
-            #
-            # content = template.render(context)
-            # content = template.render(context)
-
-            # to = 'liekensjeff@gmail.com'
-            # send_mail(subject, message, sender, to, fail_silently=False )
-
     return render_to_response('webapp/contact.html', {
 	   'form': form,
+       'formlogin': formlogin,
 	}, context_instance=RequestContext(request))
 
 
 def advies(request):
-	faq_list = FaqModel.objects.all()
-	return render_to_response('webapp/advies.html', {'faq_list': faq_list}, context_instance=RequestContext(request))
+    if request.method == 'POST' and 'loginbtn' in request.POST:
+        faq_list = FaqModel.objects.all()
+        formlogin = AuthenticationForm(data=request.POST)
+        if formlogin.is_valid():
+            user = authenticate(email=request.POST['email'], password=request.POST['password'])
+            if user is not None:
+                if user.is_active:
+                    django_login(request, user)
+                else:
+                    return redirect("/login")
+            else:
+                return redirect("/login")
+    else:
+        formlogin=AuthenticationForm()
+        faq_list = FaqModel.objects.all()
+    return render_to_response('webapp/advies.html', {'faq_list': faq_list, 'formlogin': formlogin}, context_instance=RequestContext(request))
 
 def huren(request):
-	return render(request, 'webapp/huren.html')
+    if request.method == 'POST' and 'loginbtn' in request.POST:
+        formlogin = AuthenticationForm(data=request.POST)
+        if formlogin.is_valid():
+            user = authenticate(email=request.POST['email'], password=request.POST['password'])
+            if user is not None:
+                if user.is_active:
+                    django_login(request, user)
+                else:
+                    return redirect("/login")
+            else:
+                return redirect("/login")
+    else:
+        formlogin=AuthenticationForm()
+    return render_to_response('webapp/huren.html', {'formlogin': formlogin}, context_instance=RequestContext(request))
 
 def kopen(request):
-	return render(request, 'webapp/kopen.html')
+    if request.method == 'POST' and 'loginbtn' in request.POST:
+        formlogin = AuthenticationForm(data=request.POST)
+        if formlogin.is_valid():
+            user = authenticate(email=request.POST['email'], password=request.POST['password'])
+            if user is not None:
+                if user.is_active:
+                    django_login(request, user)
+                else:
+                    return redirect("/login")
+            else:
+                return redirect("/login")
+    else:
+        formlogin=AuthenticationForm()
+    return render_to_response('webapp/kopen.html', {'formlogin': formlogin}, context_instance=RequestContext(request))
 
 def forms(request):
 	return render(request, 'webapp/forms.html')
 
 def referenties(request):
-	return render(request, 'webapp/referenties.html')
+    if request.method == 'POST' and 'loginbtn' in request.POST:
+        formlogin = AuthenticationForm(data=request.POST)
+        if formlogin.is_valid():
+            user = authenticate(email=request.POST['email'], password=request.POST['password'])
+            if user is not None:
+                if user.is_active:
+                    django_login(request, user)
+                else:
+                    return redirect("/login")
+            else:
+                return redirect("/login")
+    else:
+        formlogin=AuthenticationForm()
+    return render_to_response('webapp/referenties.html', {'formlogin': formlogin}, context_instance=RequestContext(request))
 
 def disclaimer(request):
-	return render(request, 'webapp/disclaimer.html')
+    if request.method == 'POST' and 'loginbtn' in request.POST:
+        formlogin = AuthenticationForm(data=request.POST)
+        if formlogin.is_valid():
+            user = authenticate(email=request.POST['email'], password=request.POST['password'])
+            if user is not None:
+                if user.is_active:
+                    django_login(request, user)
+                else:
+                    return redirect("/login")
+            else:
+                return redirect("/login")
+    else:
+        formlogin=AuthenticationForm()
+    return render_to_response('webapp/disclaimer.html', {'formlogin': formlogin}, context_instance=RequestContext(request))
 
 def privacy(request):
-    return render(request, 'webapp/privacy.html')
+    if request.method == 'POST' and 'loginbtn' in request.POST:
+        formlogin = AuthenticationForm(data=request.POST)
+        if formlogin.is_valid():
+            user = authenticate(email=request.POST['email'], password=request.POST['password'])
+            if user is not None:
+                if user.is_active:
+                    django_login(request, user)
+                else:
+                    return redirect("/login")
+            else:
+                return redirect("/login")
+    else:
+        formlogin=AuthenticationForm()
+    return render_to_response('webapp/privacy.html', {'formlogin': formlogin}, context_instance=RequestContext(request))
 
 def account(request):
+    if request.method == 'POST' and 'loginbtn' in request.POST:
+        formlogin = AuthenticationForm(data=request.POST)
+        if formlogin.is_valid():
+            user = authenticate(email=request.POST['email'], password=request.POST['password'])
+            if user is not None:
+                if user.is_active:
+                    django_login(request, user)
+                else:
+                    return redirect("/login")
+            else:
+                return redirect("/login")
+    else:
+        formlogin=AuthenticationForm()
     current_user = request.user
     if current_user.is_authenticated():
         # Do something for authenticated users.
-        return render_to_response('webapp/account.html', {'current_user': current_user}, context_instance=RequestContext(request))
+        return render_to_response('webapp/account.html', {'current_user': current_user,'formlogin': formlogin }, context_instance=RequestContext(request))
     else:
         # Do something for anonymous users.
-        return render_to_response('webapp/account.html', {'current_user': current_user}, context_instance=RequestContext(request))
+        return render_to_response('webapp/account.html', {'current_user': current_user, 'formlogin': formlogin}, context_instance=RequestContext(request))
 
 def login(request):
-	"""
-    Log in view
-    """
-	if request.method == 'POST':
-		form = AuthenticationForm(data=request.POST)
-		if form.is_valid():
-			user = authenticate(email=request.POST['email'], password=request.POST['password'])
-			if user is not None:
-				if user.is_active:
-					django_login(request, user)
-					return redirect('/')
-	else:
-		form = AuthenticationForm()
+    if request.method == 'POST' and 'loginbtn' in request.POST:
+        form = AuthenticationForm()
+        formlogin = AuthenticationForm(data=request.POST)
+        if formlogin.is_valid():
+            user = authenticate(email=request.POST['email'], password=request.POST['password'])
+            if user is not None:
+                if user.is_active:
+                    django_login(request, user)
+                    return render_to_response('webapp/login.html', {'form': form, 'formlogin': formlogin}, context_instance=RequestContext(request))
+    else:
+        formlogin=AuthenticationForm()
+    	if request.method == 'POST':
+    		form = AuthenticationForm(data=request.POST)
+    		if form.is_valid():
+    			user = authenticate(email=request.POST['email'], password=request.POST['password'])
+    			if user is not None:
+    				if user.is_active:
+    					django_login(request, user)
+    					return redirect('/')
+    	else:
+    		form = AuthenticationForm()
 	return render_to_response('webapp/login.html', {
 		'form': form,
+        'formlogin': formlogin
 	}, context_instance=RequestContext(request))
 
-def loginpopup(request):
-	"""
-    Log in view
-    """
-	if request.method == 'POST':
-		form = AuthenticationForm(data=request.POST)
-		if form.is_valid():
-			user = authenticate(email=request.POST['email'], password=request.POST['password'])
-			if user is not None:
-				if user.is_active:
-					django_login(request, user)
-					return redirect('/')
-	else:
-		form = AuthenticationForm()
-	return render_to_response('webapp/loginpopup.html', {
-		'form': form,
-	}, context_instance=RequestContext(request))
+
 
 def partners(request):
+    if request.method == 'POST' and 'loginbtn' in request.POST:
+        partner_list = PartnerModel.objects.all()
+        formlogin = AuthenticationForm(data=request.POST)
+        if formlogin.is_valid():
+            user = authenticate(email=request.POST['email'], password=request.POST['password'])
+            if user is not None:
+                if user.is_active:
+                    django_login(request, user)
+                    return render_to_response('webapp/partners.html', {'partner_list': partner_list, 'formlogin':formlogin}, context_instance=RequestContext(request))
+                else:
+                    return redirect("/login")
+            else:
+                return redirect("/login")
+    else:
+        formlogin=AuthenticationForm()
 	partner_list = PartnerModel.objects.all()
-	return render_to_response('webapp/partners.html', {'partner_list': partner_list}, context_instance=RequestContext(request))
+	return render_to_response('webapp/partners.html', {'partner_list': partner_list, 'formlogin': formlogin}, context_instance=RequestContext(request))
 
 def partnersform(request):
 	if request.method == "POST":
@@ -276,6 +441,19 @@ def register(request):
     if request.user.is_authenticated():
         return redirect('/')
     registration_form = RegistrationForm()
+    formlogin=AuthenticationForm()
+    if request.method == 'POST' and 'loginbtn' in request.POST:
+        formlogin = AuthenticationForm(data=request.POST)
+        if formlogin.is_valid():
+            user = authenticate(email=request.POST['email'], password=request.POST['password'])
+            if user is not None:
+                if user.is_active:
+                    django_login(request, user)
+                    return redirect('/')
+                else:
+                    return redirect("/login")
+            else:
+                return redirect("/login")
     if request.method == 'POST':
         form = RegistrationForm(data=request.POST)
         if form.is_valid():
@@ -381,3 +559,22 @@ def panddetail_edit(request, pand_referentienummer):
 	pand = PandModel.objects.get(referentienummer=pand_referentienummer)
 	fotos = FotoModel.objects.filter(pand_id=pand.id)
 	return render_to_response('webapp/edit/pand.html', {'pand': pand, 'fotos': fotos}, context_instance=RequestContext(request))
+
+
+# def loginpopup(request):
+# 	"""
+#     Log in view
+#     """
+# 	if request.method == 'POST':
+#       formlogin = AuthenticationForm(data=request.POST)
+# 		if form.is_valid():
+# 			user = authenticate(email=request.POST['email'], password=request.POST['password'])
+# 			if user is not None:
+# 				if user.is_active:
+# 					django_login(request, user)
+# 					return redirect('/')
+# 	else:
+# 		form = AuthenticationForm()
+# 	return render_to_response('webapp/loginpopup.html', {
+# 		'form': form,
+# 	}, context_instance=RequestContext(request))

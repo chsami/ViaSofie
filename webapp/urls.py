@@ -18,7 +18,7 @@ urlpatterns = [
     url(r'^disclaimer/$', views.disclaimer, name='disclaimer'),
     url(r'^privacy/$', views.privacy, name='privacy'),
     url(r'^account/$', views.account, name='account'),
-    url(r'^loginpopup/$', views.loginpopup, name='loginpopup'),
+    # url(r'^loginpopup/$', views.loginpopup, name='loginpopup'),
 
 
     #Auth
@@ -48,6 +48,5 @@ urlpatterns = [
     url(r'^ebook/lijst/$', views.ebook_lijst, name='ebook_lijst'),
 
     #taal
-    url(r'^languageselector/$', views.languageselector, name='languageselector'),
     url(r'^i18n/', include('django.conf.urls.i18n')),
 ]
