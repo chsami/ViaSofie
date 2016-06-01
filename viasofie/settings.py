@@ -19,6 +19,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 's#6!%(_6o=(x+r0(1jk!h2%$e^=*&s%*87qzg@0#xqh&k%i)di'
 
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -46,6 +47,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'endless_pagination',
+    # 'django_social_share', (outdated)
 )
 
 ADAPTOR_INPLACEEDIT = {}
@@ -66,6 +68,12 @@ RECAPTCHA_PUBLIC_KEY = '6Ld9RSETAAAAADhIFfv20Hmaj4eaOVpBLRHD4rY9'
 RECAPTCHA_PRIVATE_KEY = '6Ld9RSETAAAAAArjY-t3DwRSUcAlLpXL8Y5Ay3Ql'
 NOCAPTCHA = True
 
+#-------------------------------------django.middleware.security.SecurityMiddleware SETTINGS --------------------------
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = False #if True site can only be accessed by https requests, you instruct the browser to set a timeout on your site if it isn't a https request
+SECURE_HSTS_SECONDS =  0 # if integer != 0 SecurityMiddleware sets HSTS header on all responses, this is the timeout you give (read comment above)
+
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -76,9 +84,10 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    #JEFFFFF
-    #'django.middleware.security.SecurityMiddleware',
+    # https://docs.djangoproject.com/en/1.9/ref/middleware/ settings above
+     'django.middleware.security.SecurityMiddleware',
 )
+
 
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
