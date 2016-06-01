@@ -4692,6 +4692,9 @@ ul.nav.nav-pills {
     .page {
         margin: 2em 0;
     }
+    .mega-search fieldset .search-form-input {
+        width: 80% !important;
+    }
     /*---*/
 }
 
@@ -6285,6 +6288,7 @@ div.endless_loading {
     border: none;
     margin: 0;
     padding: 0;
+    width: 85%;
     font-size: 1.3em;
     line-height: 46px;
     text-indent: 12px;
@@ -6390,7 +6394,6 @@ div.endless_loading {
     width: calc(90% - 15px);
     position: absolute;
     top: 80%;
-    left: 15px;
     -webkit-transform: translateY(-50%) translateZ(1px);
     transform: translateY(-50%) translateZ(1px);
 }

@@ -150,5 +150,11 @@ class Faq(models.Model):
 
 class Partner(models.Model):
     naam = models.CharField(max_length=128)
-    onderschrift = models.CharField(max_length=128)
+    onderschrift = models.CharField(max_length=255)
     foto_url =  models.CharField(max_length=255)
+
+class GoedDoel(models.Model):
+    naam = models.CharField(max_length=128)
+    bijschrift = models.CharField(max_length=500)
+    link = models.CharField(max_length=255)
+    foto_url = models.CharField(max_length=255)
