@@ -20,12 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 's#6!%(_6o=(x+r0(1jk!h2%$e^=*&s%*87qzg@0#xqh&k%i)di'
 
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-TEMPLATE_DEBUG = True
-
-ALLOWED_HOSTS = ['localhost']
 
 
 # Application definition
@@ -89,12 +84,7 @@ MIDDLEWARE_CLASSES = (
 )
 
 
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-    'django.template.loaders.eggs.Loader',
-    'apptemplates.Loader'
-)
+
 
 ROOT_URLCONF = 'viasofie.urls'
 handler404 = 'mysite.views.my_custom_page_not_found_view'
@@ -171,10 +161,32 @@ TEMPLATES = [
         'context_processors': [
             'django.contrib.auth.context_processors.auth',
             'django.template.context_processors.request',
+            # 'django.template.context_processors.i18n',
+            # 'django.template.context_processors.media',
+            # 'django.template.context_processors.static',
+            # 'django.template.context_processors.tz',
+            # 'django.contrib.messages.context_processors.messages',
         ],
+
+        # SECURITY WARNING: don't run with debug turned on in production!
+        'debug': True,
+
+        # 'loaders': [
+        #     ('django.template.loaders.cached.Loader',[
+        #         'django.template.loaders.filesystem.Loader',
+        #         'django.template.loaders.app_directories.Loader',
+        #         'django.template.loaders.eggs.Loader',
+        #         'apptemplates.Loader',
+        #         ]),
+        #         ],
     },
-},
-]
+
+
+
+
+}]
+
+ALLOWED_HOSTS =  ['localhost']
 
 ROSETTA_REQUIRES_AUTH= False;
 
