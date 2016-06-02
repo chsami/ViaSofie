@@ -254,6 +254,7 @@ def disclaimer(request):
     return render_to_response('webapp/disclaimer.html', {'formlogin': formlogin, 'data': data}, context_instance=RequestContext(request))
 
 def privacy(request):
+    data = Data.objects.get(id=2)
     if request.method == 'POST' and 'loginbtn' in request.POST:
         formlogin = AuthenticationForm(data=request.POST)
         if formlogin.is_valid():
@@ -267,7 +268,7 @@ def privacy(request):
                 return redirect("/login")
     else:
         formlogin=AuthenticationForm()
-    return render_to_response('webapp/privacy.html', {'formlogin': formlogin}, context_instance=RequestContext(request))
+    return render_to_response('webapp/privacy.html', {'formlogin': formlogin, 'data': data}, context_instance=RequestContext(request))
 
 def account(request):
     if request.method == 'POST' and 'loginbtn' in request.POST:
