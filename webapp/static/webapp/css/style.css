@@ -6255,7 +6255,7 @@ div.endless_loading {
 
 .mega-search {
     width: 100%;
-    background: rgba(76, 81, 90, 0.6);
+    background: rgba(76, 81, 90, 0.95);
     color: white;
     position: absolute;
     z-index: 998;
@@ -6269,7 +6269,7 @@ div.endless_loading {
 }
 
 .setSearchHeight {
-    height: 100px !important;
+    height: 105px !important;
 }
 
 .mega-search fieldset {
