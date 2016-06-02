@@ -158,3 +158,7 @@ class GoedDoel(models.Model):
     bijschrift = models.CharField(max_length=500)
     link = models.CharField(max_length=255)
     foto_url = models.CharField(max_length=255)
+
+class Data(models.Model):
+    titel = models.CharField(max_length=255)
+    data = models.CharField(max_length=10000)
