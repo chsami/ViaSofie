@@ -4239,9 +4239,11 @@ ul.nav.nav-pills {
     .news {
         padding: 2em 0 0;
     }
-    .content-events h3,
-    .about-head h3 {
+    .content-events h3 {
         margin: 0;
+    }
+    .about-head h3 {
+        padding-top: 0.7em;
     }
     .about-mid h4 {
         font-size: 1.8em;
@@ -4595,6 +4597,9 @@ ul.nav.nav-pills {
     .event h6 {
         font-size: 1.05em;
     }
+    .about-head {
+        padding: 0 0 5em 0;
+    }
     /*--blog--*/
     .single-grid h5,
     .leave h5 {
@@ -4921,7 +4926,7 @@ ul.nav.nav-pills {
         font-size: 1em;
     }
     .about-head {
-        padding: 2em 0;
+        padding: 0 0 5em 0;
     }
     .about-middle {
         padding: 2em 0;
@@ -6209,6 +6214,39 @@ div.endless_loading {
 
 .disclaimer hr {
     border-top: 0px;
+}
+
+@media(max-width:768px) {
+    .disclaimer h3 {
+        font-size: 2.5em;
+    }
+
+    .disclaimer h3:after,
+    .disclaimer h3:before {
+        width: 200px;
+    }
+}
+
+@media(max-width:640px) {
+    .disclaimer h3 {
+        font-size: 2.3em;
+    }
+
+    .disclaimer h3:after,
+    .disclaimer h3:before {
+        width: 100px;
+    }
+}
+
+@media(max-width:480px) {
+    .disclaimer h3 {
+        font-size: 2em;
+    }
+
+    .disclaimer h3:after,
+    .disclaimer h3:before {
+        width: 50px;
+    }
 }
 
 
