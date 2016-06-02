@@ -237,6 +237,7 @@ def referenties(request):
     return render_to_response('webapp/referenties.html', {'formlogin': formlogin}, context_instance=RequestContext(request))
 
 def disclaimer(request):
+    data = Data.objects.get(id=1)
     if request.method == 'POST' and 'loginbtn' in request.POST:
         formlogin = AuthenticationForm(data=request.POST)
         if formlogin.is_valid():
@@ -250,7 +251,7 @@ def disclaimer(request):
                 return redirect("/login")
     else:
         formlogin=AuthenticationForm()
-    return render_to_response('webapp/disclaimer.html', {'formlogin': formlogin}, context_instance=RequestContext(request))
+    return render_to_response('webapp/disclaimer.html', {'formlogin': formlogin, 'data': data}, context_instance=RequestContext(request))
 
 def privacy(request):
     if request.method == 'POST' and 'loginbtn' in request.POST:

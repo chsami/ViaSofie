@@ -1,14 +1,10 @@
-{% extends 'webapp/base.html' %}
-{% load staticfiles %}
+{% extends 'webapp/base.html' %} {% load inplace_edit %} {% load staticfiles %} {% block header %} {% inplace_toolbar %}
 
-{% block header %}
 {% endblock header %}
 
 {% block content %}
 <div class="disclaimer">
-<h3>Disclaimer</h3>
-<p>Via Sofie besteedt veel aandacht en zorg aan haar website en streeft ernaar dat alle informatie zo volledig, juist, begrijpelijk, nauwkeurig en actueel mogelijk is. Ondanks alle inspanningen is het niet uitgesloten dat de ter beschikking gestelde informatie steeds volledig, juist, nauwkeurig of bijgewerkt is.  In het geval dat links tot stand worden gebracht met andere sites, bijvoorbeeld met behulp van zoekinstrumenten, is Via Sofie niet aansprakelijk voor de inhoud en het bestaan van deze andere sites.<hr></p>
-<p>Als de informatie op de website van Via Sofie tekortkomingen vertoont, zal er naar worden gestreefd om al het mogelijke doen om deze zo snel mogelijk weg te werken. Als je onjuistheden vaststelt, kan je contact opnemen met de beheerder van de website: <a href="mailto:info@viasofie.be">info@viasofie.be</a>.<hr></p>  
-<p>Via Sofie kan niet aansprakelijk worden gesteld voor rechtstreekse of onrechtstreekse schade die ontstaat door het gebruik van de website of van de op of via de website ter beschikking gestelde informatie.  Ongeautoriseerd of oneigenlijk gebruik van de content of delen daarvan maken inbreuk op intellectuele rechten.</p>
+<h3>{% inplace_edit "data.titel" %}</h3>
+<p>{% inplace_edit "data.data" %}</p>
 </div>
 {% endblock content %}
