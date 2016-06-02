@@ -182,3 +182,7 @@ class PandReview(models.Model):
             self.created = timezone.now()
         self.modified = timezone.now()
         return super(User, self).save(*args, **kwargs)
+
+class Data(models.Model):
+    titel = models.CharField(max_length=255)
+    data = models.CharField(max_length=10000)
