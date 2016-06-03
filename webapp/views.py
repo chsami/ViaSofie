@@ -82,12 +82,34 @@ def panddetail(request, pand_referentienummer):
 
 def panden(request):
     data = Data.objects.get(id=13)
+    # Login form
     formlogin = slogin(request)
+    # SmallSearchForm
+    if request.method == "POST":
+        smallsearchform = SmallSearchForm(request.POST)
+        if smallsearchform.is_valid():
+            model_instance = smallsearchform.save(commit=False)
+            model_instance.save()
+            return redirect('formsucces')
+    else:
+            smallsearchform = SmallSearchForm()
+    # SearchForm
+    if request.method == "POST":
+        searchform = SearchForm(request.POST)
+        if searchform.is_valid():
+            model_instance = searchform.save(commit=False)
+            model_instance.save()
+            return redirect('formsucces')
+    else:
+            searchform = SearchForm()
+    # Context (endless pagination)
     context = {
         'panden': PandModel.objects.all().values(),
         'panden_item': 'webapp/panden_item.html',
         'formlogin': formlogin,
         'data': data,
+        'searchform': searchform,
+        'smallsearchform': smallsearchform,
     }
     template = 'webapp/panden.html'
     if request.is_ajax():
