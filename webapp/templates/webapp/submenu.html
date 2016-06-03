@@ -1,4 +1,4 @@
-{% load staticfiles %}
+{% load staticfiles %} {% load module_sander %}
 <div class="container">
     <div class="bottom-header">
         <div class="header-bottom">
@@ -6,7 +6,7 @@
                 <a href="/panden">
                     <div class="buy-media">
                         <i class="buy"> </i>
-                        <h6>Kopen</h6>
+                        <h6>{% get_obj_data "14" "titel" %}</h6>
                     </div>
                 </a>
             </div>
@@ -14,7 +14,7 @@
                 <a href="/panden">
                     <div class="buy-media">
                         <i class="rent"> </i>
-                        <h6>Huren</h6>
+                        <h6>{% get_obj_data "15" "titel" %}</h6>
                     </div>
                 </a>
             </div>
@@ -25,7 +25,7 @@
                 <a href="/advies">
                     <div class="buy-media">
                         <i class="sell"> </i>
-                        <h6>Advies</h6>
+                        <h6>{% get_obj_data "8" "titel" %}</h6>
                     </div>
                 </a>
             </div>
@@ -33,7 +33,7 @@
                 <a href="/referenties">
                     <div class="buy-media">
                         <i class="deal"> </i>
-                        <h6>Referenties</h6>
+                        <h6>{% get_obj_data "9" "titel" %}</h6>
                     </div>
                 </a>
             </div>

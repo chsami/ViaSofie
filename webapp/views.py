@@ -61,14 +61,29 @@ def panddetail(request, pand_referentienummer):
     fotos = FotoModel.objects.filter(pand_id=pand.id)
     return render_to_response('webapp/pand.html', {'pand': pand, 'fotos' : fotos, 'relatedPands' : relatedPands, 'formlogin':formlogin}, context_instance=RequestContext(request))
 
+def panden(request):
+    data = Data.objects.get(id=13)
+    formlogin = slogin(request)
+    context = {
+        'panden': PandModel.objects.all().values(),
+        'panden_item': 'webapp/panden_item.html',
+        'formlogin': formlogin,
+        'data': data,
+    }
+    template = 'webapp/panden.html'
+    if request.is_ajax():
+        template = 'webapp/panden_item.html'
+    return render_to_response(template, context, context_instance=RequestContext(request))
+
 def referenties(request):
-    dreferenties = Data.objects.get(id=9)
+    data = Data.objects.get(id=9)
     formlogin = slogin(request)
     context = {
         # 'panden' = PandModel.objects.get(handelstatus='Verkocht',handelstatus='Verhuurd')
         'panden': PandModel.objects.all().values(),
         'panden_item': 'webapp/panden_item.html',
         'formlogin': formlogin,
+        'data': data,
     }
     template = 'webapp/panden.html'
     if request.is_ajax():
@@ -91,17 +106,6 @@ def about(request):
     formlogin = slogin(request)
     return render_to_response('webapp/about.html', {'formlogin': formlogin, 'dabout': dabout}, context_instance=RequestContext(request))
 
-def panden(request):
-    formlogin = slogin(request)
-    context = {
-        'panden': PandModel.objects.all().values(),
-        'panden_item': 'webapp/panden_item.html',
-        'formlogin': formlogin,
-    }
-    template = 'webapp/panden.html'
-    if request.is_ajax():
-        template = 'webapp/panden_item.html'
-    return render_to_response(template, context, context_instance=RequestContext(request))
 
 def contact(request):
     dcontact = Data.objects.get(id=3)

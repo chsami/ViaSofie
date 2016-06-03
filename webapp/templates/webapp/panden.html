@@ -154,8 +154,8 @@
 			<div class="clearfix"> </div>
 		</div>
 	</div> -->
-        <h3>Panden</h3> 
-        Hier bevinden zich de panden.
+        <h3>{% inplace_edit "data.titel" %}</h3>
+        {% inplace_edit "data.data|safe" %}
         <div class="project-top"> {% include panden_item %}
         </div>
         <div class="clearfix"> </div>
