@@ -705,9 +705,16 @@ a.mask {
     padding: 0em 0 2em;
 }
 
+.service-top1 {
+    float: left;
+    width: 50%;
+}
+
 .ser-top {
     float: right;
-    width: 77%;
+    padding-left: 10px; 
+
+    width: 70%;
 }
 
 .ser-top h4 {
@@ -726,6 +733,11 @@ a.mask {
 
 .ser-grid {
     float: left;
+    width: 30%;
+}
+
+.ser-grid-center {
+    margin: auto;
 }
 
 .services-grid {
@@ -4835,6 +4847,15 @@ ul.nav.nav-pills {
     .services {
         padding: 2em 0;
     }
+    .service-top1 {
+        width: 100%;
+    }
+    .ser-grid {
+        width: 100%;
+    }
+    .ser-top {
+        width: 100%;
+    }
     .phone {
         padding: 2em 0;
     }
@@ -5409,9 +5430,6 @@ ul.nav.nav-pills {
         line-height: 4.3em;
         font-size: 0.8em;
     }
-    .ser-top {
-        width: 72%;
-    }
     .ser-top h4 {
         font-size: 1.2em;
     }
@@ -5562,9 +5580,6 @@ ul.nav.nav-pills {
         width: 55px;
         height: 55px;
         line-height: 3.8em;
-    }
-    .ser-top {
-        width: 75%;
     }
     .beautiful h5 {
         font-size: 1em;
