@@ -12,6 +12,7 @@ from webapp.models import Faq as FaqModel
 from webapp.models import Partner as PartnerModel
 from webapp.models import User as UserModel
 from webapp.models import GoedDoel as GoedDoelModel
+from webapp.models import TagPand as TagPandModel
 from django.utils.translation import ugettext as _
 from webapp.forms import *
 import hashlib
@@ -59,7 +60,25 @@ def panddetail(request, pand_referentienummer):
     #voeg extra gegevens toe
     relatedPands= PandModel.objects.filter(postcodeID=pand.postcodeID)
     fotos = FotoModel.objects.filter(pand_id=pand.id)
-    return render_to_response('webapp/pand.html', {'pand': pand, 'fotos' : fotos, 'relatedPands' : relatedPands, 'formlogin':formlogin}, context_instance=RequestContext(request))
+
+    # Tags van pand moeten op de volgende wijze worden megegeven: "Zwembad,Veranda,Tuin"
+    tagpand_list = TagPandModel.objects.filter(pand_id=pand.id)
+    tag_data = ""
+    for tagpand in tagpand_list:
+        tag_data += "%s (%s)," % (str(tagpand.tag), tagpand.value)
+    # Laatste onnodige comma wordt weggehaald
+    tag_data = tag_data[:-1]
+
+    all_tagpand_list = TagPandModel.objects.all()
+
+    all_tags = []
+    temp_tag = ""
+    for tagpand in all_tagpand_list:
+        for i in range(0,20):
+            temp_tag = "%s (%s)" % (str(tagpand.tag), str(i))
+            all_tags.append(temp_tag)
+
+    return render_to_response('webapp/pand.html', {'pand': pand, 'fotos' : fotos, 'relatedPands' : relatedPands, 'tag_data': tag_data, 'all_tags': all_tags, 'formlogin':formlogin}, context_instance=RequestContext(request))
 
 def panden(request):
     data = Data.objects.get(id=13)
