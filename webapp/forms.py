@@ -166,7 +166,8 @@ class SearchForm(forms.Form):
     aantal_slaapkamers = forms.IntegerField(widget=forms.TextInput(attrs={'id': 'aantal-slaapkamers', 'readonly style': 'border:0; color:#f6931f; font-weight:bold;'}))
     aantal_badkamers = forms.IntegerField(widget=forms.TextInput(attrs={'id': 'aantal-badkamers', 'readonly style': 'border:0; color:#f6931f; font-weight:bold;'}))
     aantal_verdiepen = forms.IntegerField(widget=forms.TextInput(attrs={'id': 'aantal-verdiepen', 'readonly style': 'border:0; color:#f6931f; font-weight:bold;'}))
-    prijs_range = forms.IntegerField(widget=forms.TextInput(attrs={'id': 'prijs-range', 'readonly style': 'border:0; color:#f6931f; font-weight:bold;'}))
+    
+    prijs_range = forms.DecimalField(widget=forms.TextInput(attrs={'id': 'prijs-range', 'readonly style': 'border:0; color:#f6931f; font-weight:bold;'}))
 
     tags = forms.CharField(widget=forms.TextInput(attrs={'id': 'tags', 'data-role': 'tagsinput'}))
 
