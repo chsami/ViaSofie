@@ -63,7 +63,16 @@ def panddetail(request, pand_referentienummer):
 
 def referenties(request):
     formlogin = slogin(request)
-    return render_to_response('webapp/referenties.html', {'formlogin': formlogin}, context_instance=RequestContext(request))
+    context = {
+        # 'panden' = PandModel.objects.get(handelstatus='Verkocht',handelstatus='Verhuurd')
+        'panden': PandModel.objects.all().values(),
+        'panden_item': 'webapp/panden_item.html',
+        'formlogin': formlogin,
+    }
+    template = 'webapp/panden.html'
+    if request.is_ajax():
+        template = 'webapp/panden_item.html'
+    return render_to_response(template, context, context_instance=RequestContext(request))
 
 def account(request):
     formlogin = slogin(request)
@@ -83,7 +92,6 @@ def about(request):
 
 def panden(request):
     formlogin = slogin(request)
-    panden = PandModel.objects.all().values()
     context = {
         'panden': PandModel.objects.all().values(),
         'panden_item': 'webapp/panden_item.html',
