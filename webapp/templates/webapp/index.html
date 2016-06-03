@@ -73,12 +73,12 @@
                 </div>
                 <div class="services-grid">
                     {% for goed_doel in goede_doelen %}
-                    <div class="col-md-6 service-top1">
-                        <div class=" ser-grid">
+                    <div class="col-xs-6">
+                        <div class="col-xs-6 col-md-4">
                             <!-- <a href="#" class="hi-icon hi-icon-archive glyphicon glyphicon-user"> </a> -->
                             <a href="{{goed_doel.url}}"><img class="img-responsive" src="{{goed_doel.foto_url}}"></a>
                         </div>
-                        <div class="ser-top">
+                        <div class="col-xs-12 col-md-8">
                             <h4>{{goed_doel.naam}}</h4>
                             <p>{{goed_doel.bijschrift}}</p>
                         </div>
