@@ -231,7 +231,7 @@ def ebooks(request):
 			return redirect('ebook_lijst')
 	else:
 			form = Ebookform()
-	return render(request, "webapp/forms.html", {'form': form})
+	return render(request, "webapp/ebook.html", {'form': form})
 
 def ebook_lijst(request):
 	ebooks = Ebook.objects.all()

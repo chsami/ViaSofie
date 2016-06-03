@@ -1,0 +1,22 @@
+{% extends 'webapp/base.html' %}
+{% load staticfiles %}
+
+{% block header %}
+	<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/forms.css' %}" />
+{% endblock header %}
+
+{% block content %}
+<div class="forms">
+<div class="ebookform">
+	<form method="post" action="">
+		<h3>E-book</h3>
+		<h5>Geef hier volgende gegevens in, zo kan Via Sofie u persoonlijk een e-book toesturen.</h5>
+		{% csrf_token %}
+		<table>
+			{{form}}
+		</table>
+		<input type="submit" value="Verzenden"/>
+	</form>
+</div>
+</div>
+{% endblock content %}
