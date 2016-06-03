@@ -1,6 +1,6 @@
 {% load inplace_edit %}
 {% load staticfiles %}
-{% inplace_toolbar %}
+{% load  i18n %}
 <html>
 <head>
 	<!--- Basic Page Needs
@@ -47,13 +47,13 @@
 	<script type='text/javascript' src="{% static 'webapp/bootstrap/js/bootstrap.min.js' %}"></script>
 	<script type='text/javascript' src="{% static 'webapp/scripts/header.js' %}"></script>
 	<script type='text/javascript' src="{% static 'webapp/scripts/responsiveslides.min.js' %}"></script>
-	<script type="text/javascript" src="{% static 'webapp/scripts/jquery.searchbox.js' %}""></script>
-	<script type="text/javascript" src="{% static 'webapp/scripts/velocity.min.js' %}""></script>
+	<script type="text/javascript" src="{% static 'webapp/scripts/jquery.searchbox.js' %}"></script>
+	<script type="text/javascript" src="{% static 'webapp/scripts/velocity.min.js' %}"></script>
 	<!-- enkel voor kerstmis <script type="text/javascript" src="{% static 'webapp/scripts/glitter.js' %}""></script> -->
 
 	<!-- Cookie Monster
 	================================================= -->
-	{% load  i18n %}
+
 	<script type='text/javascript' id="cookiebanner" src="{% static 'webapp/scripts/cookiebanner.js' %}" data-message="{% trans 'We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.' %}"></script>
 
    <!-- Favicons
@@ -66,9 +66,7 @@
 	{% endblock header %}
 
 </head>
-
-<body class="sparkley" ng-model="">
-
+<body>
 	{% include "webapp/header.html" %}
 
 	{% block content %}

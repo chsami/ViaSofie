@@ -93,6 +93,10 @@ class FotoForm(forms.Form):
 	)
 
 class Ebookform(forms.ModelForm):
+	naam = forms.CharField(label="*Naam", widget=forms.TextInput(attrs={'placeholder': 'Naam'}))
+	voornaam = forms.CharField(label="*Voornaam", widget=forms.TextInput(attrs={'placeholder': 'Voornaam'}))
+	email = forms.EmailField(label="*E-mail", widget=forms.EmailInput(attrs={'placeholder': 'E-mail'}))
+	
 	class Meta:
 		model = Ebook
 		fields = ['naam', 'voornaam', 'email',]
@@ -162,7 +166,8 @@ class SearchForm(forms.Form):
     aantal_slaapkamers = forms.IntegerField(widget=forms.TextInput(attrs={'id': 'aantal-slaapkamers', 'readonly style': 'border:0; color:#f6931f; font-weight:bold;'}))
     aantal_badkamers = forms.IntegerField(widget=forms.TextInput(attrs={'id': 'aantal-badkamers', 'readonly style': 'border:0; color:#f6931f; font-weight:bold;'}))
     aantal_verdiepen = forms.IntegerField(widget=forms.TextInput(attrs={'id': 'aantal-verdiepen', 'readonly style': 'border:0; color:#f6931f; font-weight:bold;'}))
-    prijs_range = forms.IntegerField(widget=forms.TextInput(attrs={'id': 'prijs-range', 'readonly style': 'border:0; color:#f6931f; font-weight:bold;'}))
+    
+    prijs_range = forms.DecimalField(widget=forms.TextInput(attrs={'id': 'prijs-range', 'readonly style': 'border:0; color:#f6931f; font-weight:bold;'}))
 
     tags = forms.CharField(widget=forms.TextInput(attrs={'id': 'tags', 'data-role': 'tagsinput'}))
 

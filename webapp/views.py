@@ -21,7 +21,7 @@ from django.core.mail import send_mail, BadHeaderError
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 #sander is awesome
-#removed 156 lines of code
+#removed 171 lines of code
 def slogin(request):
     if request.method == 'POST' and 'loginbtn' in request.POST:
         formlogin = AuthenticationForm(data=request.POST)
@@ -190,17 +190,6 @@ def partnersform(request):
 def formsucces(request):
 	return render(request, 'webapp/formsucces.html')
 
-def stad(request):
-	if request.method == "POST":
-		form = Stad(request.POST)
-		if form.is_valid():
-			model_instance = form.save(commit=False)
-			model_instance.save()
-			return redirect('formsucces')
-	else:
-			form = Stad()
-	return render(request, "webapp/forms.html", {'form': form})
-
 def ebooks(request):
 	if request.method == "POST":
 		form = Ebookform(request.POST)
@@ -344,9 +333,6 @@ def new_activation_link(request, user_id):
     return redirect('/')
 
 def logout(request):
-    """
-    Log out view
-    """
     django_logout(request)
     return redirect('/')
 
@@ -362,7 +348,6 @@ def foto(request):
 			return HttpResponseRedirect(reverse('list'))
 	else:
 		form = FotoForm()  # A empty, unbound form
-
 	# Render list page with the documents and the form
 	return render(
 		request,
