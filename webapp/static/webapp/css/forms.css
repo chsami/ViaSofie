@@ -300,10 +300,14 @@
 */
 
 .ebookform form {
-  padding: 20px 20px 50px 20px;
-  width: 400px;
+  padding: 20px 20px 60px 20px;
+  width: 600px;
 }
 
 .ebookform h5 {
   margin: 10px 0;
+}
+
+.ebookform label {
+  display: inline;
 }
