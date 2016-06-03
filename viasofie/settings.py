@@ -104,6 +104,7 @@ WSGI_APPLICATION = 'viasofie.wsgi.application'
 # pagination
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
 TEMPLATE_CONTEXT_PROCESSORS += (
+    'webapp.context_processors.header',
     'django.core.context_processors.request',
 )
 

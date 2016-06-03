@@ -39,6 +39,7 @@ def slogin(request):
     return formlogin
 # Create your views here.
 def index(request):
+    dpartners = Data.objects.get(id=11)
     formlogin = slogin(request)
     panden = PandModel.objects.filter(uitgelicht=True)
     panden_lijst = list(panden)
@@ -50,7 +51,7 @@ def index(request):
     goede_doelen = GoedDoelModel.objects.all()
     #PARTNERS
     partner_list = PartnerModel.objects.all()
-    return render_to_response('webapp/index.html', {'uitgelichte_panden': uitgelichte_panden, 'goede_doelen': goede_doelen, 'formlogin':formlogin, 'partner_list': partner_list}, context_instance=RequestContext(request))
+    return render_to_response('webapp/index.html', {'dpartners': dpartners, 'uitgelichte_panden': uitgelichte_panden, 'goede_doelen': goede_doelen, 'formlogin':formlogin, 'partner_list': partner_list}, context_instance=RequestContext(request))
 
 def panddetail(request, pand_referentienummer):
     formlogin = slogin(request)
@@ -76,8 +77,9 @@ def account(request):
 
 
 def about(request):
+    dabout = Data.objects.get(id=10)
     formlogin = slogin(request)
-    return render_to_response('webapp/about.html', {'formlogin': formlogin}, context_instance=RequestContext(request))
+    return render_to_response('webapp/about.html', {'formlogin': formlogin, 'dabout': dabout}, context_instance=RequestContext(request))
 
 def panden(request):
     formlogin = slogin(request)
@@ -166,14 +168,13 @@ def disclaimer(request):
 def privacy(request):
     data = Data.objects.get(id=2)
     formlogin = slogin(request)
-    partner_list = PartnerModel.objects.all()
-    return render_to_response('webapp/partners.html', {'formlogin': formlogin, 'partner_list': partner_list}, context_instance=RequestContext(request))
+    return render_to_response('webapp/privacy.html', {'formlogin': formlogin, 'data': data}, context_instance=RequestContext(request))
 
 def partners(request):
-    data = Data.objects.get(id=2)
+    dpartners = Data.objects.get(id=11)
     formlogin = slogin(request)
     partner_list = PartnerModel.objects.all()
-    return render_to_response('webapp/partners.html', {'formlogin': formlogin, 'partner_list': partner_list}, context_instance=RequestContext(request))
+    return render_to_response('webapp/partners.html', {'dpartners': dpartners, 'formlogin': formlogin, 'partner_list': partner_list}, context_instance=RequestContext(request))
 
 def partnersform(request):
 	if request.method == "POST":
