@@ -2630,6 +2630,10 @@ label.hvr-sweep-to-right {
     float: left;
 }
 
+.top-deal-img {
+    height: 25%;
+}
+
 .top-deal1 h5 {
     font-size: 1.2em;
     font-family: 'Ropa Sans', sans-serif;
@@ -2645,14 +2649,19 @@ label.hvr-sweep-to-right {
 }
 
 .top-deal1 p {
-    font-size: 0.8em;
+    font-size: 1em;
     color: #a3a3a3;
     padding: 0.3em 0 0;
 }
 
+.top-deal1 .prijs {
+    font-size: 1.2em;
+    color: #0d3532;
+}
+
 .top-deal2 {
     float: right;
-    margin-top: 1.1em;
+    margin-top: -1.5em;
 }
 
 .dealer-top h4 {
