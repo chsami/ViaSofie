@@ -10,7 +10,9 @@
 			{% for partner in partner_list %}
 				<div class="col-md-3 top-deal-top">
 					<div class="top-deal">
-						<span class="inplaceedit textinplaceedit"><inplaceeditform obj_id="2" can_auto_save="1" app_label="webapp" module_name="partner" field_name="foto_url"></inplaceeditform><a href="" class="mask"><img src="{{ partner.foto_url }}" class="img-responsive zoom-img" alt=""></a></span>
+						<span class="inplaceedit textinplaceedit"><inplaceeditform obj_id="2" can_auto_save="1" app_label="webapp" module_name="partner" field_name="foto_url"></inplaceeditform>
+							<a href="{{partner.link}}" class="mask"><img src="{{ partner.foto_url }}" class="img-responsive zoom-img" alt=""></a>
+						</span>
 						<div class="deal-bottom">
 							<div class="top-deal1">
 								<h5><a href="">{% inplace_edit "partner.naam" %}</a></h5>

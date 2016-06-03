@@ -51,12 +51,12 @@
                 <h3>In de spotlights</h3>
                 {% for uitgelicht_pand in uitgelichte_panden %}
                 <div class="col-md-4 box_2">
-                    <a href="single.html" class="mask">
+                    <a href="/pand/{{ uitgelicht_pand.referentienummer|cut:"-"}}" class="mask">
                         <img class="img-responsive zoom-img" src="{{uitgelicht_pand.thumbnail_url}}" alt="">
                         <span class="four">{{uitgelicht_pand.prijs}}</span>
                     </a>
                     <div class="most-1">
-                        <h5><a href="single.html">{{uitgelicht_pand.straatnaam}}</a></h5>
+                        <h5><a href="/pand/{{ uitgelicht_pand.referentienummer|cut:"-"}}">{{uitgelicht_pand.straatnaam}}</a></h5>
                         <p>{{uitgelicht_pand.postcodeID.stadsnaam}}</p>
                     </div>
                 </div>
