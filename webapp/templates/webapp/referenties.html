@@ -1,7 +1,5 @@
-{% extends 'webapp/base.html' %}
-{% load staticfiles %}
+{% extends 'webapp/base.html' %} {% load inplace_edit %} {% load staticfiles %} {% block header %} {% inplace_toolbar %}
 
-{% block header %}
 <link rel="stylesheet" type="text/css" href="{% static 'webapp/css/referenties.css' %}" />
 {% endblock header %}
 
@@ -9,7 +7,7 @@
 {% include "webapp/submenu.html" %}
 
 <div class="referenties">
-	<h3>Referenties</h3>
-	<p>Bent u nieuwsgierig naar de huizen/appartementen die Sofie reeds verkocht heeft? Deze kan u hier vinden.</p>
+	<h3>{% inplace_edit "dreferenties.titel|safe" %}</h3>
+	{% inplace_edit "dreferenties.data|safe" %}
 </div>
 {% endblock content %}

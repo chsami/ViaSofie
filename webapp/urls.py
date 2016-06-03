@@ -34,13 +34,11 @@ urlpatterns = [
     url(r'^reset/done/$', viewsauth.password_reset_complete, {'template_name': 'webapp/password_reset/password_reset_complete.html'}, name='password_reset_complete'),
 
     #Form urls
-    url(r'^forms/$', views.forms, name='forms'),
     url(r'^stad/$', views.stad, name='stad'),
     url(r'^handelstatus/$', views.handelstatus, name='handelstatus'),
     url(r'^voortgang/$', views.voortgang, name='voortgang'),
     #url(r'^pand/$', views.pand, name='pand'),
     url(r'^tag/$', views.tag, name='tag'),
-    url(r'^log/$', views.log, name='log'),
     url(r'^foto/$', views.foto, name='foto'),
     url(r'^formsucces/$', views.formsucces, name='formsucces'),
 
