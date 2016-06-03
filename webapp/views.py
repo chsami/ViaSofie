@@ -404,3 +404,14 @@ def login(request):
 # 	return render_to_response('webapp/loginpopup.html', {
 # 		'form': form,
 # 	}, context_instance=RequestContext(request))
+
+def sacha(request):
+    if request.method == "POST":
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            model_instance = form.save(commit=False)
+            model_instance.save()
+            return redirect('formsucces')
+    else:
+            form = SearchForm()
+    return render(request, "webapp/forms.html", {'form': form})
