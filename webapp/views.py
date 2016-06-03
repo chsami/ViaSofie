@@ -62,6 +62,7 @@ def panddetail(request, pand_referentienummer):
     return render_to_response('webapp/pand.html', {'pand': pand, 'fotos' : fotos, 'relatedPands' : relatedPands, 'formlogin':formlogin}, context_instance=RequestContext(request))
 
 def referenties(request):
+    dreferenties = Data.objects.get(id=9)
     formlogin = slogin(request)
     context = {
         # 'panden' = PandModel.objects.get(handelstatus='Verkocht',handelstatus='Verhuurd')

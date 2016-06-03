@@ -1,5 +1,6 @@
-{% extends 'webapp/base.html' %} {% load staticfiles %} {% load endless %} {% block header %} {% endblock header %} {% block content %}
+{% extends 'webapp/base.html' %} {% load inplace_edit %} {% load staticfiles %} {% load endless %} {% block header %} {% inplace_toolbar %} {% endblock header %} {% block content %}
 <!--header-bottom-->
+
 {% include "webapp/submenu.html" %}
 <!--//-->
 <div class="project">
