@@ -1,77 +1,16 @@
-{% extends 'webapp/base.html' %}
-{% load staticfiles %}
-
-{% block header %}
+{% extends 'webapp/base.html' %} {% load inplace_edit %} {% load staticfiles %} {% block header %} {% inplace_toolbar %}
 {% endblock header %}
 
 {% block content %}
-<div class="about">	
+<div class="about">
 	<div class="about-head">
 		<div class="container">
-			<h3>Over ons</h3>
+			<h3>{% inplace_edit "dabout.titel|safe" %}</h3>
 				<div class="about-in">
-					<img src="{% static 'webapp/images/Sofie.jpg' %}" alt="image" class="img-responsive "></a>			
-					<h6>Sofie is juriste van opleiding (Master in de Rechten).</br>Zij behaalde tevens  een postgraduaat Vastgoedkunde aan de KU Leuven.</h6>
-					<p>Zowel op juridisch als bouwtechnisch vlak loodst zij u graag doorheen het vastgoedlandschap en dit met het oog op een succesvolle verkoop of verhuur. Ook voor de opmaak van een taxatieverslag of adviesverlening kan u bij haar terecht.   Sofie neemt de zorg voor de  verkoop of verhuur van uw woning uit handen. Zij regelt bezoeken, zorgt ervoor dat een verkoop- of verhuurdossier wordt opgesteld conform de wettelijke bepalingen en helpt bij een correcte prijszetting van uw pand aan de hand van een taxatieverslag en op basis van  vergelijkingspunten van een eigen opgebouwd databestand. Hebt u vragen of wil u weten wat Sofie voor u kan betekenen, contacteer haar vrijblijvend.</p>
+					<img src="{% static 'webapp/images/Sofie.jpg' %}" alt="image" class="img-responsive "></a>
+					{% inplace_edit "dabout.data|safe" %}
 				</div>
 		</div>
 	</div>
-	<!---->
-	<!---->
-	<div class="choose-us">
-		<div class="container">
-			<h3>Waarom Via Sofie?</h3>
-			<div class="us-choose">
-				<div class="col-md-6 why-choose">
-					<div class="  ser-grid ">
-						<i class="hi-icon hi-icon-archive glyphicon glyphicon-pencil"> </i>
-					</div>
-					<div class="ser-top beautiful"> 
-						<h5>beautiful &amp; enjoyable designs</h5>
-						<label>The standard chunk of Lorem</label>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.</p>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-				<div class="col-md-6 why-choose">
-					<div class=" ser-grid">
-						<i class="hi-icon hi-icon-archive glyphicon glyphicon-time"> </i>
-					</div>
-					<div class="ser-top beautiful"> 
-						<h5>beautiful &amp; enjoyable designs</h5>
-						<label>The standard chunk of Lorem</label>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.</p>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-			<div class="us-choose">
-				<div class="col-md-6 why-choose">
-					<div class=" ser-grid">
-						<i class="hi-icon hi-icon-archive glyphicon glyphicon-cog"> </i>
-					</div>
-					<div class="ser-top beautiful"> 
-						<h5>beautiful &amp; enjoyable designs</h5>
-						<label>The standard chunk of Lorem</label>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.</p>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-				<div class="col-md-6 why-choose">
-					<div class=" ser-grid">
-						<i class="hi-icon hi-icon-archive glyphicon glyphicon-file"> </i>
-					</div>
-					<div class="ser-top beautiful"> 
-						<h5>beautiful &amp; enjoyable designs</h5>
-						<label>The standard chunk of Lorem</label>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.</p>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-				
-			</div>
-		</div>
+
 {% endblock content %}

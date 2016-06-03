@@ -5,8 +5,8 @@
 {% block content %}
 <div class="privacy">
 	<div class="container">
-		<h3>{% inplace_edit "data.titel" %}</h3>
-		<p>{% inplace_edit "data.data" %}</p>
+		<h3>{% inplace_edit "data.titel|safe" %}</h3>
+		<p>{% inplace_edit "data.data|safe" %}</p>
 	</div>
 </div>
 {% endblock content %}

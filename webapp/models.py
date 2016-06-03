@@ -143,7 +143,7 @@ class Ebook(models.Model):
 
 class Faq(models.Model):
     titel = models.CharField(max_length=128)
-    content = models.CharField(max_length=2500)
+    content = models.TextField()
 
     def __str__(self):
         return str(self.id)
@@ -172,7 +172,7 @@ class PandReview(models.Model):
         (5, '5')
     )
     rating = models.CharField(max_length=2, choices=RATING_CHOICES, default=5)
-    
+
     created = models.DateTimeField(editable=False)
     modified = models.DateTimeField()
 
@@ -185,4 +185,4 @@ class PandReview(models.Model):
 
 class Data(models.Model):
     titel = models.CharField(max_length=255)
-    data = models.CharField(max_length=10000)
+    data = models.TextField()
