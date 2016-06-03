@@ -161,7 +161,7 @@ class ContactForm(forms.Form):
 	message = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Bericht'}))
 
 class SearchForm(forms.Form):
-    plaats_postcode = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Zoek op plaats of postcode'}))
+    plaats_postcode = forms.CharField(widget=forms.TextInput(attrs={'class': 'search-form-input', 'placeholder': 'Zoek op plaats of postcode'}))
     pand_type = forms. NullBooleanField(widget=forms.CheckboxInput())
     aantal_slaapkamers = forms.IntegerField(widget=forms.TextInput(attrs={'id': 'aantal-slaapkamers', 'readonly style': 'border:0; color:#f6931f; font-weight:bold;'}))
     aantal_badkamers = forms.IntegerField(widget=forms.TextInput(attrs={'id': 'aantal-badkamers', 'readonly style': 'border:0; color:#f6931f; font-weight:bold;'}))
