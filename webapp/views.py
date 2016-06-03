@@ -47,7 +47,9 @@ def index(request):
 
     # GOEDE DOELEN
     goede_doelen = GoedDoelModel.objects.all()
-    return render_to_response('webapp/index.html', {'uitgelichte_panden': uitgelichte_panden, 'goede_doelen': goede_doelen, 'formlogin':formlogin}, context_instance=RequestContext(request))
+    #PARTNERS
+    partner_list = PartnerModel.objects.all()
+    return render_to_response('webapp/index.html', {'uitgelichte_panden': uitgelichte_panden, 'goede_doelen': goede_doelen, 'formlogin':formlogin, 'partner_list': partner_list}, context_instance=RequestContext(request))
 
 def panddetail(request, pand_referentienummer):
     if request.method == 'POST' and 'loginbtn' in request.POST:

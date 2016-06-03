@@ -71,3 +71,37 @@ a {
 .panel-body a {
     color: #333;
 }
+
+
+@media(max-width:768px) {
+    .advies h3 {
+        font-size: 2.5em;
+    }
+
+    .advies h3:after,
+    .advies h3:before {
+        width: 200px;
+    }
+}
+
+@media(max-width:640px) {
+    .advies h3 {
+        font-size: 2.3em;
+    }
+
+    .advies h3:after,
+    .advies h3:before {
+        width: 100px;
+    }
+}
+
+@media(max-width:480px) {
+    .advies h3 {
+        font-size: 2em;
+    }
+
+    .advies h3:after,
+    .advies h3:before {
+        width: 50px;
+    }
+}

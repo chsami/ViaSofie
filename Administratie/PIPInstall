@@ -1,0 +1,31 @@
+Modules die moeten geïnstalleerd worden voor server te laten runnen.
+
+pip install django_recaptcha
+pip install django-inplaceedit-bootstrap
+pip install django-inplaceedit-extra-fields
+pip install django-bootstrap3-datetimepicker
+pip install django-rosetta
+
+pip install django-endless-pagination
+##################################################################
+Goto pagination module
+C:\Python27\Lib\site-packages\endless_pagination
+
+Open loaders.py
+
+Change from django.utils.importlib import import_module
+
+With
+try:
+    # Django versions >= 1.9
+    from django.utils.module_loading import import_module
+except ImportError:
+    # Django versions < 1.9
+    from django.utils.importlib import import_module
+
+Open utils.py
+
+Change line 46 request.REQUEST
+With request.GET
+##################################################################
+
