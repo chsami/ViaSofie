@@ -93,46 +93,18 @@
         <!--//services-->
         <!--partners-->
         <div class="content-bottom1">
-            <h3>{% inplace_edit "dpartners.titel" %}</h3>
-            <div class="dealer-top">
-          			<div class="deal-top-top">
-          			{% for partner in partner_list %}
-          				<div class="col-md-3 top-deal-top">
-          					<div class="top-deal">
-          						<span class="inplaceedit textinplaceedit"><a href="" class="mask"><img src="{{ partner.foto_url }}" class="img-responsive zoom-img" alt=""></a></span>
-          						<div class="deal-bottom">
-          							<div class="top-deal1">
-          							</div>
-          							<div class="top-deal2">
-          								<a href="" class="hvr-sweep-to-right more">Meer</a>
-          							</div>
-          						<div class="clearfix"> </div>
-          						</div>
-          					</div>
-          				</div>
-          				{% endfor %}
-          				{% for group in user.groups.all %}
-              			{% if group.name == 'makelaars' %}
-          				<div class="col-md-3 top-deal-top">
-          					<div class="top-deal">
-          					<a href="/partnersform" class="mask"><img src="{% static 'webapp/images/plus.png' %}" class="img-responsive zoom-img" alt=""></a>
-          						<div class="deal-bottom">
-          							<div class="top-deal1">
-          								<h5><a href="/partnersform">Voeg partner toe</a></h5>
-          								<p>partner onderschrift</p>
-          							</div>
-          							<div class="top-deal2">
-          								<a href="/partnersform" class="hvr-sweep-to-right more">Meer</a>
-          							</div>
-          						<div class="clearfix"> </div>
-          						</div>
-          					</div>
-          				</div>
-          					{% endif %}
-          				{% endfor %}
-          			<div class="clearfix"> </div>
-          		</div>
-          </div>
+              <h3>Onze Partners</h3>
+            <div class="container">
+                <ul>
+                  {% for partner in partner_list %}
+                    <li>
+                        <a href="" class="mask"><img src="{{ partner.foto_url }}" class="img-responsive zoom-img" alt=""></a>
+                    </li>
+                    {% endfor %}
+                    <div class="clearfix"> </div>
+                </ul>
+            </div>
+       </div>
         <!--//partners-->
     </div>
     {% endblock content %}
