@@ -17,7 +17,7 @@
                         <li>
                             <div class="banner1">
                                 <div class="caption">
-                                    <h3><span>Via sofie</span></h3>
+                                    <h3><span>{% inplace_edit "dpartners.titel" %}</span></h3>
                                     <p>Vérdergaan in vastgoed...</p>
                                 </div>
                             </div>
@@ -99,7 +99,6 @@
           			{% for partner in partner_list %}
           				<div class="col-md-3 top-deal-top">
           					<div class="top-deal">
-          						<span class="inplaceedit textinplaceedit"><a href="" class="mask"><img src="{{ partner.foto_url }}" class="img-responsive zoom-img" alt=""></a></span>
           						<div class="deal-bottom">
           							<div class="top-deal1">
           							</div>
