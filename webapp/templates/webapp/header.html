@@ -1,4 +1,4 @@
-{% load inplace_edit %}{% load staticfiles %}
+{% load inplace_edit %}{% load staticfiles %} {% load module_sander %}
 <header>
     {% load i18n %}
     <div id="language_menu" class="language_menu">
@@ -43,11 +43,11 @@
         <div class="cssmenu-container">
             <div id='cssmenu' class="align-center">
                 <ul>
-                    <li class='active'><a href='/'>Home</a></li>
-                    <li><a href='/about'>Over</a></li>
-                    <li><a href='/partners'>Partners</a></li>
-                    <li><a href='/contact'>Contact</a></li>
-                    <li class="ebookmenu"><a href='/ebook'>EBook</a></li>
+                    <li class='active'><a href='/'>{% get_obj_data "12" "titel" %}</a></li>
+                    <li><a href='/about'>{% get_obj_data "10" "titel" %}</a></li>
+                    <li><a href='/partners'>{% get_obj_data "11" "titel" %}</a></li>
+                    <li><a href='/contact'>{% get_obj_data "3" "titel" %}</a></li>
+                    <li class="ebookmenu"><a href='/ebook'>Ebook</a></li>
                 </ul>
             </div>
             <div class="clearfix"> </div>
