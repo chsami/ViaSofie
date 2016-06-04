@@ -3,7 +3,17 @@
 <script type='text/javascript' src="{% static 'webapp/scripts/jquery.flexslider.js' %}"></script>
 <script type='text/javascript' src="{% static 'webapp/scripts/jquery.flexisel.js' %}"></script>
 <script src="http://maps.googleapis.com/maps/api/js"></script>
-<link rel="stylesheet" href="{% static 'webapp/css/flexslider.css' %}" type="text/css" media="screen" /> {% endblock header %} {% block content %}
+<link rel="stylesheet" href="{% static 'webapp/css/flexslider.css' %}" type="text/css" media="screen" />
+<meta property="og:url"                content="www.localhost:8000/pand/{{ pand.referentienummer|cut:"-"}}" />
+<meta property="og:type"               content="article" />
+<meta property="og:title"              content="Pand in {{pand.straatnaam}} te {{pand.handelstatus}} " />
+<meta property="og:description"        content="{{pand.beschrijving}}" />
+<meta property="og:image"              content="{{pand.thumbnail_url}}" />
+<meta property="og:site_name"          content="Via Sofie"/>
+<meta property="app_id"                content="1007959369240278"/>
+ {% endblock header %} {% block content %}
+
+
 <div class="container">
     <div class="buy-single-single">
         <div class=" buying-top">
@@ -92,8 +102,11 @@
                 </table>
                 <div class="   right-side">
                     <a href="/contact" class="hvr-sweep-to-right more">Contact</a>
+                    <!-- <div  class="fb-like"  data-share="true"  data-width="450"  data-show-faces="true">
+</div> -->
                 </div>
-            </div>
+                <div class="fb-share-button" data-href="https://www.viasofie.be/pand/{{ pand.referentienummer|cut:"-"}}" data-layout="button" data-mobile-iframe="true"></div>
+          </div>
             <div class="col-sm-7 buy-sin">
                 <h4>Description</h4>
                 <p>{{ pand.beschrijving }}</p>
