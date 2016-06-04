@@ -2,8 +2,14 @@
 <script type='text/javascript' src="{% static 'webapp/scripts/index.js' %}"></script>
 <script type='text/javascript' src="{% static 'webapp/scripts/jquery.flexslider.js' %}"></script>
 <script type='text/javascript' src="{% static 'webapp/scripts/jquery.flexisel.js' %}"></script>
+
 <script src="http://maps.googleapis.com/maps/api/js"></script>
+
 <link rel="stylesheet" href="{% static 'webapp/css/flexslider.css' %}" type="text/css" media="screen" />
+<link rel="stylesheet" href="{% static 'webapp/css/flexslider.css' %}" type="text/css" media="screen" />
+<link rel="stylesheet" href="{% static 'webapp/css/bootstrap-tagsinput.css' %}" type="text/css" media="screen" />
+<link rel="stylesheet" href="{% static 'webapp/css/bootstrap-tagsinput-typeahead.css' %}" type="text/css" media="screen" />
+<!--facebook meta data  -->
 <meta property="og:url"                content="www.localhost:8000/pand/{{ pand.referentienummer|cut:"-"}}" />
 <meta property="og:type"               content="article" />
 <meta property="og:title"              content="Pand in {{pand.straatnaam}} te {{pand.handelstatus}} " />
@@ -11,9 +17,7 @@
 <meta property="og:image"              content="{{pand.thumbnail_url}}" />
 <meta property="og:site_name"          content="Via Sofie"/>
 <meta property="app_id"                content="1007959369240278"/>
- {% endblock header %} {% block content %}
-
-
+{% endblock header %} {% block content %}
 <div class="container">
     <div class="buy-single-single">
         <div class=" buying-top">
@@ -39,13 +43,6 @@
             </div>
             <!-- FlexSlider -->
             <script>
-            // Can also be used with $(document).ready()
-            //$(window).load(function() {
-            //    $('.flexslider').flexslider({
-            //        animation: "slide",
-            //        controlNav: "thumbnails"
-            //    });
-            //});
 
             $(window).load(function() {
               // The slider being synced must be initialized first
@@ -100,7 +97,15 @@
                         </tr>
                     </tbody>
                 </table>
-                <div class="   right-side">
+                    <input id="tags" type="text" value="{{all_tags}}" data-role="tagsinput"/>
+                    <script>
+                    $('#tags').tagsinput({
+                      typeahead: {
+                        source: ['Amsterdam', 'Washington', 'Sydney', 'Beijing', 'Cairo']
+                      }
+                    });
+                    </script>
+                <div class="right-side">
                     <a href="/contact" class="hvr-sweep-to-right more">Contact</a>
                     <!-- <div  class="fb-like"  data-share="true"  data-width="450"  data-show-faces="true">
 </div> -->
@@ -228,4 +233,6 @@
     </div>
 </div>
 </div>
+<script type='text/javascript' src="{% static 'webapp/scripts/bootstrap-tagsinput.js' %}"></script>
+<script type='text/javascript' src="{% static 'webapp/scripts/typeahead.bundle.js' %}"></script>
 {% endblock content %}

@@ -12,6 +12,7 @@ from webapp.models import Faq as FaqModel
 from webapp.models import Partner as PartnerModel
 from webapp.models import User as UserModel
 from webapp.models import GoedDoel as GoedDoelModel
+from webapp.models import TagPand as TagPandModel
 from django.utils.translation import ugettext as _
 from webapp.forms import *
 import hashlib
@@ -65,11 +66,76 @@ def panddetail(request, pand_referentienummer):
     #voeg extra gegevens toe
     relatedPands= PandModel.objects.filter(postcodeID=pand.postcodeID)
     fotos = FotoModel.objects.filter(pand_id=pand.id)
-    return render_to_response('webapp/pand.html', {'pand': pand, 'fotos' : fotos, 'relatedPands' : relatedPands, 'formlogin':formlogin}, context_instance=RequestContext(request))
+
+    # Tags van pand moeten op de volgende wijze worden megegeven: "Zwembad,Veranda,Tuin"
+    tagpand_list = TagPandModel.objects.filter(pand_id=pand.id)
+    tag_data = ""
+    for tagpand in tagpand_list:
+        tag_data += "%s (%s)," % (str(tagpand.tag), tagpand.value)
+    # Laatste onnodige comma wordt weggehaald
+    tag_data = tag_data[:-1]
+
+    all_tagpand_list = TagPandModel.objects.all()
+
+    all_tags = []
+    temp_tag = ""
+    for tagpand in all_tagpand_list:
+        for i in range(0,20):
+            temp_tag = "%s (%s)" % (str(tagpand.tag), str(i))
+            all_tags.append(temp_tag)
+
+    return render_to_response('webapp/pand.html', {'pand': pand, 'fotos' : fotos, 'relatedPands' : relatedPands, 'tag_data': tag_data, 'all_tags': all_tags, 'formlogin':formlogin}, context_instance=RequestContext(request))
+
+def panden(request):
+    data = Data.objects.get(id=13)
+    # Login form
+    formlogin = slogin(request)
+    # SmallSearchForm
+    if request.method == "POST":
+        smallsearchform = SmallSearchForm(request.POST)
+        if smallsearchform.is_valid():
+            model_instance = smallsearchform.save(commit=False)
+            model_instance.save()
+            return redirect('formsucces')
+    else:
+            smallsearchform = SmallSearchForm()
+    # SearchForm
+    if request.method == "POST":
+        searchform = SearchForm(request.POST)
+        if searchform.is_valid():
+            model_instance = searchform.save(commit=False)
+            model_instance.save()
+            return redirect('formsucces')
+    else:
+            searchform = SearchForm()
+    # Context (endless pagination)
+    context = {
+        'panden': PandModel.objects.all().values(),
+        'panden_item': 'webapp/panden_item.html',
+        'formlogin': formlogin,
+        'data': data,
+        'searchform': searchform,
+        'smallsearchform': smallsearchform,
+    }
+    template = 'webapp/panden.html'
+    if request.is_ajax():
+        template = 'webapp/panden_item.html'
+    return render_to_response(template, context, context_instance=RequestContext(request))
 
 def referenties(request):
+    data = Data.objects.get(id=9)
     formlogin = slogin(request)
-    return render_to_response('webapp/referenties.html', {'formlogin': formlogin}, context_instance=RequestContext(request))
+    context = {
+        # 'panden' = PandModel.objects.get(handelstatus='Verkocht',handelstatus='Verhuurd')
+        'panden': PandModel.objects.all().values(),
+        'panden_item': 'webapp/panden_item.html',
+        'formlogin': formlogin,
+        'data': data,
+    }
+    template = 'webapp/panden.html'
+    if request.is_ajax():
+        template = 'webapp/panden_item.html'
+    return render_to_response(template, context, context_instance=RequestContext(request))
 
 def account(request):
     formlogin = slogin(request)
@@ -87,18 +153,6 @@ def about(request):
     formlogin = slogin(request)
     return render_to_response('webapp/about.html', {'formlogin': formlogin, 'dabout': dabout}, context_instance=RequestContext(request))
 
-def panden(request):
-    formlogin = slogin(request)
-    panden = PandModel.objects.all().values()
-    context = {
-        'panden': PandModel.objects.all().values(),
-        'panden_item': 'webapp/panden_item.html',
-        'formlogin': formlogin,
-    }
-    template = 'webapp/panden.html'
-    if request.is_ajax():
-        template = 'webapp/panden_item.html'
-    return render_to_response(template, context, context_instance=RequestContext(request))
 
 def contact(request):
     dcontact = Data.objects.get(id=3)
@@ -205,7 +259,7 @@ def ebooks(request):
 			return redirect('ebook_lijst')
 	else:
 			form = Ebookform()
-	return render(request, "webapp/forms.html", {'form': form})
+	return render(request, "webapp/ebook.html", {'form': form})
 
 def ebook_lijst(request):
 	ebooks = Ebook.objects.all()

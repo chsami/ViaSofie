@@ -1,26 +1,18 @@
-{% load staticfiles %} {% load endless %}
-{% paginate panden %}
-
-    {% for pand in panden %}
-    <div class="col-md-3 project-grid">
-        <div class="project-grid-top">
-            <a href="/pand/{{ pand.referentienummer|cut:"-"}}" class="mask"><img src="{{pand.thumbnail_url}}" class="img-responsive zoom-img" alt="" /></a>
-            <div class="col-md1">
-                <div class="col-md2">
-                    <div class="col-md3">
-                        <span class="star"> 4.5</span>
-                    </div>
-                    <div class="col-md4">
-                        <strong>{{ pand.straatnaam }}</strong>
-                        <small>50 Reviews</small>
-                    </div>
-                    <div class="clearfix"> </div>
-                </div>
-                <p>2, 3, 4 BHK Flats</p>
-                <p class="cost">€ {{pand.prijs}}</p>
-                <a href="/pand/{{ pand.referentienummer|cut:"-"}}" class="hvr-sweep-to-right more">See Details</a>
+{% load staticfiles %} {% load endless %} {% paginate panden %} {% for pand in panden %}
+<div class="col-md-3 top-deal-top">
+    <div class=" top-deal">
+        <a href="/pand/{{ pand.referentienummer|cut:" - "}}" class="mask"><img src="{{pand.thumbnail_url}}" class="img-responsive zoom-img top-deal-img" alt=""></a>
+        <div class="deal-bottom">
+            <div class="top-deal1">
+                <h5><a href="/pand/{{ pand.referentienummer|cut:"-"}}">{{ pand.straatnaam }}</a></h5>
+                <p>Plot Area : 150 Sq.Yrds</p>
+                <p class="prijs">€ {{pand.prijs}}</p>
             </div>
+            <div class="top-deal2">
+                <a href="/pand/{{ pand.referentienummer|cut:"-"}}" class="hvr-sweep-to-right more">Toon meer</a>
+            </div>
+            <div class="clearfix"> </div>
         </div>
     </div>
-    {% endfor %}
-     {% show_more "Toon meer panden" "Panden laden..." %}
+</div>
+{% endfor %} {% show_more "Toon meer panden" "Panden laden..." %}
