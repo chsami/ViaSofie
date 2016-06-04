@@ -1,7 +1,7 @@
 {% load staticfiles %} {% load endless %} {% paginate panden %} {% for pand in panden %}
 <div class="col-md-3 top-deal-top">
     <div class=" top-deal">
-        <a href="/pand/{{ pand.referentienummer|cut:" - "}}" class="mask"><img src="{{pand.thumbnail_url}}" class="img-responsive zoom-img top-deal-img" alt=""></a>
+        <a href="/pand/{{ pand.referentienummer|cut:"-"}}" class="mask"><img src="{{pand.thumbnail_url}}" class="img-responsive zoom-img top-deal-img" alt=""></a>
         <div class="deal-bottom">
             <div class="top-deal1">
                 <h5><a href="/pand/{{ pand.referentienummer|cut:"-"}}">{{ pand.straatnaam }}</a></h5>
