@@ -6690,3 +6690,23 @@ div.endless_loading {
     -webkit-transform: translateY(-50%) translateZ(1px);
     transform: translateY(-50%) translateZ(1px);
 }
+
+/* Tags fix */
+
+/*.bootstrap-tagsinput {
+    pointer-events: none;
+}*/
+
+.bootstrap-tagsinput .tag [data-role="remove"] {
+    display: none;
+}
+
+.bootstrap-tagsinput .tag {
+    font-size: 85%;
+    background-color: #0d3532;
+}
+
+.bootstrap-tagsinput .typeahead {
+  height: 200px;
+  overflow-y: auto;
+}

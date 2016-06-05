@@ -99,14 +99,16 @@
                         </tr>
                     </tbody>
                 </table>
-                    <input id="tags" type="text" value="" data-role="tagsinput"/>
+                    <input id="tags" type="text" value="{{tag_data}}" data-role="tagsinput"/>
                     <script>
                     $('#tags').tagsinput({
                       typeahead: {
-                        source: {{all_tags}},
-                        freeInput: false,
-                        allowDuplicates: false
-                      }
+                        order: "asc",
+                        source: {{all_tags|safe}},
+                        items: 'all'
+                      },
+                      freeInput: false,
+                      allowDuplicates: false
                     });
                     </script>
                 <div class="right-side">
