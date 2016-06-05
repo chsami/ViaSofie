@@ -162,7 +162,7 @@ class ContactForm(forms.Form):
 
 class SearchForm(forms.Form):
     plaats_postcode = forms.CharField(widget=forms.TextInput(attrs={'class': 'search-form-input', 'placeholder': 'Zoek op plaats of postcode'}))
-    pand_type = forms. NullBooleanField(widget=forms.CheckboxInput())
+    pand_type = forms.ChoiceField(widget=forms.Select(attrs={'id': 'pand-type'}))
     aantal_slaapkamers = forms.IntegerField(widget=forms.TextInput(attrs={'id': 'aantal-slaapkamers', 'readonly style': 'border:0; color:#f6931f; font-weight:bold;'}))
     aantal_badkamers = forms.IntegerField(widget=forms.TextInput(attrs={'id': 'aantal-badkamers', 'readonly style': 'border:0; color:#f6931f; font-weight:bold;'}))
     aantal_verdiepen = forms.IntegerField(widget=forms.TextInput(attrs={'id': 'aantal-verdiepen', 'readonly style': 'border:0; color:#f6931f; font-weight:bold;'}))
@@ -173,3 +173,16 @@ class SearchForm(forms.Form):
 
     class Meta:
         fields = ['plaats_postcode', 'pand_type', 'aantal_slaapkamers', 'aantal_badkamers', 'aantal_verdiepen', 'prijs_range', 'tags']
+
+class DocumentForm(forms.Form):
+    user = forms.IntegerField()
+    titel = forms.CharField( max_length=128, widget=forms.TextInput(attrs={'placeholder': 'Titel'}))
+    bericht = forms.CharField( max_length=500, widget=forms.Textarea(attrs={'placeholder': 'Bericht'}))
+    docfile = forms.FileField(
+        label='Select a file',
+        help_text='max. 50 gigabytes'
+    )
+
+    class Meta:
+        model = Document
+        fields = ['user', 'docfile', 'titel', 'bericht']

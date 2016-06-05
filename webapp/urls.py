@@ -40,6 +40,7 @@ urlpatterns = [
     url(r'^foto/$', views.foto, name='foto'),
     url(r'^formsucces/$', views.formsucces, name='formsucces'),
     url(r'^sacha/$', views.sacha, name='sacha'),
+    url(r'^document/$', views.document_view, name='document_view'),
 
     #Ebook
     url(r'^ebook/$', views.ebooks, name='ebooks'),
