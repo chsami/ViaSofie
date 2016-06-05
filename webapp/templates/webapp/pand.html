@@ -118,12 +118,18 @@
                         </tr>
                     </tbody>
                 </table>
-                    <input id="tags" type="text" value="{{all_tags}}" data-role="tagsinput"/>
+
+                    <input id="tags" type="text" value="{{tag_data}}" data-role="tagsinput"/>
                     <script>
                     $('#tags').tagsinput({
                       typeahead: {
-                        source: ['Amsterdam', 'Washington', 'Sydney', 'Beijing', 'Cairo']
-                      }
+                        order: "asc",
+                        source: {{all_tags|safe}},
+                        items: 'all'
+                      },
+                      freeInput: false,
+                      allowDuplicates: false
+
                     });
                     </script>
                 <div class="right-side">
