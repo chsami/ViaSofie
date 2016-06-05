@@ -29,3 +29,10 @@ Change line 46 request.REQUEST
 With request.GET
 ##################################################################
 
+##################################################################
+C:\Python27\Lib\site-packages\inplaceeditform_bootstrap\templates\inplaceeditform
+
+Change inc.inplace_toolbar.html
+
+With inc.inplace_toolbar.html in this folder
+##################################################################

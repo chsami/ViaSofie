@@ -6693,9 +6693,9 @@ div.endless_loading {
 
 /* Tags fix */
 
-/*.bootstrap-tagsinput {
+.bootstrap-tagsinput {
     pointer-events: none;
-}*/
+}
 
 .bootstrap-tagsinput .tag [data-role="remove"] {
     display: none;

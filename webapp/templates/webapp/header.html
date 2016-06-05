@@ -22,7 +22,7 @@
                 <span class="icon-bar"></span>
             </button>
             <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav navbar-right">
+                <ul id="InplaceEditList" class="nav navbar-nav navbar-right">
                     {% if user.is_authenticated %}
                     <li><a href="/account"><span class="glyphicon glyphicon-user"></span> {{ user.email }} </a></li>
                     <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
