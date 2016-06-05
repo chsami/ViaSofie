@@ -38,6 +38,9 @@
   return t;
 }(document, "script", "twitter-wjs"));</script>
 
+<!-- pintrest widgets -->
+<script async defer src="//assets.pinterest.com/js/pinit.js"></script>
+
 
 <div class="container">
     <div class="buy-single-single">
@@ -138,6 +141,8 @@
                 </div>
                 <div class="fb-share-button" data-href="https://www.viasofie.be/pand/{{ pand.referentienummer|cut:"-"}}" data-layout="button" data-mobile-iframe="true"></div>
                 <a class="twitter-share-button" href="http://twitter.com/share?text=Pand in {{pand.straatnaam}} te {{pand.handelstatus}}.&url=http://viasofie.be/pand/{{pand.referentienummer|cut:"-"}}&hashtags=Via Sofie">Tweet </a>
+                <a class="btn btn-info btn-xs" href="mailto:?subject=Pand &body=http://www.viasofie/pand/{{pand.referentienummer|cut:"-"}}.be" ><span class="glyphicon glyphicon-envelope"></span> Email</a>
+                <a data-pin-do="buttonBookmark" data-pin-lang="en" data-pin-save="true" href="https://www.pinterest.com/pin/create/button/"></a>
           </div>
             <div class="col-sm-7 buy-sin">
                 <h4>Description</h4>
