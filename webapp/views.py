@@ -45,6 +45,12 @@ def slogin(request):
     else:
         formlogin=AuthenticationForm()
     return formlogin
+
+# def filtertags(request):
+#     if request.method == 'POST' and 'searchbtn' in request.POST:
+        # panden = PandModel.objects.filter()
+
+
 # Create your views here.
 def index(request):
     dpartners = Data.objects.get(id=11)
