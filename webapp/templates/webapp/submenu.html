@@ -54,9 +54,12 @@
                 </div>
             </div>
             <div class="searchForm">
-                <form class="search-form search-input-form" action="">
+                <form class="search-form search-input-form" id="searchform" method="post" action="">
                     <fieldset>
-                        <input type="search" class="search-form-input" name="s" value="" id="s" placeholder="Type, plaats, postcode">
+                        {% csrf_token %}
+                        <table class="search-form-table">
+                            {{smallsearchform}}
+                        </table>
                         <hr class="searchhr">
                         <button id="searchButtonOk" class="button" type="submit"><i class="fa fa-search"></i></button>
                     </fieldset>

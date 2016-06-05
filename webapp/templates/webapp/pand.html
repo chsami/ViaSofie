@@ -2,8 +2,23 @@
 <script type='text/javascript' src="{% static 'webapp/scripts/index.js' %}"></script>
 <script type='text/javascript' src="{% static 'webapp/scripts/jquery.flexslider.js' %}"></script>
 <script type='text/javascript' src="{% static 'webapp/scripts/jquery.flexisel.js' %}"></script>
+<script type='text/javascript' src="{% static 'webapp/scripts/bootstrap-tagsinput.js' %}"></script>
+<script type='text/javascript' src="{% static 'webapp/scripts/bootstrap3-typeahead.js' %}"></script>
 <script src="http://maps.googleapis.com/maps/api/js"></script>
-<link rel="stylesheet" href="{% static 'webapp/css/flexslider.css' %}" type="text/css" media="screen" /> {% endblock header %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'webapp/css/flexslider.css' %}" type="text/css" media="screen" />
+<link rel="stylesheet" href="{% static 'webapp/css/flexslider.css' %}" type="text/css" media="screen" />
+<link rel="stylesheet" href="{% static 'webapp/css/bootstrap-tagsinput.css' %}" type="text/css" media="screen" />
+<link rel="stylesheet" href="{% static 'webapp/css/bootstrap-tagsinput-typeahead.css' %}" type="text/css" media="screen" />
+<!--facebook meta data  -->
+<meta property="og:url"                content="www.localhost:8000/pand/{{ pand.referentienummer|cut:"-"}}" />
+<meta property="og:type"               content="article" />
+<meta property="og:title"              content="Pand in {{pand.straatnaam}} te {{pand.handelstatus}} " />
+<meta property="og:description"        content="{{pand.beschrijving}}" />
+<meta property="og:image"              content="{{pand.thumbnail_url}}" />
+<meta property="og:site_name"          content="Via Sofie"/>
+<meta property="app_id"                content="1007959369240278"/>
+{% endblock header %} {% block content %}
 <div class="container">
     <div class="buy-single-single">
         <div class=" buying-top">
@@ -29,13 +44,6 @@
             </div>
             <!-- FlexSlider -->
             <script>
-            // Can also be used with $(document).ready()
-            //$(window).load(function() {
-            //    $('.flexslider').flexslider({
-            //        animation: "slide",
-            //        controlNav: "thumbnails"
-            //    });
-            //});
 
             $(window).load(function() {
               // The slider being synced must be initialized first
@@ -58,6 +66,7 @@
               });
             });
             </script>
+        </div>
         </div>
         <div class="buy-sin-single">
             <div class="col-sm-5 middle-side immediate">
@@ -90,34 +99,23 @@
                         </tr>
                     </tbody>
                 </table>
-                    <input type="text" value="{{tag_data}}" data-role="tagsinput"
+                    <input id="tags" type="text" value="" data-role="tagsinput"/>
                     <script>
-                    var citynames = new Bloodhound({
-                      datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
-                      queryTokenizer: Bloodhound.tokenizers.whitespace,
-                      prefetch: {
-                        url: 'assets/citynames.json',
-                        filter: function(list) {
-                          return $.map(list, function(cityname) {
-                            return { name: cityname }; });
-                        }
-                      }
-                    });
-                    citynames.initialize();
-
-                    $('input').tagsinput({
-                      typeaheadjs: {
-                        name: 'citynames',
-                        displayKey: 'name',
-                        valueKey: 'name',
-                        source: citynames.ttAdapter()
+                    $('#tags').tagsinput({
+                      typeahead: {
+                        source: {{all_tags}},
+                        freeInput: false,
+                        allowDuplicates: false
                       }
                     });
                     </script>
-                <div class="   right-side">
+                <div class="right-side">
                     <a href="/contact" class="hvr-sweep-to-right more">Contact</a>
+                    <!-- <div  class="fb-like"  data-share="true"  data-width="450"  data-show-faces="true">
+</div> -->
                 </div>
-            </div>
+                <div class="fb-share-button" data-href="https://www.viasofie.be/pand/{{ pand.referentienummer|cut:"-"}}" data-layout="button" data-mobile-iframe="true"></div>
+          </div>
             <div class="col-sm-7 buy-sin">
                 <h4>Description</h4>
                 <p>{{ pand.beschrijving }}</p>
@@ -162,51 +160,6 @@
                     </div>
                 </li>
                 {% endfor %}
-                <!-- <li>
-                    <div class="project-fur">
-                        <a href="single.html"><img class="img-responsive" src="{% static 'webapp/images/templateImg/pi1.jpg' %}" alt="" /> </a>
-                        <div class="fur">
-                            <div class="fur1">
-                                <span class="fur-money">$2.44 Lacs - 5.28 Lacs </span>
-                                <h6 class="fur-name"><a href="single.html">Contrary to popular</a></h6>
-                                <span>Paris</span>
-                            </div>
-                            <div class="fur2">
-                                <span>2 BHK</span>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="project-fur">
-                        <a href="single.html"><img class="img-responsive" src="{% static 'webapp/images/templateImg/pi2.jpg' %}" alt="" /> </a>
-                        <div class="fur">
-                            <div class="fur1">
-                                <span class="fur-money">$2.44 Lacs - 5.28 Lacs </span>
-                                <h6 class="fur-name"><a href="single.html">Contrary to popular</a></h6>
-                                <span>Paris</span>
-                            </div>
-                            <div class="fur2">
-                                <span>2 BHK</span>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="project-fur">
-                        <a href="single.html"><img class="img-responsive" src="{% static 'webapp/images/templateImg/pi3.jpg' %}" alt="" /> </a>
-                        <div class="fur">
-                            <div class="fur1">
-                                <span class="fur-money">$2.44 Lacs - 5.28 Lacs </span>
-                                <h6 class="fur-name"><a href="single.html">Contrary to popular</a></h6>
-                                <span>Paris</span>
-                            </div>
-                            <div class="fur2">
-                                <span>2 BHK</span>
-                            </div>
-                        </div>
-                    </div>
-                </li> -->
             </ul>
             <script type="text/javascript">
             $(window).load(function() {

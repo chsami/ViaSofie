@@ -1,161 +1,104 @@
-{% extends 'webapp/base.html' %} {% load inplace_edit %} {% load staticfiles %} {% load endless %} {% block header %} {% inplace_toolbar %} {% endblock header %} {% block content %}
+{% extends 'webapp/base.html' %} {% load inplace_edit %} {% load staticfiles %} {% load endless %} {% block header %} {% inplace_toolbar %}
+<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/jquery-ui.css' %}" />
+<script type='text/javascript' src="{% static 'webapp/scripts/jquery-ui.js' %}"></script>
+<script type='text/javascript' src="{% static 'webapp/scripts/jquery.advancedsearchbox.js' %}"></script>
+ {% endblock header %} {% block content %}
 <!--header-bottom-->
-
 {% include "webapp/submenu.html" %}
 <!--//-->
 <div class="project">
     <div class="container">
-        <!-- <div class="price">
-		<div class="price-grid">
-			<div class="col-sm-4 price-top">
-				<h4>City</h4>
-				<select class="in-drop">
-					<option>Select City</option>
-					<option>Bangkok</option>
-					<option>Tokyo</option>
-					<option>London</option>
-					<option>Paris</option>
-					<option>Dhubai</option>
-					<option>New Jerrsey</option>
-					<option>Hongkong</option>
-					<option>New York</option>
-					<option>Rome</option>
-					<option>Sydney</option>
-					<option>Florence</option>
-					<option>Istanbul</option>
-					<option>Brezil</option>
-					<option>Canda</option>
-					<option>Malaysia</option>
-					<option>Singapore</option>
-					<option>Taiwan</option>
-					<option>Spain</option>
-					<option>More</option>
-				</select>
-			</div>
-			<div class="col-sm-4 price-top">
-				<h4>Category</h4>
-				<select class="in-drop">
-					<option>Select Category</option>
-					<option>Apartment</option>
-					<option>Independent House</option>
-					<option>Row House</option>
-					<option>Villa</option>
-					<option>Builder Floor</option>
-					<option>Farm House</option>
-					<option>Penthouse</option>
-				</select>
-			</div>
-			<div class="col-sm-4 price-top">
-				<h4>Rooms</h4>
-				<select class="in-drop">
-					<option>No. of Bedrooms</option>
-					<option>1 BHK</option>
-					<option>2 BHK</option>
-					<option>3 BHK</option>
-					<option>4 BHK</option>
-					<option>4+ BHK</option>
-				</select>
-			</div>
-			<div class="clearfix"> </div>
-		</div>
-		<div class="price-grid">
-			<div class="col-sm-6 price-top1">
-				<h4>Price Range</h4>
-				<ul>
-					<li>
-						<select class="in-drop">
-							<option>Price From</option>
-							<option>0</option>
-							<option>5 Lacs </option>
-							<option>10 Lacs</option>
-							<option>15 Lacs</option>
-							<option>20 Lacs</option>
-							<option>25 Lacs</option>
-							<option>30 Lacs</option>
-							<option>35 Lacs</option>
-							<option>40 Lacs</option>
-							<option>45 Lacs</option>
-							<option>50 Lacs</option>
-							<option>55 Lacs</option>
-							<option>60 Lacs</option>
-							<option>65 Lacs</option>
-							<option>70 Lacs</option>
-							<option>75 Lacs</option>
-							<option>80 Lacs</option>
-							<option>85 Lacs</option>
-							<option>90 Lacs</option>
-							<option>95 Lacs</option>
-						</select>
-					</li>
-					<span>-</span>
-					<li>
-						<select class="in-drop">
-							<option>Price To</option>
-							<option>5 Lacs</option>
-							<option>10 Lacs</option>
-							<option>15 Lacs</option>
-							<option>20 Lacs</option>
-							<option>25 Lacs</option>
-							<option>30 Lacs</option>
-							<option>35 Lacs</option>
-							<option>40 Lacs</option>
-							<option>45 Lacs</option>
-							<option>50 Lacs</option>
-							<option>55 Lacs</option>
-							<option>60 Lacs</option>
-							<option>65 Lacs</option>
-							<option>70 Lacs</option>
-							<option>75 Lacs</option>
-							<option>80 Lacs</option>
-							<option>85 Lacs</option>
-							<option>90 Lacs</option>
-							<option>95 Lacs</option>
-							<option>100 Cr</option>
-						</select>
-					</li>
-				</ul>
-			</div>
-			<div class="col-sm-6 price-top1">
-				<h4>Area</h4>
-				<ul>
-					<li>
-						<select class="in-drop">
-							<option>Sqmt From</option>
-							<option>0</option>
-							<option>500 Sq Ft</option>
-							<option>1000 Sq Ft</option>
-							<option>1500 Sq Ft</option>
-							<option>2000 Sq Ft</option>
-							<option>2500 Sq Ft</option>
-							<option>3000 Sq Ft</option>
-							<option>3500 Sq Ft</option>
-							<option>4000 Sq Ft</option>
-							<option>4500 Sq Ft</option>
-						</select>
-					</li>
-					<span>-</span>
-					<li>
-						<select class="in-drop">
-							<option>Sqmt To</option>
-							<option>500 Sq Ft</option>
-							<option>1000 Sq Ft</option>
-							<option>1500 Sq Ft</option>
-							<option>2000 Sq Ft</option>
-							<option>2500 Sq Ft</option>
-							<option>3000 Sq Ft</option>
-							<option>3500 Sq Ft</option>
-							<option>4000 Sq Ft</option>
-							<option>4500 Sq Ft</option>
-							<option>5000+ Sq Ft</option>
-						</select>
-					</li>
-				</ul>
-			</div>
-			<div class="clearfix"> </div>
-		</div>
-	</div> -->
-        <h3>{% inplace_edit "data.titel" %}</h3>
-        {% inplace_edit "data.data|safe" %}
+        <section class="geavanceerd-search" id="geavanceerd-search">
+            <div class="geavanceerd-searchDiv">
+                <div id="geavanceerd-productsearch" class="geavanceerd-search-form products active">
+                    <fieldset>
+                        <label for="geavanceerd-p-s" class="geavanceerd-search-form-input">Kopen</label>
+                    </fieldset>
+                </div>
+                <label class="geavanceerd-search-form-slach">/</label>
+                <div id="geavanceerd-sitesearch" class="geavanceerd-search-form products inactive">
+                    <fieldset>
+                        <label for="geavanceerd-p-s" class="geavanceerd-search-form-input">Huren</label>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="geavanceerd-searchForm">
+                <form class="geavanceerd-search-form geavanceerd-search-input-form" id="searchform" method="post" action="">
+                    <fieldset>
+                        {% csrf_token %}
+                        <table class="geavanceerd-search-form-table">
+                            {{searchform}}
+                        </table>
+                        <hr class="geavanceerd-searchhr">
+                        <button id="geavanceerd-searchButtonOk" class="button" type="submit"><i class="fa fa-search"></i></button>
+                        <!-- <div id="prijs-range-slider"></div>
+                        <div id="aantal-slaapkamers-slider"></div>
+                        <div id="aantal-badkamers-slider"></div>
+                        <div id="aantal-verdiepen-slider"></div> -->
+                    </fieldset>
+                </form>
+            </div>
+        </section>
+        <div class="clearfix"> </div>
+        <!--<table>
+    <tbody>
+        <tr>
+            <th>
+                <label for="id_plaats_postcode">Plaats postcode:</label>
+            </th>
+            <td>
+                <input class="search-form-input" id="id_plaats_postcode" name="plaats_postcode" placeholder="Zoek op plaats of postcode" type="text">
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <label for="id_pand_type">Pand type:</label>
+            </th>
+            <td>
+                <input id="id_pand_type" name="pand_type" type="checkbox">
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <label for="aantal-slaapkamers">Aantal slaapkamers:</label>
+            </th>
+            <td>
+                <input id="aantal-slaapkamers" name="aantal_slaapkamers" readonly="" style="border:0; color:#f6931f; font-weight:bold;" type="text">
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <label for="aantal-badkamers">Aantal badkamers:</label>
+            </th>
+            <td>
+                <input id="aantal-badkamers" name="aantal_badkamers" readonly="" style="border:0; color:#f6931f; font-weight:bold;" type="text">
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <label for="aantal-verdiepen">Aantal verdiepen:</label>
+            </th>
+            <td>
+                <input id="aantal-verdiepen" name="aantal_verdiepen" readonly="" style="border:0; color:#f6931f; font-weight:bold;" type="text">
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <label for="prijs-range">Prijs range:</label>
+            </th>
+            <td>
+                <input id="prijs-range" name="prijs_range" readonly="" style="border:0; color:#f6931f; font-weight:bold;" type="text">
+            </td>
+        </tr>
+        <tr>
+            <th></th>
+            <td>
+                <input data-role="tagsinput" id="tags" name="tags" type="text">
+            </td>
+        </tr>
+    </tbody>
+</table> -->
+        <h3>{% inplace_edit "data.titel" %}</h3> {% inplace_edit "data.data|safe" %}
         <div class="project-top"> {% include panden_item %}
         </div>
         <div class="clearfix"> </div>
@@ -165,7 +108,7 @@
 <script>
 $.endlessPaginate({
     paginateOnScroll: true,
-    // paginateOnScrollChunkSize: 1
+    paginateOnScrollChunkSize: 300
 });
 </script>
 {% endblock content %}

@@ -13,6 +13,7 @@ from webapp.models import Partner as PartnerModel
 from webapp.models import User as UserModel
 from webapp.models import GoedDoel as GoedDoelModel
 from webapp.models import TagPand as TagPandModel
+from webapp.models import Tag as TagModel
 from django.utils.translation import ugettext as _
 from webapp.forms import *
 import hashlib
@@ -20,6 +21,12 @@ import random
 from django.utils import timezone
 from django.core.mail import send_mail, BadHeaderError
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+
+from django.views.decorators.csrf import csrf_protect
+from django.template.response import TemplateResponse
+from django.contrib.auth.forms import  PasswordResetForm
+from django.contrib.auth.tokens import default_token_generator
+from django.shortcuts import resolve_url
 
 #sander is awesome
 #removed 171 lines of code
@@ -69,25 +76,56 @@ def panddetail(request, pand_referentienummer):
     # Laatste onnodige comma wordt weggehaald
     tag_data = tag_data[:-1]
 
-    all_tagpand_list = TagPandModel.objects.all()
+    # all_tagpand_list = TagPandModel.objects.all()
+
+    # all_tags = []
+    # temp_tag = ""
+    # for tagpand in all_tagpand_list:
+    #     for i in range(0,20):
+    #         temp_tag = "%s (%s)" % (str(tagpand.tag), str(i))
+    #         all_tags.append(temp_tag)
+
+    all_tagpand_list = TagModel.objects.all()
 
     all_tags = []
     temp_tag = ""
     for tagpand in all_tagpand_list:
         for i in range(0,20):
-            temp_tag = "%s (%s)" % (str(tagpand.tag), str(i))
+            temp_tag = "%s (%s)" % (str(tagpand.tagnaam), str(i))
             all_tags.append(temp_tag)
 
     return render_to_response('webapp/pand.html', {'pand': pand, 'fotos' : fotos, 'relatedPands' : relatedPands, 'tag_data': tag_data, 'all_tags': all_tags, 'formlogin':formlogin}, context_instance=RequestContext(request))
 
 def panden(request):
     data = Data.objects.get(id=13)
+    # Login form
     formlogin = slogin(request)
+    # SmallSearchForm
+    if request.method == "POST":
+        smallsearchform = SmallSearchForm(request.POST)
+        if smallsearchform.is_valid():
+            model_instance = smallsearchform.save(commit=False)
+            model_instance.save()
+            return redirect('formsucces')
+    else:
+            smallsearchform = SmallSearchForm()
+    # SearchForm
+    if request.method == "POST":
+        searchform = SearchForm(request.POST)
+        if searchform.is_valid():
+            model_instance = searchform.save(commit=False)
+            model_instance.save()
+            return redirect('formsucces')
+    else:
+            searchform = SearchForm()
+    # Context (endless pagination)
     context = {
         'panden': PandModel.objects.all().values(),
         'panden_item': 'webapp/panden_item.html',
         'formlogin': formlogin,
         'data': data,
+        'searchform': searchform,
+        'smallsearchform': smallsearchform,
     }
     template = 'webapp/panden.html'
     if request.is_ajax():
@@ -470,3 +508,74 @@ def document_view(request):
         {'documents': documents, 'form': form},
         context_instance=RequestContext(request)
     )
+
+
+#<--------customized django view---------->
+@csrf_protect
+def password_reset(request, is_admin_site=False,
+                   template_name='registration/password_reset_form.html',
+                   email_template_name='registration/password_reset_email.html',
+                   subject_template_name='registration/password_reset_subject.txt',
+                   password_reset_form=PasswordResetForm,
+                   token_generator=default_token_generator,
+                   post_reset_redirect=None,
+                   from_email=None,
+                   extra_context=None,
+                   html_email_template_name=None,
+                   extra_email_context=None):
+
+    formlogin=AuthenticationForm()
+    form = password_reset_form()
+
+    if post_reset_redirect is None:
+        post_reset_redirect = reverse('password_reset_done')
+    else:
+        post_reset_redirect = resolve_url(post_reset_redirect)
+    if request.method == 'POST' and 'loginbtn' in request.POST:
+        formlogin = AuthenticationForm(data=request.POST)
+        if formlogin.is_valid():
+            user = authenticate(email=request.POST['email'], password=request.POST['password'])
+            if user is not None:
+                if user.is_active:
+                    django_login(request, user)
+                else:
+                    return redirect("/login")
+            else:
+                return redirect("/login")
+
+    elif request.method == "POST":
+        formlogin=AuthenticationForm()
+        form = password_reset_form(request.POST)
+        if form.is_valid():
+            opts = {
+                'use_https': request.is_secure(),
+                'token_generator': token_generator,
+                'from_email': from_email,
+                'email_template_name': email_template_name,
+                'subject_template_name': subject_template_name,
+                'request': request,
+                'html_email_template_name': html_email_template_name,
+                'extra_email_context': extra_email_context,
+            }
+            if is_admin_site:
+                warnings.warn(
+                    "The is_admin_site argument to "
+                    "django.contrib.auth.views.password_reset() is deprecated "
+                    "and will be removed in Django 1.10.",
+                    RemovedInDjango110Warning, 3
+                )
+                opts = dict(opts, domain_override=request.get_host())
+            form.save(**opts)
+            return HttpResponseRedirect(post_reset_redirect)
+    else:
+        form = password_reset_form()
+    context = {
+        'form': form,
+        'title': _('Password reset'),
+        'formlogin': formlogin
+
+    }
+    if extra_context is not None:
+        context.update(extra_context)
+
+    return TemplateResponse(request, template_name, context)
