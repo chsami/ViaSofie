@@ -28,6 +28,9 @@ TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = ['localhost']
 
 
+# FACEBOOK_APP_ID = '1007959369240278'
+# FACEBOOK_APP_SECRET = '9690bf3a1833cd4f07fe67562215bbe2'
+
 # Application definition
 
 INSTALLED_APPS = (
@@ -47,7 +50,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'endless_pagination',
-    # 'django_social_share', (outdated)
 )
 
 ADAPTOR_INPLACEEDIT = {}
