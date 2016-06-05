@@ -1808,7 +1808,7 @@ figure.effect-layla h4.effect3 {
 
 .buying-top p:after,
 .buying-top p:before {
-    width: 200px;
+    width: 100px;
     height: 1px;
     display: inline-block;
     vertical-align: middle;
@@ -1896,7 +1896,7 @@ span.fur-money {
 }
 
 .buying-top {
-    padding: 5em 0;
+    padding: 0;
 }
 
 #flexiselDemo1 {
@@ -4462,7 +4462,7 @@ ul.nav.nav-pills {
         padding: 3em 0;
     }
     .buying-top {
-        padding: 3em 0;
+        padding: 0;
     }
     .single-buy {
         padding: 2em 1em;
@@ -4541,7 +4541,7 @@ ul.nav.nav-pills {
     .future h3,
     .buying-top p,
     h3.typo1 {
-        font-size: 2.3em;
+        font-size: 2em;
     }
     .content-grid h3:after,
     .content-grid h3:before,
@@ -4794,7 +4794,7 @@ ul.nav.nav-pills {
     .future h3,
     .buying-top p,
     h3.typo1 {
-        font-size: 2em;
+        font-size: 1.5em;
     }
     .content-grid h3:after,
     .content-grid h3:before,
@@ -4842,7 +4842,7 @@ ul.nav.nav-pills {
     .buying-top p:before,
     h3.typo1:after,
     h3.typo1:before {
-        width: 50px;
+        width: 20px;
     }
     .content-grid {
         min-height: 456px;

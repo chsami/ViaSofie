@@ -13,6 +13,7 @@ from webapp.models import Partner as PartnerModel
 from webapp.models import User as UserModel
 from webapp.models import GoedDoel as GoedDoelModel
 from webapp.models import TagPand as TagPandModel
+from webapp.models import Tag as TagModel
 from django.utils.translation import ugettext as _
 from webapp.forms import *
 import hashlib
@@ -69,13 +70,22 @@ def panddetail(request, pand_referentienummer):
     # Laatste onnodige comma wordt weggehaald
     tag_data = tag_data[:-1]
 
-    all_tagpand_list = TagPandModel.objects.all()
+    # all_tagpand_list = TagPandModel.objects.all()
+
+    # all_tags = []
+    # temp_tag = ""
+    # for tagpand in all_tagpand_list:
+    #     for i in range(0,20):
+    #         temp_tag = "%s (%s)" % (str(tagpand.tag), str(i))
+    #         all_tags.append(temp_tag)
+
+    all_tagpand_list = TagModel.objects.all()
 
     all_tags = []
     temp_tag = ""
     for tagpand in all_tagpand_list:
         for i in range(0,20):
-            temp_tag = "%s (%s)" % (str(tagpand.tag), str(i))
+            temp_tag = "%s (%s)" % (str(tagpand.tagnaam), str(i))
             all_tags.append(temp_tag)
 
     return render_to_response('webapp/pand.html', {'pand': pand, 'fotos' : fotos, 'relatedPands' : relatedPands, 'tag_data': tag_data, 'all_tags': all_tags, 'formlogin':formlogin}, context_instance=RequestContext(request))
