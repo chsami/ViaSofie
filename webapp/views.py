@@ -14,6 +14,7 @@ from webapp.models import User as UserModel
 from webapp.models import GoedDoel as GoedDoelModel
 from webapp.models import TagPand as TagPandModel
 from webapp.models import Tag as TagModel
+from webapp.models import StatusBericht as StatusBerichtModel
 from django.utils.translation import ugettext as _
 from webapp.forms import *
 import hashlib
@@ -156,12 +157,16 @@ def referenties(request):
 def account(request):
     formlogin = slogin(request)
     current_user = request.user
+
+    # StatusBericht
+    status_berichten = StatusBerichtModel.objects.filter(user=current_user)
+
     if current_user.is_authenticated():
         # Do something for authenticated users.
-        return render_to_response('webapp/account.html', {'current_user': current_user,'formlogin': formlogin }, context_instance=RequestContext(request))
+        return render_to_response('webapp/account.html', {'current_user': current_user, 'status_berichten': status_berichten, 'formlogin': formlogin}, context_instance=RequestContext(request))
     else:
         # Do something for anonymous users.
-        return render_to_response('webapp/account.html', {'current_user': current_user, 'formlogin': formlogin}, context_instance=RequestContext(request))
+        return render_to_response('webapp/account.html', {'current_user': current_user, 'status_berichten': status_berichten, 'formlogin': formlogin}, context_instance=RequestContext(request))
 
 
 def about(request):
@@ -491,30 +496,6 @@ def sacha(request):
     else:
             form = SearchForm()
     return render(request, "webapp/forms.html", {'form': form})
-
-def document_view(request):
-    # Handle file upload
-    if request.method == 'POST':
-        form = DocumentForm(request.POST, request.FILES)
-        if form.is_valid():
-            newdoc = Document(docfile = request.FILES['docfile'])
-            newdoc.save()
-
-            # Redirect to the document list after POST
-            return HttpResponseRedirect(reverse('views.document_view'))
-    else:
-        form = DocumentForm() # A empty, unbound form
-
-    # Load documents for the list page
-    documents = Document.objects.all()
-
-    # Render list page with the documents and the form
-    return render_to_response(
-        'webapp/document.html',
-        {'documents': documents, 'form': form},
-        context_instance=RequestContext(request)
-    )
-
 
 #<--------customized django view---------->
 @csrf_protect

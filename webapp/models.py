@@ -81,13 +81,6 @@ class User(AbstractBaseUser, PermissionsMixin):
         # Simplest possible answer: All admins are staff
         return self.is_admin
 
-class Document(models.Model):
-    user = models.ForeignKey(User)
-    docfile = models.FileField(upload_to='documents/%Y/%m/%d')
-    titel = models.CharField(max_length=128)
-    bericht = models.CharField(max_length=500)
-    gelezen = models.BooleanField(default=False)
-
 class Log(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User)
@@ -190,6 +183,11 @@ class PandReview(models.Model):
             self.created = timezone.now()
         self.modified = timezone.now()
         return super(User, self).save(*args, **kwargs)
+
+class StatusBericht(models.Model):
+    titel = models.CharField(max_length=255)
+    inhoud = models.TextField(max_length=1000)
+    user = models.ForeignKey(User)
 
 class Data(models.Model):
     titel = models.CharField(max_length=255)

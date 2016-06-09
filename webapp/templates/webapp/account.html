@@ -74,16 +74,16 @@
                 <input type="text" class="text adviesSearch" id="search" placeholder="Zoeken">
             </div>
             <div class="panel-group" id="accordion" filter-list="search">
-                {% for faq in faq_list %}
+                {% for status_bericht in status_berichten %}
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#{{faq.id}}">{{ faq.titel }}</a>
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#{{status_bericht.id}}">{{ status_bericht.titel }}</a>
                             </h4>
                         </div>
-                        <div id="{{faq.id}}" class="panel-collapse collapse">
+                        <div id="{{status_bericht.id}}" class="panel-collapse collapse">
                             <div class="panel-body">
-                                {{ faq.content | safe}}
+                                {{ status_bericht.inhoud | safe}}
                             </div>
                         </div>
                     </div>
