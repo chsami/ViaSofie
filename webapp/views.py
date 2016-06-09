@@ -161,12 +161,15 @@ def account(request):
     # StatusBericht
     status_berichten = StatusBerichtModel.objects.filter(user=current_user)
 
+    # Panden van de gebruiker
+    panden = PandModel.objects.filter(user=current_user)
+
     if current_user.is_authenticated():
         # Do something for authenticated users.
-        return render_to_response('webapp/account.html', {'current_user': current_user, 'status_berichten': status_berichten, 'formlogin': formlogin}, context_instance=RequestContext(request))
+        return render_to_response('webapp/account.html', {'current_user': current_user, 'status_berichten': status_berichten, 'panden': panden, 'formlogin': formlogin}, context_instance=RequestContext(request))
     else:
         # Do something for anonymous users.
-        return render_to_response('webapp/account.html', {'current_user': current_user, 'status_berichten': status_berichten, 'formlogin': formlogin}, context_instance=RequestContext(request))
+        return render_to_response('webapp/account.html', {'current_user': current_user, 'status_berichten': status_berichten, 'panden': panden, 'formlogin': formlogin}, context_instance=RequestContext(request))
 
 
 def about(request):
