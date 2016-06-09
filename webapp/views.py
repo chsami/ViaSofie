@@ -40,9 +40,10 @@ def slogin(request):
                 if user.is_active:
                     django_login(request, user)
                 else:
-                    return redirect("/login")
+                    return False
             else:
-                return redirect("/login")
+                return False
+
     else:
         formlogin=AuthenticationForm()
     return formlogin
@@ -56,6 +57,8 @@ def slogin(request):
 def index(request):
     dpartners = Data.objects.get(id=11)
     formlogin = slogin(request)
+    if formlogin == False:
+        return redirect('/login')
     panden = PandModel.objects.filter(uitgelicht=True)
     panden_lijst = list(panden)
     uitgelichte_panden = []
