@@ -52,6 +52,16 @@ def slogin(request):
 #     if request.method == 'POST' and 'searchbtn' in request.POST:
         # panden = PandModel.objects.filter()
 
+def get_all_tags(request):
+    all_tagpand_list = TagModel.objects.all()
+
+    all_tags = []
+    temp_tag = ""
+    for tagpand in all_tagpand_list:
+        for i in range(0,20):
+            temp_tag = "%s (%s)" % (str(tagpand.tagnaam), str(i + 1))
+            all_tags.append(temp_tag)
+    return all_tags
 
 # Create your views here.
 def index(request):
@@ -88,23 +98,7 @@ def panddetail(request, pand_referentienummer):
     # Laatste onnodige comma wordt weggehaald
     tag_data = tag_data[:-1]
 
-    # all_tagpand_list = TagPandModel.objects.all()
-
-    # all_tags = []
-    # temp_tag = ""
-    # for tagpand in all_tagpand_list:
-    #     for i in range(0,20):
-    #         temp_tag = "%s (%s)" % (str(tagpand.tag), str(i))
-    #         all_tags.append(temp_tag)
-
-    all_tagpand_list = TagModel.objects.all()
-
-    all_tags = []
-    temp_tag = ""
-    for tagpand in all_tagpand_list:
-        for i in range(0,20):
-            temp_tag = "%s (%s)" % (str(tagpand.tagnaam), str(i))
-            all_tags.append(temp_tag)
+    all_tags = get_all_tags(request);
 
     return render_to_response('webapp/pand.html', {'pand': pand, 'fotos' : fotos, 'relatedPands' : relatedPands, 'tag_data': tag_data, 'all_tags': all_tags, 'formlogin':formlogin}, context_instance=RequestContext(request))
 
@@ -131,6 +125,9 @@ def panden(request):
             return redirect('/panden')
     else:
             searchform = SearchForm()
+
+    all_tags = get_all_tags(request);
+
     # Context (endless pagination)
     context = {
         'panden': PandModel.objects.all().values(),
@@ -138,6 +135,7 @@ def panden(request):
         'formlogin': formlogin,
         'data': data,
         'searchform': searchform,
+        'all_tags': all_tags,
     }
     template = 'webapp/panden.html'
     if request.is_ajax():

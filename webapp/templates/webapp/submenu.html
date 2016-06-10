@@ -39,7 +39,7 @@
             </div>
             <div class="clearfix"> </div>
         </div>
-        <form>
+        <form id="advancedSearchForm">
             <section class="mega-search open" id="mega-search">
                 <div class="searchDiv">
                     <div id="mega-productsearch" class="search-form products active">
@@ -91,7 +91,7 @@
                     </div>
                 </div>
                 <div class="geavanceerdSearch-second">
-                    <div class="col-xs-6">
+                    <div class="col-xs-6 SliderDiv">
                         <div class="secondPrijs prijsMin">
                             <span>€ </span><span id="prijsSliderValMin">0</span>
                         </div>
@@ -128,7 +128,7 @@
                             });
                         </script>
                     </div>
-                    <div class="col-xs-6">
+                    <div class="col-xs-6 SliderDiv">
                         <div class="secondPrijs prijsMin">
                             <span id="oppSliderValMin">0</span><span> m²</span>
                         </div>
@@ -156,7 +156,7 @@
                     </div>
                 </div>
                 <div class="geavanceerdSearch-thirth">
-                    <input id="tagsSearch" type="text" value="" placeholder="Tags" data-role="tagsinput"/>
+                    <input id="tagsSearch" type="text" value="{{all_tags}}" placeholder="Tags" data-role="tagsinput"/>
                     <script>
                     $('#tagsSearch').tagsinput({
                       typeahead: {
@@ -169,8 +169,8 @@
                     });
                     </script>
                 </div>
+                <button id="geavanceerdButton" class="geavanceerdButton" type="button">Geavanceerd</button>
             </section>
-            <button id="geavanceerdButton" class="geavanceerdButton" type="button">Geavanceerd</button>
         </form>
     </div>
 </div>
@@ -179,9 +179,8 @@ $("#searchButton").click(function() {
     $(".buy-media").toggleClass("no-pointerevent");
     $("#mega-search").toggleClass("setSearchHeight");
     $("#geavanceerdButton").toggleClass("geavanceerdButtonVisible");
-    if ($("#geavanceerdButton").hasClass("geavanceerdButtonOpen")) {
+    if ($(".geavanceerdSearch-first").hasClass("visible")) {
         $("#geavanceerdSearch").removeClass("geavanceerdSearchHeight");
-        $("#geavanceerdButton").removeClass("geavanceerdButtonOpen");
         $(".geavanceerdSearch-first").removeClass("visible");
         $(".geavanceerdSearch-second").removeClass("visible");
         $(".geavanceerdSearch-thirth").removeClass("visible");
@@ -190,7 +189,6 @@ $("#searchButton").click(function() {
 });
 $("#geavanceerdButton").click(function() {
     $("#geavanceerdSearch").toggleClass("geavanceerdSearchHeight");
-    $("#geavanceerdButton").toggleClass("geavanceerdButtonOpen");
 
     $(".geavanceerdSearch-first").toggleClass("visible");
     $(".geavanceerdSearch-second").toggleClass("visible");
@@ -209,4 +207,11 @@ $("#mega-sitesearch").click(function() {
     $("#prijsSliderValMin").text($("#prijsSliderHurenID div .min-slider-handle").attr("aria-valuenow"));
     $("#prijsSliderValMax").text($("#prijsSliderHurenID div .max-slider-handle").attr("aria-valuenow"));
 })
+$("#advancedSearchForm").bind("keypress", function (e) {
+    if (e.keyCode == 13) {
+        $("#btnSearch").attr('value');
+        //add more buttons here
+        return false;
+    }
+});
 </script>

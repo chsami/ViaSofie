@@ -6512,20 +6512,13 @@ div.endless_loading {
     -o-transition: 0.5s all;
     -moz-transition: 0.5s all;
     -ms-transition: 0.5s all;
+    margin-top: -105px;
+    display: none;
 }
 
 .geavanceerdButtonVisible {
-    margin-top: 105px;
-}
-
-@media(max-width:480px) {
-    .geavanceerdButtonVisible {
-        margin-top: 150px;
-    }
-}
-
-.geavanceerdButtonOpen {
-    margin-top: 255px;
+    margin-top: 0;
+    display: block;
 }
 
 .geavanceerdButton:hover {
@@ -6547,26 +6540,22 @@ div.endless_loading {
 }
 
 .geavanceerdSearchHeight {
-    height: 150px;
+    height: auto;
     z-index: 998;
 }
 
 .geavanceerdSearch-first {
     width: 100%;
     line-height: 50px;
-    height: 50px;
-    visibility: hidden;
-    opacity: 0;
-    transition: visibility 0s, opacity 0.5s linear;
+    height: auto;
+    display: none;
 }
 
 .geavanceerdSearch-second {
-    height: 50px;
+    height: auto;
     width: 100%;
     line-height: 50px;
-    visibility: hidden;
-    opacity: 0;
-    transition: visibility 0s, opacity 1s linear;
+    display: none;
 }
 
 .secondPrijs {
@@ -6586,19 +6575,67 @@ div.endless_loading {
     text-align: right;
 }
 
+.slider.slider-horizontal {
+    margin-bottom: 10px;
+}
+
 .geavanceerdSearch-thirth {
-    height: 50px;
+    scrollbar-face-color: #0d3532;
+    scrollbar-track-color: #b8c0c8;
+    height: auto;
     width: 100%;
     line-height: 50px;
     padding: 10px;
-    visibility: hidden;
-    opacity: 0;
-    transition: visibility 0s, opacity 1.5s linear;
+    display: none;
+}
+
+.geavanceerdSearch-thirth > .bootstrap-tagsinput {
+    pointer-events: visible;
+    overflow-x: scroll;
+    display: flex;
+}
+
+.geavanceerdSearch-thirth > .bootstrap-tagsinput .tag [data-role="remove"] {
+    display: inline-block;
+}
+
+.geavanceerdSearch-thirth > .bootstrap-tagsinput::-webkit-scrollbar {
+    width: 0.5em;
+    height: 0.5em;
+}
+
+.geavanceerdSearch-thirth > .bootstrap-tagsinput::-webkit-scrollbar-thumb {
+    background: #0d3532;
+}
+
+.geavanceerdSearch-thirth > .bootstrap-tagsinput::-webkit-scrollbar-track {
+    background: #b8c0c8;
 }
 
 .visible {
-    visibility: visible;
-    opacity: 1;
+    display: block;
+}
+
+@media(max-width:768px) {
+    .bootstrap-select {
+        margin-bottom: 10px;
+    }
+}
+
+@media(max-width:560px) {
+    .SliderDiv {
+        width: 100%;  
+    }
+}
+
+@media(max-width:480px) {
+    .geavanceerdButtonVisible {
+        display: block;
+    }
+
+    .geavanceerdSearch {
+        margin-top: 150px;
+    }
 }
 
 
