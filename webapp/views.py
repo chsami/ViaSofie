@@ -100,22 +100,12 @@ def panden(request):
     data = Data.objects.get(id=13)
     # Login form
     formlogin = slogin(request)
-    # SmallSearchForm
-    if request.method == "POST":
-        smallsearchform = SmallSearchForm(request.POST)
-        if smallsearchform.is_valid():
-            model_instance = smallsearchform.save(commit=False)
-            model_instance.save()
-            return redirect('formsucces')
-    else:
-            smallsearchform = SmallSearchForm()
     # SearchForm
     if request.method == "POST":
         searchform = SearchForm(request.POST)
         if searchform.is_valid():
-            model_instance = searchform.save(commit=False)
-            model_instance.save()
-            return redirect('formsucces')
+
+            return redirect('/panden')
     else:
             searchform = SearchForm()
     # Context (endless pagination)
@@ -125,7 +115,6 @@ def panden(request):
         'formlogin': formlogin,
         'data': data,
         'searchform': searchform,
-        'smallsearchform': smallsearchform,
     }
     template = 'webapp/panden.html'
     if request.is_ajax():

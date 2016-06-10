@@ -161,13 +161,7 @@ class ContactForm(forms.Form):
 	message = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Bericht'}))
 
 class SearchForm(forms.Form):
-    plaats_postcode = forms.CharField(widget=forms.TextInput(attrs={'class': 'search-form-input', 'placeholder': 'Zoek op plaats of postcode'}))
-    pand_type = forms.ChoiceField(widget=forms.Select(attrs={'id': 'pand-type'}))
-    aantal_slaapkamers = forms.IntegerField(widget=forms.TextInput(attrs={'id': 'aantal-slaapkamers', 'readonly style': 'border:0; color:#f6931f; font-weight:bold;'}))
-    aantal_badkamers = forms.IntegerField(widget=forms.TextInput(attrs={'id': 'aantal-badkamers', 'readonly style': 'border:0; color:#f6931f; font-weight:bold;'}))
-    aantal_verdiepen = forms.IntegerField(widget=forms.TextInput(attrs={'id': 'aantal-verdiepen', 'readonly style': 'border:0; color:#f6931f; font-weight:bold;'}))
-
-    plaats_postcode = forms.CharField(label="", widget=forms.TextInput(attrs={'class': 'geavanceerd-search-form-input', 'placeholder': 'Zoek op plaats of postcode'}))
+    plaats_postcode = forms.CharField(label="", widget=forms.TextInput(attrs={'class': 'geavanceerd-search-form-input', 'placeholder': 'Zoek op plaats of postcode of referentienummer'}))
     
     pand_type = forms.ChoiceField(widget=forms.Select(attrs={'id': 'pand-type', 'class': 'pand-type-input'}))
     prijs_range = forms.DecimalField(widget=forms.TextInput(attrs={'id': 'prijs-range','class': 'prijs-range-input', 'readonly style': ''}))
@@ -193,9 +187,3 @@ class DocumentForm(forms.Form):
     class Meta:
         model = Document
         fields = ['user', 'docfile', 'titel', 'bericht']
-        
-class SmallSearchForm(forms.Form):
-    plaats_postcode = forms.CharField(label="", widget=forms.TextInput(attrs={'class': 'search-form-input', 'placeholder': 'Zoek op plaats of postcode'}))
-
-    class Meta:
-        fields = ['plaats_postcode']
