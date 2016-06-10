@@ -6658,3 +6658,15 @@ div.endless_loading {
     height: 200px;
     overflow-y: auto;
 }
+.lowerbutton {
+  display: inline-block;
+}
+.fb-share-button{
+  top: 6px;
+}
+/*position socialmedia buttons */
+.twitter-share-posdiv {
+  display: inline-block;
+  top: 6px;
+  position: relative;
+}

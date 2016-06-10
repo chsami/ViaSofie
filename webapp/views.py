@@ -97,10 +97,11 @@ def panddetail(request, pand_referentienummer):
         tag_data += "%s (%s)," % (str(tagpand.tag), tagpand.value)
     # Laatste onnodige comma wordt weggehaald
     tag_data = tag_data[:-1]
+    url = request.build_absolute_uri()
 
     all_tags = get_all_tags(request);
 
-    return render_to_response('webapp/pand.html', {'pand': pand, 'fotos' : fotos, 'relatedPands' : relatedPands, 'tag_data': tag_data, 'all_tags': all_tags, 'formlogin':formlogin}, context_instance=RequestContext(request))
+    return render_to_response('webapp/pand.html', {'pand': pand, 'fotos' : fotos, 'relatedPands' : relatedPands, 'tag_data': tag_data, 'all_tags': all_tags,'url': url , 'formlogin':formlogin}, context_instance=RequestContext(request))
 
 def panden(request):
     data = Data.objects.get(id=13)
