@@ -302,6 +302,7 @@
 .ebookform form {
   padding: 20px 20px 60px 20px;
   width: 600px;
+  max-width: 90%;
 }
 
 .ebookform h5 {
