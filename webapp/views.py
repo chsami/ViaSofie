@@ -73,6 +73,8 @@ def index(request):
 
 def panddetail(request, pand_referentienummer):
     formlogin = slogin(request)
+    if formlogin == False:
+        return redirect('/login')
     pand = PandModel.objects.get(referentienummer=pand_referentienummer)
     #voeg extra gegevens toe
     relatedPands= PandModel.objects.filter(postcodeID=pand.postcodeID)
@@ -110,6 +112,8 @@ def panden(request):
     data = Data.objects.get(id=13)
     # Login form
     formlogin = slogin(request)
+    if formlogin == False:
+        return redirect('/login')
     # SmallSearchForm
     if request.method == "POST":
         smallsearchform = SmallSearchForm(request.POST)
@@ -145,6 +149,8 @@ def panden(request):
 def referenties(request):
     data = Data.objects.get(id=9)
     formlogin = slogin(request)
+    if formlogin == False:
+        return redirect('/login')
     context = {
         # 'panden' = PandModel.objects.get(handelstatus='Verkocht',handelstatus='Verhuurd')
         'panden': PandModel.objects.all().values(),
@@ -159,6 +165,8 @@ def referenties(request):
 
 def account(request):
     formlogin = slogin(request)
+    if formlogin == False:
+        return redirect('/login')
     current_user = request.user
 
     # StatusBericht
@@ -178,6 +186,8 @@ def account(request):
 def about(request):
     dabout = Data.objects.get(id=10)
     formlogin = slogin(request)
+    if formlogin == False:
+        return redirect('/login')
     return render_to_response('webapp/about.html', {'formlogin': formlogin, 'dabout': dabout}, context_instance=RequestContext(request))
 
 
@@ -236,30 +246,42 @@ def advies(request):
     dadvies = Data.objects.get(id=8)
     dfaq = Data.objects.get(id=7)
     formlogin = slogin(request)
+    if formlogin == False:
+        return redirect('/login')
     faq_list = FaqModel.objects.all()
     return render_to_response('webapp/advies.html', {'dadvies': dadvies, 'dfaq': dfaq, 'faq_list': faq_list, 'formlogin': formlogin}, context_instance=RequestContext(request))
 
 def huren(request):
     formlogin = slogin(request)
+    if formlogin == False:
+        return redirect('/login')
     return render_to_response('webapp/huren.html', {'formlogin': formlogin}, context_instance=RequestContext(request))
 
 def kopen(request):
     formlogin = slogin(request)
+    if formlogin == False:
+        return redirect('/login')
     return render_to_response('webapp/kopen.html', {'formlogin': formlogin}, context_instance=RequestContext(request))
 
 def disclaimer(request):
     data = Data.objects.get(id=1)
     formlogin = slogin(request)
+    if formlogin == False:
+        return redirect('/login')
     return render_to_response('webapp/disclaimer.html', {'formlogin': formlogin, 'data': data}, context_instance=RequestContext(request))
 
 def privacy(request):
     data = Data.objects.get(id=2)
     formlogin = slogin(request)
+    if formlogin == False:
+        return redirect('/login')
     return render_to_response('webapp/privacy.html', {'formlogin': formlogin, 'data': data}, context_instance=RequestContext(request))
 
 def partners(request):
     dpartners = Data.objects.get(id=11)
     formlogin = slogin(request)
+    if formlogin == False:
+        return redirect('/login')
     partner_list = PartnerModel.objects.all()
     return render_to_response('webapp/partners.html', {'dpartners': dpartners, 'formlogin': formlogin, 'partner_list': partner_list}, context_instance=RequestContext(request))
 
