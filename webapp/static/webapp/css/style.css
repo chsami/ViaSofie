@@ -712,7 +712,7 @@ a.mask {
 
 .ser-top {
     float: right;
-    padding-left: 10px; 
+    padding-left: 10px;
 
     width: 70%;
 }
@@ -6201,8 +6201,8 @@ a.endless_more:active:before {
 
 div.endless_loading {
     background-image: url("../images/loading_image.gif");
-    background-repeat: no-repeat; 
-    background-position: center; 
+    background-repeat: no-repeat;
+    background-position: center;
     display: inline-block;
     width: 100%;
     height: 80px;
@@ -6709,4 +6709,13 @@ div.endless_loading {
 .bootstrap-tagsinput .typeahead {
   height: 200px;
   overflow-y: auto;
+}
+.lowerbutton {
+  display: inline-block;
+}
+/*position socialmedia buttons */
+.twitter-share-posdiv {
+  display: inline-block;
+  top: 6px;
+  position: relative;
 }

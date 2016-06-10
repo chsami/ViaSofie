@@ -1,4 +1,4 @@
-{% extends 'webapp/base.html' %} {% load staticfiles %} {% block header %}
+{% extends 'webapp/base.html' %} {% load staticfiles %}{% load qr_tags %}{% block header %}
 <script type='text/javascript' src="{% static 'webapp/scripts/index.js' %}"></script>
 <script type='text/javascript' src="{% static 'webapp/scripts/jquery.flexslider.js' %}"></script>
 <script type='text/javascript' src="{% static 'webapp/scripts/jquery.flexisel.js' %}"></script>
@@ -135,20 +135,43 @@
 
                     });
                     </script>
-                <div class="right-side">
+                <!-- <div class="row">
+                  <div class="col-sm-6">
                     <a href="/contact" class="hvr-sweep-to-right more">Contact</a>
-
-                </div>
-                <div class="fb-share-button" data-href="https://www.viasofie.be/pand/{{ pand.referentienummer|cut:"-"}}" data-layout="button" data-mobile-iframe="true"></div>
-                <a class="twitter-share-button" href="http://twitter.com/share?text=Pand in {{pand.straatnaam}} te {{pand.handelstatus}}.&url=http://viasofie.be/pand/{{pand.referentienummer|cut:"-"}}&hashtags=Via Sofie">Tweet </a>
-                <a class="btn btn-info btn-xs" href="mailto:?subject=Pand &body=http://www.viasofie/pand/{{pand.referentienummer|cut:"-"}}.be" ><span class="glyphicon glyphicon-envelope"></span> Email</a>
-                <a data-pin-do="buttonBookmark" data-pin-lang="en" data-pin-save="true" href="https://www.pinterest.com/pin/create/button/"></a>
+                    <a class="btn btn-info btn-xs" href="mailto:?subject=Pand &body={{url}}" ><span class="glyphicon glyphicon-envelope"></span> Email</a>
+                    <a data-pin-do="buttonBookmark" data-pin-lang="en" data-pin-save="true" href="https://www.pinterest.com/pin/create/button/"></a>
+                    <div class="fb-share-button" data-href="url" data-layout="button" data-mobile-iframe="true"></div>
+                    <a class="twitter-share-button" href="http://twitter.com/share?text=Pand in {{pand.straatnaam}} te {{pand.handelstatus}}.&url={{url}}&hashtags=Via Sofie">Tweet </a>
+                  </div>
+                  <div class="col-sm-6">
+                    {% qr_from_text url "size" %}
+                  </div>
+                </div> -->
           </div>
             <div class="col-sm-7 buy-sin">
                 <h4>Description</h4>
                 <p>{{ pand.beschrijving }}</p>
             </div>
+
+            <!-- {% qr_from_text url "size" %} -->
             <div class="clearfix"> </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-3">
+            <a href="/contact" class="hvr-sweep-to-right more">Contact</a>
+          </div>
+          <div class="col-md-6" >
+            <a class="btn btn-info btn-xs" href="mailto:?subject=Pand &body={{url}}" ><span class="glyphicon glyphicon-envelope"></span> Email</a>
+            <a data-pin-do="buttonBookmark" data-pin-lang="en" data-pin-save="true" href="https://www.pinterest.com/pin/create/button/"></a>
+            <div class="fb-share-button" data-href="url" data-layout="button" data-mobile-iframe="true"></div>
+            <div class="twitter-share-posdiv">
+              <a class="twitter-share-button" href="http://twitter.com/share?text=Pand in {{pand.straatnaam}} te {{pand.handelstatus}}.&url={{url}}&hashtags=Via Sofie">Tweet </a>
+            </div>        
+          </div>
+          <div class="col-md-3" align="right">
+            {% qr_from_text url "size" %}
+          </div>
         </div>
         <div class="map-buy-single">
             <h4>Neighborhood Info</h4>

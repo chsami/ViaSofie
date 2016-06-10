@@ -111,12 +111,14 @@
                 <div class="col-md-2 col-xs-3"><h4><strong>Prijs (€)</h4></strong></div>
                 <div class="col-md-1 col-xs-3"><h4><strong>Status</h4></strong></div>
             </div>
+            {% for pand in panden %}
             <div class="row">
-                <div class="col-md-4 col-xs-3">d85eb1eb9faf42f8be7015cbfa7e8561</div>
-                <div class="col-md-5 col-xs-3">Kantweg 26, 2390 Malle</div>
-                <div class="col-md-2 col-xs-3">799.000</div>
-                <div class="col-md-1 col-xs-3">Te koop</div>
+                <div class="col-md-4 col-xs-3">{{pand.referentienummer}}</div>
+                <div class="col-md-5 col-xs-3">{{pand.straatnaam}} {{pand.huisnr}}, {{pand.postcodeID.postcode}} {{pand.postcodeID.stadsnaam}}</div>
+                <div class="col-md-2 col-xs-3">{{pand.prijs}}</div>
+                <div class="col-md-1 col-xs-3">{{pand.voortgang.status}}</div>
             </div>
+            {% endfor %}
         </div>
     </div>
 </div>
