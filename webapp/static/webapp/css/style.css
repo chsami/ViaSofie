@@ -6713,6 +6713,9 @@ div.endless_loading {
 .lowerbutton {
   display: inline-block;
 }
+.fb-share-button{
+  top: 6px;
+}
 /*position socialmedia buttons */
 .twitter-share-posdiv {
   display: inline-block;
