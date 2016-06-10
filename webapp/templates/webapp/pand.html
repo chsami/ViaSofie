@@ -14,7 +14,31 @@
 <meta property="og:image"              content="{{pand.thumbnail_url}}" />
 <meta property="og:site_name"          content="Via Sofie"/>
 <meta property="app_id"                content="1007959369240278"/>
+
+
 {% endblock header %} {% block content %}
+<!-- Twitter widgets -->
+<script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));</script>
+
+<!-- pintrest widgets -->
+<script async defer src="//assets.pinterest.com/js/pinit.js"></script>
+
+
 <div class="container">
     <div class="buy-single-single">
         <div class=" buying-top">
@@ -63,7 +87,6 @@
             });
             </script>
         </div>
-        </div>
         <div class="buy-sin-single">
             <div class="col-sm-5 middle-side immediate">
                 <h4>Huis</h4>
@@ -95,6 +118,7 @@
                         </tr>
                     </tbody>
                 </table>
+
                     <input id="tags" type="text" value="{{tag_data}}" data-role="tagsinput"/>
                     <script>
                     $('#tags').tagsinput({
@@ -105,14 +129,17 @@
                       },
                       freeInput: false,
                       allowDuplicates: false
+
                     });
                     </script>
                 <div class="right-side">
                     <a href="/contact" class="hvr-sweep-to-right more">Contact</a>
-                    <!-- <div  class="fb-like"  data-share="true"  data-width="450"  data-show-faces="true">
-</div> -->
+
                 </div>
                 <div class="fb-share-button" data-href="https://www.viasofie.be/pand/{{ pand.referentienummer|cut:"-"}}" data-layout="button" data-mobile-iframe="true"></div>
+                <a class="twitter-share-button" href="http://twitter.com/share?text=Pand in {{pand.straatnaam}} te {{pand.handelstatus}}.&url=http://viasofie.be/pand/{{pand.referentienummer|cut:"-"}}&hashtags=Via Sofie">Tweet </a>
+                <a class="btn btn-info btn-xs" href="mailto:?subject=Pand &body=http://www.viasofie/pand/{{pand.referentienummer|cut:"-"}}.be" ><span class="glyphicon glyphicon-envelope"></span> Email</a>
+                <a data-pin-do="buttonBookmark" data-pin-lang="en" data-pin-save="true" href="https://www.pinterest.com/pin/create/button/"></a>
           </div>
             <div class="col-sm-7 buy-sin">
                 <h4>Description</h4>
@@ -144,7 +171,7 @@
               {% for related_pand in relatedPands %}
                 <li>
                     <div class="project-fur">
-                        <a href="/pand/"><img class="img-responsive" src="{{ related_pand.thumbnail_url }}" alt="" /> </a>
+                        <a href="/pand/{{ pand.referentienummer|cut:"-"}}"><img class="img-responsive" src="{{ related_pand.thumbnail_url }}" alt="" /> </a>
                         <div class="fur">
                             <div class="fur1">
                                 <span class="fur-money">{{pand.prijs}}</span>
@@ -158,6 +185,51 @@
                     </div>
                 </li>
                 {% endfor %}
+                <!-- <li>
+                    <div class="project-fur">
+                        <a href="single.html"><img class="img-responsive" src="{% static 'webapp/images/templateImg/pi1.jpg' %}" alt="" /> </a>
+                        <div class="fur">
+                            <div class="fur1">
+                                <span class="fur-money">$2.44 Lacs - 5.28 Lacs </span>
+                                <h6 class="fur-name"><a href="single.html">Contrary to popular</a></h6>
+                                <span>Paris</span>
+                            </div>
+                            <div class="fur2">
+                                <span>2 BHK</span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="project-fur">
+                        <a href="single.html"><img class="img-responsive" src="{% static 'webapp/images/templateImg/pi2.jpg' %}" alt="" /> </a>
+                        <div class="fur">
+                            <div class="fur1">
+                                <span class="fur-money">$2.44 Lacs - 5.28 Lacs </span>
+                                <h6 class="fur-name"><a href="single.html">Contrary to popular</a></h6>
+                                <span>Paris</span>
+                            </div>
+                            <div class="fur2">
+                                <span>2 BHK</span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="project-fur">
+                        <a href="single.html"><img class="img-responsive" src="{% static 'webapp/images/templateImg/pi3.jpg' %}" alt="" /> </a>
+                        <div class="fur">
+                            <div class="fur1">
+                                <span class="fur-money">$2.44 Lacs - 5.28 Lacs </span>
+                                <h6 class="fur-name"><a href="single.html">Contrary to popular</a></h6>
+                                <span>Paris</span>
+                            </div>
+                            <div class="fur2">
+                                <span>2 BHK</span>
+                            </div>
+                        </div>
+                    </div>
+                </li> -->
             </ul>
             <script type="text/javascript">
             $(window).load(function() {
@@ -190,4 +262,6 @@
     </div>
 </div>
 </div>
+<script type='text/javascript' src="{% static 'webapp/scripts/bootstrap-tagsinput.js' %}"></script>
+<script type='text/javascript' src="{% static 'webapp/scripts/typeahead.bundle.js' %}"></script>
 {% endblock content %}

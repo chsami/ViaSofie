@@ -14,6 +14,7 @@ from webapp.models import User as UserModel
 from webapp.models import GoedDoel as GoedDoelModel
 from webapp.models import TagPand as TagPandModel
 from webapp.models import Tag as TagModel
+from webapp.models import StatusBericht as StatusBerichtModel
 from django.utils.translation import ugettext as _
 from webapp.forms import *
 import hashlib
@@ -39,16 +40,25 @@ def slogin(request):
                 if user.is_active:
                     django_login(request, user)
                 else:
-                    return redirect("/login")
+                    return False
             else:
-                return redirect("/login")
+                return False
+
     else:
         formlogin=AuthenticationForm()
     return formlogin
+
+# def filtertags(request):
+#     if request.method == 'POST' and 'searchbtn' in request.POST:
+        # panden = PandModel.objects.filter()
+
+
 # Create your views here.
 def index(request):
     dpartners = Data.objects.get(id=11)
     formlogin = slogin(request)
+    if formlogin == False:
+        return redirect('/login')
     panden = PandModel.objects.filter(uitgelicht=True)
     panden_lijst = list(panden)
     uitgelichte_panden = []
@@ -63,6 +73,8 @@ def index(request):
 
 def panddetail(request, pand_referentienummer):
     formlogin = slogin(request)
+    if formlogin == False:
+        return redirect('/login')
     pand = PandModel.objects.get(referentienummer=pand_referentienummer)
     #voeg extra gegevens toe
     relatedPands= PandModel.objects.filter(postcodeID=pand.postcodeID)
@@ -100,6 +112,17 @@ def panden(request):
     data = Data.objects.get(id=13)
     # Login form
     formlogin = slogin(request)
+    if formlogin == False:
+        return redirect('/login')
+    # SmallSearchForm
+    if request.method == "POST":
+        smallsearchform = SmallSearchForm(request.POST)
+        if smallsearchform.is_valid():
+            model_instance = smallsearchform.save(commit=False)
+            model_instance.save()
+            return redirect('formsucces')
+    else:
+            smallsearchform = SmallSearchForm()
     # SearchForm
     if request.method == "POST":
         searchform = SearchForm(request.POST)
@@ -124,6 +147,8 @@ def panden(request):
 def referenties(request):
     data = Data.objects.get(id=9)
     formlogin = slogin(request)
+    if formlogin == False:
+        return redirect('/login')
     context = {
         # 'panden' = PandModel.objects.get(handelstatus='Verkocht',handelstatus='Verhuurd')
         'panden': PandModel.objects.all().values(),
@@ -138,18 +163,29 @@ def referenties(request):
 
 def account(request):
     formlogin = slogin(request)
+    if formlogin == False:
+        return redirect('/login')
     current_user = request.user
+
+    # StatusBericht
+    status_berichten = StatusBerichtModel.objects.filter(user=current_user)
+
+    # Panden van de gebruiker
+    panden = PandModel.objects.filter(user=current_user)
+
     if current_user.is_authenticated():
         # Do something for authenticated users.
-        return render_to_response('webapp/account.html', {'current_user': current_user,'formlogin': formlogin }, context_instance=RequestContext(request))
+        return render_to_response('webapp/account.html', {'current_user': current_user, 'status_berichten': status_berichten, 'panden': panden, 'formlogin': formlogin}, context_instance=RequestContext(request))
     else:
         # Do something for anonymous users.
-        return render_to_response('webapp/account.html', {'current_user': current_user, 'formlogin': formlogin}, context_instance=RequestContext(request))
+        return render_to_response('webapp/account.html', {'current_user': current_user, 'status_berichten': status_berichten, 'panden': panden, 'formlogin': formlogin}, context_instance=RequestContext(request))
 
 
 def about(request):
     dabout = Data.objects.get(id=10)
     formlogin = slogin(request)
+    if formlogin == False:
+        return redirect('/login')
     return render_to_response('webapp/about.html', {'formlogin': formlogin, 'dabout': dabout}, context_instance=RequestContext(request))
 
 
@@ -208,30 +244,42 @@ def advies(request):
     dadvies = Data.objects.get(id=8)
     dfaq = Data.objects.get(id=7)
     formlogin = slogin(request)
+    if formlogin == False:
+        return redirect('/login')
     faq_list = FaqModel.objects.all()
     return render_to_response('webapp/advies.html', {'dadvies': dadvies, 'dfaq': dfaq, 'faq_list': faq_list, 'formlogin': formlogin}, context_instance=RequestContext(request))
 
 def huren(request):
     formlogin = slogin(request)
+    if formlogin == False:
+        return redirect('/login')
     return render_to_response('webapp/huren.html', {'formlogin': formlogin}, context_instance=RequestContext(request))
 
 def kopen(request):
     formlogin = slogin(request)
+    if formlogin == False:
+        return redirect('/login')
     return render_to_response('webapp/kopen.html', {'formlogin': formlogin}, context_instance=RequestContext(request))
 
 def disclaimer(request):
     data = Data.objects.get(id=1)
     formlogin = slogin(request)
+    if formlogin == False:
+        return redirect('/login')
     return render_to_response('webapp/disclaimer.html', {'formlogin': formlogin, 'data': data}, context_instance=RequestContext(request))
 
 def privacy(request):
     data = Data.objects.get(id=2)
     formlogin = slogin(request)
+    if formlogin == False:
+        return redirect('/login')
     return render_to_response('webapp/privacy.html', {'formlogin': formlogin, 'data': data}, context_instance=RequestContext(request))
 
 def partners(request):
     dpartners = Data.objects.get(id=11)
     formlogin = slogin(request)
+    if formlogin == False:
+        return redirect('/login')
     partner_list = PartnerModel.objects.all()
     return render_to_response('webapp/partners.html', {'dpartners': dpartners, 'formlogin': formlogin, 'partner_list': partner_list}, context_instance=RequestContext(request))
 
@@ -474,30 +522,6 @@ def sacha(request):
     else:
             form = SearchForm()
     return render(request, "webapp/forms.html", {'form': form})
-
-def document_view(request):
-    # Handle file upload
-    if request.method == 'POST':
-        form = DocumentForm(request.POST, request.FILES)
-        if form.is_valid():
-            newdoc = Document(docfile = request.FILES['docfile'])
-            newdoc.save()
-
-            # Redirect to the document list after POST
-            return HttpResponseRedirect(reverse('views.document_view'))
-    else:
-        form = DocumentForm() # A empty, unbound form
-
-    # Load documents for the list page
-    documents = Document.objects.all()
-
-    # Render list page with the documents and the form
-    return render_to_response(
-        'webapp/document.html',
-        {'documents': documents, 'form': form},
-        context_instance=RequestContext(request)
-    )
-
 
 #<--------customized django view---------->
 @csrf_protect

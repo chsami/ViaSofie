@@ -174,16 +174,9 @@ class SearchForm(forms.Form):
 
     class Meta:
         fields = ['plaats_postcode', 'pand_type', 'aantal_slaapkamers', 'aantal_badkamers', 'aantal_verdiepen', 'prijs_range', 'tags']
-
-class DocumentForm(forms.Form):
-    user = forms.IntegerField()
-    titel = forms.CharField( max_length=128, widget=forms.TextInput(attrs={'placeholder': 'Titel'}))
-    bericht = forms.CharField( max_length=500, widget=forms.Textarea(attrs={'placeholder': 'Bericht'}))
-    docfile = forms.FileField(
-        label='Select a file',
-        help_text='max. 50 gigabytes'
-    )
+        
+class SmallSearchForm(forms.Form):
+    plaats_postcode = forms.CharField(label="", widget=forms.TextInput(attrs={'class': 'search-form-input', 'placeholder': 'Zoek op plaats of postcode'}))
 
     class Meta:
-        model = Document
-        fields = ['user', 'docfile', 'titel', 'bericht']
+        fields = ['plaats_postcode']

@@ -14,6 +14,7 @@
 <ul class="nav nav-tabs tabs-account">
     <li class="active"><a href="#info-tab" data-toggle="tab">Account informatie <i class="fa"></i></a></li>
     <li><a href="#address-tab" data-toggle="tab">Berichten<i class="fa"></i></a></li>
+    <li><a href="#pand-tab" data-toggle="tab">Panden<i class="fa"></i></a></li>
 </ul>
 
 <form id="accountForm" method="post" class="form-horizontal">
@@ -74,16 +75,16 @@
                 <input type="text" class="text adviesSearch" id="search" placeholder="Zoeken">
             </div>
             <div class="panel-group" id="accordion" filter-list="search">
-                {% for faq in faq_list %}
+                {% for status_bericht in status_berichten %}
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#{{faq.id}}">{{ faq.titel }}</a>
+                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#{{status_bericht.id}}">{{ status_bericht.titel }}</a>
                             </h4>
                         </div>
-                        <div id="{{faq.id}}" class="panel-collapse collapse">
+                        <div id="{{status_bericht.id}}" class="panel-collapse collapse">
                             <div class="panel-body">
-                                {{ faq.content | safe}}
+                                {{ status_bericht.inhoud | safe}}
                             </div>
                         </div>
                     </div>
@@ -93,6 +94,34 @@
     </div>
 </div>
         </div>
+
+        <div class="tab-pane" id="pand-tab">
+            <div class="advies">
+    <div class="FAQ">
+        <div class="container">
+            <div class="faqHeader">
+                <p>Op deze pagina kan u uw panden terugvinden die momenteel te koop staan, in het verleden verkocht zijn of die u zelf gekocht heeft.</p>
+            </div>
+            <div class="adviesSearchForm form-info">
+                <input type="text" class="text adviesSearch" id="search" placeholder="Zoeken">
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-xs-3"><h4><strong>Referentienummer</h4></strong></div>
+                <div class="col-md-5 col-xs-3"><h4><strong>Adres</h4></strong></div>
+                <div class="col-md-2 col-xs-3"><h4><strong>Prijs (€)</h4></strong></div>
+                <div class="col-md-1 col-xs-3"><h4><strong>Status</h4></strong></div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-xs-3">d85eb1eb9faf42f8be7015cbfa7e8561</div>
+                <div class="col-md-5 col-xs-3">Kantweg 26, 2390 Malle</div>
+                <div class="col-md-2 col-xs-3">799.000</div>
+                <div class="col-md-1 col-xs-3">Te koop</div>
+            </div>
+        </div>
+    </div>
+</div>
+        </div>
+
     </div>
 </div>
 </form>
