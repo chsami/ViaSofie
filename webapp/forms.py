@@ -96,7 +96,7 @@ class Ebookform(forms.ModelForm):
 	naam = forms.CharField(label="*Naam", widget=forms.TextInput(attrs={'placeholder': 'Naam'}))
 	voornaam = forms.CharField(label="*Voornaam", widget=forms.TextInput(attrs={'placeholder': 'Voornaam'}))
 	email = forms.EmailField(label="*E-mail", widget=forms.EmailInput(attrs={'placeholder': 'E-mail'}))
-	
+
 	class Meta:
 		model = Ebook
 		fields = ['naam', 'voornaam', 'email',]
@@ -168,21 +168,22 @@ class SearchForm(forms.Form):
     aantal_verdiepen = forms.IntegerField(widget=forms.TextInput(attrs={'id': 'aantal-verdiepen', 'readonly style': 'border:0; color:#f6931f; font-weight:bold;'}))
 
     plaats_postcode = forms.CharField(label="", widget=forms.TextInput(attrs={'class': 'geavanceerd-search-form-input', 'placeholder': 'Zoek op plaats of postcode'}))
-    
+
     pand_type = forms.ChoiceField(widget=forms.Select(attrs={'id': 'pand-type', 'class': 'pand-type-input'}))
     prijs_range = forms.DecimalField(widget=forms.TextInput(attrs={'id': 'prijs-range','class': 'prijs-range-input', 'readonly style': ''}))
-    
+
     aantal_slaapkamers = forms.IntegerField(widget=forms.TextInput(attrs={'id': 'aantal-slaapkamers','class': 'aantal-slaapkamers-input', 'readonly style': ''}))
     aantal_badkamers = forms.IntegerField(widget=forms.TextInput(attrs={'id': 'aantal-badkamers','class': 'aantal-badkamers-input', 'readonly style': ''}))
     aantal_verdiepen = forms.IntegerField(widget=forms.TextInput(attrs={'id': 'aantal-verdiepen','class': 'aantal-verdiepen-input', 'readonly style': ''}))
-    
+
     tags = forms.CharField(label="", widget=forms.TextInput(attrs={'id': 'tags', 'data-role': 'tagsinput'}))
 
     class Meta:
         fields = ['plaats_postcode', 'pand_type', 'aantal_slaapkamers', 'aantal_badkamers', 'aantal_verdiepen', 'prijs_range', 'tags']
-        
-class SmallSearchForm(forms.Form):
-    plaats_postcode = forms.CharField(label="", widget=forms.TextInput(attrs={'class': 'search-form-input', 'placeholder': 'Zoek op plaats of postcode'}))
 
-    class Meta:
-        fields = ['plaats_postcode']
+class SmallSearchForm(forms.Form):
+	kopen = forms.BooleanField(widget = forms.HiddenInput(attrs={'id': 'kopen_hiddenfield', 'Value': 'true'}), required = False)
+	plaats_postcode = forms.CharField(label="", widget=forms.TextInput(attrs={'class': 'search-form-input', 'placeholder': 'Zoek op plaats of postcode'}), required = False)
+
+	class Meta:
+		fields = ['kopen', 'plaats_postcode']

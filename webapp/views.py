@@ -56,9 +56,26 @@ def slogin(request):
 # Create your views here.
 def index(request):
     dpartners = Data.objects.get(id=11)
+
     formlogin = slogin(request)
     if formlogin == False:
         return redirect('/login')
+
+    if request.method == "POST":
+        smallsearchform = SmallSearchForm(request.POST)
+        if smallsearchform.is_valid():
+            kopen = request.POST['kopen']
+            if kopen == 'true':
+                return redirect('/contact')
+            elif kopen == 'false':
+                return redirect('/panden')
+
+            # model_instance = smallsearchform.save(commit=False)
+            # model_instance.save()
+
+    else:
+            smallsearchform = SmallSearchForm()
+
     panden = PandModel.objects.filter(uitgelicht=True)
     panden_lijst = list(panden)
     uitgelichte_panden = []
@@ -69,7 +86,7 @@ def index(request):
     goede_doelen = GoedDoelModel.objects.all()
     #PARTNERS
     partner_list = PartnerModel.objects.all()
-    return render_to_response('webapp/index.html', {'dpartners': dpartners, 'uitgelichte_panden': uitgelichte_panden, 'goede_doelen': goede_doelen, 'formlogin':formlogin, 'partner_list': partner_list}, context_instance=RequestContext(request))
+    return render_to_response('webapp/index.html', {'dpartners': dpartners, 'uitgelichte_panden': uitgelichte_panden, 'goede_doelen': goede_doelen,'smallsearchform':smallsearchform, 'formlogin':formlogin, 'partner_list': partner_list,},  context_instance=RequestContext(request))
 
 def panddetail(request, pand_referentienummer):
     formlogin = slogin(request)
