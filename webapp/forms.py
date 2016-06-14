@@ -96,10 +96,11 @@ class Ebookform(forms.ModelForm):
 	naam = forms.CharField(label="*Naam", widget=forms.TextInput(attrs={'placeholder': 'Naam'}))
 	voornaam = forms.CharField(label="*Voornaam", widget=forms.TextInput(attrs={'placeholder': 'Voornaam'}))
 	email = forms.EmailField(label="*E-mail", widget=forms.EmailInput(attrs={'placeholder': 'E-mail'}))
+        captcha = ReCaptchaField()
 	
 	class Meta:
 		model = Ebook
-		fields = ['naam', 'voornaam', 'email',]
+		fields = ['naam', 'voornaam', 'email', 'captcha',]
 
 class Handelstatus(forms.ModelForm):
 	class Meta:
@@ -159,6 +160,7 @@ class ContactForm(forms.Form):
 	email = forms.EmailField(widget=forms.TextInput(attrs={'placeholder': 'Email'}))
 	subject = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'placeholder': 'Onderwerp'}))
 	message = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Bericht'}))
+	captcha = ReCaptchaField()
 
 class SearchForm(forms.Form):
     plaats_postcode = forms.CharField(label="", widget=forms.TextInput(attrs={'class': 'geavanceerd-search-form-input', 'placeholder': 'Zoek op plaats of postcode of referentienummer'}))
