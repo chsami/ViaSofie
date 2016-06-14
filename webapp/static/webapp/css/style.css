@@ -584,7 +584,7 @@ ul.callbacks_tabs.callbacks1_tabs {
 
 .content-grid h3:after,
 .content-grid h3:before {
-    width: 200px;
+    width: 180px;
     height: 1px;
     display: inline-block;
     vertical-align: middle;
