@@ -96,7 +96,7 @@ class Ebookform(forms.ModelForm):
 	naam = forms.CharField(label="*Naam", widget=forms.TextInput(attrs={'placeholder': 'Naam'}))
 	voornaam = forms.CharField(label="*Voornaam", widget=forms.TextInput(attrs={'placeholder': 'Voornaam'}))
 	email = forms.EmailField(label="*E-mail", widget=forms.EmailInput(attrs={'placeholder': 'E-mail'}))
-        captcha = ReCaptchaField()
+	captcha = ReCaptchaField()
 	
 	class Meta:
 		model = Ebook
