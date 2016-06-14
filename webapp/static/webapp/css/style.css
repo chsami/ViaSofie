@@ -6670,3 +6670,7 @@ div.endless_loading {
   top: 6px;
   position: relative;
 }
+
+.homeslider {
+    display: block !important;
+}
