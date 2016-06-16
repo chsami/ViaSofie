@@ -25,7 +25,7 @@
             opacity: 0.39,
             translateX: '-120px',
             translateY: '0px',
-            translateZ: '-62px'
+            translateZ: '-px'
         }, 0);
 
         productSearch.stop(true, false).velocity({
@@ -65,7 +65,7 @@
             sibling.removeClass('active').addClass('inactive')
                 .stop(true, false).velocity({
                     translateX: '-120px',
-                    translateZ: '-67px'
+                    translateZ: '-7px'
                 }, 300)
                 .stop(true, false).velocity({
                     opacity: 0.39,

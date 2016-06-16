@@ -161,22 +161,14 @@ class ContactForm(forms.Form):
 	message = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Bericht'}))
 
 class SearchForm(forms.Form):
-    plaats_postcode = forms.CharField(widget=forms.TextInput(attrs={'class': 'search-form-input', 'placeholder': 'Zoek op plaats of postcode'}))
-    pand_type = forms.ChoiceField(widget=forms.Select(attrs={'id': 'pand-type'}))
-    aantal_slaapkamers = forms.IntegerField(widget=forms.TextInput(attrs={'id': 'aantal-slaapkamers', 'readonly style': 'border:0; color:#f6931f; font-weight:bold;'}))
-    aantal_badkamers = forms.IntegerField(widget=forms.TextInput(attrs={'id': 'aantal-badkamers', 'readonly style': 'border:0; color:#f6931f; font-weight:bold;'}))
-    aantal_verdiepen = forms.IntegerField(widget=forms.TextInput(attrs={'id': 'aantal-verdiepen', 'readonly style': 'border:0; color:#f6931f; font-weight:bold;'}))
-
-    plaats_postcode = forms.CharField(label="", widget=forms.TextInput(attrs={'class': 'geavanceerd-search-form-input', 'placeholder': 'Zoek op plaats of postcode'}))
-
-    pand_type = forms.ChoiceField(widget=forms.Select(attrs={'id': 'pand-type', 'class': 'pand-type-input'}))
-    prijs_range = forms.DecimalField(widget=forms.TextInput(attrs={'id': 'prijs-range','class': 'prijs-range-input', 'readonly style': ''}))
-
-    aantal_slaapkamers = forms.IntegerField(widget=forms.TextInput(attrs={'id': 'aantal-slaapkamers','class': 'aantal-slaapkamers-input', 'readonly style': ''}))
-    aantal_badkamers = forms.IntegerField(widget=forms.TextInput(attrs={'id': 'aantal-badkamers','class': 'aantal-badkamers-input', 'readonly style': ''}))
-    aantal_verdiepen = forms.IntegerField(widget=forms.TextInput(attrs={'id': 'aantal-verdiepen','class': 'aantal-verdiepen-input', 'readonly style': ''}))
-
-    tags = forms.CharField(label="", widget=forms.TextInput(attrs={'id': 'tags', 'data-role': 'tagsinput'}))
+    plaats_postcode = forms.CharField(label="", widget=forms.TextInput(attrs={'class': "search-form-input", id: "id_plaats_postcode", 'name': "plaats_postcode", 'placeholder': "Zoek op referentienummer, plaats of postcode", 'type': "text"}), required = False)
+    # pand_type = forms.ChoiceField(widget=forms.Select(attrs={'id': 'pand-type', 'class': 'pand-type-input'}))
+    kopen = forms.BooleanField(widget = forms.HiddenInput(attrs={'id': 'kopen_hiddenfield', 'value':'true'}))
+    # prijs_range = forms.DecimalField(widget=forms.TextInput(attrs={'id': 'prijs-range','class': 'prijs-range-input', 'readonly style': ''}))
+    # aantal_slaapkamers = forms.IntegerField(widget=forms.TextInput(attrs={'id': 'aantal-slaapkamers','class': 'aantal-slaapkamers-input', 'readonly style': ''}))
+    # aantal_badkamers = forms.IntegerField(widget=forms.TextInput(attrs={'id': 'aantal-badkamers','class': 'aantal-badkamers-input', 'readonly style': ''}))
+    # aantal_verdiepen = forms.IntegerField(widget=forms.TextInput(attrs={'id': 'aantal-verdiepen','class': 'aantal-verdiepen-input', 'readonly style': ''}))
+    # tags = forms.CharField(label="", widget=forms.TextInput(attrs={'id': 'tags', 'data-role': 'tagsinput'}))
 
     class Meta:
         fields = ['plaats_postcode', 'pand_type', 'aantal_slaapkamers', 'aantal_badkamers', 'aantal_verdiepen', 'prijs_range', 'tags']

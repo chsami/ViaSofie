@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^login/$', views.login, name='login'),
     url(r'^logout/$', views.logout, name='logout'),
     # url(r'^resetpassword/$',  viewsauth.password_reset,  {'template_name': 'webapp/password_reset/password_reset_form.html', 'post_reset_redirect' : 'passwordsent/'}, name='password_reset'),
+    url(r'^resetpassword/$',  views.password_reset,  {'template_name': 'webapp/password_reset/password_reset_form.html', 'post_reset_redirect' : 'passwordsent/'}, name='password_reset'),
     url(r'^resetpassword/passwordsent/',  viewsauth.password_reset_done, {'template_name': 'webapp/password_reset/password_reset_done.html'}, name='password_reset_done'),
     url(r'^reset/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$',  viewsauth.password_reset_confirm, {'template_name': 'webapp/password_reset/password_reset_confirm.html', 'post_reset_redirect' : '/reset/done/'}, name='password_reset_confirm'),
     url(r'^reset/done/$', viewsauth.password_reset_complete, {'template_name': 'webapp/password_reset/password_reset_complete.html'}, name='password_reset_complete'),
