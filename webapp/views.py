@@ -24,6 +24,7 @@ import random
 from django.utils import timezone
 from django.core.mail import send_mail, BadHeaderError
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.template.loader import render_to_string
 
 from django.views.decorators.csrf import csrf_protect
 from django.template.response import TemplateResponse
@@ -370,9 +371,10 @@ def contact(request):
             message = form.cleaned_data['message']
             sender = form.cleaned_data['email']
             name = form.cleaned_data['name']
-            fullmessage = "name: " + name + "\tmessage:"+ message
             try:
-                send_mail(subject, fullmessage, sender, ['liekensjeff@gmail.com'])
+                msg_html = render_to_string('webapp/emailcontact.html', {'message': message, 'name': name})
+                send_mail(subject,"", sender, ['liekensjeff@gmail.com'], html_message=msg_html,)
+
             except BadHeaderError:
                 return HttpResponse("invalid.")
         form = ContactForm()
