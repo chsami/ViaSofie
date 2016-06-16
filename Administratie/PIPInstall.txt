@@ -30,6 +30,7 @@ Change line 46 request.REQUEST
 With request.GET
 ##################################################################
 
+
 ##################################################################
 C:\Python27\Lib\site-packages\inplaceeditform_bootstrap\templates\inplaceeditform
 
