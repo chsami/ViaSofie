@@ -381,14 +381,6 @@ def contact(request):
     else:
         form = ContactForm()
         formlogin = AuthenticationForm()
-            #====================voor template toe te voegen=========================
-            # template = get_template('contact_template.txt')
-            # context = Context({
-            #     'contact_email': sender,
-            #     'contact_name': name,
-            #     'subject': subject,
-            #     'form_content': message,
-            # })
     return render_to_response('webapp/contact.html', {
         'form': form,
         'formlogin': formlogin,
