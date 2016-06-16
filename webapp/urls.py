@@ -28,6 +28,7 @@ urlpatterns = [
     url(r'^new-activation-link/(?P<user_id>\d+)/$', views.new_activation_link, name='new_activation_link'),
     url(r'^login/$', views.login, name='login'),
     url(r'^logout/$', views.logout, name='logout'),
+    url(r'^resetpassword/$',  views.password_reset,  {'template_name': 'webapp/password_reset/password_reset_form.html', 'post_reset_redirect' : 'passwordsent/'}, name='password_reset'),
     # url(r'^resetpassword/$',  viewsauth.password_reset,  {'template_name': 'webapp/password_reset/password_reset_form.html', 'post_reset_redirect' : 'passwordsent/'}, name='password_reset'),
     url(r'^resetpassword/$',  views.password_reset,  {'template_name': 'webapp/password_reset/password_reset_form.html', 'post_reset_redirect' : 'passwordsent/'}, name='password_reset'),
     url(r'^resetpassword/passwordsent/',  viewsauth.password_reset_done, {'template_name': 'webapp/password_reset/password_reset_done.html'}, name='password_reset_done'),
