@@ -1,7 +1,7 @@
-Bevestiging registratie
+Nieuwe activatielink
 
 
-Beste {{email}}, uw account is hierbij bevestigd. Bedankt voor uw interesse in Via Sofie.
+Beste {{email}}, hierbij kan u een nieuwe actievatielink vinden.
 
 Gelieve uw account te activeren door op volgende link te klikken: {{activation_link}}
 
