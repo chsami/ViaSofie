@@ -156,7 +156,7 @@
                     </div>
                 </div>
                 <div class="geavanceerdSearch-thirth">
-                    <input id="tagsSearch" type="text" value="{{all_tags}}" placeholder="Tags" data-role="tagsinput"/>
+                    <input id="tagsSearch" type="text" value="" placeholder="Tags" data-role="tagsinput"/>
                     <script>
                     $('#tagsSearch').tagsinput({
                       typeahead: {
@@ -210,8 +210,12 @@ $("#mega-sitesearch").click(function() {
 $("#advancedSearchForm").bind("keypress", function (e) {
     if (e.keyCode == 13) {
         $("#btnSearch").attr('value');
-        //add more buttons here
-        return false;
+        return false;  
+    }
+});
+$(".bootstrap-tagsinput input").keyup(function (e) {
+    if (e.keyCode == 13) {
+        $(".bootstrap-tagsinput input").val("");
     }
 });
 </script>
