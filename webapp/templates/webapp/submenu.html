@@ -64,8 +64,8 @@
                                     <tr>
                                         <th></th>
                                         <td>
-                                          {{ searchform.plaats_postcode.errors }}
-                                          {{ searchform.plaats_postcode }}
+                                          {{ searchform.plaats_postcode_refnummer.errors }}
+                                          {{ searchform.plaats_postcode_refnummer}}
                                             <!-- <input class="search-form-input" id="id_plaats_postcode" name="plaats_postcode" placeholder="Zoek op referentienummer, plaats of postcode" type="text"> -->
                                         </td>
                                     </tr>
@@ -85,6 +85,7 @@
                           <option>Appartement</option>
                           <option>Villa</option>
                         </select>
+                        {{searchform.pand_type}}
                     </div>
                     <div class="col-sm-4">
                         <input type="number" name="ant-slaapkamers" id="min-slaapkamers" value="" placeholder="Min. Slaapkamers" min="0" max="15" class="form-control">
@@ -106,6 +107,9 @@
                         </div>
                         <input id="prijsSliderKopen" data-slider-id="prijsSliderKopenID" type="text" class="span2" value="" data-slider-min="0" data-slider-max="1000000" data-slider-step="1000" data-slider-tooltip="hide" data-slider-value="[0,1000000]"/>
                         <input id="prijsSliderHuren" data-slider-id="prijsSliderHurenID" type="text" class="span2" value="" data-slider-min="0" data-slider-max="5000" data-slider-step="100" data-slider-tooltip="hide" data-slider-value="[0,5000]" />
+                        {{ searchform.prijsSliderKopen }}
+                        {{ searchform.prijsSliderHuren }}
+                        {{ searchform.tagsSearch }}
                         <script type="text/javascript">
                             // Slider With JQuery
                             $("#prijsSliderKopen").slider({
@@ -214,7 +218,7 @@ $("#mega-sitesearch").click(function() {
 $("#advancedSearchForm").bind("keypress", function (e) {
     if (e.keyCode == 13) {
         $("#btnSearch").attr('value');
-        return false;  
+        return false;
     }
 });
 $(".bootstrap-tagsinput input").keyup(function (e) {
@@ -226,7 +230,7 @@ $(".bootstrap-tagsinput input").keyup(function (e) {
 
 
 var hiddenfield = document.getElementById('kopen_hiddenfield');
-hiddenfield.value = true;
+hiddenfield.value = 'kopen';
 function change(){
   // looks for the activated element 'huren' or 'kopen' and gets the value
   var x = document.getElementsByClassName("active");
@@ -236,10 +240,10 @@ function change(){
   console.log(output);
   var hiddenfield = document.getElementById('kopen_hiddenfield');
   if(output== "Kopen"){
-    hiddenfield.value = true;
+    hiddenfield.value = 'kopen';
   }
   else if(output =="Huren"){
-    hiddenfield.value = false;
+    hiddenfield.value = 'huren';
   }
   // sets the value of the hidden field to 'huren' or 'kopen'
 
