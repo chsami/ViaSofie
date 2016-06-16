@@ -14,7 +14,9 @@ from webapp.models import User as UserModel
 from webapp.models import GoedDoel as GoedDoelModel
 from webapp.models import TagPand as TagPandModel
 from webapp.models import Tag as TagModel
+from webapp.models import Stad as StadModel
 from webapp.models import StatusBericht as StatusBerichtModel
+from webapp.models import Handelstatus as HandelstatusModel
 from django.utils.translation import ugettext as _
 from webapp.forms import *
 import hashlib
@@ -95,6 +97,9 @@ def index(request):
         tags = request.POST['tagsSearch']
 
         filters ='handelstatus=' + handelstatus + '&plaats_postcode_refnummer=' + plaats_postcode_renummer + '&prijs_range=' + prijs_range + '&tags=' + pand_type + ',' + tags
+
+        if filters.endswith(','):
+            filters = filters[:-1]
             # lijst = [kopen, plaats_postcode, pand_type, aantal_badkamers, prijs_range, aantal_slaapkamers, prijs_range, aantal_slaapkamers, aantal_verdiepen, tags]
         return redirect('/panden/' + filters)
 
@@ -177,31 +182,35 @@ def panden(request, filters=None):
     # REMOVE LINE ABOVE
     panden = PandModel.objects.all()
     if filters:
-        panden = None
+        panden = []
         result_queryset = PandModel.objects.all()
         filtersets = filters.split('&')
         for filterset in filtersets:
             if 'handelstatus' in filterset:
+                # handelstatus_id = HandelstatusModel.objects.filter()
                 result_queryset.filter(handelstatus=filterset.split('=')[1])
 
             elif 'plaats_postcode_refnummer' in filterset:
                 if filterset.split('=')[1].isdigit():
-                    result_queryset = result_queryset.filter(postcodeID.postcode=filterset.split('=')[1])
+                    postcode_id = StadModel.objects.get(postcode=filterset.split('=')[1]).id
+                    result_queryset = result_queryset.filter(postcodeID=postcode_id)
                 elif ilterset.split('=')[1].replace('-', '').isalpha():
-                    result_queryset = result_queryset.filter(postcodeID.stadsnaam=filterset.split('=')[1])
+                    postcode_id = StadModel.objects.get(stadsnaam=filterset.split('=')[1]).id
+                    result_queryset = result_queryset.filter(postcodeID=postcode_id)
                 else:
                     result_queryset = result_queryset.filter(referentienummer=filterset.split('=')[1])
 
             elif 'prijs_range' in filterset:
-                result_queryset = result_queryset.filter(prijs>=int(filterset.split('=')[1].split(',')[0])).filter(prijs<=int(filterset.split('=')[1].split(',')[1]))
+                result_queryset = result_queryset.filter(prijs__gte=int(filterset.split('=')[1].split(',')[0])).filter(prijs__lte=int(filterset.split('=')[1].split(',')[1]))
 
             # Check for tags and fill list with pand_id's
             tags_queryset = TagPandModel.objects.all()
             if 'tags' in filterset:
                 tags = filterset.split('=')[1].split(',')
                 for single_tag in tags:
-                    tags_queryset = tags_queryset.filter(tag.tagnaam=single_tag.split(':')[0])
-                    tags_queryset = tags_queryset.filter(value>=int(single_tag.split(':')[1]))
+                    tag_id = TagModel.objects.get(tagnaam=single_tag.split(':')[0]).id
+                    tags_queryset = tags_queryset.filter(tag=tag_id)
+                    tags_queryset = tags_queryset.filter(value__gte=int(single_tag.split(':')[1]))
 
         pand_ids = None
         for tag in tags_queryset:
