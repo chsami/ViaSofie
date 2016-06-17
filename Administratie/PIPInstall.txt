@@ -1,16 +1,17 @@
-Modules die moeten geïnstalleerd worden voor server te laten runnen.
-
+﻿Volgende modules moeten geïnstalleerd worden om de server te laten runnen:
 pip install django_recaptcha
 pip install django-inplaceedit-bootstrap
 pip install django-inplaceedit-extra-fields
 pip install django-bootstrap3-datetimepicker
 pip install django-rosetta
 pip install django-qrcode
+pip install pillow
+pip install django-admin-bootstrapped
 
 pip install django-endless-pagination
 ##################################################################
 Goto pagination module
-C:\Python27\Lib\site-packages\endless_pagination
+C:\Python27\Lib\site-packages\endless_pagination (enkel voor windows)
 
 Open loaders.py
 
@@ -30,11 +31,10 @@ Change line 46 request.REQUEST
 With request.GET
 ##################################################################
 
-
 ##################################################################
-C:\Python27\Lib\site-packages\inplaceeditform_bootstrap\templates\inplaceeditform
+C:\Python27\Lib\site-packages\inplaceeditform_bootstrap\templates\inplaceeditform (enkel voor windows)
 
 Change inc.inplace_toolbar.html
 
-With inc.inplace_toolbar.html in this folder
+With inc.inplace_toolbar.html in administration folder
 ##################################################################
