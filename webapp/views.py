@@ -630,11 +630,9 @@ def foto(request):
 		{'form': form}
 	)
 
-# EDIT VIEWS
-def panddetail_edit(request, pand_referentienummer):
-	pand = PandModel.objects.get(referentienummer=pand_referentienummer)
-	fotos = FotoModel.objects.filter(pand_id=pand.id)
-	return render_to_response('webapp/edit/pand.html', {'pand': pand, 'fotos': fotos}, context_instance=RequestContext(request))
+def new_pand(request):
+	return render_to_response('webapp/new_pand.html', context_instance=RequestContext(request))
+
 def login(request):
     if request.method == 'POST' and 'loginbtn' in request.POST:
         form = AuthenticationForm()
@@ -680,16 +678,6 @@ def login(request):
 # 		'form': form,
 # 	}, context_instance=RequestContext(request))
 
-def sacha(request):
-    if request.method == "POST":
-        form = SearchForm(request.POST)
-        if form.is_valid():
-            model_instance = form.save(commit=False)
-            model_instance.save()
-            return redirect('formsucces')
-    else:
-            form = SearchForm()
-    return render(request, "webapp/forms.html", {'form': form})
 
 #<--------customized django view---------->
 @csrf_protect

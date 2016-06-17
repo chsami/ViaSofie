@@ -7,6 +7,7 @@ urlpatterns = [
     url(r'^rosetta/', include('rosetta.urls')),
     url(r'^$', views.index, name='index'),
     url(r'^pand/(?P<pand_referentienummer>[a-zA-Z0-9_]+)/$', views.panddetail, name='panddetail'),
+    url(r'^new/pand/$', views.new_pand, name='new_pand'),
     url(r'^about/$', views.about, name='about'),
     url(r'^advies/$', views.advies, name='advies'),
     url(r'^contact/$', views.contact, name='contact'),
@@ -14,6 +15,7 @@ urlpatterns = [
     url(r'^kopen/$', views.kopen, name='kopen'),
     url(r'^partners/$', views.partners, name='partners'),
     url(r'^partnersform/$', views.partnersform, name='partnersorm'),
+    url(r'^panden/$', views.panden, name='panden'),
     url(r'^panden/(?P<filters>[\W\w]+)/$', views.panden, name='panden'),
     url(r'^referenties/$', views.referenties, name='referenties'),
     url(r'^disclaimer/$', views.disclaimer, name='disclaimer'),
@@ -41,7 +43,6 @@ urlpatterns = [
     url(r'^tag/$', views.tag, name='tag'),
     url(r'^foto/$', views.foto, name='foto'),
     url(r'^formsucces/$', views.formsucces, name='formsucces'),
-    url(r'^sacha/$', views.sacha, name='sacha'),
 
     #Ebook
     url(r'^ebook/$', views.ebooks, name='ebooks'),
