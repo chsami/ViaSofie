@@ -1,4 +1,4 @@
-{% extends 'webapp/base.html' %} {% load staticfiles %}{% load qr_tags %}{% block header %}
+{% extends 'webapp/base.html' %} {% load inplace_edit %} {% load staticfiles %} {% load qr_tags %}{% block header %} {% inplace_toolbar %}
 <script type='text/javascript' src="{% static 'webapp/scripts/index.js' %}"></script>
 <script type='text/javascript' src="{% static 'webapp/scripts/jquery.flexslider.js' %}"></script>
 <script type='text/javascript' src="{% static 'webapp/scripts/jquery.flexisel.js' %}"></script>
@@ -42,7 +42,7 @@
 <div class="container">
     <div class="buy-single-single">
         <div class=" buying-top">
-            <p>{{ pand.straatnaam }} - {{pand.postcodeID.stadsnaam}}</p>
+            <p>{% inplace_edit "pand.straatnaam" %} - {% inplace_edit "pand.postcodeID.stadsnaam"%}</p>
             <div class="flexslider">
             <div id="slider" class="flexslider">
                 <ul class="slides">
@@ -101,12 +101,12 @@
                         </tr>
                         <tr>
                             <td>Prijs :</td>
-                            <td>{{pand.prijs}}</td>
+                            <td>{% inplace_edit "pand.prijs" %}</td>
                         </tr>
                     </tbody>
                 </table>
 
-                    <input id="tags" type="text" value="{{tag_data}}" data-role="tagsinput"/>
+                    <input id="tags" type="text" value="tag_data" data-role="tagsinput"/>
                     <script>
                     $('#tags').tagsinput({
                       typeahead: {
@@ -133,11 +133,10 @@
                 </div> -->
           </div>
             <div class="col-sm-7 buy-sin">
-                <h4>Bescrijving</h4>
-                <p>{{ pand.beschrijving }}</p>
+                <h4>Beschrijving</h4>
+                <p>{% inplace_edit "pand.beschrijving|safe" %}</p>
             </div>
 
-            <!-- {% qr_from_text url "size" %} -->
             <div class="clearfix"> </div>
         </div>
 
@@ -151,7 +150,7 @@
             <div class="fb-share-button" data-href="url" data-layout="button" data-mobile-iframe="true"></div>
             <div class="twitter-share-posdiv">
               <a class="twitter-share-button" href="http://twitter.com/share?text=Pand in {{pand.straatnaam}} te {{pand.handelstatus}}.&url={{url}}&hashtags=Via Sofie">Tweet </a>
-            </div>        
+            </div>
           </div>
           <div class="col-md-3" align="right">
             {% qr_from_text url "size" %}
@@ -184,12 +183,9 @@
                         <a href="/pand/{{ pand.referentienummer|cut:"-"}}"><img class="img-responsive" src="{{ related_pand.thumbnail_url }}" alt="" /> </a>
                         <div class="fur">
                             <div class="fur1">
-                                <span class="fur-money">{{pand.prijs}}</span>
-                                <h6 class="fur-name"><a href="/pand/">{{ pand.straatnaam }}</a></h6>
+                                <span class="fur-money">{% inplace_edit "pand.prijs" %}</span>
+                                <h6 class="fur-name"><a href="/pand/">{% inplace_edit "pand.straatnaam" %}</a></h6>
                                 <!-- <span>België</span> -->
-                            </div>
-                            <div class="fur2">
-                                <span>2 BHK</span>
                             </div>
                         </div>
                     </div>

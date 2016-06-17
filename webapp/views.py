@@ -23,7 +23,7 @@ from webapp.forms import *
 import hashlib
 import random
 from django.utils import timezone
-from django.core.mail import send_mail, BadHeaderError, EmailMultiAlternatives, EmailMessage 
+from django.core.mail import send_mail, BadHeaderError, EmailMultiAlternatives, EmailMessage
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.template.loader import render_to_string
 
@@ -454,7 +454,7 @@ def ebooks(request):
 		if form.is_valid():
 			model_instance = form.save(commit=False)
 			model_instance.save()
-			return redirect('ebook_lijst')
+			return redirect('index')
 	else:
 			form = Ebookform()
 	return render(request, "webapp/ebook.html", {'form': form})
@@ -642,7 +642,7 @@ def login(request):
             if user is not None:
                 if user.is_active:
                     django_login(request, user)
-                    return render_to_response('webapp/login.html', {'form': form, 'formlogin': formlogin}, context_instance=RequestContext(request))  
+                    return render_to_response('webapp/login.html', {'form': form, 'formlogin': formlogin}, context_instance=RequestContext(request))
             else:
                 return redirect('/login')
     else:

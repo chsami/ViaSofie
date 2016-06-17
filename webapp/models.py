@@ -100,7 +100,7 @@ class Pand(models.Model):
     postcodeID = models.ForeignKey(Stad)
     handelstatus = models.ForeignKey(Handelstatus)
     voortgang = models.ForeignKey(Voortgang)
-    beschrijving = models.CharField(max_length = 1000, blank=True, null=True)
+    beschrijving = models.TextField()
     uitgelicht = models.BooleanField(default= False)
     prijs = models.DecimalField(default=0, max_digits=18, decimal_places=2)
     thumbnail_url = models.CharField(max_length=256, null=True, blank=True)
