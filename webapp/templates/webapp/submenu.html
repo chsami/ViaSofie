@@ -252,10 +252,10 @@ $('#prijsSliderHuren').change(function(){
 });
 
 //at start declare the current state to the field
-$('#pand_type_hiddenfield').val($('#type').val() +':1');
+// $('#pand_type_hiddenfield').val($('#type').val() +'(1)');
 //change hiddenfield when tag changes
 $('#type').change(function(){
-  $('#pand_type_hiddenfield').val($('#type').val() +':1');
+  $('#pand_type_hiddenfield').val($('#type').val() +'(1)');
   // console.log($('#pand_type_hiddenfield').val());
 });
 

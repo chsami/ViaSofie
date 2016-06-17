@@ -78,32 +78,32 @@ def index(request):
 
     if request.method == "POST":
         searchform = SearchForm(request.POST)
-        # if searchform.is_valid():
+
         handelstatus = request.POST['kopen']
-            # if kopen == 'true':
-            #     return redirect('/contact')
-            # elif kopen == 'false':
-            #     return redirect('/panden')
         plaats_postcode_renummer = request.POST['plaats_postcode_refnummer']
-
-        aantal_slaapkamers = reques.POST['aantal_slaapkamers']
+        aantal_slaapkamers = request.POST['aantal_slaapkamers']
         aantal_badkamers = request.POST['aantal_badkamers']
-
-
         pand_type = request.POST['pand_type']
-            # aantal_badkamers = request.POST['aantal_badkamers']
+        tags = request.POST['tagsSearch']
 
+        if aantal_slaapkamers == "":
+            aantal_slaapkamers = "0"
+        if aantal_badkamers == "":
+            aantal_badkamers = "0"
+
+        # Kopen = "1" Huren = "2"
         prijs_range = None
-        # Kopen = 1 Huren = 2
-        if handelstatus == 1:
+        if handelstatus == "1":
             prijs_range = request.POST['prijsSliderKopen']
         else:
             prijs_range = request.POST['prijsSliderHuren']
             # aantal_slaapkamers = request.POST['aantal_slaapkamers']
             # aantal_verdiepen = request.POST['aantal_verdiepen']
-        tags = request.POST['tagsSearch']
-
-        filters ='handelstatus=' + handelstatus + '&plaats_postcode_refnummer=' + plaats_postcode_renummer + '&prijs_range=' + prijs_range + '&tags=' + pand_type + ',Badkamers[' + aantal_badkamers + '],Slaapkamers[' + aantal_slaapkamers + '],'  + tags
+        
+        if not pand_type:
+            filters ='handelstatus=' + handelstatus + '&plaats_postcode_refnummer=' + plaats_postcode_renummer + '&prijs_range=' + prijs_range + '&tags=' + 'Badkamers(' + aantal_badkamers + '),Slaapkamers(' + aantal_slaapkamers + '),'  + tags
+        else:
+            filters ='handelstatus=' + handelstatus + '&plaats_postcode_refnummer=' + plaats_postcode_renummer + '&prijs_range=' + prijs_range + '&tags=' + pand_type + ',Badkamers(' + aantal_badkamers + '),Slaapkamers(' + aantal_slaapkamers + '),'  + tags
 
         if filters.endswith(','):
             filters = filters[:-1]
@@ -185,7 +185,7 @@ def panddetail(request, pand_referentienummer):
     return render_to_response('webapp/pand.html', {'pand': pand, 'fotos' : fotos, 'relatedPands' : relatedPands, 'tag_data': tag_data, 'all_tags': all_tags,'url': url , 'formlogin':formlogin}, context_instance=RequestContext(request))
 
 def panden(request, filters=None):
-    # filters ='handelstatus=' + handelstatus + '&plaats_postcode_refnummer=' + plaats_postcode_renummer + '&prijs_range=' + prijs_range + '&tags=' + pandtype + ',' + tags
+    # filters ='handelstatus=' + handelstatus + '&plaats_postcode_refnummer=' + plaats_postcode_renummer + '&prijs_range=' + prijs_range + '&tags=' + pand_type + ',Badkamers[' + aantal_badkamers + '],Slaapkamers[' + aantal_slaapkamers + '],'  + tags
     # REMOVE LINE ABOVE
     panden = PandModel.objects.all()
     if filters:
@@ -199,34 +199,61 @@ def panden(request, filters=None):
 
             elif 'plaats_postcode_refnummer' in filterset:
                 if filterset.split('=')[1].isdigit():
-                    postcode_id = StadModel.objects.get(postcode=filterset.split('=')[1]).id
-                    result_queryset = result_queryset.filter(postcodeID=postcode_id)
-                elif ilterset.split('=')[1].replace('-', '').isalpha():
-                    postcode_id = StadModel.objects.get(stadsnaam=filterset.split('=')[1]).id
-                    result_queryset = result_queryset.filter(postcodeID=postcode_id)
-                else:
+                    stadmodel_lijst = StadModel.objects.filter(postcode=filterset.split('=')[1])
+                    stadmodel_id_lijst = []
+                    for stadmodel in stadmodel_lijst:
+                        stadmodel_id_lijst.append(stadmodel.id)
+                    result_queryset = result_queryset.filter(postcodeID__in=stadmodel_id_lijst)
+
+                elif filterset.split('=')[1].replace('-', '').isalpha() and filterset.split('=')[1].replace('-', '') != "":
+                    stadmodel_lijst = StadModel.objects.filter(stadsnaam=filterset.split('=')[1])
+                    stadmodel_id_lijst = []
+                    for stadmodel in stadmodel_lijst:
+                        stadmodel_id_lijst.append(stadmodel.id)
+                    result_queryset = result_queryset.filter(postcodeID__in=stadmodel_id_lijst)
+
+                elif filterset.split('=')[1].replace('-', '') != "":
                     result_queryset = result_queryset.filter(referentienummer=filterset.split('=')[1])
 
             elif 'prijs_range' in filterset:
-                result_queryset = result_queryset.filter(prijs__gte=int(filterset.split('=')[1].split(',')[0])).filter(prijs__lte=int(filterset.split('=')[1].split(',')[1]))
+                # voorbeeld filterset.split('=')[1] -> 0,500000
+                result_queryset = result_queryset.filter(prijs__gte=int(filterset.split('=')[1].split(',')[0]))
+                result_queryset = result_queryset.filter(prijs__lte=int(filterset.split('=')[1].split(',')[1]))
 
             # Check for tags and fill list with pand_id's
             tags_queryset = TagPandModel.objects.all()
+            tagpand_lijst = []
+
             if 'tags' in filterset:
+                # looks like tags=Huis(1),Badkamers(1),Slaapkamers(1),Zwambad(2),......
                 tags = filterset.split('=')[1].split(',')
                 for single_tag in tags:
-                    tag_id = TagModel.objects.get(tagnaam=single_tag.split('')[0]).id
-                    tags_queryset = tags_queryset.filter(tag=tag_id)
-                    tags_queryset = tags_queryset.filter(value__gte=int(single_tag.split(':')[1]))
+                    print single_tag
+                    print single_tag.split('(')[0]
+                    # example of single_tag: Badkamers(1)
+                    tag_id = TagModel.objects.get(tagnaam=single_tag.split('(')[0]).id
+                    print tag_id
+                    temp = tags_queryset.filter(tag=tag_id)
+                    print temp
+                    for i in range(0,len(temp)):
+                        tagpand_lijst.append(temp.filter(value__gte=int((single_tag.split('(')[1])[:-1]))[i])
+                        print int((single_tag.split('(')[1])[:-1])
+                        print "i" + str(i)
+                print "tagpand_lijst: " + str(tagpand_lijst)
 
-        pand_ids = None
-        for tag in tags_queryset:
-            pand_ids.append(tag.pand.id)
+        pand_ids = []
+        for tagpand in tagpand_lijst:
+            pand_ids.append(tagpand.pand.id)
 
         for pand in result_queryset:
+            print "pand in result_queryset: " + str(pand.id)
             for pand_id in pand_ids:
+                print "pand_id in pand_ids: " + str(pand_id)
                 if result_queryset.filter(pk=pand_id):
-                    panden.append(result_queryset.filter(pk=pand_id))
+                    print "found"
+                    if result_queryset.get(pk=pand_id) not in panden:
+                        print "added"
+                        panden.append(result_queryset.get(pk=pand_id))
 
     data = Data.objects.get(id=13)
     # Login form
