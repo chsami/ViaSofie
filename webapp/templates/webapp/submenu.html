@@ -39,8 +39,8 @@
             </div>
             <div class="clearfix"> </div>
         </div>
-        <form id="advancedSearchForm">
-            <section class="mega-search open" id="mega-search">
+        <form id="advancedSearchForm" method="post">
+            <section class="mega-search open" id="mega-search" onclick="change()">
                 <div class="searchDiv">
                     <div id="mega-productsearch" class="search-form products active">
                         <fieldset>
@@ -53,6 +53,7 @@
                             <label for="mega-p-s" class="search-form-input">Huren</label>
                         </fieldset>
                     </div>
+                    {{searchform.kopen}}
                 </div>
                 <div class="searchForm">
                     <div class="search-form search-input-form" id="searchform" method="post" action="">
@@ -63,7 +64,9 @@
                                     <tr>
                                         <th></th>
                                         <td>
-                                            <input class="search-form-input" id="id_plaats_postcode" name="plaats_postcode" placeholder="Zoek op referentienummer, plaats of postcode" type="text">
+                                          {{ searchform.plaats_postcode_refnummer.errors }}
+                                          {{ searchform.plaats_postcode_refnummer}}
+                                            <!-- <input class="search-form-input" id="id_plaats_postcode" name="plaats_postcode" placeholder="Zoek op referentienummer, plaats of postcode" type="text"> -->
                                         </td>
                                     </tr>
                                 </tbody>
@@ -77,17 +80,20 @@
             <section class="geavanceerdSearch" id="geavanceerdSearch">
                 <div class="geavanceerdSearch-first">
                     <div class="col-sm-4">
-                        <select class="selectpicker" title="Type">
+                        <select class="selectpicker" title="Type" id="type">
                           <option>Huis</option>
                           <option>Appartement</option>
                           <option>Villa</option>
                         </select>
+                        {{searchform.pand_type}}
                     </div>
                     <div class="col-sm-4">
-                        <input type="number" name="ant-slaapkamers" id="min-slaapkamers" value="" placeholder="Min. Slaapkamers" min="0" max="15" class="form-control">
+                        {{searchform.aantal_slaapkamers}}
+                        <!-- <input type="number" name="ant-slaapkamers" id="min-slaapkamers" value="" placeholder="Min. Slaapkamers" min="0" max="15" class="form-control"> -->
                     </div>
                     <div class="col-sm-4">
-                        <input type="number" name="ant-badkamers" id="min-badkamers" value="" placeholder="Min. Badkamers" min="0" max="15" class="form-control">
+                        {{searchform.aantal_badkamers}}
+                        <!-- <input type="number" name="ant-badkamers" id="min-badkamers" value="" placeholder="Min. Badkamers" min="0" max="15" class="form-control"> -->
                     </div>
                 </div>
                 <div class="geavanceerdSearch-second">
@@ -103,6 +109,9 @@
                         </div>
                         <input id="prijsSliderKopen" data-slider-id="prijsSliderKopenID" type="text" class="span2" value="" data-slider-min="0" data-slider-max="1000000" data-slider-step="1000" data-slider-tooltip="hide" data-slider-value="[0,1000000]"/>
                         <input id="prijsSliderHuren" data-slider-id="prijsSliderHurenID" type="text" class="span2" value="" data-slider-min="0" data-slider-max="5000" data-slider-step="100" data-slider-tooltip="hide" data-slider-value="[0,5000]" />
+                        {{ searchform.prijsSliderKopen }}
+                        {{ searchform.prijsSliderHuren }}
+                        {{ searchform.tagsSearch }}
                         <script type="text/javascript">
                             // Slider With JQuery
                             $("#prijsSliderKopen").slider({
@@ -141,6 +150,7 @@
                         <input id="oppSliderKopen" data-slider-id="oppSliderKopenID" type="text" class="span2" value="" data-slider-min="0" data-slider-max="10000" data-slider-step="1" data-slider-tooltip="hide" data-slider-value="[0,10000]"/>
                         <script type="text/javascript">
                             // Slider With JQuery
+
                             $("#oppSliderKopen").slider({
                                 scale: 'logarithmic',
                             });
@@ -152,7 +162,9 @@
                                 $("#oppSliderValMin").text(min);
                                 $("#oppSliderValMax").text(max);
                             });
+
                         </script>
+
                     </div>
                 </div>
                 <div class="geavanceerdSearch-thirth">
@@ -175,6 +187,7 @@
     </div>
 </div>
 <script>
+
 $("#searchButton").click(function() {
     $(".buy-media").toggleClass("no-pointerevent");
     $("#mega-search").toggleClass("setSearchHeight");
@@ -210,7 +223,7 @@ $("#mega-sitesearch").click(function() {
 $("#advancedSearchForm").bind("keypress", function (e) {
     if (e.keyCode == 13) {
         $("#btnSearch").attr('value');
-        return false;  
+        return false;
     }
 });
 $(".bootstrap-tagsinput input").keyup(function (e) {
@@ -218,4 +231,60 @@ $(".bootstrap-tagsinput input").keyup(function (e) {
         $(".bootstrap-tagsinput input").val("");
     }
 });
+
+
+//at start declare the current state to the fields
+$("#prijssliderkopen_hiddenfield").val($('#prijsSliderKopen').val());
+$("#prijssliderhuren_hiddenfield").val($('#prijsSliderHuren').val());
+//change hiddenfield when price change
+$('#prijsSliderKopen').change(function(){
+  $("#prijssliderkopen_hiddenfield").val($('#prijsSliderKopen').val());
+  // console.log($('#prijsSliderKopen').val());
+  // console.log($("#prijssliderkopen_hiddenfield").val());
+});
+$('#prijsSliderHuren').change(function(){
+  $("#prijssliderhuren_hiddenfield").val($('#prijsSliderHuren').val());
+  // console.log($('#prijsSliderHuren').val());
+  // console.log($("#prijssliderhuren_hiddenfield").val());
+});
+
+//at start declare the current state to the field
+$('#pand_type_hiddenfield').val($('#type').val() +':1');
+//change hiddenfield when tag changes
+$('#type').change(function(){
+  $('#pand_type_hiddenfield').val($('#type').val() +':1');
+  // console.log($('#pand_type_hiddenfield').val());
+});
+
+$('#tagsSearch').change(function(){
+  $('#tags_hiddenfield').val($('#tagsSearch').val());
+  console.log($('#tags_hiddenfield').val());
+});
+
+
+var hiddenfield = document.getElementById('kopen_hiddenfield');
+hiddenfield.value = 1;
+function change(){
+  // looks for the activated element 'huren' or 'kopen' and gets the value
+  var x = document.getElementsByClassName("active");
+  var child = x[1];
+  var fieldsetchild = child.children[0];
+  var output = fieldsetchild.children[0].textContent;
+  console.log(output);
+  var hiddenfield = document.getElementById('kopen_hiddenfield');
+  if(output== "Kopen"){
+    hiddenfield.value = 1;
+  }
+  else if(output =="Huren"){
+    hiddenfield.value = 2;
+  }
+  // sets the value of the hidden field to 'huren' or 'kopen'
+
+
+  console.log(hiddenfield.value);
+}
+
+// $("#searchButtonOk").click(function() {
+//     $("#mega-search").toggleClass("setSearchHeight");
+// });
 </script>
