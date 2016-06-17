@@ -29,7 +29,6 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/bootstrap-select.css' %}" />
 	<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/bootstrap-slider.css' %}" />
 	<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/bootstrap-tagsinput.css' %}" media="screen" />
-	<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/bootstrap-tagsinput-typeahead.css' %}" media="screen" />
 
 	<!-- Google analytics
   ================================================== -->
@@ -75,7 +74,7 @@
 	{% endblock header %}
 
 </head>
-<body>
+<body ng-app="">
 	<script>
   window.fbAsyncInit = function() {
     FB.init({
