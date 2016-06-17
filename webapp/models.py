@@ -104,6 +104,8 @@ class Pand(models.Model):
     uitgelicht = models.BooleanField(default= False)
     prijs = models.DecimalField(default=0, max_digits=18, decimal_places=2)
     thumbnail_url = models.CharField(max_length=256, null=True, blank=True)
+    oppervlakte = models.CharField(max_length=256, null=True, blank=True)
+    bouwjaar = models.SmallIntegerField()
     objects = models.Manager()
 
     def __str__(self):
