@@ -164,15 +164,13 @@ class ContactForm(forms.Form):
 
 class SearchForm(forms.Form):
     plaats_postcode_refnummer = forms.CharField(label="", widget=forms.TextInput(attrs={'class': "search-form-input", id: "id_plaats_postcode", 'name': "plaats_postcode", 'placeholder': "Zoek op referentienummer, plaats of postcode", 'type': "text"}), required = False)
-    # pand_type = forms.ChoiceField(widget=forms.Select(attrs={'id': 'pand-type', 'class': 'pand-type-input'}))
     kopen = forms.BooleanField(widget = forms.HiddenInput(attrs={'id': 'kopen_hiddenfield', 'value':'1'}))
     pand_type = forms.CharField(widget= forms.HiddenInput(attrs={'id': 'pand_type_hiddenfield', 'value':'Huis:1'}))
-    prijsSliderKopen = forms.CharField(widget= forms.HiddenInput(attrs={'id': 'prijssliderkopen_hiddenfield', 'value':'15000,100000'}))
-    prijsSliderHuren = forms.CharField(widget= forms.HiddenInput(attrs={'id': 'prijssliderhuren_hiddenfield', 'value':'1000,5000'}))
-    tagsSearch = forms.CharField(widget= forms.HiddenInput(attrs={'id': 'prijssliderhuren_hiddenfield', 'value':''}))
-    # prijs_range = forms.DecimalField(widget=forms.TextInput(attrs={'id': 'prijs-range','class': 'prijs-range-input', 'readonly style': ''}))
-    # aantal_slaapkamers = forms.IntegerField(widget=forms.TextInput(attrs={'id': 'aantal-slaapkamers','class': 'aantal-slaapkamers-input', 'readonly style': ''}))
-    # aantal_badkamers = forms.IntegerField(widget=forms.TextInput(attrs={'id': 'aantal-badkamers','class': 'aantal-badkamers-input', 'readonly style': ''}))
+    prijsSliderKopen = forms.CharField(widget= forms.HiddenInput(attrs={'id': 'prijssliderkopen_hiddenfield',}))
+    prijsSliderHuren = forms.CharField(widget= forms.HiddenInput(attrs={'id': 'prijssliderhuren_hiddenfield',}))
+    tagsSearch = forms.CharField(widget= forms.HiddenInput(attrs={'id': 'tags_hiddenfield', 'value':''}))
+    aantal_slaapkamers = forms.IntegerField(widget=forms.TextInput(attrs={'type':"number", 'name':"ant-slaapkamers", 'id':"min-slaapkamers", 'value':"", 'placeholder':"Min. Slaapkamers", 'min':"0", 'max':"15", 'class':"form-control"}))
+    aantal_badkamers = forms.IntegerField(widget=forms.TextInput(attrs={'input type':"number", 'name':"ant-badkamers", 'id':"min-badkamers", 'value':"", 'placeholder':"Min. Badkamers", 'min':"0", 'max':"15", 'class':"form-control"}))
     # aantal_verdiepen = forms.IntegerField(widget=forms.TextInput(attrs={'id': 'aantal-verdiepen','class': 'aantal-verdiepen-input', 'readonly style': ''}))
     # tags = forms.CharField(label="", widget=forms.TextInput(attrs={'id': 'tags', 'data-role': 'tagsinput'}))
 

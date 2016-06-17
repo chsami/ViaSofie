@@ -88,10 +88,12 @@
                         {{searchform.pand_type}}
                     </div>
                     <div class="col-sm-4">
-                        <input type="number" name="ant-slaapkamers" id="min-slaapkamers" value="" placeholder="Min. Slaapkamers" min="0" max="15" class="form-control">
+                        {{searchform.aantal_slaapkamers}}
+                        <!-- <input type="number" name="ant-slaapkamers" id="min-slaapkamers" value="" placeholder="Min. Slaapkamers" min="0" max="15" class="form-control"> -->
                     </div>
                     <div class="col-sm-4">
-                        <input type="number" name="ant-badkamers" id="min-badkamers" value="" placeholder="Min. Badkamers" min="0" max="15" class="form-control">
+                        {{searchform.aantal_badkamers}}
+                        <!-- <input type="number" name="ant-badkamers" id="min-badkamers" value="" placeholder="Min. Badkamers" min="0" max="15" class="form-control"> -->
                     </div>
                 </div>
                 <div class="geavanceerdSearch-second">
@@ -148,6 +150,7 @@
                         <input id="oppSliderKopen" data-slider-id="oppSliderKopenID" type="text" class="span2" value="" data-slider-min="0" data-slider-max="10000" data-slider-step="1" data-slider-tooltip="hide" data-slider-value="[0,10000]"/>
                         <script type="text/javascript">
                             // Slider With JQuery
+
                             $("#oppSliderKopen").slider({
                                 scale: 'logarithmic',
                             });
@@ -159,7 +162,9 @@
                                 $("#oppSliderValMin").text(min);
                                 $("#oppSliderValMax").text(max);
                             });
+
                         </script>
+
                     </div>
                 </div>
                 <div class="geavanceerdSearch-thirth">
@@ -227,6 +232,34 @@ $(".bootstrap-tagsinput input").keyup(function (e) {
     }
 });
 
+
+//at start declare the current state to the fields
+$("#prijssliderkopen_hiddenfield").val($('#prijsSliderKopen').val());
+$("#prijssliderhuren_hiddenfield").val($('#prijsSliderHuren').val());
+//change hiddenfield when price change
+$('#prijsSliderKopen').change(function(){
+  $("#prijssliderkopen_hiddenfield").val($('#prijsSliderKopen').val());
+  // console.log($('#prijsSliderKopen').val());
+  // console.log($("#prijssliderkopen_hiddenfield").val());
+});
+$('#prijsSliderHuren').change(function(){
+  $("#prijssliderhuren_hiddenfield").val($('#prijsSliderHuren').val());
+  // console.log($('#prijsSliderHuren').val());
+  // console.log($("#prijssliderhuren_hiddenfield").val());
+});
+
+//at start declare the current state to the field
+$('#pand_type_hiddenfield').val($('#type').val() +':1');
+//change hiddenfield when tag changes
+$('#type').change(function(){
+  $('#pand_type_hiddenfield').val($('#type').val() +':1');
+  // console.log($('#pand_type_hiddenfield').val());
+});
+
+$('#tagsSearch').change(function(){
+  $('#tags_hiddenfield').val($('#tagsSearch').val());
+  console.log($('#tags_hiddenfield').val());
+});
 
 
 var hiddenfield = document.getElementById('kopen_hiddenfield');
