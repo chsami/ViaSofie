@@ -1,5 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect
-from django.template import RequestContext
+from django.template import Context, RequestContext
+from django.template.loader import render_to_string, get_template
 from django.contrib.auth import login as django_login, authenticate, logout as django_logout
 from django.core.urlresolvers import reverse
 from django import forms
@@ -20,7 +21,7 @@ from webapp.forms import *
 import hashlib
 import random
 from django.utils import timezone
-from django.core.mail import send_mail, BadHeaderError
+from django.core.mail import send_mail, BadHeaderError, EmailMultiAlternatives, EmailMessage 
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 from django.views.decorators.csrf import csrf_protect
@@ -371,18 +372,35 @@ def register(request):
             datas={}
             datas['email']=form.cleaned_data['email']
             datas['password1']=form.cleaned_data['password1']
-
+            datas['voornaam']=form.cleaned_data['voornaam']
+            datas['naam']=form.cleaned_data['naam']
             #We will generate a random activation key
             salt = hashlib.sha1(str(random.random())).hexdigest()[:5]
             emailsalt = datas['email']
             if isinstance(emailsalt, unicode):
                 emailsalt = emailsalt.encode('utf8')
-            datas['activation_key']= hashlib.sha1(salt+emailsalt).hexdigest()
+            datas['activation_key']=hashlib.sha1(salt+emailsalt).hexdigest()
 
-            datas['email_path']="/ActivationEmail.py"
+            datas['activation_email']=request.build_absolute_uri('/').strip("/") + '/activate/' + datas['activation_key']
+            datas['email_path']="webapp/activation/ActivationEmail.html"
             datas['email_subject']="Welkom bij ViaSofie"
 
-            form.sendEmail(datas) #Send validation email
+            ctx = {
+                'voornaam': datas['voornaam'],
+                'naam': datas['naam'],
+                'activation_link': datas['activation_email']
+            }
+
+            message = get_template(datas['email_path']).render(Context(ctx))
+
+            try:
+                msg = EmailMessage(datas['email_subject'], message, 'noreply@viasofie.be', [datas['email']])
+                msg.content_subtype = "html"
+                msg.send()
+            except BadHeaderError:
+                return HttpResponse("invalid.")
+
+            # form.sendEmail(datas) #Send validation email
             form.save(datas) #Save the user and his profile
 
             request.session['registered']=True #For display purposes

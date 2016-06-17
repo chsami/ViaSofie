@@ -1,4 +1,4 @@
-
+{% load staticfiles %}
 <html>
 <style>
 body {
@@ -9,22 +9,22 @@ body {
 img {
   width: 150px;
 }
-.emailtekst {
+/*.emailtekst {
   margin: -30px;
-}
+}*/
 
 </style>
 <body>
 
-  <img src = "def logos via sofie - RGB-01.png"></img>
-
+  <!-- <img src = "{% static 'webapp/images/def logos via sofie - RGB-01.png' %}"></img>-->
   <div class="emailtekst">
     <h2>
       Bevestiging registratie
     </h2>
     <p>
-      Beste <b>{{email}}</b>, uw account is hierbij bevestigd. Bedankt voor uw interesse in Via Sofie.<br/>
-      Gelieve uw account te activeren door op volgende link te klikken: {{activation_link}}
+      Beste <b>{{voornaam}} {{naam}}</b><br/><br/>
+      Uw account is hierbij bevestigd. Bedankt voor uw interesse in Via Sofie.<br/><br/>
+      Gelieve uw account te activeren door op volgende link te klikken: <a href="{{activation_link}}">{{activation_link}}</a>
       <br/><br/><br/>
       Met vriendelijke groeten<br/>
       Sofie Andriesen - Via Sofie

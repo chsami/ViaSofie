@@ -8,14 +8,14 @@ body {
 img {
   width: 150px;
 }
-.emailtekst {
+/*.emailtekst {
   margin: -30px;
-}
+}*/
 
 </style>
 <body>
 
-  <img src = "{% static 'images\def logos via sofie - RGB-01.png'}"></img>
+ <!--  <img src = "{% static 'images\def logos via sofie - RGB-01.png'}"></img> -->
 
   <div class="emailtekst">
     <h2>
@@ -23,7 +23,7 @@ img {
     </h2>
     <p>
       Beste <b>{{email}}</b>, hierbij kan u een nieuwe actievatielink vinden.<br/>
-      Gelieve uw account te activeren door op volgende link te klikken: {{activation_link}}
+      Gelieve uw account te activeren door op volgende link te klikken: <a href="{{build_path}}/activate/{{activation_link}}">{{build_path}}/activate/{{activation_link}}</a>
       <br/><br/><br/>
       Met vriendelijke groeten<br/>
       Sofie Andriesen - Via Sofie
