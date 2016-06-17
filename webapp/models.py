@@ -149,14 +149,14 @@ class Faq(models.Model):
 class Partner(models.Model):
     naam = models.CharField(max_length=128)
     onderschrift = models.CharField(max_length=255)
-    foto_url =  models.CharField(max_length=255)
+    foto_url =  models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100,)
     link = models.CharField(max_length = 255)
 
 class GoedDoel(models.Model):
     naam = models.CharField(max_length=128)
     bijschrift = models.CharField(max_length=500)
     link = models.CharField(max_length=255)
-    foto_url = models.CharField(max_length=255)
+    foto_url = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100,)
 
 class PandReview(models.Model):
     """docstring for PandReview"""

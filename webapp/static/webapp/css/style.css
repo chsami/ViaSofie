@@ -643,7 +643,7 @@ span.four {
     right: 15px;
 }
 
-img.zoom-img:hover {
+a.mask > span > img:hover {
     -webkit-transform: scale(1.15);
     -webkit-transition-timing-function: ease-out;
     -webkit-transition-duration: 750ms;
@@ -653,7 +653,7 @@ img.zoom-img:hover {
     overflow: hidden;
 }
 
-img.zoom-img {
+a.mask > span > img {
     -webkit-transform: scale(1, 1);
     -webkit-transition-timing-function: ease-out;
     -webkit-transition-duration: 250ms;
@@ -668,6 +668,11 @@ a.mask {
     display: block;
 }
 
+a.mask > span > img {
+  display: block;
+max-width: 100%;
+height: auto;
+}
 
 /*--services--*/
 
@@ -6624,7 +6629,7 @@ div.endless_loading {
 
 @media(max-width:560px) {
     .SliderDiv {
-        width: 100%;  
+        width: 100%;
     }
 }
 

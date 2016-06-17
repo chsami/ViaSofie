@@ -74,11 +74,12 @@
                     <div class="service-top1">
                         <div class=" ser-grid">
                             <!-- <a href="#" class="hi-icon hi-icon-archive glyphicon glyphicon-user"> </a> -->
-                            <a href="{{goed_doel.url}}"><img class="img-responsive ser-grid-center" src="{{goed_doel.foto_url}}"></a>
+                            <a href="{{goed_doel.url}}">{% inplace_edit "goed_doel.foto_url|safe" %}</a>
+
                         </div>
                         <div class="ser-top">
-                            <h4>{{goed_doel.naam}}</h4>
-                            <p>{{goed_doel.bijschrift}}</p>
+                            <h4>{% inplace_edit "goed_doel.naam|safe" %}</h4>
+                            <p>{% inplace_edit "goed_doel.bijschrift|safe" %}</p>
                         </div>
                         <div class="clearfix"> </div>
                     </div>
