@@ -14,7 +14,7 @@
     itemTitle: function(item) {
       return null;
     },
-    freeInput: true,
+    freeInput: false,
     addOnBlur: true,
     maxTags: undefined,
     maxChars: undefined,

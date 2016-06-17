@@ -642,7 +642,9 @@ def login(request):
             if user is not None:
                 if user.is_active:
                     django_login(request, user)
-                    return render_to_response('webapp/login.html', {'form': form, 'formlogin': formlogin}, context_instance=RequestContext(request))
+                    return render_to_response('webapp/login.html', {'form': form, 'formlogin': formlogin}, context_instance=RequestContext(request))  
+            else:
+                return redirect('/login')
     else:
         formlogin=AuthenticationForm()
     	if request.method == 'POST':
