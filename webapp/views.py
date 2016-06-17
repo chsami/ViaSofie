@@ -443,7 +443,7 @@ def partnersform(request):
 			return redirect('partners')
 	else:
 			form = PartnersForm()
-	return render(request, "webapp/forms.html", {'form': form})
+	return render(request, "webapp/partnersform.html", {'form': form})
 
 def formsucces(request):
 	return render(request, 'webapp/formsucces.html')
