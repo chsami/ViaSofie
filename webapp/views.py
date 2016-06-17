@@ -86,11 +86,16 @@ def index(request):
             #     return redirect('/panden')
         plaats_postcode_renummer = request.POST['plaats_postcode_refnummer']
 
+        aantal_slaapkamers = reques.POST['aantal_slaapkamers']
+        aantal_badkamers = request.POST['aantal_badkamers']
+
+
         pand_type = request.POST['pand_type']
             # aantal_badkamers = request.POST['aantal_badkamers']
 
         prijs_range = None
-        if handelstatus == 'kopen':
+        # Kopen = 1 Huren = 2
+        if handelstatus == 1:
             prijs_range = request.POST['prijsSliderKopen']
         else:
             prijs_range = request.POST['prijsSliderHuren']
@@ -98,7 +103,7 @@ def index(request):
             # aantal_verdiepen = request.POST['aantal_verdiepen']
         tags = request.POST['tagsSearch']
 
-        filters ='handelstatus=' + handelstatus + '&plaats_postcode_refnummer=' + plaats_postcode_renummer + '&prijs_range=' + prijs_range + '&tags=' + pand_type + ',' + tags
+        filters ='handelstatus=' + handelstatus + '&plaats_postcode_refnummer=' + plaats_postcode_renummer + '&prijs_range=' + prijs_range + '&tags=' + pand_type + ',Badkamers[' + aantal_badkamers + '],Slaapkamers[' + aantal_slaapkamers + '],'  + tags
 
         if filters.endswith(','):
             filters = filters[:-1]
@@ -210,7 +215,7 @@ def panden(request, filters=None):
             if 'tags' in filterset:
                 tags = filterset.split('=')[1].split(',')
                 for single_tag in tags:
-                    tag_id = TagModel.objects.get(tagnaam=single_tag.split(':')[0]).id
+                    tag_id = TagModel.objects.get(tagnaam=single_tag.split('')[0]).id
                     tags_queryset = tags_queryset.filter(tag=tag_id)
                     tags_queryset = tags_queryset.filter(value__gte=int(single_tag.split(':')[1]))
 
