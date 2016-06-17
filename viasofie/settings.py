@@ -182,7 +182,7 @@ TEMPLATES = [
 },
 ]
 
-ROSETTA_REQUIRES_AUTH= False;
+ROSETTA_REQUIRES_AUTH= True;
 
 # INSTALLED_APPS += ('lockdown', )
 # MIDDLEWARE_CLASSES += ('lockdown.middleware.LockdownMiddleware', )

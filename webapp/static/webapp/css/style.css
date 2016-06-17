@@ -643,7 +643,7 @@ span.four {
     right: 15px;
 }
 
-a.mask > span > img:hover {
+a.mask  img:hover {
     -webkit-transform: scale(1.15);
     -webkit-transition-timing-function: ease-out;
     -webkit-transition-duration: 750ms;
@@ -653,7 +653,7 @@ a.mask > span > img:hover {
     overflow: hidden;
 }
 
-a.mask > span > img {
+a.mask img {
     -webkit-transform: scale(1, 1);
     -webkit-transition-timing-function: ease-out;
     -webkit-transition-duration: 250ms;
@@ -668,11 +668,12 @@ a.mask {
     display: block;
 }
 
-a.mask > span > img {
+a.mask  img {
   display: block;
 max-width: 100%;
 height: auto;
 }
+
 
 /*--services--*/
 
