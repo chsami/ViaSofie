@@ -43,14 +43,12 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     straatnaam = models.CharField(max_length=128)
     huisnr = models.IntegerField()
-
     postcode = models.ForeignKey(Stad)
-
     busnr = models.CharField(max_length=10, null=True, blank=True)
 
-    objects = BaseUserManager()
-
     telefoonnr = models.IntegerField()
+
+    objects = BaseUserManager()
 
     REQUIRED_FIELDS = ['voornaam', 'naam', 'postcode', 'telefoonnr', ]
 
@@ -102,9 +100,12 @@ class Pand(models.Model):
     postcodeID = models.ForeignKey(Stad)
     handelstatus = models.ForeignKey(Handelstatus)
     voortgang = models.ForeignKey(Voortgang)
-    beschrijving = models.CharField(max_length = 1000, blank=True, null=True)
+    beschrijving = models.TextField()
     uitgelicht = models.BooleanField(default= False)
     prijs = models.DecimalField(default=0, max_digits=18, decimal_places=2)
+    thumbnail_url = models.CharField(max_length=256, null=True, blank=True)
+    oppervlakte = models.CharField(max_length=256, null=True, blank=True)
+    bouwjaar = models.SmallIntegerField()
     objects = models.Manager()
 
     def __str__(self):
@@ -125,7 +126,7 @@ class TagPand(models.Model):
 
 class Foto(models.Model):
     url = models.CharField(max_length=255)
-    thumbnail = models.BooleanField(default=False)
+    thumbnail = models.BooleanField(default= False)
     docfile = models.FileField(upload_to='documents/%Y/%m/%d', blank=True)
     pand = models.ForeignKey(Pand)
 
@@ -138,16 +139,56 @@ class Ebook(models.Model):
     email = models.CharField(max_length=255)
 
     def __str__(self):
-        return self.id
+        return self.email
 
 class Faq(models.Model):
     titel = models.CharField(max_length=128)
-    content = models.CharField(max_length=2500)
+    content = models.TextField()
 
     def __str__(self):
         return str(self.id)
 
 class Partner(models.Model):
     naam = models.CharField(max_length=128)
-    onderschrift = models.CharField(max_length=128)
-    foto_url =  models.CharField(max_length=255)
+    onderschrift = models.CharField(max_length=255)
+    foto_url =  models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100,)
+    link = models.CharField(max_length = 255)
+
+class GoedDoel(models.Model):
+    naam = models.CharField(max_length=128)
+    bijschrift = models.CharField(max_length=500)
+    link = models.CharField(max_length=255)
+    foto_url = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100,)
+
+class PandReview(models.Model):
+    """docstring for PandReview"""
+    titel = models.CharField(max_length=128)
+    auteur = models.CharField(max_length=128)
+    text = models.CharField(max_length=500)
+    RATING_CHOICES = (
+        (1, '1'),
+        (2, '2'),
+        (3, '3'),
+        (4, '4'),
+        (5, '5')
+    )
+    rating = models.CharField(max_length=2, choices=RATING_CHOICES, default=5)
+
+    created = models.DateTimeField(editable=False)
+    modified = models.DateTimeField()
+
+    def save(self, *args, **kwargs):
+        ''' On save, update timestamps '''
+        if not self.id:
+            self.created = timezone.now()
+        self.modified = timezone.now()
+        return super(User, self).save(*args, **kwargs)
+
+class StatusBericht(models.Model):
+    titel = models.CharField(max_length=255)
+    inhoud = models.TextField(max_length=1000)
+    user = models.ForeignKey(User)
+
+class Data(models.Model):
+    titel = models.CharField(max_length=255)
+    data = models.TextField()

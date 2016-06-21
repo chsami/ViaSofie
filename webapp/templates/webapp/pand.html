@@ -1,13 +1,48 @@
-{% extends 'webapp/base.html' %} {% load staticfiles %} {% block header %}
+{% extends 'webapp/base.html' %} {% load inplace_edit %} {% load humanize %} {% load staticfiles %} {% load qr_tags %}{% block header %} {% inplace_toolbar %}
 <script type='text/javascript' src="{% static 'webapp/scripts/index.js' %}"></script>
 <script type='text/javascript' src="{% static 'webapp/scripts/jquery.flexslider.js' %}"></script>
 <script type='text/javascript' src="{% static 'webapp/scripts/jquery.flexisel.js' %}"></script>
 <script src="http://maps.googleapis.com/maps/api/js"></script>
-<link rel="stylesheet" href="{% static 'webapp/css/flexslider.css' %}" type="text/css" media="screen" /> {% endblock header %} {% block content %}
+
+<link rel="stylesheet" href="{% static 'webapp/css/flexslider.css' %}" type="text/css" media="screen" />
+<link rel="stylesheet" href="{% static 'webapp/css/flexslider.css' %}" type="text/css" media="screen" />
+<!--facebook meta data  -->
+<meta property="og:url"                content="www.localhost:8000/pand/{{ pand.referentienummer|cut:"-"}}" />
+<meta property="og:type"               content="article" />
+<meta property="og:title"              content="Pand in {{pand.straatnaam}} te {{pand.handelstatus}} " />
+<meta property="og:description"        content="{{pand.beschrijving}}" />
+<meta property="og:image"              content="{{pand.thumbnail_url}}" />
+<meta property="og:site_name"          content="Via Sofie"/>
+<meta property="app_id"                content="1007959369240278"/>
+
+
+{% endblock header %} {% block content %}
+<!-- Twitter widgets -->
+<script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));</script>
+
+<!-- pintrest widgets -->
+<script async defer src="//assets.pinterest.com/js/pinit.js"></script>
+
+{% include "webapp/submenu.html" %}
 <div class="container">
     <div class="buy-single-single">
         <div class=" buying-top">
-            <p>{{ pand.straatnaam }} - {{pand.postcodeID.stadsnaam}}</p>
+            <p>{% inplace_edit "pand.straatnaam" %} - {% inplace_edit "pand.postcodeID.stadsnaam"%}</p>
             <div class="flexslider">
             <div id="slider" class="flexslider">
                 <ul class="slides">
@@ -29,13 +64,6 @@
             </div>
             <!-- FlexSlider -->
             <script>
-            // Can also be used with $(document).ready()
-            //$(window).load(function() {
-            //    $('.flexslider').flexslider({
-            //        animation: "slide",
-            //        controlNav: "thumbnails"
-            //    });
-            //});
 
             $(window).load(function() {
               // The slider being synced must be initialized first
@@ -61,47 +89,78 @@
         </div>
         <div class="buy-sin-single">
             <div class="col-sm-5 middle-side immediate">
-                <h4>Huis</h4>
                 <table class="table">
                     <tbody>
                         <tr>
-                            <td>Bed :</td>
-                            <td>2 BHK</td>
+                            <td>Oppervlakte :</td>
+                            <td>{% inplace_edit "pand.oppervlakte" %}</td>
                         </tr>
                         <tr>
-                            <td>Baths :</td>
-                            <td>5</td>
+                            <td>Bouwjaar :</td>
+                            <td>{% inplace_edit "pand.bouwjaar" %}</td>
                         </tr>
                         <tr>
-                            <td>Build-up Area :</td>
-                            <td>100 Sq.Yrds</td>
+                            <td>Prijs :</td>
+                            <td>{% inplace_edit "pand.prijs" %}</td>
                         </tr>
                         <tr>
-                            <td>Plot Area :</td>
-                            <td>150Sq.Yrds</td>
-                        </tr>
-                        <tr>
-                            <td>Age of property :</td>
-                            <td>4 - 10 years</td>
-                        </tr>
-                        <tr>
-                            <td>Price :</td>
-                            <td>{{pand.prijs}}</td>
-                        </tr>
+                          <td>Referentienummer:</td>
+                          <td>{% inplace_edit "pand.referentienummer|cut:'-'" %}</td>
                     </tbody>
                 </table>
-                <div class="   right-side">
-                    <a href="/contact" class="hvr-sweep-to-right more">Contact Builder</a>
-                </div>
-            </div>
+
+                    <input id="tags" type="text" value="{{tag_data}}" data-role="tagsinput"/>
+                    <script>
+                    $('#tags').tagsinput({
+                      typeahead: {
+                        order: "asc",
+                        source: {{all_tags|safe}},
+                        items: 'all'
+                      },
+                      freeInput: false,
+                      allowDuplicates: false
+
+                    });
+                    </script>
+                <!-- <div class="row">
+                  <div class="col-sm-6">
+                    <a href="/contact" class="hvr-sweep-to-right more">Contact</a>
+                    <a class="btn btn-info btn-xs" href="mailto:?subject=Pand &body={{url}}" ><span class="glyphicon glyphicon-envelope"></span> Email</a>
+                    <a data-pin-do="buttonBookmark" data-pin-lang="en" data-pin-save="true" href="https://www.pinterest.com/pin/create/button/"></a>
+                    <div class="fb-share-button" data-href="url" data-layout="button" data-mobile-iframe="true"></div>
+                    <a class="twitter-share-button" href="http://twitter.com/share?text=Pand in {{pand.straatnaam}} te {{pand.handelstatus}}.&url={{url}}&hashtags=Via Sofie">Tweet </a>
+                  </div>
+                  <div class="col-sm-6">
+                    {% qr_from_text url "size" %}
+                  </div>
+                </div> -->
+          </div>
             <div class="col-sm-7 buy-sin">
-                <h4>Description</h4>
-                <p>{{ pand.beschrijving }}</p>
+                <h4>Beschrijving</h4>
+                <p>{% inplace_edit "pand.beschrijving|safe" %}</p>
             </div>
+
             <div class="clearfix"> </div>
         </div>
+
+        <div class="row">
+          <div class="col-md-3">
+            <a href="/contact" class="hvr-sweep-to-right more">Contact</a>
+          </div>
+          <div class="col-md-6" >
+            <a class="btn btn-info btn-xs" href="mailto:?subject=Pand &body={{url}}" ><span class="glyphicon glyphicon-envelope"></span> Email</a>
+            <a data-pin-do="buttonBookmark" data-pin-lang="en" data-pin-save="true" href="https://www.pinterest.com/pin/create/button/"></a>
+            <div class="fb-share-button" data-href="url" data-layout="button" data-mobile-iframe="true"></div>
+            <div class="twitter-share-posdiv">
+              <a class="twitter-share-button" href="http://twitter.com/share?text=Pand in {{pand.straatnaam}} te {{pand.handelstatus}}.&url={{url}}&hashtags=Via Sofie">Tweet </a>
+            </div>
+          </div>
+          <div class="col-md-3" align="right">
+            {% qr_from_text url "size" %}
+          </div>
+        </div>
         <div class="map-buy-single">
-            <h4>Neighborhood Info</h4>
+            <h4>Locatie Info</h4>
             <div class="map-buy-single1">
                 <iframe
                      src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDUBedm7kPj8hfOMT9Z4qXrMCvdpLiEPHE&amp;q={{pand.postcodeID.stadsnaam}},{{pand.straatnaam}},{{pand.huisnr}}"
@@ -118,21 +177,18 @@
 <!---->
 <div class="container">
     <div class="future">
-        <h3>Related Projects</h3>
+        <h3>Gerelateerde Panden</h3>
         <div class="content-bottom-in">
             <ul id="flexiselDemo1">
-              {% for pand in relatedPands %}
+              {% for related_pand in relatedPands %}
                 <li>
                     <div class="project-fur">
-                        <a href="/pand/"><img class="img-responsive" src="{{relatedPandsfotos}}[{{forloop.counter0}}]" alt="" /> </a>
+                        <a href="/pand/{{ pand.referentienummer|cut:"-"}}"><img class="img-responsive" src="{{ related_pand.thumbnail_url }}" alt="" /> </a>
                         <div class="fur">
                             <div class="fur1">
-                                <span class="fur-money">{{pand.prijs}}</span>
-                                <h6 class="fur-name"><a href="/pand/">{{ pand.straatnaam }}</a></h6>
+                                <span class="fur-money">{% inplace_edit "pand.prijs" %}</span>
+                                <h6 class="fur-name"><a href="/pand/">{% inplace_edit "pand.straatnaam" %}</a></h6>
                                 <!-- <span>België</span> -->
-                            </div>
-                            <div class="fur2">
-                                <span>2 BHK</span>
                             </div>
                         </div>
                     </div>
@@ -189,7 +245,7 @@
                 $("#flexiselDemo1").flexisel({
                     visibleItems: 4,
                     animationSpeed: 1000,
-                    autoPlay: true,
+                    autoPlay: false,
                     autoPlaySpeed: 3000,
                     pauseOnHover: true,
                     enableResponsiveBreakpoints: true,
@@ -214,4 +270,6 @@
         </div>
     </div>
 </div>
+</div>
+<script type='text/javascript' src="{% static 'webapp/scripts/bootstrap-tagsinput.js' %}"></script>
 {% endblock content %}

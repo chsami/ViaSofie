@@ -1,0 +1,298 @@
+{% extends 'webapp/base.html' %} {% load staticfiles %}{% load qr_tags %}{% block header %}
+<script type='text/javascript' src="{% static 'webapp/scripts/index.js' %}"></script>
+<script type='text/javascript' src="{% static 'webapp/scripts/jquery.flexslider.js' %}"></script>
+<script type='text/javascript' src="{% static 'webapp/scripts/jquery.flexisel.js' %}"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="http://maps.googleapis.com/maps/api/js"></script>
+
+<link rel="stylesheet" href="{% static 'webapp/css/flexslider.css' %}" type="text/css" media="screen" />
+<link rel="stylesheet" href="{% static 'webapp/css/flexslider.css' %}" type="text/css" media="screen" />
+<!--facebook meta data  -->
+<meta property="og:url"                content="www.localhost:8000/pand/{{ pand.referentienummer|cut:"-"}}" />
+<meta property="og:type"               content="article" />
+<meta property="og:title"              content="Pand in {{pand.straatnaam}} te {{pand.handelstatus}} " />
+<meta property="og:description"        content="{{pand.beschrijving}}" />
+<meta property="og:image"              content="{{pand.thumbnail_url}}" />
+<meta property="og:site_name"          content="Via Sofie"/>
+<meta property="app_id"                content="1007959369240278"/>
+
+
+{% endblock header %} {% block content %}
+<!-- Twitter widgets -->
+<script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));</script>
+
+<!-- pintrest widgets -->
+<script async defer src="//assets.pinterest.com/js/pinit.js"></script>
+
+
+<div class="container">
+{% verbatim %}
+<table>
+<tbody><tr><th><label>Eigenaar (gebruiker):</label></th><td><input type="text" ng-model="user"></td></tr>
+<tr><th><label>Straatnaam:</label></th><td><input type="text" ng-model="straatnaam"></td></tr>
+<tr><th><label>Huisnr:</label></th><td><input type="text" ng-model="huisnr"></td></tr>
+<tr><th><label>Bus:</label></th><td><input type="text" ng-model="bus"></td></tr>
+<tr><th><label>Postcode:</label></th><td><input type="text" ng-model="postcode"></td></tr>
+<tr><th><label>Stad/Gemeente:</label></th><td><input type="text" ng-model="stadsnaam"></td></tr>
+<tr><th><label>Oppervlakte:</label></th><td><input type="text" ng-model="oppervlakte"></td></tr>
+<tr><th><label for="id_busnr">Bouwjaar:</label></th><td><input type="text" ng-model="bouwjaar"></td></tr>
+<tr><th><label for="id_telefoonnr">Beschrijving:</label></th><td><input type="text" ng-model="beschrijving"></td></tr>
+<tr><th><label for="id_telefoonnr">Handelstatus:</label></th><td><input type="text" ng-model="handelstatus"></td></tr>
+<tr><th><label for="id_telefoonnr">Voortgang:</label></th><td><input type="text" ng-model="voortgang"></td></tr>
+</tbody></table>
+{% endverbatim %}
+    <div class="buy-single-single">
+        <div class=" buying-top">
+        {% verbatim %}
+            <p>{{straatnaam}} - {{stadsnaam}}</p>
+        {% endverbatim %}
+            <div class="flexslider">
+            <div id="slider" class="flexslider">
+                <ul class="slides">
+                    {% for foto in fotos %}
+                    <li data-thumb="{{foto.url}}">
+                        <img src="{{foto.url}}"/>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div id="carousel" class="flexslider">
+                <ul class="slides">
+                    {% for foto in fotos %}
+                    <li data-thumb="{{foto.url}}" style="padding-left: 10px">
+                        <img src="{{foto.url}}"/>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <!-- FlexSlider -->
+            <script>
+
+            $(window).load(function() {
+              // The slider being synced must be initialized first
+              $('#carousel').flexslider({
+                animation: "slide",
+                controlNav: false,
+                animationLoop: false,
+                slideshow: false,
+                itemWidth: 169,
+                itemMargin: 5,
+                asNavFor: '#slider'
+              });
+
+              $('#slider').flexslider({
+                animation: "slide",
+                controlNav: false,
+                animationLoop: true,
+                slideshow: true,
+                sync: "#carousel"
+              });
+            });
+            </script>
+        </div>
+        <div class="buy-sin-single">
+            <div class="col-sm-5 middle-side immediate">
+            {% verbatim %}
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>Oppervlakte :</td>
+                            <td>{{oppervlakte}}</td>
+                        </tr>
+                        <tr>
+                            <td>Bouwjaar :</td>
+                            <td>{{bouwjaar}}</td>
+                        </tr>
+                        <tr>
+                            <td>Prijs :</td>
+                            <td>{{prijs}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            {% endverbatim %}
+
+                    <input id="tags" type="text" value="{{tag_data}}" data-role="tagsinput"/>
+                    <script>
+                    $('#tags').tagsinput({
+                      typeahead: {
+                        order: "asc",
+                        source: {{all_tags|safe}},
+                        items: 'all'
+                      },
+                      freeInput: false,
+                      allowDuplicates: false
+
+                    });
+                    </script>
+                <!-- <div class="row">
+                  <div class="col-sm-6">
+                    <a href="/contact" class="hvr-sweep-to-right more">Contact</a>
+                    <a class="btn btn-info btn-xs" href="mailto:?subject=Pand &body={{url}}" ><span class="glyphicon glyphicon-envelope"></span> Email</a>
+                    <a data-pin-do="buttonBookmark" data-pin-lang="en" data-pin-save="true" href="https://www.pinterest.com/pin/create/button/"></a>
+                    <div class="fb-share-button" data-href="url" data-layout="button" data-mobile-iframe="true"></div>
+                    <a class="twitter-share-button" href="http://twitter.com/share?text=Pand in {{pand.straatnaam}} te {{pand.handelstatus}}.&url={{url}}&hashtags=Via Sofie">Tweet </a>
+                  </div>
+                  <div class="col-sm-6">
+                    {% qr_from_text url "size" %}
+                  </div>
+                </div> -->
+          </div>
+            <div class="col-sm-7 buy-sin">
+                <h4>Beschrijving</h4>
+                {% verbatim %}
+                <p>{{ beschrijving }}</p>
+                {% endverbatim %}
+            </div>
+
+            <!-- {% qr_from_text url "size" %} -->
+            <div class="clearfix"> </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-3">
+            <a href="/contact" class="hvr-sweep-to-right more">Contact</a>
+          </div>
+          <div class="col-md-6" >
+            <a class="btn btn-info btn-xs" href="mailto:?subject=Pand &body={{url}}" ><span class="glyphicon glyphicon-envelope"></span> Email</a>
+            <a data-pin-do="buttonBookmark" data-pin-lang="en" data-pin-save="true" href="https://www.pinterest.com/pin/create/button/"></a>
+            <div class="fb-share-button" data-href="url" data-layout="button" data-mobile-iframe="true"></div>
+            <div class="twitter-share-posdiv">
+              <a class="twitter-share-button" href="http://twitter.com/share?text=Pand in {{pand.straatnaam}} te {{pand.handelstatus}}.&url={{url}}&hashtags=Via Sofie">Tweet </a>
+            </div>        
+          </div>
+          <div class="col-md-3" align="right">
+            {% qr_from_text url "size" %}
+          </div>
+        </div>
+        <div class="map-buy-single">
+            <h4>Locatie Info</h4>
+            <div class="map-buy-single1">
+                <iframe
+                     src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDUBedm7kPj8hfOMT9Z4qXrMCvdpLiEPHE&amp;q={{stadsnaam}},{{straatnaam}},{{huisnr}}"
+                     streetViewControl=true
+                     width="100%"
+                     height="370px"
+                     style="border:0">
+                </iframe>
+            </div>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+</div>
+<!---->
+<div class="container">
+    <div class="future">
+        <h3>Gerelateerde panden</h3>
+        <div class="content-bottom-in">
+            <ul id="flexiselDemo1">
+              {% for related_pand in relatedPands %}
+                <li>
+                    <div class="project-fur">
+                        <a href="/pand/{{ pand.referentienummer|cut:"-"}}"><img class="img-responsive" src="{{ related_pand.thumbnail_url }}" alt="" /> </a>
+                        <div class="fur">
+                            <div class="fur1">
+                                <span class="fur-money">{{pand.prijs}}</span>
+                                <h6 class="fur-name"><a href="/pand/">{{ pand.straatnaam }}</a></h6>
+                                <!-- <span>België</span> -->
+                            </div>
+                            <div class="fur2">
+                                <span>2 BHK</span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+                <!-- <li>
+                    <div class="project-fur">
+                        <a href="single.html"><img class="img-responsive" src="{% static 'webapp/images/templateImg/pi1.jpg' %}" alt="" /> </a>
+                        <div class="fur">
+                            <div class="fur1">
+                                <span class="fur-money">$2.44 Lacs - 5.28 Lacs </span>
+                                <h6 class="fur-name"><a href="single.html">Contrary to popular</a></h6>
+                                <span>Paris</span>
+                            </div>
+                            <div class="fur2">
+                                <span>2 BHK</span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="project-fur">
+                        <a href="single.html"><img class="img-responsive" src="{% static 'webapp/images/templateImg/pi2.jpg' %}" alt="" /> </a>
+                        <div class="fur">
+                            <div class="fur1">
+                                <span class="fur-money">$2.44 Lacs - 5.28 Lacs </span>
+                                <h6 class="fur-name"><a href="single.html">Contrary to popular</a></h6>
+                                <span>Paris</span>
+                            </div>
+                            <div class="fur2">
+                                <span>2 BHK</span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="project-fur">
+                        <a href="single.html"><img class="img-responsive" src="{% static 'webapp/images/templateImg/pi3.jpg' %}" alt="" /> </a>
+                        <div class="fur">
+                            <div class="fur1">
+                                <span class="fur-money">$2.44 Lacs - 5.28 Lacs </span>
+                                <h6 class="fur-name"><a href="single.html">Contrary to popular</a></h6>
+                                <span>Paris</span>
+                            </div>
+                            <div class="fur2">
+                                <span>2 BHK</span>
+                            </div>
+                        </div>
+                    </div>
+                </li> -->
+            </ul>
+            <script type="text/javascript">
+            $(window).load(function() {
+                $("#flexiselDemo1").flexisel({
+                    visibleItems: 4,
+                    animationSpeed: 1000,
+                    autoPlay: false,
+                    autoPlaySpeed: 3000,
+                    pauseOnHover: true,
+                    enableResponsiveBreakpoints: true,
+                    responsiveBreakpoints: {
+                        portrait: {
+                            changePoint: 480,
+                            visibleItems: 1
+                        },
+                        landscape: {
+                            changePoint: 640,
+                            visibleItems: 2
+                        },
+                        tablet: {
+                            changePoint: 768,
+                            visibleItems: 3
+                        }
+                    }
+                });
+
+            });
+            </script>
+        </div>
+    </div>
+</div>
+</div>
+<script type='text/javascript' src="{% static 'webapp/scripts/bootstrap-tagsinput.js' %}"></script>
+{% endblock content %}

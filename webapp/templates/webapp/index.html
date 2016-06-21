@@ -1,10 +1,7 @@
-{% extends 'webapp/base.html' %} 
-{% load staticfiles %} 
+{% extends 'webapp/base.html' %} {% load inplace_edit %} {% load staticfiles %} {% load humanize %} {% block header %} {% inplace_toolbar %}
 
-{% block header %}
-<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/index.css' %}" />
 <script type='text/javascript' src="{% static 'webapp/scripts/index.js' %}"></script>
-{% endblock header %} 
+{% endblock header %}
 
 {% block content %}
 <div id="body">
@@ -12,13 +9,13 @@
 
     <div class=" header-right">
         <div class=" banner">
-            <div class="slider">
+            <div class="slider homeslider">
                 <div class="callbacks_container">
                     <ul class="rslides" id="slider">
                         <li>
                             <div class="banner1">
                                 <div class="caption">
-                                    <h3><span>Via sofie</span></h3>
+                                    <h3><span>Via Sofie</span></h3>
                                     <p>Vérdergaan in vastgoed...</p>
                                 </div>
                             </div>
@@ -26,7 +23,7 @@
                         <li>
                             <div class="banner2">
                                 <div class="caption">
-                                    <h3><span>Via sofie</span></h3>
+                                    <h3><span>Via Sofie</span></h3>
                                     <p>Vérdergaan in vastgoed...</p>
                                 </div>
                             </div>
@@ -34,7 +31,7 @@
                         <li>
                             <div class="banner3">
                                 <div class="caption">
-                                    <h3><span>Via sofie</span></h3>
+                                    <h3><span>Via Sofie</span></h3>
                                     <p>Vérdergaan in vastgoed...</p>
                                 </div>
                             </div>
@@ -50,37 +47,19 @@
     <div class="content">
         <div class="content-grid">
             <div class="container">
-                <h3>Meest populair</h3>
+                <h3>In de spotlights</h3>
+                {% for uitgelicht_pand in uitgelichte_panden %}
                 <div class="col-md-4 box_2">
-                    <a href="single.html" class="mask">
-                        <img class="img-responsive zoom-img" src="{% static 'webapp/images/templateImg/pc4.jpg' %}" alt="">
-                        <span class="four">40,000$</span>
+                    <a href="/pand/{{ uitgelicht_pand.referentienummer|cut:"-"}}" class="mask">
+                        <img class="img-responsive zoom-img" src="{{uitgelicht_pand.thumbnail_url}}" alt="">
+                        <span class="four">{{uitgelicht_pand.prijs|intcomma}}</span>
                     </a>
                     <div class="most-1">
-                        <h5><a href="single.html">Contrary to popular</a></h5>
-                        <p>Lorem ipsum</p>
+                        <h5><a href="/pand/{{ uitgelicht_pand.referentienummer|cut:"-"}}">{{uitgelicht_pand.straatnaam}}</a></h5>
+                        <p>{{uitgelicht_pand.postcodeID.stadsnaam}}</p>
                     </div>
                 </div>
-                <div class="col-md-4 box_2">
-                    <a href="single.html" class="mask">
-                        <img class="img-responsive zoom-img" src="{% static 'webapp/images/templateImg/pc5.jpg' %}" alt="">
-                        <span class="four">40,000$</span>
-                    </a>
-                    <div class="most-1">
-                        <h5><a href="single.html">Contrary to popular</a></h5>
-                        <p>Lorem ipsum</p>
-                    </div>
-                </div>
-                <div class="col-md-4 box_2">
-                    <a href="single.html" class="mask">
-                        <img class="img-responsive zoom-img" src="{% static 'webapp/images/templateImg/pc3.jpg' %}" alt="">
-                        <span class="four">40,000$</span>
-                    </a>
-                    <div class="most-1">
-                        <h5><a href="single.html">Contrary to popular</a></h5>
-                        <p>Lorem ipsum</p>
-                    </div>
-                </div>
+                {% endfor %}
                 <div class="clearfix"> </div>
             </div>
         </div>
@@ -88,53 +67,23 @@
         <div class="services">
             <div class="container">
                 <div class="service-top">
-                    <h3>Service</h3>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                    <h3>Goede doelen</h3>
                 </div>
                 <div class="services-grid">
-                    <div class="col-md-6 service-top1">
+                    {% for goed_doel in goede_doelen %}
+                    <div class="service-top1">
                         <div class=" ser-grid">
-                            <a href="#" class="hi-icon hi-icon-archive glyphicon glyphicon-user"> </a>
+                            <!-- <a href="#" class="hi-icon hi-icon-archive glyphicon glyphicon-user"> </a> -->
+                            <a href="{{goed_doel.url}}">{% inplace_edit "goed_doel.foto_url|safe" %}</a>
+
                         </div>
                         <div class="ser-top">
-                            <h4>Ut wisi enim ad</h4>
-                            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical.Contrary to popular belief, Lorem Ipsum </p>
+                            <h4>{% inplace_edit "goed_doel.naam|safe" %}</h4>
+                            <p>{% inplace_edit "goed_doel.bijschrift|safe" %}</p>
                         </div>
                         <div class="clearfix"> </div>
                     </div>
-                    <div class="col-md-6 service-top1">
-                        <div class=" ser-grid">
-                            <a href="#" class="hi-icon hi-icon-archive glyphicon glyphicon-leaf"> </a>
-                        </div>
-                        <div class="ser-top">
-                            <h4>Ut wisi enim ad</h4>
-                            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical.Contrary to popular belief, Lorem Ipsum </p>
-                        </div>
-                        <div class="clearfix"> </div>
-                    </div>
-                    <div class="clearfix"> </div>
-                </div>
-                <div class="services-grid">
-                    <div class="col-md-6 service-top1">
-                        <div class=" ser-grid">
-                            <a href="#" class="hi-icon hi-icon-archive glyphicon glyphicon-cog"> </a>
-                        </div>
-                        <div class="ser-top">
-                            <h4>Ut wisi enim ad</h4>
-                            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical.Contrary to popular belief, Lorem Ipsum </p>
-                        </div>
-                        <div class="clearfix"> </div>
-                    </div>
-                    <div class="col-md-6 service-top1">
-                        <div class=" ser-grid">
-                            <a href="#" class="hi-icon hi-icon-archive glyphicon glyphicon-file"> </a>
-                        </div>
-                        <div class="ser-top">
-                            <h4>Ut wisi enim ad</h4>
-                            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical .Contrary to popular belief, Lorem Ipsum</p>
-                        </div>
-                        <div class="clearfix"> </div>
-                    </div>
+                    {% endfor %}
                     <div class="clearfix"> </div>
                 </div>
             </div>
@@ -142,46 +91,18 @@
         <!--//services-->
         <!--partners-->
         <div class="content-bottom1">
-            <h3>Onze Partners</h3>
+              <h3>Onze Partners</h3>
             <div class="container">
                 <ul>
+                  {% for partner in partner_list %}
                     <li>
-                        <a href="#"><img class="img-responsive" src="{% static 'webapp/images/templateImg/lg.png' %}" alt=""></a>
+                        <a href="{{partner.link}}" class="mask"><img src="{{ partner.foto_url }}" class="img-responsive zoom-img" alt=""></a>
                     </li>
-                    <li>
-                        <a href="#"><img class="img-responsive" src="{% static 'webapp/images/templateImg/lg1.png' %}" alt=""></a>
-                    </li>
-                    <li>
-                        <a href="#"><img class="img-responsive" src="{% static 'webapp/images/templateImg/lg2.png' %}" alt=""></a>
-                    </li>
-                    <li>
-                        <a href="#"><img class="img-responsive" src="{% static 'webapp/images/templateImg/lg3.png' %}" alt=""></a>
-                    </li>
-                    <li>
-                        <a href="#"><img class="img-responsive" src="{% static 'webapp/images/templateImg/lg4.png' %}" alt=""></a>
-                    </li>
-                    <div class="clearfix"> </div>
-                </ul>
-                <ul>
-                    <li>
-                        <a href="#"><img class="img-responsive" src="{% static 'webapp/images/templateImg/lg5.png' %}" alt=""></a>
-                    </li>
-                    <li>
-                        <a href="#"><img class="img-responsive" src="{% static 'webapp/images/templateImg/lg6.png' %}" alt=""></a>
-                    </li>
-                    <li>
-                        <a href="#"><img class="img-responsive" src="{% static 'webapp/images/templateImg/lg7.png' %}" alt=""></a>
-                    </li>
-                    <li>
-                        <a href="#"><img class="img-responsive" src="{% static 'webapp/images/templateImg/lg8.png' %}" alt=""></a>
-                    </li>
-                    <li>
-                        <a href="#"><img class="img-responsive" src="{% static 'webapp/images/templateImg/lg9.png' %}" alt=""></a>
-                    </li>
+                    {% endfor %}
                     <div class="clearfix"> </div>
                 </ul>
             </div>
-        </div>
+       </div>
         <!--//partners-->
     </div>
     {% endblock content %}

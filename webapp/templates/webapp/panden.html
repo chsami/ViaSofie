@@ -1,21 +1,22 @@
-{% extends 'webapp/base.html' %} {% load staticfiles %} {% load endless %} {% block header %} {% endblock header %} {% block content %}
+{% extends 'webapp/base.html' %} {% load inplace_edit %} {% load staticfiles %} {% load endless %} {% block header %} {% inplace_toolbar %}
+<script type='text/javascript' src="{% static 'webapp/scripts/jquery.advancedsearchbox.js' %}"></script>
+{% endblock header %} {% block content %}
 <!--header-bottom-->
 {% include "webapp/submenu.html" %}
 <!--//-->
 <div class="project">
     <div class="container">
-        <h3>Panden</h3>
-        <div class="project-top">  {% include panden_item %}
+        <h3>{% inplace_edit "data.titel" %}</h3> {% inplace_edit "data.data|safe" %}
+        <div class="project-top"> {% include panden_item %}
         </div>
-
-    <div class="clearfix"> </div>
+        <div class="clearfix"> </div>
     </div>
 </div>
 <script src="{% static 'webapp/scripts/endless-pagination.js' %}"></script>
 <script>
 $.endlessPaginate({
     paginateOnScroll: true,
-    // paginateOnScrollChunkSize: 1
+    paginateOnScrollChunkSize: 300
 });
 </script>
 {% endblock content %}

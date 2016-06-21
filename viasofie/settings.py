@@ -19,13 +19,17 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 's#6!%(_6o=(x+r0(1jk!h2%$e^=*&s%*87qzg@0#xqh&k%i)di'
 
-# SECURITY WARNING: don't run with debug turned on in production!
+
 DEBUG = True
 
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = ['localhost']
 
+SITE_ID=2
+
+# FACEBOOK_APP_ID = '1007959369240278'
+# FACEBOOK_APP_SECRET = '9690bf3a1833cd4f07fe67562215bbe2'
 
 # Application definition
 
@@ -36,9 +40,13 @@ INSTALLED_APPS = (
     'inplaceeditform',
     'inplaceeditform_extra_fields',
     'bootstrap3_datetime',
+    'qrcode',
+    'django.contrib.sites',
     #'djng',
     #'grappelli',
+    'django_admin_bootstrapped',
     'rosetta',
+    'django.contrib.humanize',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -62,9 +70,15 @@ INPLACEEDIT_AUTO_SAVE = True
 INPLACEEDIT_EVENT = 'click'
 
 
-RECAPTCHA_PUBLIC_KEY = '6Ld9RSETAAAAADhIFfv20Hmaj4eaOVpBLRHD4rY9'
-RECAPTCHA_PRIVATE_KEY = '6Ld9RSETAAAAAArjY-t3DwRSUcAlLpXL8Y5Ay3Ql'
+RECAPTCHA_PUBLIC_KEY = '6LerJSMTAAAAAF0Xyb8ZfKEpAgdxAxjsRbQ6jluv'
+RECAPTCHA_PRIVATE_KEY = '6LerJSMTAAAAAD3X-DpSXmkcFP9PB_SwMZFzQy6L'
 NOCAPTCHA = True
+
+#-------------------------------------django.middleware.security.SecurityMiddleware SETTINGS --------------------------
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = False #if True site can only be accessed by https requests, you instruct the browser to set a timeout on your site if it isn't a https request
+SECURE_HSTS_SECONDS =  0 # if integer != 0 SecurityMiddleware sets HSTS header on all responses, this is the timeout you give (read comment above)
 
 
 MIDDLEWARE_CLASSES = (
@@ -76,9 +90,10 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    #JEFFFFF
-    #'django.middleware.security.SecurityMiddleware',
+    # https://docs.djangoproject.com/en/1.9/ref/middleware/ settings above
+     'django.middleware.security.SecurityMiddleware',
 )
+
 
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
@@ -95,6 +110,7 @@ WSGI_APPLICATION = 'viasofie.wsgi.application'
 # pagination
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
 TEMPLATE_CONTEXT_PROCESSORS += (
+    'webapp.context_processors.header',
     'django.core.context_processors.request',
 )
 
@@ -167,7 +183,7 @@ TEMPLATES = [
 },
 ]
 
-ROSETTA_REQUIRES_AUTH= False;
+ROSETTA_REQUIRES_AUTH= True;
 
 # INSTALLED_APPS += ('lockdown', )
 # MIDDLEWARE_CLASSES += ('lockdown.middleware.LockdownMiddleware', )

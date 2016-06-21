@@ -1,37 +1,30 @@
-{% extends 'webapp/base.html' %}
-{% load staticfiles %}
+{% extends 'webapp/base.html' %} {% load inplace_edit %} {% load staticfiles %} {% block header %} {% inplace_toolbar %}
 
-{% block header %}
 <link rel="stylesheet" type="text/css" href="{% static 'webapp/css/contact.css' %}" />
 {% endblock header %}
 
 {% block content %}
 <div class="contact">
     <div class="container">
-        <h3>Contact</h3>
+        <h3>{% inplace_edit "dcontact.titel|safe" %}</h3>
         <div class="contact-top">
             <div class="col-md-6 contact-top1">
-                <h4>Info</h4>
-                <p class="text-contact">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the when an unknown printer took.</p>
+                {% inplace_edit "dcontact.data|safe" %}
                 <div class="contact-address">
                     <div class="col-md-6 contact-address1">
-                        <h5>Adres</h5>
-                        <p><b>Via Sofie</b></p>
-                        <p>Meistraat 5</p>
-                        <p>2000 Antwerpen</p>
+                        <h5>{% inplace_edit "dadres.titel|safe" %}</h5>
+                        {% inplace_edit "dadres.data|safe" %}
                     </div>
                     <div class="col-md-6 contact-address1">
-                        <h5>E-mail</h5>
-                        <p>General :<a href="malito:mail@demolink.org"> info(at)Lorem.com</a></p>
-                        <p>Office :<a href="malito:mail@demolink.org"> info(at)Lorem.com</a></p>
+                        <h5>{% inplace_edit "dmail.titel|safe" %}</h5>
+                        {% inplace_edit "dmail.data|safe" %}
                     </div>
                     <div class="clearfix"></div>
                 </div>
                 <div class="contact-address">
                     <div class="col-md-6 contact-address1">
-                        <h5>Telefoon</h5>
-                        <p>Landline : 254-8974-5847</p>
-                        <p>Mobile : +174 1478 74755</p>
+                        <h5>{% inplace_edit "dtelefoon.titel|safe" %}</h5>
+                        {% inplace_edit "dtelefoon.data|safe" %}
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -56,6 +49,10 @@
                   <div class="fieldWrapper">
                       {{ form.name.errors }}
                       {{ form.name }}
+                  </div>
+                  <div class="fieldWrapper">
+                      {{ form.captcha.errors }}
+                      {{ form.captcha }}
                   </div>
                 </table>
                 <label class="hvr-sweep-to-right">

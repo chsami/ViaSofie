@@ -1,12 +1,12 @@
 {% load inplace_edit %}
 {% load staticfiles %}
-{% inplace_toolbar %}
+{% load  i18n %}
 <html>
 <head>
 	<!--- Basic Page Needs
    ================================================== -->
 	<meta charset="utf-8">
-	<title>ViaSofie</title>
+	<title>Via Sofie</title>
 	<meta name="description" content="Developer">
 	<meta name="author" content="Sacha, Tinne, Jeff, Diemas, Sander">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,6 +26,10 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/flags.css' %}" />
 	<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/forms.css' %}" />
 	<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/footer.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/bootstrap-select.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/bootstrap-slider.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/bootstrap-tagsinput.css' %}" media="screen" />
+
 	<!-- Google analytics
   ================================================== -->
 	<script>
@@ -47,13 +51,17 @@
 	<script type='text/javascript' src="{% static 'webapp/bootstrap/js/bootstrap.min.js' %}"></script>
 	<script type='text/javascript' src="{% static 'webapp/scripts/header.js' %}"></script>
 	<script type='text/javascript' src="{% static 'webapp/scripts/responsiveslides.min.js' %}"></script>
-	<script type="text/javascript" src="{% static 'webapp/scripts/jquery.searchbox.js' %}""></script>
-	<script type="text/javascript" src="{% static 'webapp/scripts/velocity.min.js' %}""></script>
+	<script type="text/javascript" src="{% static 'webapp/scripts/jquery.searchbox.js' %}"></script>
+	<script type="text/javascript" src="{% static 'webapp/scripts/velocity.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'webapp/scripts/bootstrap-select.js' %}"></script>
+	<script type="text/javascript" src="{% static 'webapp/scripts/bootstrap-slider.js' %}"></script>
+	<script type='text/javascript' src="{% static 'webapp/scripts/bootstrap-tagsinput.js' %}"></script>
+	<script type='text/javascript' src="{% static 'webapp/scripts/bootstrap3-typeahead.js' %}"></script>
 	<!-- enkel voor kerstmis <script type="text/javascript" src="{% static 'webapp/scripts/glitter.js' %}""></script> -->
 
 	<!-- Cookie Monster
 	================================================= -->
-	{% load  i18n %}
+
 	<script type='text/javascript' id="cookiebanner" src="{% static 'webapp/scripts/cookiebanner.js' %}" data-message="{% trans 'We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.' %}"></script>
 
    <!-- Favicons
@@ -66,9 +74,24 @@
 	{% endblock header %}
 
 </head>
+<body ng-app="">
+	<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1007959369240278',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
 
-<body class="sparkley" ng-model="">
-
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
 	{% include "webapp/header.html" %}
 
 	{% block content %}

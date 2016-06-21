@@ -93,9 +93,14 @@ class FotoForm(forms.Form):
 	)
 
 class Ebookform(forms.ModelForm):
+	naam = forms.CharField(label="*Naam", widget=forms.TextInput(attrs={'placeholder': 'Naam'}))
+	voornaam = forms.CharField(label="*Voornaam", widget=forms.TextInput(attrs={'placeholder': 'Voornaam'}))
+	email = forms.EmailField(label="*E-mail", widget=forms.EmailInput(attrs={'placeholder': 'E-mail'}))
+	captcha = ReCaptchaField()
+
 	class Meta:
 		model = Ebook
-		fields = ['naam', 'voornaam', 'email',]
+		fields = ['naam', 'voornaam', 'email', 'captcha',]
 
 class Handelstatus(forms.ModelForm):
 	class Meta:
@@ -155,3 +160,26 @@ class ContactForm(forms.Form):
 	email = forms.EmailField(widget=forms.TextInput(attrs={'placeholder': 'Email'}))
 	subject = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'placeholder': 'Onderwerp'}))
 	message = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Bericht'}))
+	captcha = ReCaptchaField()
+
+class SearchForm(forms.Form):
+    plaats_postcode_refnummer = forms.CharField(label="", widget=forms.TextInput(attrs={'class': "search-form-input", id: "id_plaats_postcode", 'name': "plaats_postcode", 'placeholder': "Zoek op referentienummer, plaats of postcode", 'type': "text"}), required = False)
+    kopen = forms.BooleanField(widget = forms.HiddenInput(attrs={'id': 'kopen_hiddenfield', 'value':'1'}))
+    pand_type = forms.CharField(widget= forms.HiddenInput(attrs={'id': 'pand_type_hiddenfield'}))
+    prijsSliderKopen = forms.CharField(widget= forms.HiddenInput(attrs={'id': 'prijssliderkopen_hiddenfield',}))
+    prijsSliderHuren = forms.CharField(widget= forms.HiddenInput(attrs={'id': 'prijssliderhuren_hiddenfield',}))
+    tagsSearch = forms.CharField(widget= forms.HiddenInput(attrs={'id': 'tags_hiddenfield', 'value':''}))
+    aantal_slaapkamers = forms.IntegerField(widget=forms.TextInput(attrs={'type':"number", 'name':"ant-slaapkamers", 'id':"min-slaapkamers", 'value':"", 'placeholder':"Min. Slaapkamers", 'min':"0", 'max':"15", 'class':"form-control"}))
+    aantal_badkamers = forms.IntegerField(widget=forms.TextInput(attrs={'input type':"number", 'name':"ant-badkamers", 'id':"min-badkamers", 'value':"", 'placeholder':"Min. Badkamers", 'min':"0", 'max':"15", 'class':"form-control"}))
+    # aantal_verdiepen = forms.IntegerField(widget=forms.TextInput(attrs={'id': 'aantal-verdiepen','class': 'aantal-verdiepen-input', 'readonly style': ''}))
+    # tags = forms.CharField(label="", widget=forms.TextInput(attrs={'id': 'tags', 'data-role': 'tagsinput'}))
+
+    class Meta:
+        fields = ['plaats_postcode_refnummer', 'pand_type', 'aantal_slaapkamers', 'aantal_badkamers', 'aantal_verdiepen', 'prijs_range', 'tags']
+
+class SmallSearchForm(forms.Form):
+	kopen = forms.BooleanField(widget = forms.HiddenInput(attrs={'id': 'kopen_hiddenfield', 'Value': 'true'}), required = False)
+	plaats_postcode = forms.CharField(label="", widget=forms.TextInput(attrs={'class': 'search-form-input', 'placeholder': 'Zoek op plaats of postcode'}), required = False)
+
+	class Meta:
+		fields = ['kopen', 'plaats_postcode']

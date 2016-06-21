@@ -1,4 +1,4 @@
-{% load staticfiles %}
+{% load inplace_edit %}{% load staticfiles %} {% load module_sander %}
 <header>
     {% load i18n %}
     <div id="language_menu" class="language_menu">
@@ -6,8 +6,8 @@
             <input name="next" type="hidden" value="{{ redirect_to }}" />
             <select name="language" onchange='this.form.submit()' class="languageselect">
                 {% get_current_language as LANGUAGE_CODE %} {% get_available_languages as LANGUAGES %} {% get_language_info_list for LANGUAGES as languages %} {% for language in languages %}
-                <option class="flag flag-{{ language.code }}" value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected="selected" {% endif %}>
-                    <img class="flag flag-{{ language.code }}" />{{ language.code }}
+                <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected="selected" {% endif %}>
+                    {{ language.code }}
                 </option>
                 {% endfor %}
             </select>
@@ -22,7 +22,7 @@
                 <span class="icon-bar"></span>
             </button>
             <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav navbar-right">
+                <ul id="InplaceEditList" class="nav navbar-nav navbar-right">
                     {% if user.is_authenticated %}
                     <li><a href="/account"><span class="glyphicon glyphicon-user"></span> {{ user.email }} </a></li>
                     <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
@@ -30,7 +30,6 @@
                     <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Registreren</a></li>
                     <li><a href="#" data-toggle="modal" data-target="#login"  id="loginbutton"><span class="glyphicon glyphicon-log-in"></span> Aanmelden</a></li>
                     {% endif %}
-
                 </ul>
             </div>
         </div>
@@ -44,20 +43,38 @@
         <div class="cssmenu-container">
             <div id='cssmenu' class="align-center">
                 <ul>
-                    <li class='active'><a href='/'>Home</a></li>
-                    <li><a href='/about'>Over</a></li>
-                    <li><a href='/partners'>Partners</a></li>
-                    <li><a href='/contact'>Contact</a></li>
+                    <li class='active'><a href='/'>{% get_obj_data "12" "titel" %}</a></li>
+                    <li><a href='/about'>{% get_obj_data "10" "titel" %}</a></li>
+                    <li><a href='/partners'>{% get_obj_data "11" "titel" %}</a></li>
+                    <li><a href='/contact'>{% get_obj_data "3" "titel" %}</a></li>
+                    <li class="ebookmenu"><a href='/ebook'>Ebook</a></li>
                 </ul>
             </div>
             <div class="clearfix"> </div>
+        </div>
+        <div id="ebook" class="ebook">
+            <a href="/ebook">
+                <img class="img-responsive" src="{% static 'webapp/images/book-icon.png' %}">
+            </a>
         </div>
     </div>
     <div class="modal fade" id="login" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-body">
-          <iframe src="/loginpopup" height="405px" width="250px" id="iframelogin" scrolling= "no" frameBorder="0" ALLOWTRANSPARENCY="true" style="overflow:hidden"> </iframe>
+          <div class="forms">
+          <form method="post" action="">
+          	<img class="img-responsive" src="{% static 'webapp/images/def logos via sofie - RGB-092.png' %}">
+          {% csrf_token %}
+          <table>
+          {{formlogin}}
+          </table>
+          <input id="submitbutton" name='loginbtn' type="submit" value="Log in" onClick='trigger();'/>
+          <p><a href="/resetpassword">Wachtwoord vergeten?</a></p>
+          <p><a href="/register">Registreer</a></p>
+          </form>
+          </div>
+          <!-- <iframe src="/loginpopup" height="405px" width="250px" id="iframelogin" scrolling= "no" frameBorder="0" ALLOWTRANSPARENCY="true" style="overflow:hidden"> </iframe> -->
         </div>
       </div>
     </div>
@@ -68,11 +85,11 @@ $("#collapseButton").click(function() {
   $("#header-logo").toggleClass( "lowZindex" );
 });
 </script>
-<script>
+<!-- <script>
 $('#login').on('hidden.bs.modal', function (e) {
    location.href= "/";
    location.href = "#";
 })
 
-</script>
+</script> -->
 </header>

@@ -1,20 +1,23 @@
 {% extends 'webapp/base.html' %} {% load inplace_edit %} {% load staticfiles %} {% block header %} {% inplace_toolbar %}
+
 {% endblock header %}
 
 {% block content %}
 <div class="dealers">
 <div class="container">
-	<h3>Partners</h3>
+	<h3>{% inplace_edit "dpartners.titel" %}</h3>
 	<div class="dealer-top">
 			<div class="deal-top-top">
 			{% for partner in partner_list %}
 				<div class="col-md-3 top-deal-top">
 					<div class="top-deal">
-						<span class="inplaceedit textinplaceedit"><inplaceeditform obj_id="2" can_auto_save="1" app_label="webapp" module_name="partner" field_name="foto_url"></inplaceeditform><a href="" class="mask"><img src="{{ partner.foto_url }}" class="img-responsive zoom-img" alt=""></a></span>
+							<!--<a href="{{partner.link}}" class="mask"><img src="{{ partner.foto_url }}" class="img-responsive zoom-img" alt=""></a>-->
+							<a class="mask">{% inplace_edit "partner.foto_url" class_inplace="img-responsive zoom-img" %}</a>
+						</span>
 						<div class="deal-bottom">
 							<div class="top-deal1">
-								<h5><a href="">{% inplace_edit "partner.naam" %}</a></h5>
-								<p>{% inplace_edit "partner.onderschrift" %}</p>
+								<h5><a href="">{% inplace_edit "partner.naam|safe" %}</a></h5>
+								<p>{% inplace_edit "partner.onderschrift|safe" %}</p>
 							</div>
 							<div class="top-deal2">
 								<a href="" class="hvr-sweep-to-right more">Meer</a>
