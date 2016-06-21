@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     #'grappelli',
     'django_admin_bootstrapped',
     'rosetta',
+    'django.contrib.humanize',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

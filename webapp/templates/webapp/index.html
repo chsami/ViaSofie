@@ -1,4 +1,4 @@
-{% extends 'webapp/base.html' %} {% load inplace_edit %} {% load staticfiles %} {% block header %} {% inplace_toolbar %}
+{% extends 'webapp/base.html' %} {% load inplace_edit %} {% load staticfiles %} {% load humanize %} {% block header %} {% inplace_toolbar %}
 
 <script type='text/javascript' src="{% static 'webapp/scripts/index.js' %}"></script>
 {% endblock header %}
@@ -52,7 +52,7 @@
                 <div class="col-md-4 box_2">
                     <a href="/pand/{{ uitgelicht_pand.referentienummer|cut:"-"}}" class="mask">
                         <img class="img-responsive zoom-img" src="{{uitgelicht_pand.thumbnail_url}}" alt="">
-                        <span class="four">{{uitgelicht_pand.prijs}}</span>
+                        <span class="four">{{uitgelicht_pand.prijs|intcomma}}</span>
                     </a>
                     <div class="most-1">
                         <h5><a href="/pand/{{ uitgelicht_pand.referentienummer|cut:"-"}}">{{uitgelicht_pand.straatnaam}}</a></h5>
