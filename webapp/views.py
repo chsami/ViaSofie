@@ -53,33 +53,9 @@ def slogin(request):
         formlogin=AuthenticationForm()
     return formlogin
 
-# def filtertags(request):
-#     if request.method == 'POST' and 'searchbtn' in request.POST:
-        # panden = PandModel.objects.filter()
-
-def get_all_tags(request):
-    all_tagpand_list = TagModel.objects.all()
-
-    all_tags = []
-    temp_tag = ""
-    for tagpand in all_tagpand_list:
-        for i in range(0,20):
-            temp_tag = "%s (%s)" % (str(tagpand.tagnaam), str(i + 1))
-            all_tags.append(temp_tag)
-    return all_tags
-
-# Create your views here.
-
-def index(request):
-    dpartners = Data.objects.get(id=11)
-
-    formlogin = slogin(request)
-    if formlogin == False:
-        return redirect('/login')
-
+def ssearchform(request):
     if request.method == "POST" and "searchbtngo" in request.POST:
         searchform = SearchForm(request.POST)
-
         handelstatus = request.POST['kopen']
         plaats_postcode_renummer = request.POST['plaats_postcode_refnummer']
         if plaats_postcode_renummer == '':
@@ -111,15 +87,42 @@ def index(request):
         if filters.endswith(','):
             filters = filters[:-1]
             # lijst = [kopen, plaats_postcode, pand_type, aantal_badkamers, prijs_range, aantal_slaapkamers, prijs_range, aantal_slaapkamers, aantal_verdiepen, tags]
-        return redirect('/panden/' + filters)
+        return '/panden/' + filters
 
 
             # model_instance = smallsearchform.save(commit=False)
             # model_instance.save()
-
     else:
-            searchform = SearchForm()
+        searchform = SearchForm()
+    return searchform
 
+# def filtertags(request):
+#     if request.method == 'POST' and 'searchbtn' in request.POST:
+        # panden = PandModel.objects.filter()
+
+def get_all_tags(request):
+    all_tagpand_list = TagModel.objects.all()
+
+    all_tags = []
+    temp_tag = ""
+    for tagpand in all_tagpand_list:
+        for i in range(0,20):
+            temp_tag = "%s (%s)" % (str(tagpand.tagnaam), str(i + 1))
+            all_tags.append(temp_tag)
+    return all_tags
+
+# Create your views here.
+
+def index(request):
+    dpartners = Data.objects.get(id=11)
+
+    formlogin = slogin(request)
+    if formlogin == False:
+        return redirect('/login')
+
+    searchform = ssearchform(request)
+    if isinstance(searchform, basestring):
+        return redirect(searchform)
     panden = PandModel.objects.filter(uitgelicht=True)
     panden_lijst = list(panden)
     uitgelichte_panden = []
@@ -190,6 +193,7 @@ def panddetail(request, pand_referentienummer):
 def panden(request, filters=None):
     # filters ='handelstatus=' + handelstatus + '&plaats_postcode_refnummer=' + plaats_postcode_renummer + '&prijs_range=' + prijs_range + '&tags=' + pand_type + ',Badkamers[' + aantal_badkamers + '],Slaapkamers[' + aantal_slaapkamers + '],'  + tags
     # REMOVE LINE ABOVE
+
     panden = PandModel.objects.all()
     if filters:
         panden = []
@@ -318,21 +322,10 @@ def panden(request, filters=None):
     formlogin = slogin(request)
     if formlogin == False:
         return redirect('/login')
-    # SmallSearchForm
-    if request.method == "POST":
-        smallsearchform = SmallSearchForm(request.POST)
-        if smallsearchform.is_valid():
-            model_instance = smallsearchform.save(commit=False)
-            model_instance.save()
-            return redirect('formsucces')
-    else:
-            smallsearchform = SmallSearchForm()
-    # SearchForm
-    if request.method == "POST":
-        searchform = SearchForm(request.POST)
-        if searchform.is_valid():
-
-            return redirect('/panden')
+    # Search form
+    searchform = ssearchform(request)
+    if isinstance(searchform, basestring):
+        return redirect(searchform)
     else:
             searchform = SearchForm()
 
@@ -397,13 +390,21 @@ def referenties(request):
     formlogin = slogin(request)
     if formlogin == False:
         return redirect('/login')
+    #searchform
+    searchform = ssearchform(request)
+    if isinstance(searchform, basestring):
+        return redirect(searchform)
     context = {
         # 'panden' = PandModel.objects.get(handelstatus='Verkocht',handelstatus='Verhuurd')
+        'searchform': searchform,
         'panden': PandModel.objects.all().values(),
         'panden_item': 'webapp/panden_item.html',
         'formlogin': formlogin,
         'data': data,
     }
+
+
+
     template = 'webapp/panden.html'
     if request.is_ajax():
         template = 'webapp/panden_item.html'
@@ -487,8 +488,12 @@ def advies(request):
     formlogin = slogin(request)
     if formlogin == False:
         return redirect('/login')
+    #searchform
+    searchform = ssearchform(request)
+    if isinstance(searchform, basestring):
+        return redirect(searchform)
     faq_list = FaqModel.objects.all()
-    return render_to_response('webapp/advies.html', {'dadvies': dadvies, 'dfaq': dfaq, 'faq_list': faq_list, 'formlogin': formlogin}, context_instance=RequestContext(request))
+    return render_to_response('webapp/advies.html', {'dadvies': dadvies, 'dfaq': dfaq, 'faq_list': faq_list, 'formlogin': formlogin, 'searchform': searchform,}, context_instance=RequestContext(request))
 
 def huren(request):
     formlogin = slogin(request)
