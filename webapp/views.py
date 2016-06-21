@@ -174,6 +174,9 @@ def panddetail(request, pand_referentienummer):
     formlogin = slogin(request)
     if formlogin == False:
         return redirect('/login')
+    searchform = ssearchform(request)
+    if isinstance(searchform, basestring):
+        return redirect(searchform)
     pand = PandModel.objects.get(referentienummer=pand_referentienummer)
     #voeg extra gegevens toe
     relatedPands= PandModel.objects.filter(postcodeID=pand.postcodeID)
@@ -190,7 +193,7 @@ def panddetail(request, pand_referentienummer):
 
     all_tags = get_all_tags(request);
 
-    return render_to_response('webapp/pand.html', {'pand': pand, 'fotos' : fotos, 'relatedPands' : relatedPands, 'tag_data': tag_data, 'all_tags': all_tags,'url': url , 'formlogin':formlogin}, context_instance=RequestContext(request))
+    return render_to_response('webapp/pand.html', {'pand': pand, 'fotos' : fotos, 'relatedPands' : relatedPands, 'tag_data': tag_data, 'all_tags': all_tags,'url': url , 'formlogin':formlogin, 'searchform': searchform}, context_instance=RequestContext(request))
 
 def panden(request, filters=None):
     # filters ='handelstatus=' + handelstatus + '&plaats_postcode_refnummer=' + plaats_postcode_renummer + '&prijs_range=' + prijs_range + '&tags=' + pand_type + ',Badkamers[' + aantal_badkamers + '],Slaapkamers[' + aantal_slaapkamers + '],'  + tags
@@ -211,10 +214,19 @@ def panden(request, filters=None):
                     value_pl_pos_ref = filterset.split('=')[1]
                     #Postcode, indien cijfers
                     if value_pl_pos_ref.isdigit():
-                        #je hebt 1 stad in stadmodel zitten nu
-                        stadmodel = StadModel.objects.get(postcode=value_pl_pos_ref)
+                        #je hebt 1 stad in stadmodel zitten nu/ update meerdere steden
+                        stadmodels = StadModel.objects.filter(postcode=value_pl_pos_ref)
                         #je filtert de result_queryset op de postcode
-                        result_queryset = result_queryset.filter(postcodeID=stadmodel.id)
+                        # result_queryset_temp = result_queryset
+                        liststeden = []
+                        for stadmodel in stadmodels:
+                            liststeden.append(stadmodel.id)
+
+                            print stadmodel
+                        print "liststeden" + str(liststeden)
+                        queryset = result_queryset.filter(postcodeID__in=liststeden)
+
+                        print "result_queryset" + str(result_queryset)
                     #Plaats, indien letters
                     elif value_pl_pos_ref.replace('-', '').isalpha() and value_pl_pos_ref.replace('-', '') != "":
                         #je hebt 1 stad in stadmodel zitten

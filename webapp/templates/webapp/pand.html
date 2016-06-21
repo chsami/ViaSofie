@@ -187,7 +187,7 @@
                         <div class="fur">
                             <div class="fur1">
                                 <span class="fur-money">{% inplace_edit "pand.prijs" %}</span>
-                                <h6 class="fur-name"><a href="/pand/">{% inplace_edit "pand.straatnaam" %}</a></h6>
+                                <h6 class="fur-name"><a href="/pand/{{ pand.referentienummer|cut:"-"}}">{% inplace_edit "pand.straatnaam" %}</a></h6>
                                 <!-- <span>België</span> -->
                             </div>
                         </div>
