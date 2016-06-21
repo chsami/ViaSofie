@@ -131,9 +131,9 @@ DATABASES = {
 from django.utils.translation import ugettext_lazy as _
 
 LANGUAGES = [
-    ('de', _('German')),
-    ('en', _('English')),
-    ('fr', _('Frans')),
+    # ('de', _('German')),
+    # ('en', _('English')),
+    # ('fr', _('Frans')),
     ('nl', _('Nederlands')),
 ]
 LANGUAGE_CODE = 'nl-be'
