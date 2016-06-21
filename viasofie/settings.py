@@ -24,7 +24,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['localhost','193.191.187.253:8097','127.0.0.1','193.191.187.253']
 
 SITE_ID=2
 
