@@ -483,15 +483,15 @@ def contact(request):
         }, context_instance=RequestContext(request))
 
 def advies(request):
-    dadvies = Data.objects.get(id=8)
-    dfaq = Data.objects.get(id=7)
-    formlogin = slogin(request)
-    if formlogin == False:
-        return redirect('/login')
     #searchform
     searchform = ssearchform(request)
     if isinstance(searchform, basestring):
         return redirect(searchform)
+    formlogin = slogin(request)
+    if formlogin == False:
+        return redirect('/login')
+    dadvies = Data.objects.get(id=8)
+    dfaq = Data.objects.get(id=7)
     faq_list = FaqModel.objects.all()
     return render_to_response('webapp/advies.html', {'dadvies': dadvies, 'dfaq': dfaq, 'faq_list': faq_list, 'formlogin': formlogin, 'searchform': searchform,}, context_instance=RequestContext(request))
 
