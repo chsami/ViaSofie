@@ -133,7 +133,9 @@ def index(request):
     goede_doelen = GoedDoelModel.objects.all()
     #PARTNERS
     partner_list = PartnerModel.objects.all()
-    return render_to_response('webapp/index.html', {'dpartners': dpartners, 'uitgelichte_panden': uitgelichte_panden, 'goede_doelen': goede_doelen,'searchform':searchform, 'formlogin':formlogin, 'partner_list': partner_list,},  context_instance=RequestContext(request))
+
+    all_tags = get_all_tags(request);
+    return render_to_response('webapp/index.html', {'all_tags': all_tags, 'dpartners': dpartners, 'uitgelichte_panden': uitgelichte_panden, 'goede_doelen': goede_doelen,'searchform':searchform, 'formlogin':formlogin, 'partner_list': partner_list,},  context_instance=RequestContext(request))
 # def index(request):
 #     dpartners = Data.objects.get(id=11)
 #
@@ -394,6 +396,9 @@ def referenties(request):
     searchform = ssearchform(request)
     if isinstance(searchform, basestring):
         return redirect(searchform)
+
+    all_tags = get_all_tags(request);
+
     context = {
         # 'panden' = PandModel.objects.get(handelstatus='Verkocht',handelstatus='Verhuurd')
         'searchform': searchform,
@@ -401,6 +406,7 @@ def referenties(request):
         'panden_item': 'webapp/panden_item.html',
         'formlogin': formlogin,
         'data': data,
+        'all_tags': all_tags,
     }
 
 
@@ -493,7 +499,8 @@ def advies(request):
     dadvies = Data.objects.get(id=8)
     dfaq = Data.objects.get(id=7)
     faq_list = FaqModel.objects.all()
-    return render_to_response('webapp/advies.html', {'dadvies': dadvies, 'dfaq': dfaq, 'faq_list': faq_list, 'formlogin': formlogin, 'searchform': searchform,}, context_instance=RequestContext(request))
+    all_tags = get_all_tags(request);
+    return render_to_response('webapp/advies.html', {'all_tags': all_tags, 'dadvies': dadvies, 'dfaq': dfaq, 'faq_list': faq_list, 'formlogin': formlogin, 'searchform': searchform,}, context_instance=RequestContext(request))
 
 def huren(request):
     formlogin = slogin(request)

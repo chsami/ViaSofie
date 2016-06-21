@@ -22,7 +22,7 @@ SECRET_KEY = 's#6!%(_6o=(x+r0(1jk!h2%$e^=*&s%*87qzg@0#xqh&k%i)di'
 
 DEBUG = True
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS = ['localhost','193.191.187.253:8097','127.0.0.1','193.191.187.253']
 
@@ -114,7 +114,7 @@ TEMPLATE_CONTEXT_PROCESSORS += (
     'django.core.context_processors.request',
 )
 
-ENDLESS_PAGINATION_PER_PAGE = 1;
+ENDLESS_PAGINATION_PER_PAGE = 8;
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
