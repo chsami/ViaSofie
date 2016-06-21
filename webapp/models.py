@@ -139,7 +139,7 @@ class Ebook(models.Model):
     email = models.CharField(max_length=255)
 
     def __str__(self):
-        return self.id
+        return self.email
 
 class Faq(models.Model):
     titel = models.CharField(max_length=128)
