@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.models import PermissionsMixin
-import uuid
+import uuid, random, hashlib
 
 class Handelstatus(models.Model):
     status = models.CharField(max_length=128) #verkoop, verhuur, verpachten, ...
@@ -35,14 +35,14 @@ class User(AbstractBaseUser, PermissionsMixin):
     naam =  models.CharField(max_length=128)
     email = models.CharField(max_length=128, unique=True)
 
-    activation_key = models.CharField(max_length=40)
-    key_expires = models.DateTimeField()
+    activation_key = models.CharField(max_length=40, null=True, blank=True)
+    key_expires = models.DateTimeField(null=True, blank=True)
 
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
     straatnaam = models.CharField(max_length=128)
-    huisnr = models.IntegerField()
+    huisnr = models.CharField(max_length=10)
     postcode = models.ForeignKey(Stad)
     busnr = models.CharField(max_length=10, null=True, blank=True)
 
@@ -109,12 +109,12 @@ class Pand(models.Model):
     objects = models.Manager()
 
     def __str__(self):
-        return str(self.id)
+        return str(self.referentienummer).replace('-', '') + " - " + str(self.postcodeID.postcode) + " " + str(self.postcodeID.stadsnaam) + ", " + str(self.straatnaam) + " " + str(self.huisnr) + " - " + str(self.user.email)
 
 
 class Tag(models.Model):
     #id autocreated by django
-    tagnaam = models.CharField(max_length=128)
+    tagnaam = models.CharField(max_length=128, unique=True)
 
     def __str__(self):
         return self.tagnaam
@@ -122,16 +122,19 @@ class Tag(models.Model):
 class TagPand(models.Model):
     tag = models.ForeignKey(Tag)
     pand = models.ForeignKey(Pand)
-    value = models.CharField(max_length=255)
+    value = models.CharField(max_length=255, default=1)
+
+    def __str__(self):
+        return str(self.pand.referentienummer).replace('-', '') + " - " + str(self.tag.tagnaam) + " (" + str(self.value) + ")"
 
 class Foto(models.Model):
-    url = models.CharField(max_length=255)
+    url = models.CharField(max_length=255, null=True, blank=True)
     thumbnail = models.BooleanField(default= False)
     docfile = models.FileField(upload_to='documents/%Y/%m/%d', blank=True)
     pand = models.ForeignKey(Pand)
 
     def __str__(self):
-        return str(self.id)
+        return str(self.pand.referentienummer).replace('-', '') + " - " + str(self.id)
 
 class Ebook(models.Model):
     naam = models.CharField(max_length=255)
@@ -146,7 +149,7 @@ class Faq(models.Model):
     content = models.TextField()
 
     def __str__(self):
-        return str(self.id)
+        return self.titel
 
 class Partner(models.Model):
     naam = models.CharField(max_length=128)
@@ -159,6 +162,9 @@ class GoedDoel(models.Model):
     bijschrift = models.CharField(max_length=500)
     link = models.CharField(max_length=255)
     foto_url = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100,)
+
+    def __str__(self):
+        return str(self.naam)
 
 class PandReview(models.Model):
     """docstring for PandReview"""
@@ -188,6 +194,9 @@ class StatusBericht(models.Model):
     titel = models.CharField(max_length=255)
     inhoud = models.TextField(max_length=1000)
     user = models.ForeignKey(User)
+
+    def __str__(self):
+        return str(self.user.email) + " - " + str(self.titel)
 
 class Data(models.Model):
     titel = models.CharField(max_length=255)

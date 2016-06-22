@@ -52,7 +52,10 @@ def slogin(request):
     else:
         formlogin=AuthenticationForm()
     return formlogin
-
+# def kopen(request):
+#     return '/panden/handelstatus=1'
+# def huren(request):
+#     return '/panden/handelstatus=0'
 def ssearchform(request):
     if request.method == "POST" and "searchbtngo" in request.POST:
         searchform = SearchForm(request.POST)
@@ -203,134 +206,143 @@ def panden(request, filters=None):
     if filters:
         panden = []
         result_queryset = PandModel.objects.all()
-        filtersets = filters.split('&')
-        for filterset in filtersets:
-            if 'handelstatus' in filterset:
-                # handelstatus_id = HandelstatusModel.objects.filter()
-                result_queryset.filter(handelstatus=filterset.split('=')[1])
+        if filters == "handelstatus=1":
+            result_queryset = result_queryset.filter(handelstatus=1)
+            for result in result_queryset:
+                panden.append(result)
+        elif filters == "handelstatus=0":
+            result_queryset = result_queryset.filter(handelstatus=0)
+            for result in result_queryset:
+                panden.append(result)
+        else:
+            filtersets = filters.split('&')
+            for filterset in filtersets:
+                if 'handelstatus' in filterset:
+                    # handelstatus_id = HandelstatusModel.objects.filter()
+                    result_queryset.filter(handelstatus=filterset.split('=')[1])
 
-            elif 'plaats_postcode_refnummer' in filterset:
-                if 'plaats_postcode_refnummer=None' not in filterset:
-                    value_pl_pos_ref = filterset.split('=')[1]
-                    #Postcode, indien cijfers
-                    if value_pl_pos_ref.isdigit():
-                        #je hebt 1 stad in stadmodel zitten nu/ update meerdere steden
-                        stadmodels = StadModel.objects.filter(postcode=value_pl_pos_ref)
-                        #je filtert de result_queryset op de postcode
-                        # result_queryset_temp = result_queryset
-                        liststeden = []
-                        for stadmodel in stadmodels:
-                            liststeden.append(stadmodel.id)
+                elif 'plaats_postcode_refnummer' in filterset:
+                    if 'plaats_postcode_refnummer=None' not in filterset:
+                        value_pl_pos_ref = filterset.split('=')[1]
+                        #Postcode, indien cijfers
+                        if value_pl_pos_ref.isdigit():
+                            #je hebt 1 stad in stadmodel zitten nu/ update meerdere steden
+                            stadmodels = StadModel.objects.filter(postcode=value_pl_pos_ref)
+                            #je filtert de result_queryset op de postcode
+                            # result_queryset_temp = result_queryset
+                            liststeden = []
+                            for stadmodel in stadmodels:
+                                liststeden.append(stadmodel.id)
 
-                            print stadmodel
-                        print "liststeden" + str(liststeden)
-                        queryset = result_queryset.filter(postcodeID__in=liststeden)
+                                print stadmodel
+                            print "liststeden" + str(liststeden)
+                            queryset = result_queryset.filter(postcodeID__in=liststeden)
 
-                        print "result_queryset" + str(result_queryset)
-                    #Plaats, indien letters
-                    elif value_pl_pos_ref.replace('-', '').isalpha() and value_pl_pos_ref.replace('-', '') != "":
-                        #je hebt 1 stad in stadmodel zitten
-                        stadmodel = StadModel.objects.get(stadsnaam=value_pl_pos_ref)
-                        # print stadmodel
-                        #je filtert de result_queryset op de Plaats
-                        result_queryset = result_queryset.filter(postcodeID=stadmodel.id)
-                    #referentienummer
-                    elif value_pl_pos_ref.replace('-', '') != "":
-                        #er kan maar 1 pand overeenkomstig zijn met ref nummer dus zoek maar 1 pand
-                        #er moet nog ge-exit worden als het een ref nummer is
-                        result_queryset = result_queryset.get(referentienummer=value_pl_pos_ref)
+                            print "result_queryset" + str(result_queryset)
+                        #Plaats, indien letters
+                        elif value_pl_pos_ref.replace('-', '').isalpha() and value_pl_pos_ref.replace('-', '') != "":
+                            #je hebt 1 stad in stadmodel zitten
+                            stadmodel = StadModel.objects.get(stadsnaam=value_pl_pos_ref)
+                            # print stadmodel
+                            #je filtert de result_queryset op de Plaats
+                            result_queryset = result_queryset.filter(postcodeID=stadmodel.id)
+                        #referentienummer
+                        elif value_pl_pos_ref.replace('-', '') != "":
+                            #er kan maar 1 pand overeenkomstig zijn met ref nummer dus zoek maar 1 pand
+                            #er moet nog ge-exit worden als het een ref nummer is
+                            result_queryset = result_queryset.get(referentienummer=value_pl_pos_ref)
 
-            elif 'prijs_range' in filterset:
-                # voorbeeld filterset.split('=')[1] -> 0,500000
-                #groter of gelijk aan minimum value vb.: 0
-                result_queryset = result_queryset.filter(prijs__gte=int(filterset.split('=')[1].split(',')[0]))
-                #groter of gelijk aan minimum value vb.: 500000
-                result_queryset = result_queryset.filter(prijs__lte=int(filterset.split('=')[1].split(',')[1]))
-                print result_queryset
-#clean tot hier zowiezo correct
-            # Check for tags and fill list with pand_id's
-
-
-            elif 'tags' in filterset:
-                tags_queryset = TagPandModel.objects.all()
-                tagpand_lijst = []
-
-                temp = TagPandModel.objects.all()
-                aantal_lijst = []
-                tags = filterset.split('=')[1].split(',')
-                pand_ids = []
-
-
-                #looks like tags = Huis(1),Badkamers(1),Slaapkamers(1),Zwambad(2),......
-                for single_tag in tags:
-                    # example of single_tag: Badkamers(1)
-                    # example of single_tag.split('(')[0] = Badkamers
-                    # Gets a tag id from the tag database
-                    tagnaam_single_tag = single_tag.split('(')[0]
-                    tag = TagModel.objects.get(tagnaam=tagnaam_single_tag) #is de tag
-                    print tag
-
-                    # aantal_lijst.append(int((single_tag.split('(')[1])[:-1]))
-                    hoeveelheid_tag= int((single_tag.split('(')[1])[:-1]) # is de hoeveelheid
-                    #je hebt nu de tag uit het tagmodel, tijd om dit te gaan te vergelijken met het tagpandmodel(alle panden) ofwel de brug met het pand
-
-                    #filter alle panden met de huidige tag
-                    temp = tags_queryset.filter(tag=tag.id)
-                    print "temp:" + str(temp[1].pand_id)
-                    temp = temp.filter(value__gte=int(hoeveelheid_tag))
-
-                    # for tagpand in temp:
-                    #     tem = temp.get(id =temp[i].pand_id).filter(value__gte=int(hoeveelheid_tag))
-                    #     tem = tagpand.filter(value__gte= int(hoeveelheid_tag))
-                        # print tem
-                        # tagpand_lijst.append(tem[0])
-                    for i in range(0,len(temp)):
-                        pand_ids.append(temp[i].pand.id)
-
-                    print "pand_ids" + str(pand_ids)
-                    #temp heeft geen verbinding met de result_queryset op dit moment, hij heeft wel 1 tag op zijn eigen model gefilterd
-                    #dit moet worden gecombineerd met de result_queryset later
-
-                        #de hoeveelheid panden die je voor deze tag hebt ga je nu 1 voor 1 checken met de opgegeven value die ook in de tag staat
-                    # for tagpand in tagpand_lijst:
-                    #     panden.append(pk= tagpand.id)
-                    #     print "i" + str(i)
-                    # print "tagpand_lijst: " + str(tagpand_lijst)
-                #er is nu een aparte lijst tagpand_lijst die alle panden bevat die dezelfde
-                    #lijst
-                    # complete_tag_filtered = []
-                    # for tagpand in tagpand_lijst:
-                    #     for tagpand.id
-
-                    # for tagpand in tagpand_lijst:
-                    #     pand_ids.append(tagpand.pand)
-                    #     print "tagpand.pand.id:" +  str(tagpand.pand)
-                print collections.Counter(pand_ids)
-                i = 0
-                for pand_id in pand_ids:
-                    # print "collections.Counter(pand_id).values()" + str(collections.Counter(pand_id).values())
-                    try:
-                        if collections.Counter(pand_ids).values()[i] == len(tags):
-                            print collections.Counter(pand_ids).values()[i]
-                            if result_queryset.filter(id=pand_id):
-                                panden.append(result_queryset.get(pk=pand_id))
-                        i = i+1
-                    except:
-                        print "out of range"
+                elif 'prijs_range' in filterset:
+                    # voorbeeld filterset.split('=')[1] -> 0,500000
+                    #groter of gelijk aan minimum value vb.: 0
+                    result_queryset = result_queryset.filter(prijs__gte=int(filterset.split('=')[1].split(',')[0]))
+                    #groter of gelijk aan minimum value vb.: 500000
+                    result_queryset = result_queryset.filter(prijs__lte=int(filterset.split('=')[1].split(',')[1]))
+                    print result_queryset
+    #clean tot hier zowiezo correct
+                # Check for tags and fill list with pand_id's
 
 
-                    # print x
-                    # if len(pand_ids) len(tags) #voor tags te combineren
+                elif 'tags' in filterset:
+                    tags_queryset = TagPandModel.objects.all()
+                    tagpand_lijst = []
 
-                # for pand in result_queryset:
-                #     # print "pand in result_queryset: " + str(pand.id)
-                #     for pand_id in pand_ids:
-                #         # print "pand_id in pand_ids: " + str(pand_id)
-                #         if result_queryset.filter(id=pand_id):
-                #             # print "found"
-                #             if result_queryset.get(id=pand_id) not in panden:
-                #                 # print "added"
-                #                 panden.append(result_queryset.get(pk=pand_id))
+                    temp = TagPandModel.objects.all()
+                    aantal_lijst = []
+                    tags = filterset.split('=')[1].split(',')
+                    pand_ids = []
+
+
+                    #looks like tags = Huis(1),Badkamers(1),Slaapkamers(1),Zwambad(2),......
+                    for single_tag in tags:
+                        # example of single_tag: Badkamers(1)
+                        # example of single_tag.split('(')[0] = Badkamers
+                        # Gets a tag id from the tag database
+                        tagnaam_single_tag = single_tag.split('(')[0]
+                        tag = TagModel.objects.get(tagnaam=tagnaam_single_tag) #is de tag
+                        print tag
+
+                        # aantal_lijst.append(int((single_tag.split('(')[1])[:-1]))
+                        hoeveelheid_tag= int((single_tag.split('(')[1])[:-1]) # is de hoeveelheid
+                        #je hebt nu de tag uit het tagmodel, tijd om dit te gaan te vergelijken met het tagpandmodel(alle panden) ofwel de brug met het pand
+
+                        #filter alle panden met de huidige tag
+                        temp = tags_queryset.filter(tag=tag.id)
+                        print "temp:" + str(temp[1].pand_id)
+                        temp = temp.filter(value__gte=int(hoeveelheid_tag))
+
+                        # for tagpand in temp:
+                        #     tem = temp.get(id =temp[i].pand_id).filter(value__gte=int(hoeveelheid_tag))
+                        #     tem = tagpand.filter(value__gte= int(hoeveelheid_tag))
+                            # print tem
+                            # tagpand_lijst.append(tem[0])
+                        for i in range(0,len(temp)):
+                            pand_ids.append(temp[i].pand.id)
+
+                        print "pand_ids" + str(pand_ids)
+                        #temp heeft geen verbinding met de result_queryset op dit moment, hij heeft wel 1 tag op zijn eigen model gefilterd
+                        #dit moet worden gecombineerd met de result_queryset later
+
+                            #de hoeveelheid panden die je voor deze tag hebt ga je nu 1 voor 1 checken met de opgegeven value die ook in de tag staat
+                        # for tagpand in tagpand_lijst:
+                        #     panden.append(pk= tagpand.id)
+                        #     print "i" + str(i)
+                        # print "tagpand_lijst: " + str(tagpand_lijst)
+                    #er is nu een aparte lijst tagpand_lijst die alle panden bevat die dezelfde
+                        #lijst
+                        # complete_tag_filtered = []
+                        # for tagpand in tagpand_lijst:
+                        #     for tagpand.id
+
+                        # for tagpand in tagpand_lijst:
+                        #     pand_ids.append(tagpand.pand)
+                        #     print "tagpand.pand.id:" +  str(tagpand.pand)
+                    print collections.Counter(pand_ids)
+                    i = 0
+                    for pand_id in pand_ids:
+                        # print "collections.Counter(pand_id).values()" + str(collections.Counter(pand_id).values())
+                        try:
+                            if collections.Counter(pand_ids).values()[i] == len(tags):
+                                print collections.Counter(pand_ids).values()[i]
+                                if result_queryset.filter(id=pand_id):
+                                    panden.append(result_queryset.get(pk=pand_id))
+                            i = i+1
+                        except:
+                            print "out of range"
+
+
+                        # print x
+                        # if len(pand_ids) len(tags) #voor tags te combineren
+
+                    # for pand in result_queryset:
+                    #     # print "pand in result_queryset: " + str(pand.id)
+                    #     for pand_id in pand_ids:
+                    #         # print "pand_id in pand_ids: " + str(pand_id)
+                    #         if result_queryset.filter(id=pand_id):
+                    #             # print "found"
+                    #             if result_queryset.get(id=pand_id) not in panden:
+                    #                 # print "added"
+                    #                 panden.append(result_queryset.get(pk=pand_id))
     data = Data.objects.get(id=13)
     # Login form
     formlogin = slogin(request)
@@ -404,6 +416,10 @@ def referenties(request):
     formlogin = slogin(request)
     if formlogin == False:
         return redirect('/login')
+
+    #filter panden op verkocht status
+    panden = PandModel.objects.all()
+    panden = panden.filter(voortgang=2)
     #searchform
     searchform = ssearchform(request)
     if isinstance(searchform, basestring):
@@ -414,7 +430,7 @@ def referenties(request):
     context = {
         # 'panden' = PandModel.objects.get(handelstatus='Verkocht',handelstatus='Verhuurd')
         'searchform': searchform,
-        'panden': PandModel.objects.all().values(),
+        'panden': panden,
         'panden_item': 'webapp/panden_item.html',
         'formlogin': formlogin,
         'data': data,
