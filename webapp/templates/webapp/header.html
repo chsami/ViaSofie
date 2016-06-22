@@ -79,12 +79,36 @@
       </div>
     </div>
   </div>
-  <script>
-$("#collapseButton").click(function() {
-  $("#language_menu").toggleClass( "lowZindex" );
-  $("#header-logo").toggleClass( "lowZindex" );
-});
-</script>
+    <script>
+    $("#collapseButton").click(function() {
+        $("#language_menu").toggleClass("lowZindex");
+        $("#header-logo").toggleClass("lowZindex");
+    });
+
+    $(document).ready(function() {
+        var pathname = window.location.pathname;
+
+        $("#cssmenu ul :nth-child(1)").removeClass('active');
+        $("#cssmenu ul :nth-child(2)").removeClass('active');
+        $("#cssmenu ul :nth-child(3)").removeClass('active');
+        $("#cssmenu ul :nth-child(4)").removeClass('active');
+
+        switch (pathname) {
+            case "/about/":
+                $("#cssmenu ul :nth-child(2)").addClass('active');
+                break;
+            case "/partners/":
+                $("#cssmenu ul :nth-child(3)").addClass('active');
+                break;
+            case "/contact/":
+                $("#cssmenu ul :nth-child(4)").addClass('active');
+                break;
+            default:
+                $("#cssmenu ul :nth-child(1)").addClass('active');
+        }
+
+    });
+    </script>
 <!-- <script>
 $('#login').on('hidden.bs.modal', function (e) {
    location.href= "/";

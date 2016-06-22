@@ -1822,6 +1822,11 @@ figure.effect-layla h4.effect3 {
     margin: 0 1%;
 }
 
+.buy-sin p:after,
+.buy-sin p:before {
+    width: 0 !important;
+}
+
 .future h3 {
     font-size: 3em;
     color: #000;
@@ -2253,8 +2258,7 @@ a.in-box:hover {
 }
 
 .buy-sin p {
-    color: #a3a3a3;
-    font-size: 0.9em;
+    font-size: 1em !important;
     line-height: 2em;
     padding-top: 1em;
 }
@@ -4027,6 +4031,11 @@ ul.nav.nav-pills {
         float: left;
         width: 50%;
         margin-top: 2em;
+    }
+    .box_2 {
+        width: 33.3%;
+        float: left;
+        padding: 0 7px;
     }
 }
 
