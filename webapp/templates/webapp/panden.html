@@ -15,7 +15,8 @@
 <script src="{% static 'webapp/scripts/endless-pagination.js' %}"></script>
 <script>
 $.endlessPaginate({
-    paginateOnScroll: true
+    paginateOnScroll: true,
+    paginateOnScrollChunkSize: 300
 });
 </script>
 {% endblock content %}

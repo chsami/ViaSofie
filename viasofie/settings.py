@@ -24,7 +24,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = ['localhost','193.191.187.253:8097','127.0.0.1','193.191.187.253']
+ALLOWED_HOSTS = ['localhost','193.191.187.253:8097','127.0.0.1','193.191.187.253','0.0.0.0:80']
 
 SITE_ID=2
 
@@ -147,7 +147,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'

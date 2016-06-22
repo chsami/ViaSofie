@@ -4,7 +4,7 @@
         <a href="/pand/{{ pand.referentienummer|cut:"-"}}" class="mask"><img src="{{pand.thumbnail_url}}" class="img-responsive zoom-img top-deal-img" alt=""></a>
         <div class="deal-bottom">
             <div class="top-deal1">
-                <h5><a href="/pand/{{ pand.referentienummer|cut:"-"}}">{{ pand.straatnaam }}</a></h5>
+                <h5><a href="/pand/{{ pand.referentienummer|cut:"-"}}">{{ pand.straatnaam }} - {{pand.postcodeID.stadsnaam }}</a></h5>
                 <p>Oppervlakte : {{pand.oppervlakte}}</p>
                 <p class="prijs">€ {{pand.prijs}}</p>
             </div>
