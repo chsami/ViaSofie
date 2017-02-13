@@ -514,15 +514,50 @@ ul.callbacks_tabs.callbacks1_tabs {
     right: 10%;
 }
 
+.coop-button {
+  /*font-family: "Open Sans",sans-serif;*/
+  font-weight: 600;
+  border-radius: 3px;
+  cursor: pointer;
+  padding: .6em 1.2em;
+  display: inline-block;
+  font-size: 1em;
+  text-align: center;
+  line-height: 1.4;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(13, 53, 50, 0.05)));
+  background-image: -webkit-linear-gradient(transparent, rgba(13, 53, 50, 0.05));
+  background-image: -moz-linear-gradient(transparent, rgba(13, 53, 50, 0.05));
+  background-image: -o-linear-gradient(transparent, rgba(13, 53, 50, 0.05));
+  background-image: linear-gradient(transparent, rgba(13, 53, 50, 0.05));
+  border-bottom-width: 3px;
+  text-decoration: none;
+  background-color: #eee;
+  color: #000;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+.coop-button--green {
+  background-color: #0D3532;
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.18);
+}
+
+.coop-button--big {
+  font-size: 1.4em;
+}
+
+
 .caption {
-    position: absolute;
-    top: 43%;
-    left: 13%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .caption h3 {
     color: #fff;
-    font-size: 3em;
+    font-size: 5em;
     text-transform: uppercase;
     display: inline-block;
     font-family: 'Ropa Sans', sans-serif;
@@ -3941,10 +3976,10 @@ ul.nav.nav-pills {
     .banner3 {
         min-height: 420px;
     }
-    ² .caption {
+    /*.caption {
         position: absolute;
         top: 40%;
-    }
+    }*/
     p.para-in {
         width: 100%;
     }
@@ -4045,10 +4080,10 @@ ul.nav.nav-pills {
     .banner3 {
         min-height: 390px;
     }
-    .caption {
+    /*.caption {
         position: absolute;
         top: 35%;
-    }
+    }*/
     .buy-media {
         padding: 10px 10px;
     }
@@ -4518,13 +4553,13 @@ ul.nav.nav-pills {
     .banner3 {
         min-height: 340px;
     }
-    .caption h3 {
+    /*.caption h3 {
         font-size: 2.6em;
     }
     .caption p {
         font-size: 1.5em;
         margin: 0.3em 0em 0;
-    }
+    }*/
     .bottom-head h6 {
         font-size: 0.9em;
     }
@@ -4773,7 +4808,7 @@ ul.nav.nav-pills {
     .banner3 {
         min-height: 280px;
     }
-    .caption h3 {
+    /*.caption h3 {
         font-size: 2.4em;
     }
     .caption p {
@@ -4783,7 +4818,12 @@ ul.nav.nav-pills {
     .caption {
         top: 31%;
         left: 7%;
+    }*/
+
+    .coop-button--big {
+    font-size: 1em;
     }
+
     .content-grid h3,
     .service-top h3,
     .project h3,
@@ -5275,7 +5315,7 @@ ul.nav.nav-pills {
     ul.right-icons {
         margin-top: 1px;
     }
-    .caption h3 {
+    /*.caption h3 {
         font-size: 1.6em;
     }
     .caption h3 span {
@@ -5284,15 +5324,16 @@ ul.nav.nav-pills {
     .caption p {
         font-size: 1.1em;
         padding: 0.1em 0 0;
+    }*/
+    .coop-button--big {
+        font-size: 0.7em;
     }
     .banner1,
     .banner2,
     .banner3 {
         min-height: 165px;
     }
-    .caption {
-        top: 26%;
-    }
+    
     i.buy {
         background: url(../images/templateImg/img-sprite.png) no-repeat -2px -28px;
     }
