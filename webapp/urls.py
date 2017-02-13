@@ -11,7 +11,8 @@ urlpatterns = [
     url(r'^about/$', views.about, name='about'),
     url(r'^advies/$', views.advies, name='advies'),
     url(r'^contact/$', views.contact, name='contact'),
-    url(r'^partners/$', views.partners, name='partners'),
+    # Partners is no longer in use, re-enabling the line down below will re-open the route
+    # url(r'^partners/$', views.partners, name='partners'),
     url(r'^partnersform/$', views.partnersform, name='partnersorm'),
     url(r'^panden/$', views.panden, name='panden'),
     url(r'^panden/(?P<filters>[\W\w]+)/$', views.panden, name='panden'),
