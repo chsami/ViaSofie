@@ -145,7 +145,8 @@ p {
     -moz-transition: 0.5s all;
     -ms-transition: 0.5s all;
     width: 100%;
-    background-color: #fff;
+    /*background-color: #fff;*/
+    background-color: #AAA;
     position: absolute;
     top: 0;
     left: 0;
@@ -714,7 +715,7 @@ a.mask {
 
 .service-top h3 {
     text-align: center;
-    color: #000;
+    /*color: #000;*/
     font-size: 3em;
     padding: 0 0 0.3em;
     font-family: 'Ropa Sans', sans-serif;
@@ -1246,7 +1247,7 @@ i.dolor {
 
 .content-bottom1 h3 {
     text-align: center;
-    color: #000;
+    /*color: #000;*/
     font-size: 3em;
     padding: 0 0 1em;
     font-family: 'Ropa Sans', sans-serif;
@@ -5333,7 +5334,7 @@ ul.nav.nav-pills {
     .banner3 {
         min-height: 165px;
     }
-    
+
     i.buy {
         background: url(../images/templateImg/img-sprite.png) no-repeat -2px -28px;
     }
