@@ -696,6 +696,7 @@ a.mask img {
     -moz-transform: scale(1, 1);
     -moz-transition-timing-function: ease-out;
     -moz-transition-duration: 250ms;
+    height: 100%;
 }
 
 a.mask {
