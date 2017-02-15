@@ -45,6 +45,8 @@
 .flexslider {
   margin: 0;
   padding: 0;
+  /*EDIT*/
+  width: 85%;
 }
 .flexslider .slides > li {
   display: none;
@@ -246,4 +248,9 @@ html[xmlns] .flexslider .slides {
     opacity: 1;
     right: 10px;
   }
+}
+
+/*EDIT*/
+.slides .callbacks1_on {
+  height: 40%%;
 }
