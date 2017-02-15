@@ -732,6 +732,17 @@ a.mask {
     margin: 0 1%;
 }
 
+#long-service-top h3:after,
+#long-service-top h3:before {
+    width: 150px;
+    height: 1px;
+    display: inline-block;
+    vertical-align: middle;
+    content: "";
+    background: #000;
+    margin: 0 1%;
+}
+
 .service-top p {
     color: #a3a3a3;
     font-size: 0.9em;
@@ -6731,4 +6742,38 @@ div.endless_loading {
 
 .homeslider {
     display: block !important;
+}
+
+.overlay {
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  background: rgba(0,0,0,0.3);
+  display: block;
+  /*position: absolute;*/
+  top: 10%;
+  left: 50%;
+  z-index: 9999;
+}
+
+.overlay h1 {
+  text-align: center;
+  padding-top: 100px;
+  color: #fff;
+  font-family: inherit;
+}
+
+.overlay p{
+  text-align: center;
+  width: 80%;
+  margin: 0 auto;
+  color: #fff;
+  font-family: inherit;
+  margin-bottom: 20px;
+}
+
+.overlay a {
+  color: #fff;
 }
