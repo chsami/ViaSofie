@@ -675,7 +675,7 @@ span.four {
     display: block;
     padding: 0.5em;
     position: absolute;
-    top: 32%;
+    top: 42%;
     right: 15px;
 }
 
@@ -702,6 +702,7 @@ a.mask {
     text-decoration: none;
     overflow: hidden;
     display: block;
+    height: 225px;
 }
 
 .deal-top-top a.mask img {
@@ -6776,4 +6777,13 @@ div.endless_loading {
 
 .overlay a {
   color: #fff;
+}
+
+#spotlightimg {
+    height: 100%;
+    width: 100%;
+}
+
+#spotlightcard {
+    height: 225px;
 }

@@ -47,13 +47,14 @@
     <!--//header-->
     <!--content-->
     <div class="content">
+        <!--IN DE KIJKER-->
         <div class="content-grid">
             <div class="container">
                 <h3>In de kijker</h3>
                 {% for uitgelicht_pand in uitgelichte_panden %}
-                <div class="col-md-4 box_2">
+                <div class="col-md-4 box_2" id="spotlightcard">
                     <a href="/pand/{{ uitgelicht_pand.referentienummer|cut:"-"}}" class="mask">
-                        <img class="img-responsive zoom-img" src="{{uitgelicht_pand.thumbnail_url}}" alt="">
+                        <img class="img-responsive zoom-img" id="spotlightimg"" src="{{uitgelicht_pand.thumbnail_url}}" alt="">
                         <span class="four">{{uitgelicht_pand.prijs|intcomma}}</span>
                     </a>
                     <div class="most-1">
@@ -65,6 +66,8 @@
                 <div class="clearfix"> </div>
             </div>
         </div>
+        <!--End of IN DE KIJKER-->
+        
 
         <!--Bollen-->
         <div class="container">
