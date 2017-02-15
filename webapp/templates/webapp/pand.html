@@ -6,6 +6,7 @@
 
 <link rel="stylesheet" href="{% static 'webapp/css/flexslider.css' %}" type="text/css" media="screen" />
 <link rel="stylesheet" href="{% static 'webapp/css/flexslider.css' %}" type="text/css" media="screen" />
+<link rel="stylesheet" href="{% static 'webapp/css/gallery.css' %}" type="text/css" media="screen" />
 <!--facebook meta data  -->
 <meta property="og:url"                content="www.localhost:8000/pand/{{ pand.referentienummer|cut:"-"}}" />
 <meta property="og:type"               content="article" />
@@ -38,12 +39,24 @@
 <!-- pintrest widgets -->
 <script async defer src="//assets.pinterest.com/js/pinit.js"></script>
 
+            <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="gallery-modal-content">
+                        <div class="gallery-modal-body">
+                            <p>Some text in the modal.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 {% include "webapp/submenu.html" %}
 <!--<div class="container">-->
     <div class="buy-single-single">
         <div class=" buying-top">
             <!--<p>{% inplace_edit "pand.straatnaam" %} - {% inplace_edit "pand.postcodeID.stadsnaam"%}</p>-->
-            <div class="flexslider">
+            <!--FLexiSlider-->
+            <!--<div class="flexslider">
             <div id="slider" class="flexslider">
                 <ul class="slides">
                     {% for foto in fotos %}
@@ -61,9 +74,9 @@
                     </li>
                     {% endfor %}
                 </ul>
-            </div>
-            <!-- FlexSlider -->
-            <script>
+            </div>-->
+            
+            <!--<script>
 
             $(window).load(function() {
               // The slider being synced must be initialized first
@@ -85,7 +98,37 @@
                 sync: "#carousel"
               });
             });
+            </script>-->
+            <!-- FlexSlider -->
+
+
+            <!--NEW-->
+
+            <div id="gallery" class="container-fluid">
+                {% for foto in fotos %}
+                    <img src="/media/{{foto.docfile}}" class="card img-responsive">
+                {% endfor %}
+            </div>
+
+            <script>
+                $(document).ready(function(){
+                    $("img").click(function(){
+                    var t = $(this).attr("src");
+                    $(".gallery-modal-body").html("<img src='"+t+"' class='modal-img'>");
+                    $("#myModal").modal();
+                    });
+
+                    // $("video").click(function(){
+                    // var v = $("video > source");
+                    // var t = v.attr("src");
+                    // $(".modal-body").html("<video class='model-vid' controls><source src='"+t+"' type='video/mp4'></source></video>");
+                    // $("#myModal").modal();  
+                    // });
+                    });//EOF Document.ready
             </script>
+
+            <!--END OF NEW-->
+
         </div>
         <div class="buy-sin-single">
             <div class="col-sm-5 middle-side immediate">
