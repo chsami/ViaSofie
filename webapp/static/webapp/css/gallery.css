@@ -61,3 +61,11 @@
 .modal, .fade {
     width: 100%;
 }
+
+.modal-dialog {
+    top: 31.48%;
+    position: absolute;
+    left: 34.375%;
+    right: 34.375%;
+    bottom: 31.48%;
+}
