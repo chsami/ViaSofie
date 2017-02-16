@@ -106,13 +106,13 @@
 
             <div id="gallery" class="container-fluid">
                 {% for foto in fotos %}
-                    <img src="/media/{{foto.docfile}}" class="card img-responsive">
+                    <img src="/media/{{foto.docfile}}" class="card img-responsive" id="galleryimg">
                 {% endfor %}
             </div>
 
             <script>
                 $(document).ready(function(){
-                    $("img").click(function(){
+                    $(".card").click(function(){
                     var t = $(this).attr("src");
                     $(".gallery-modal-body").html("<img src='"+t+"' class='modal-img'>");
                     $("#myModal").modal();
