@@ -1,7 +1,7 @@
 #gallery{
-  -webkit-column-count:4;
-  -moz-column-count:4;
-  column-count:4;
+  -webkit-column-count:2;
+  -moz-column-count:2;
+  column-count:2;
   
   -webkit-column-gap:20px;
   -moz-column-gap:20px;
@@ -9,9 +9,9 @@
 }
 @media (max-width:1200px){
   #gallery{
-  -webkit-column-count:3;
-  -moz-column-count:3;
-  column-count:3;
+  -webkit-column-count:2;
+  -moz-column-count:2;
+  column-count:2;
     
   -webkit-column-gap:20px;
   -moz-column-gap:20px;
@@ -39,7 +39,9 @@
 .card{
   width:100%;
   height:auto;
-  margin: 4% auto;
+  /*margin: 4% auto;*/
+  margin-bottom: 4%;
+
   box-shadow:-3px 5px 15px #000;
   cursor: pointer;
 }

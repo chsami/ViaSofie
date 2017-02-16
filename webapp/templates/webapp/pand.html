@@ -104,10 +104,17 @@
 
             <!--NEW-->
 
-            <div id="gallery" class="container-fluid">
-                {% for foto in fotos %}
-                    <img src="/media/{{foto.docfile}}" class="card img-responsive" id="galleryimg">
-                {% endfor %}
+            <div class="col-sm-7 buy-sin">
+                <h4>Beschrijving</h4>
+                <p>{% inplace_edit "pand.beschrijving|safe" %}</p>
+            </div>
+
+            <div class="col-sm-5 buy-sin">
+                <div id="gallery" class="container-fluid">
+                    {% for foto in fotos %}
+                        <img src="/media/{{foto.docfile}}" class="card img-responsive" id="galleryimg">
+                    {% endfor %}
+                </div>
             </div>
 
             <script>
@@ -165,25 +172,8 @@
 
                     });
                     </script>
-                <!-- <div class="row">
-                  <div class="col-sm-6">
-                    <a href="/contact" class="hvr-sweep-to-right more">Contact</a>
-                    <a class="btn btn-info btn-xs" href="mailto:?subject=Pand &body={{url}}" ><span class="glyphicon glyphicon-envelope"></span> Email</a>
-                    <a data-pin-do="buttonBookmark" data-pin-lang="en" data-pin-save="true" href="https://www.pinterest.com/pin/create/button/"></a>
-                    <div class="fb-share-button" data-href="url" data-layout="button" data-mobile-iframe="true"></div>
-                    <a class="twitter-share-button" href="http://twitter.com/share?text=Pand in {{pand.straatnaam}} te {{pand.handelstatus}}.&url={{url}}&hashtags=Via Sofie">Tweet </a>
-                  </div>
-                  <div class="col-sm-6">
-                    {% qr_from_text url "size" %}
-                  </div>
-                </div> -->
           </div>
-            <div class="col-sm-7 buy-sin">
-                <h4>Beschrijving</h4>
-                <p>{% inplace_edit "pand.beschrijving|safe" %}</p>
-            </div>
-
-            <div class="clearfix"> </div>
+            <div class="clearfix"></div>
         </div>
 
         <div class="row">
@@ -237,52 +227,8 @@
                     </div>
                 </li>
                 {% endfor %}
-                <!-- <li>
-                    <div class="project-fur">
-                        <a href="single.html"><img class="img-responsive" src="{% static 'webapp/images/templateImg/pi1.jpg' %}" alt="" /> </a>
-                        <div class="fur">
-                            <div class="fur1">
-                                <span class="fur-money">$2.44 Lacs - 5.28 Lacs </span>
-                                <h6 class="fur-name"><a href="single.html">Contrary to popular</a></h6>
-                                <span>Paris</span>
-                            </div>
-                            <div class="fur2">
-                                <span>2 BHK</span>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="project-fur">
-                        <a href="single.html"><img class="img-responsive" src="{% static 'webapp/images/templateImg/pi2.jpg' %}" alt="" /> </a>
-                        <div class="fur">
-                            <div class="fur1">
-                                <span class="fur-money">$2.44 Lacs - 5.28 Lacs </span>
-                                <h6 class="fur-name"><a href="single.html">Contrary to popular</a></h6>
-                                <span>Paris</span>
-                            </div>
-                            <div class="fur2">
-                                <span>2 BHK</span>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div class="project-fur">
-                        <a href="single.html"><img class="img-responsive" src="{% static 'webapp/images/templateImg/pi3.jpg' %}" alt="" /> </a>
-                        <div class="fur">
-                            <div class="fur1">
-                                <span class="fur-money">$2.44 Lacs - 5.28 Lacs </span>
-                                <h6 class="fur-name"><a href="single.html">Contrary to popular</a></h6>
-                                <span>Paris</span>
-                            </div>
-                            <div class="fur2">
-                                <span>2 BHK</span>
-                            </div>
-                        </div>
-                    </div>
-                </li> -->
             </ul>
+
             <script type="text/javascript">
             $(window).load(function() {
                 $("#flexiselDemo1").flexisel({
