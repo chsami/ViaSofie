@@ -105,14 +105,27 @@
             <!--NEW-->
 
             <div class="col-sm-7 buy-sin">
-                <h4>Beschrijving</h4>
-                <p>{% inplace_edit "pand.beschrijving|safe" %}</p>
+                <div class="row align-items-start" id="pand-details">
+                    <div class="col">
+                        <img src="/media/documents/2017/02/15/1eef8b41a2464befbe245005b6a512c4.jpg" class="card img-responsive" id="big-gallery-img">
+                    </div>
+                    <div class="col">
+                        <div class="col-sm-4">
+                            <h4>Beschrijving</h4>
+                            <p class="pand-description">{% inplace_edit "pand.beschrijving|safe" %}</p>
+                        </div>
+                        <div class="col-sm-3">
+                            <h4>Beschrijving</h4>
+                            <p class="pand-description">{% inplace_edit "pand.beschrijving|safe" %}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="col-sm-5 buy-sin">
                 <div id="gallery" class="container-fluid">
                     {% for foto in fotos %}
-                        <img src="/media/{{foto.docfile}}" class="card img-responsive" id="galleryimg">
+                        <img src="/media/{{foto.docfile}}" class="card img-responsive">
                     {% endfor %}
                 </div>
             </div>
@@ -137,7 +150,7 @@
             <!--END OF NEW-->
 
         </div>
-        <div class="buy-sin-single">
+        <!--<div class="buy-sin-single">
             <div class="col-sm-5 middle-side immediate">
                 <table class="table">
                     <tbody>
@@ -174,7 +187,7 @@
                     </script>
           </div>
             <div class="clearfix"></div>
-        </div>
+        </div>-->
 
         <div class="row">
           <div class="col-md-3">

@@ -1855,9 +1855,9 @@ figure.effect-layla h4.effect3 {
 .buying-top p {
     font-size: 3em;
     color: #000;
-    margin: 0 0 1em;
+    /*margin: 0 0 1em;*/
     font-family: 'Ropa Sans', sans-serif;
-    text-align: center;
+    /*text-align: center;*/
 }
 
 .buying-top p:after,
@@ -1868,7 +1868,7 @@ figure.effect-layla h4.effect3 {
     vertical-align: middle;
     content: "";
     background: #000;
-    margin: 0 1%;
+    /*margin: 0 1%;*/
 }
 
 .buy-sin p:after,
@@ -6787,4 +6787,14 @@ div.endless_loading {
 
 #spotlightcard {
     height: 225px;
+}
+
+#pand-details {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.pand-description {
+    /*text-align: left;
+    margin-left: 15px;*/
 }

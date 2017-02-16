@@ -17,6 +17,9 @@
   -moz-column-gap:20px;
   column-gap:20px;
 }
+  #big-gallery-img {
+  height: auto;
+  }
 }
 @media (max-width:800px){
   #gallery{
@@ -28,6 +31,9 @@
   -moz-column-gap:20px;
   column-gap:20px;
 }
+  #big-gallery-img {
+  height: auto;
+  }
 }
 @media (max-width:600px){
   #gallery{
@@ -35,6 +41,9 @@
   -moz-column-count:1;
   column-count:1;
 }  
+  #big-gallery-img {
+  height: auto;
+  }
 }
 .card{
   width:100%;
@@ -70,4 +79,8 @@
     left: 34.375%;
     right: 34.375%;
     bottom: 31.48%;
+}
+
+#big-gallery-img {
+  height: 773px;
 }
