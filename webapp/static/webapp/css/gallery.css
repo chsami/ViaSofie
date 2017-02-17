@@ -18,7 +18,7 @@
   column-gap:20px;
 }
   #big-gallery-img {
-  height: auto;
+  height: auto !important;
   }
 }
 @media (max-width:800px){
@@ -32,7 +32,7 @@
   column-gap:20px;
 }
   #big-gallery-img {
-  height: auto;
+  height: auto !important;
   }
 }
 @media (max-width:600px){
@@ -42,7 +42,7 @@
   column-count:1;
 }  
   #big-gallery-img {
-  height: auto;
+  height: auto !important;
   }
 }
 .card{

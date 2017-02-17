@@ -7,7 +7,8 @@
 <link rel="stylesheet" href="{% static 'webapp/css/flexslider.css' %}" type="text/css" media="screen" />
 <link rel="stylesheet" href="{% static 'webapp/css/flexslider.css' %}" type="text/css" media="screen" />
 <link rel="stylesheet" href="{% static 'webapp/css/gallery.css' %}" type="text/css" media="screen" />
-<!--facebook meta data  -->
+
+<!--Facebook meta data-->
 <meta property="og:url"                content="www.localhost:8000/pand/{{ pand.referentienummer|cut:"-"}}" />
 <meta property="og:type"               content="article" />
 <meta property="og:title"              content="Pand in {{pand.straatnaam}} te {{pand.handelstatus}} " />
@@ -15,6 +16,7 @@
 <meta property="og:image"              content="{{pand.thumbnail_url}}" />
 <meta property="og:site_name"          content="Via Sofie"/>
 <meta property="app_id"                content="1007959369240278"/>
+<!--End of Facebook meta data-->
 
 
 {% endblock header %} {% block content %}
@@ -80,21 +82,60 @@
             <!--NEW-->
             <div class="col-sm-7 buy-sin">
                 <div class="row align-items-start" id="pand-details">
+
                     <div class="col">
                         <img src="/media/documents/2017/02/15/1eef8b41a2464befbe245005b6a512c4.jpg" class="card img-responsive" id="big-gallery-img">
-                    </div>
+                    </div> <!--col-->
+
                     <div class="col">
-                        <div class="col-sm-4">
+
+                        <div class="col-sm-8">
                             <h4>Beschrijving</h4>
                             <p class="pand-description">{% inplace_edit "pand.beschrijving|safe" %}</p>
-                        </div>
+                        </div> <!--col-sm-8-->
+
+                        <div class="col-sm-1" style="margin-left: -15px;">
+                        </div> <!--col-sm-1-->
+
                         <div class="col-sm-3">
-                            <h4>Beschrijving</h4>
-                            <p class="pand-description">{% inplace_edit "pand.beschrijving|safe" %}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                            <div class="buy-sin-single">
+                                <div class="col-sm-5 middle-side immediate">
+
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <td>Prijs: </td>
+                                                <td>{% inplace_edit "pand.prijs" %}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>ref.: </td>
+                                                <td>{{ pand.referentienummer|cut:'-' }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><i class="fa fa-bed"></i></td>
+                                                <td>9</td>
+                                            </tr>
+                                            <tr>
+                                                <td><i class="fa fa-tint"></td>
+                                                <td>3</td>
+                                            </tr>
+                                            <tr>
+                                                <td><i class="fa fa-car"></i></td>
+                                                <td>Ja</td>
+                                            </tr>
+                                        </tbody>
+                                    </table> <!--table-->
+
+                                </div> <!--col-sm-5 middle-side immediate-->
+                                
+                                <div class="clearfix"></div> <!--clearfix-->
+                            </div> <!--buy-sin-single-->
+                        </div> <!--col-sm-3-->
+
+                    </div> <!--col-->
+
+                </div> <!--row align-items-start-->
+            </div> <!--col-sm-7 buy-sin-->
 
             <div class="col-sm-5 buy-sin">
                 <div id="gallery" class="container-fluid">
@@ -105,45 +146,6 @@
             </div>    
             <!--END OF NEW-->
         </div> <!--buying-top-->
-
-        <!--<div class="buy-sin-single">
-            <div class="col-sm-5 middle-side immediate">
-                <table class="table">
-                    <tbody>
-                        <tr>
-                            <td>Oppervlakte :</td>
-                            <td>{% inplace_edit "pand.oppervlakte" %}</td>
-                        </tr>
-                        <tr>
-                            <td>Bouwjaar :</td>
-                            <td>{% inplace_edit "pand.bouwjaar" %}</td>
-                        </tr>
-                        <tr>
-                            <td>Prijs :</td>
-                            <td>{% inplace_edit "pand.prijs" %}</td>
-                        </tr>
-                        <tr>
-                          <td>Referentienummer:</td>
-                          <td>{{ pand.referentienummer|cut:'-' }}</td>
-                    </tbody>
-                </table>
-
-                    <input id="tags" type="text" value="{{tag_data}}" data-role="tagsinput"/>
-                    <script>
-                    $('#tags').tagsinput({
-                      typeahead: {
-                        order: "asc",
-                        source: {{all_tags|safe}},
-                        items: 'all'
-                      },
-                      freeInput: false,
-                      allowDuplicates: false
-
-                    });
-                    </script>
-          </div>
-            <div class="clearfix"></div>
-        </div>-->
 
         <div class="row">
 
