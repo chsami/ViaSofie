@@ -19,91 +19,65 @@
 
 {% endblock header %} {% block content %}
 <!-- Twitter widgets -->
-<script>window.twttr = (function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0],
-    t = window.twttr || {};
-  if (d.getElementById(id)) return t;
-  js = d.createElement(s);
-  js.id = id;
-  js.src = "https://platform.twitter.com/widgets.js";
-  fjs.parentNode.insertBefore(js, fjs);
+<script>
+    window.twttr = (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0],
+            t = window.twttr || {};
+        if (d.getElementById(id)) return t;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://platform.twitter.com/widgets.js";
+        fjs.parentNode.insertBefore(js, fjs);
 
-  t._e = [];
-  t.ready = function(f) {
-    t._e.push(f);
-  };
+        t._e = [];
+        t.ready = function(f) {
+            t._e.push(f);
+        };
 
-  return t;
-}(document, "script", "twitter-wjs"));</script>
+        return t;
+    }(document, "script", "twitter-wjs"));
+</script>
+<!-- End of Twitter widgets -->
 
 <!-- pintrest widgets -->
 <script async defer src="//assets.pinterest.com/js/pinit.js"></script>
+<!-- End of pintrest widgets -->
 
-            <div id="myModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="gallery-modal-content">
-                        <div class="gallery-modal-body">
-                            <p>Some text in the modal.</p>
-                        </div>
-                    </div>
-                </div>
+<!--Gallery modal-->
+<script>
+    $(document).ready(function(){
+        $(".card").click(function(){
+        var t = $(this).attr("src");
+        $(".gallery-modal-body").html("<img src='"+t+"' class='modal-img'>");
+        $("#myModal").modal();
+        });
+
+        // $("video").click(function(){
+        // var v = $("video > source");
+        // var t = v.attr("src");
+        // $(".modal-body").html("<video class='model-vid' controls><source src='"+t+"' type='video/mp4'></source></video>");
+        // $("#myModal").modal();  
+        // });
+        });//EOF Document.ready
+</script>
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="gallery-modal-content">
+            <div class="gallery-modal-body">
+                <p>Some text in the modal.</p>
             </div>
+        </div>
+    </div>
+</div>
+<!--End of Gallery modal-->
 
 {% include "webapp/submenu.html" %}
-<!--<div class="container">-->
     <div class="buy-single-single">
-        <div class=" buying-top">
+        <div class="buying-top">
             <!--<p>{% inplace_edit "pand.straatnaam" %} - {% inplace_edit "pand.postcodeID.stadsnaam"%}</p>-->
-            <!--FLexiSlider-->
-            <!--<div class="flexslider">
-            <div id="slider" class="flexslider">
-                <ul class="slides">
-                    {% for foto in fotos %}
-                    <li data-thumb="/media/{{foto.docfile}}">
-                        <img src="/media/{{foto.docfile}}"/>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <div id="carousel" class="flexslider">
-                <ul class="slides">
-                    {% for foto in fotos %}
-                    <li data-thumb="/media/{{foto.docfile}}" style="padding-left: 10px">
-                        <img src="/media/{{foto.docfile}}"/>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>-->
-            
-            <!--<script>
-
-            $(window).load(function() {
-              // The slider being synced must be initialized first
-              $('#carousel').flexslider({
-                animation: "slide",
-                controlNav: false,
-                animationLoop: false,
-                slideshow: false,
-                itemWidth: 169,
-                itemMargin: 5,
-                asNavFor: '#slider'
-              });
-
-              $('#slider').flexslider({
-                animation: "slide",
-                controlNav: false,
-                animationLoop: true,
-                slideshow: true,
-                sync: "#carousel"
-              });
-            });
-            </script>-->
-            <!-- FlexSlider -->
-
-
             <!--NEW-->
-
             <div class="col-sm-7 buy-sin">
                 <div class="row align-items-start" id="pand-details">
                     <div class="col">
@@ -128,28 +102,10 @@
                         <img src="/media/{{foto.docfile}}" class="card img-responsive">
                     {% endfor %}
                 </div>
-            </div>
-
-            <script>
-                $(document).ready(function(){
-                    $(".card").click(function(){
-                    var t = $(this).attr("src");
-                    $(".gallery-modal-body").html("<img src='"+t+"' class='modal-img'>");
-                    $("#myModal").modal();
-                    });
-
-                    // $("video").click(function(){
-                    // var v = $("video > source");
-                    // var t = v.attr("src");
-                    // $(".modal-body").html("<video class='model-vid' controls><source src='"+t+"' type='video/mp4'></source></video>");
-                    // $("#myModal").modal();  
-                    // });
-                    });//EOF Document.ready
-            </script>
-
+            </div>    
             <!--END OF NEW-->
+        </div> <!--buying-top-->
 
-        </div>
         <!--<div class="buy-sin-single">
             <div class="col-sm-5 middle-side immediate">
                 <table class="table">
@@ -190,23 +146,30 @@
         </div>-->
 
         <div class="row">
-          <div class="col-md-3">
-            <a href="/contact" class="hvr-sweep-to-right more">Contact</a>
-          </div>
-          <div class="col-md-6" >
-            <a class="btn btn-info btn-xs" href="mailto:?subject=Pand &body={{url}}" ><span class="glyphicon glyphicon-envelope"></span> Email</a>
-            <a data-pin-do="buttonBookmark" data-pin-lang="en" data-pin-save="true" href="https://www.pinterest.com/pin/create/button/"></a>
-            <div class="fb-share-button" data-href="url" data-layout="button" data-mobile-iframe="true"></div>
-            <div class="twitter-share-posdiv">
-              <a class="twitter-share-button" href="http://twitter.com/share?text=Pand in {{pand.straatnaam}} te {{pand.handelstatus}}.&url={{url}}&hashtags=Via Sofie">Tweet </a>
-            </div>
-          </div>
-          <div class="col-md-3" align="right">
-            {% qr_from_text url "size" %}
-          </div>
-        </div>
+
+            <div class="col-md-3">
+                <a href="/contact" class="hvr-sweep-to-right more">Contact</a>
+            </div> <!--col-md-3-->
+
+            <div class="col-md-6" >
+                <a class="btn btn-info btn-xs" href="mailto:?subject=Pand &body={{url}}" ><span class="glyphicon glyphicon-envelope"></span> Email</a>
+                <a data-pin-do="buttonBookmark" data-pin-lang="en" data-pin-save="true" href="https://www.pinterest.com/pin/create/button/"></a>
+                <div class="fb-share-button" data-href="url" data-layout="button" data-mobile-iframe="true"></div>
+
+                <div class="twitter-share-posdiv">
+                    <a class="twitter-share-button" href="http://twitter.com/share?text=Pand in {{pand.straatnaam}} te {{pand.handelstatus}}.&url={{url}}&hashtags=Via Sofie">Tweet </a>
+                </div> <!--twitter-share-posdiv-->
+            </div> <!--col-md-6-->
+
+            <div class="col-md-3" align="right">
+                {% qr_from_text url "size" %}
+            </div> <!--col-md-3-->
+
+        </div> <!--row-->
+
         <div class="map-buy-single">
             <h4>Locatie Info</h4>
+
             <div class="map-buy-single1">
                 <iframe
                      src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCR6SBL79-AAn4d1-TMy0871l8JPciXncM&amp;q={{pand.postcodeID.stadsnaam}},{{pand.straatnaam}},{{pand.huisnr}}"
@@ -215,63 +178,68 @@
                      height="370px"
                      style="border:0">
                 </iframe>
-            </div>
-        </div>
-        <div class="clearfix"> </div>
-    </div>
-<!--</div>-->
-<!---->
-<div class="container">
-    <div class="future">
-        <h3>Gerelateerde Panden</h3>
-        <div class="content-bottom-in">
-            <ul id="flexiselDemo1">
-              {% for related_pand in relatedPands %}
-                <li>
-                    <div class="project-fur">
-                        <a href="/pand/{{ pand.referentienummer|cut:"-"}}"><img class="img-responsive" src="{{ related_pand.thumbnail_url }}" alt="" /> </a>
-                        <div class="fur">
-                            <div class="fur1">
-                                <span class="fur-money">{% inplace_edit "pand.prijs" %}</span>
-                                <h6 class="fur-name"><a href="/pand/{{ pand.referentienummer|cut:"-"}}">{% inplace_edit "pand.straatnaam" %}</a></h6>
-                                <!-- <span>België</span> -->
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                {% endfor %}
-            </ul>
+            </div> <!--map-buy-single-->
 
-            <script type="text/javascript">
-            $(window).load(function() {
-                $("#flexiselDemo1").flexisel({
-                    visibleItems: 4,
-                    animationSpeed: 1000,
-                    autoPlay: false,
-                    autoPlaySpeed: 3000,
-                    pauseOnHover: true,
-                    enableResponsiveBreakpoints: true,
-                    responsiveBreakpoints: {
-                        portrait: {
-                            changePoint: 480,
-                            visibleItems: 1
-                        },
-                        landscape: {
-                            changePoint: 640,
-                            visibleItems: 2
-                        },
-                        tablet: {
-                            changePoint: 768,
-                            visibleItems: 3
-                        }
-                    }
-                });
+        </div> <!--map-buy-single-->
 
-            });
-            </script>
-        </div>
-    </div>
-</div>
-</div>
+        <div class="clearfix"></div>
+    </div> <!--buy-single-single-->
+
+    <div class="container">
+        <div class="future">
+            <h3>Gerelateerde Panden</h3>
+
+            <div class="content-bottom-in">
+                <ul id="flexiselDemo1">
+                    {% for related_pand in relatedPands %}
+                        <li>
+                            <div class="project-fur">
+                                <a href="/pand/{{ pand.referentienummer|cut:"-"}}"><img class="img-responsive" src="{{ related_pand.thumbnail_url }}" alt="" /> </a>
+                                <div class="fur">
+                                    <div class="fur1">
+                                        <span class="fur-money">{% inplace_edit "pand.prijs" %}</span>
+                                        <h6 class="fur-name"><a href="/pand/{{ pand.referentienummer|cut:"-"}}">{% inplace_edit "pand.straatnaam" %}</a></h6>
+                                        <!-- <span>België</span> -->
+                                    </div> <!--fur1-->
+                                </div> <!--fur-->
+                            </div> <!--project-fur-->
+                        </li>
+                    {% endfor %}
+                </ul> <!--flexiselDemo1-->
+            </div> <!--content-bottom-in-->
+
+        </div> <!--future-->
+    </div> <!--container-->
+
+<!--Flexislider-->
+<script type="text/javascript">
+    $(window).load(function() {
+        $("#flexiselDemo1").flexisel({
+            visibleItems: 4,
+            animationSpeed: 1000,
+            autoPlay: false,
+            autoPlaySpeed: 3000,
+            pauseOnHover: true,
+            enableResponsiveBreakpoints: true,
+            responsiveBreakpoints: {
+                portrait: {
+                    changePoint: 480,
+                    visibleItems: 1
+                },
+                landscape: {
+                    changePoint: 640,
+                    visibleItems: 2
+                },
+                tablet: {
+                    changePoint: 768,
+                    visibleItems: 3
+                }
+            }
+        });
+
+    });
+</script>
+<!--End of Flexislider-->
+
 <script type='text/javascript' src="{% static 'webapp/scripts/bootstrap-tagsinput.js' %}"></script>
 {% endblock content %}
