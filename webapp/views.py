@@ -34,6 +34,8 @@ from django.contrib.auth.tokens import default_token_generator
 from django.shortcuts import resolve_url
 import collections
 
+from geopy.geocoders import Nominatim
+
 #sander is awesome
 #removed 171 lines of code
 def slogin(request):
@@ -194,9 +196,17 @@ def panddetail(request, pand_referentienummer):
     tag_data = tag_data[:-1]
     url = request.build_absolute_uri()
 
-    all_tags = get_all_tags(request);
+    all_tags = get_all_tags(request)
 
-    return render_to_response('webapp/pand.html', {'pand': pand, 'fotos' : fotos, 'relatedPands' : relatedPands, 'tag_data': tag_data, 'all_tags': all_tags,'url': url , 'formlogin':formlogin, 'searchform': searchform}, context_instance=RequestContext(request))
+    # Get lat long from adress
+    geo_adress_string = str(pand.huisnr) + " " + str(pand.straatnaam) + " " + str(pand.postcodeID.stadsnaam) + " Belgie"
+    geolocator = Nominatim()
+    location = geolocator.geocode(geo_adress_string)
+
+    lat = str(location.latitude).replace(',', '.')
+    lng = str(location.longitude).replace(',', '.')
+
+    return render_to_response('webapp/pand.html', {'pand': pand, 'fotos' : fotos, 'relatedPands' : relatedPands, 'tag_data': tag_data, 'all_tags': all_tags,'url': url , 'formlogin':formlogin, 'searchform': searchform, 'lat': lat, 'lng': lng}, context_instance=RequestContext(request))
 
 def panden(request, filters=None):
     # filters ='handelstatus=' + handelstatus + '&plaats_postcode_refnummer=' + plaats_postcode_renummer + '&prijs_range=' + prijs_range + '&tags=' + pand_type + ',Badkamers[' + aantal_badkamers + '],Slaapkamers[' + aantal_slaapkamers + '],'  + tags
