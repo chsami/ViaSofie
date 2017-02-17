@@ -6733,7 +6733,7 @@ div.endless_loading {
   display: inline-block;
 }
 .fb-share-button{
-  top: 6px;
+  /*top: -1px;*/
 }
 /*position socialmedia buttons */
 .twitter-share-posdiv {

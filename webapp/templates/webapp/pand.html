@@ -93,6 +93,10 @@
                             <h3>{{pand.straatnaam}} {{pand.huisnr}} - {{pand.postcodeID.postcode}} {{pand.postcodeID.stadsnaam}}</h3>
                             <!--<h4>Beschrijving</h4>-->
                             <p class="pand-description">{% inplace_edit "pand.beschrijving|safe" %}</p>
+
+                            <div>
+                                <a href="/contact" class="hvr-sweep-to-right more">Geïnteresseerd in dit pand, neem contact op</a>
+                            </div>
                         </div> <!--col-sm-8-->
 
                         <div class="col-sm-1" style="margin-left: -15px;">
@@ -127,21 +131,31 @@
                                         </tbody>
                                     </table> <!--table-->
 
-                                    <div class="row">
+                                    <!--<div class="row">
                                             <a class="btn btn-info btn-xs" href="mailto:?subject=Pand &body={{url}}" style="margin-bottom: 1%;"><span class="glyphicon glyphicon-envelope"></span> Email</a>
                                             <a data-pin-do="buttonBookmark" data-pin-lang="en" data-pin-save="true" href="https://www.pinterest.com/pin/create/button/" style="margin-bottom: 1%;"></a>
                                             <div class="fb-share-button" data-href="url" data-layout="button" data-mobile-iframe="true" style="margin-bottom: 1%;"></div>
 
                                             <div class="twitter-share-posdiv" style="margin-bottom: 1%;">
                                                 <a class="twitter-share-button" href="http://twitter.com/share?text=Pand in {{pand.straatnaam}} te {{pand.handelstatus}}.&url={{url}}&hashtags=Via Sofie">Tweet </a>
-                                            </div> <!--twitter-share-posdiv-->
-                                    </div> <!--row-->
+                                            </div>
+                                    </div>-->
 
                                 </div> <!--col-sm-5 middle-side immediate-->
                                 
                                 <div class="clearfix"></div> <!--clearfix-->
                             </div> <!--buy-sin-single-->
                         </div> <!--col-sm-3-->
+
+                                    <!--<div class="row">
+                                            <a class="btn btn-info btn-xs" href="mailto:?subject=Pand &body={{url}}"><span class="glyphicon glyphicon-envelope"></span> Email</a>
+                                            <a data-pin-do="buttonBookmark" data-pin-lang="en" data-pin-save="true" href="https://www.pinterest.com/pin/create/button/"></a>
+                                            <a><div class="fb-share-button" data-href="url" data-layout="button" data-mobile-iframe="true"></div></a>
+
+                                            <div class="twitter-share-posdiv">
+                                                <a class="twitter-share-button" href="http://twitter.com/share?text=Pand in {{pand.straatnaam}} te {{pand.handelstatus}}.&url={{url}}&hashtags=Via Sofie">Tweet </a>
+                                            </div>
+                                    </div>-->
 
                     </div> <!--col-->
 
@@ -163,15 +177,9 @@
                         style="border:0">
                     </iframe>
                 </div> <!--map-buy-single-->   
-            </div> <!--col-sm-5 buy-sin-->    
-            <!--END OF NEW-->
-        </div> <!--buying-top-->
+            </div> <!--col-sm-5 buy-sin-->  
 
-            <!--<div class="col-md-3">
-                <a href="/contact" class="hvr-sweep-to-right more">Contact</a>
-            </div>-->
-
-            
+        </div> <!--buying-top-->            
 
             <!--QR-Code-->
             <!--<div class="col-md-3" align="right">
@@ -270,54 +278,6 @@
     });
 </script>
 <!--End of Flexislider-->
-
-<!--Contact Form-->
-<script>
-    $(document).ready(function() {
-	// Test for placeholder support
-    $.support.placeholder = (function(){
-        var i = document.createElement('input');
-        return 'placeholder' in i;
-    })();
-
-    // Hide labels by default if placeholders are supported
-    if($.support.placeholder) {
-        $('.form-label').each(function(){
-            $(this).addClass('js-hide-label');
-        });  
-
-        // Code for adding/removing classes here
-        $('.form-group').find('input, textarea').on('keyup blur focus', function(e){
-            
-            // Cache our selectors
-            var $this = $(this),
-                $parent = $this.parent().find("label");
-
-            if (e.type == 'keyup') {
-                if( $this.val() == '' ) {
-                    $parent.addClass('js-hide-label'); 
-                } else {
-                    $parent.removeClass('js-hide-label');   
-                }                     
-            } 
-            else if (e.type == 'blur') {
-                if( $this.val() == '' ) {
-                    $parent.addClass('js-hide-label');
-                } 
-                else {
-                    $parent.removeClass('js-hide-label').addClass('js-unhighlight-label');
-                }
-            } 
-            else if (e.type == 'focus') {
-                if( $this.val() !== '' ) {
-                    $parent.removeClass('js-unhighlight-label');
-                }
-            }
-        });
-    } 
-});
-</script>
-<!--End of Contact Form-->
 
 <script type='text/javascript' src="{% static 'webapp/scripts/bootstrap-tagsinput.js' %}"></script>
 {% endblock content %}
