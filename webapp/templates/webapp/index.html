@@ -85,27 +85,19 @@
         <!--//services-->
         <!--partners-->
         <div class="content-bottom1">
-              <h3>Onze Partners</h3>
+            <h3>Onze Partners</h3>
             <div class="container">
-                <!--<ul>
-                  {% for partner in partner_list %}
-                    <li>
-                        <a href="{{partner.link}}" class="mask"><img src="{{ partner.foto_url }}" class="img-responsive zoom-img" alt=""></a>
-                    </li>
-                    {% endfor %}
-                    <div class="clearfix"> </div>
-                </ul>-->
-                       <section class="client">
-            <div class="container">
-                <div class="row">
-                    <div class="carousel-client">
-                        {% for partner in partner_list %}
-                            <div class="slide"><img src="{{ partner.foto_url }}"></div>
-                        {% endfor %}
+                <section class="client">
+                    <div class="container">
+                        <div class="row">
+                            <div class="carousel-client">
+                                {% for partner in partner_list %}
+                                    <div class="slide"><img src="{{ partner.foto_url }}"></div>
+                                {% endfor %}
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </section>
+                </section>
             </div>
        </div>
         <!--//partners-->
