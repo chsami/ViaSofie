@@ -17,7 +17,7 @@ body a {
 
 #landing{
   height:82%;
-  background:url(http://www.credotimmobilier.com/fichiers/bg/images/bg.jpg) no-repeat center center fixed;
+  background: linear-gradient(rgba(0, 0, 75, 0.2), rgba(30, 0, 0, 0.2)),url(http://www.credotimmobilier.com/fichiers/bg/images/bg.jpg) no-repeat center center fixed;
   background-size:cover;
   -webkit-background-size:cover;
   -o-background-size:cover;
