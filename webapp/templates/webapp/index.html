@@ -1,5 +1,7 @@
 {% extends 'webapp/base.html' %} {% load inplace_edit %} {% load staticfiles %} {% load humanize %} {% block header %} {% inplace_toolbar %}
 
+<link rel="stylesheet" href="{% static 'webapp/css/index.css' %}" type="text/css" media="screen" />
+
 <script type='text/javascript' src="{% static 'webapp/scripts/index.js' %}"></script>
 {% endblock header %}
 
@@ -8,7 +10,7 @@
 {% include "webapp/submenu.html" %}
     <div id="landing">
         <div class="svg-wrapper">
-            <a id="jump" href="#portfolio">
+            <a id="jump" href="#">
                 <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
                     <rect class="shape" height="60" width="320" />
                     <div class="text">Samenwerken?</div>
@@ -43,12 +45,12 @@
         
 
         <!--Bollen-->
-        <div class="container">
+        <!--<div class="container">
             <div class="overlay">
                 <h1>TEST TITEL</h1>
                 <p>Circle overlay example, sample text sample text sample text.</p>
             </div>
-        </div>
+        </div>-->
         <!--End of Bollen-->
 
         <!--service-->
@@ -59,25 +61,20 @@
                     <p>
                         Jou pand verkocht? Via Sofie zet zich graag in voor de samenleving. Een deel van de commissie wordt weggeschonken aan organisaties die zich inzetten voor een goed doel:
                         <br>
-                        Moeders voor moeders en ondernemers zonder grenzen
+                        Moeders voor moeders en Ondernemers zonder grenzen
                     </p>
                 </div>
-                <div class="services-grid">
-                    {% for goed_doel in goede_doelen %}
-                    <div class="service-top1">
-                        <div class=" ser-grid">
-                            <!-- <a href="#" class="hi-icon hi-icon-archive glyphicon glyphicon-user"> </a> -->
-                            <a href="{{goed_doel.url}}">{% inplace_edit "goed_doel.foto_url|safe" %}</a>
 
-                        </div>
-                        <!--<div class="ser-top">
-                            <h4>{% inplace_edit "goed_doel.naam|safe" %}</h4>
-                            <p>{% inplace_edit "goed_doel.bijschrift|safe" %}</p>
-                        </div>-->
-                        <div class="clearfix"> </div>
+                <div class="services-grid">
+                    <div class="tiles">
+                        {% for goed_doel in goede_doelen %}
+                            <a class="tile" href="{{goed_doel.url}}"><img width="225" height="350" src="{{goed_doel.foto_url}}"/>
+                                <div class="details">
+                                    <span class="title"></span><span class="info">Bezoek de website van {% inplace_edit "goed_doel.naam|safe" %}</span>
+                                </div>
+                            </a>
+                        {% endfor %}
                     </div>
-                    {% endfor %}
-                    <div class="clearfix"> </div>
                 </div>
             </div>
         </div>
