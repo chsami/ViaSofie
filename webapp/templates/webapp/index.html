@@ -2,7 +2,11 @@
 
 <link rel="stylesheet" href="{% static 'webapp/css/index.css' %}" type="text/css" media="screen" />
 
+<!--Partners slider-->
 <script type='text/javascript' src="{% static 'webapp/scripts/index.js' %}"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.5/jquery.bxslider.js'></script>
+<!--End of Partners slider-->
+
 {% endblock header %}
 
 {% block content %}
@@ -83,14 +87,25 @@
         <div class="content-bottom1">
               <h3>Onze Partners</h3>
             <div class="container">
-                <ul>
+                <!--<ul>
                   {% for partner in partner_list %}
                     <li>
                         <a href="{{partner.link}}" class="mask"><img src="{{ partner.foto_url }}" class="img-responsive zoom-img" alt=""></a>
                     </li>
                     {% endfor %}
                     <div class="clearfix"> </div>
-                </ul>
+                </ul>-->
+                       <section class="client">
+            <div class="container">
+                <div class="row">
+                    <div class="carousel-client">
+                        {% for partner in partner_list %}
+                            <div class="slide"><img src="{{ partner.foto_url }}"></div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
             </div>
        </div>
         <!--//partners-->
