@@ -6,39 +6,6 @@
 {% block content %}
 <div id="body">
 {% include "webapp/submenu.html" %}
-
-    <!--<div class=" header-right">
-        <div class=" banner">
-            <div class="slider homeslider">
-                <div class="callbacks_container">
-                    <ul class="rslides" id="slider">
-                        <li>
-                            <div class="banner1">
-                                <div class="caption" id="polina">
-                                    <a href="/contact" class="hvr-sweep-to-right more" style="font-size: 3em; border-width: medium; background-color: rgba(255, 255, 255, 0.3)">Werken met Via Sofie?</a>
-                                    
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="banner2">
-                                <div class="caption">
-                                    <a href="/contact" class="hvr-sweep-to-right more" style="font-size: 3em; border-width: medium; background-color: rgba(255, 255, 255, 0.3)">Werken met Via Sofie?</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="banner3">
-                                <div class="caption">
-                                    <a href="/contact" class="hvr-sweep-to-right more" style="font-size: 3em; border-width: medium; background-color: rgba(255, 255, 255, 0.3)">Werken met Via Sofie?</a>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>-->
     <div id="landing">
         <div class="svg-wrapper">
             <a id="jump" href="#portfolio">
@@ -60,7 +27,7 @@
                 {% for uitgelicht_pand in uitgelichte_panden %}
                 <div class="col-md-4 box_2" id="spotlightcard">
                     <a href="/pand/{{ uitgelicht_pand.referentienummer|cut:"-"}}" class="mask">
-                        <img class="img-responsive zoom-img" id="spotlightimg"" src="{{uitgelicht_pand.thumbnail_url}}" alt="">
+                        <img class="img-responsive zoom-img" id="spotlightimg" src="{{uitgelicht_pand.thumbnail_url}}" alt="">
                         <span class="four">{{uitgelicht_pand.prijs|intcomma}}</span>
                     </a>
                     <div class="most-1">
