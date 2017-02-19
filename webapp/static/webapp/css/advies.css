@@ -29,6 +29,17 @@
         color: #0d3532;
     }
 
+.adviesSearchForm {
+    /*padding: 2em 2em 0 2em;*/
+    margin-bottom: 0px;
+}
+
+#search {
+    font-family: 'Ropa Sans', sans-serif;
+    letter-spacing: normal;
+    top: 0;
+}
+
 .advies h3:after, .advies h3:before {
     width: 200px;
     height: 1px;
