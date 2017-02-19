@@ -540,6 +540,12 @@ def advies(request):
     all_tags = get_all_tags(request);
     return render_to_response('webapp/advies.html', {'all_tags': all_tags, 'dadvies': dadvies, 'dfaq': dfaq, 'faq_list': faq_list, 'formlogin': formlogin, 'searchform': searchform,}, context_instance=RequestContext(request))
 
+def vastgoedmakelaar(request):
+    formlogin = slogin(request)
+    if formlogin == False:
+        return redirect('/login')
+    return render_to_response('webapp/vastgoedmakelaar.html', {'formlogin': formlogin}, context_instance=RequestContext(request))
+
 def huren(request):
     formlogin = slogin(request)
     if formlogin == False:
