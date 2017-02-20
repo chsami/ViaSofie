@@ -786,6 +786,11 @@ a.mask {
     margin: 0 1%;
 }
 
+#long-service-top h3:after,
+#long-service-top h3:before {
+    width: 100px;
+}
+
 .service-top p {
     color: #a3a3a3;
     font-size: 0.9em;
