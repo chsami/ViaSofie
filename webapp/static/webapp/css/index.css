@@ -171,6 +171,12 @@ section.client .section-title {
 
 /*BOLLEN*/
 
+.set-same-height {
+      margin-right: 0px;
+    margin-left: 0px;
+}
+
+
 .columns.four {
     width: 50%;
     padding-left: 15px;
