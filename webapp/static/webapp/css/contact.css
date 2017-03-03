@@ -13,3 +13,278 @@
 .contact h3 {
     margin: 10px 0 15px 0;
 }
+
+
+
+
+/*====================*/
+
+:root {
+  font-size: 13px;
+}
+
+@media screen and (min-width: 1000px) {
+    :root {
+        font-size: 14px;
+    }
+}
+@media screen and (min-width: 1240px) {
+  :root {
+    font-size: 16px;
+  }
+}
+@media screen and (min-width: 1480px) {
+  :root {
+    font-size: 17px;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  line-height: 2em;
+  background: #EEEEEE;
+}
+
+.main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  height: 85vh;
+  background: -webkit-linear-gradient(330deg, #FFF 50%, #f7f7f7 50%);
+  background: linear-gradient(120deg, #FFF 50%, #f7f7f7 50%);
+}
+.main .header-contact,
+.main legend.header-contact {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 1.25rem;
+  margin: 0.5em 0;
+}
+.main .bio,
+.main .contact {
+  max-width: 320px;
+  margin-top: 20vh;
+}
+.main .bio .profile-img {
+  max-width: 7em;
+  border-radius: 50%;
+}
+.main .bio .bio-link {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 1rem;
+  display: inline-block;
+  float: left;
+  clear: left;
+  text-decoration: none;
+  color: #0d3532;
+  margin-bottom: 0.25em;
+  -webkit-transition: color 300ms ease-in-out;
+  transition: color 300ms ease-in-out;
+}
+.main .bio .bio-link i {
+  margin-left: 8px;
+}
+.main .bio .bio-link::after {
+  display: block;
+  content: '';
+  height: 1px;
+  width: 0;
+  background: #7D6962;
+  -webkit-transition: width 300ms ease-in-out;
+  transition: width 300ms ease-in-out;
+}
+.main .bio .bio-link:hover::after {
+  width: 100%;
+}
+.main .bio .bio-link:hover {
+  color: #7D6962;
+}
+.main .contact {
+  color: #7D6962;
+}
+.main .contact form fieldset {
+  font-size: 1rem;
+  position: relative;
+  border: none;
+  margin-bottom: 0.25em;
+  padding: 0.25em 0;
+}
+.main .contact form fieldset label {
+  font-size: 0.875rem;
+  display: block;
+  position: absolute;
+  right: 0.125em;
+  top: 1.5em;
+  color: #0d3532;
+}
+.main .contact form input,
+.main .contact form textarea,
+.main .contact form button {
+  border: 0;
+}
+.main .contact form input:focus,
+.main .contact form textarea:focus,
+.main .contact form button:focus {
+  outline: none;
+}
+.main .contact form input,
+.main .contact form textarea {
+  display: block;
+  font-size: 1rem;
+  padding: 0.5em 0;
+  width: 280px;
+  background: none;
+  color: #333;
+  border-bottom: 1px solid #0d3532;
+  -webkit-transition: border 300ms ease-in-out;
+  transition: border 300ms ease-in-out;
+}
+.main .contact form input:focus,
+.main .contact form textarea:focus {
+  border-bottom: 1px solid #0d3532;
+}
+.main .contact form input::-webkit-input-placeholder,
+.main .contact form textarea::-webkit-input-placeholder {
+  color: #333;
+}
+.main .contact form input::-moz-placeholder,
+.main .contact form textarea::-moz-placeholder {
+  color: #333;
+}
+.main .contact form input:-ms-input-placeholder,
+.main .contact form textarea:-ms-input-placeholder {
+  color: #333;
+}
+.main .contact form input::placeholder,
+.main .contact form textarea::placeholder {
+  color: #333;
+}
+.main .contact button {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 1rem;
+  display: block;
+  background: #0d3532;
+  color: #EEEEEE;
+  padding: 1em 2em;
+  box-shadow: 0 0 40px 0 rgba(21, 21, 21, 0.6);
+}
+.main .contact button:hover {
+  -webkit-animation: swell 500ms ease-in-out;
+          animation: swell 500ms ease-in-out;
+  cursor: pointer;
+}
+.main .contact textarea {
+  resize: none;
+}
+
+.main {
+  overflow: hidden;
+  -webkit-animation: Page 600ms ease-in-out forwards;
+          animation: Page 600ms ease-in-out forwards;
+}
+
+.bio {
+  -webkit-animation: Bio 600ms ease-in-out forwards;
+          animation: Bio 600ms ease-in-out forwards;
+}
+
+.contact {
+  -webkit-animation: Contact 600ms ease-in-out forwards;
+          animation: Contact 600ms ease-in-out forwards;
+}
+
+@-webkit-keyframes Page {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes Page {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes Bio {
+  0% {
+    -webkit-transform: translateX(-50vw);
+            transform: translateX(-50vw);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+@keyframes Bio {
+  0% {
+    -webkit-transform: translateX(-50vw);
+            transform: translateX(-50vw);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+@-webkit-keyframes Contact {
+  0% {
+    -webkit-transform: translateX(50vw);
+            transform: translateX(50vw);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+@keyframes Contact {
+  0% {
+    -webkit-transform: translateX(50vw);
+            transform: translateX(50vw);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+@-webkit-keyframes swell {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@keyframes swell {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}

@@ -4,7 +4,7 @@
 {% endblock header %}
 
 {% block content %}
-<div class="contact">
+<!--<div class="contact">
     <div class="container">
         <h3>{% inplace_edit "dcontact.titel|safe" %}</h3>
         <div class="contact-top">
@@ -66,5 +66,45 @@
     <div class="map">
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2499.15997834044!2d4.408338515615595!3d51.216128539779035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c3f6fc0f575f23%3A0xe812b07562ac9aa5!2sMeistraat+5%2C+2000+Antwerpen!5e0!3m2!1snl!2sbe!4v1463130836294" frameborder="0" style="border:0" allowfullscreen></iframe>
     </div>
+</div>-->
+
+
+<div class="main">
+  <div class="bio"><img class="profile-img" src="{% static 'webapp/images/Sofie.jpg' %}"/>
+    <h3 class="header-contact">Via Sofie</h3>
+    <p>Een vraag of liever een afspraak op kantoor, laat het me weten!</p>
+    <p style="font-size: 0.75em">* Het kantoor is voorzien van een gratis parkeerplaats.</p>
+    <a class="bio-link">Mussenhoevelaan 101</a>
+    <a class="bio-link">2530 Boechout<i class="fa fa-map-marker"></i></a>
+    <a class="bio-link">04 99 99 99 99<i class="fa fa-phone"></i></a>
+    <a class="bio-link">hello@viasofie.be<i class="fa fa-envelope"></i></a>
+  </div>
+  <div class="contact">
+    <form id="form" method="post">
+      <legend class="header-contact">Een vraag of liever een afspraak op kantoor, laat het me weten!</legend>
+      <fieldset>
+        <label class="fa fa-user" for="name-input" aria-hidden="true"></label>
+        <input type="text" placeholder="Naam..." id="name-input"/>
+      </fieldset>
+      <fieldset>
+        <label class="fa fa-envelope" for="email-input" aria-hidden="true"></label>
+        <input type="email" placeholder="Email..." id="email-input"/>
+      </fieldset>
+      <fieldset>
+        <label class="fa fa-phone" for="phone-input" aria-hidden="true"></label>
+        <input type="phone" placeholder="Telefoon/GSM nummer..." id="phone-input"/>
+      </fieldset>
+      <fieldset>
+        <label class="fa fa-comment" for="message-input" aria-hidden="true"></label>
+        <textarea placeholder="Uw bericht..." id="message-input"></textarea>
+      </fieldset>
+      <fieldset>
+        <button type="submit" id="btn-submit">Verstuur</button>
+      </fieldset>
+    </form>
+  </div>
+</div>
+<div class="map">
+    <iframe src="http://www.mapi.ie/create-google-map/map.php?width=100%&amp;height=400&amp;hl=en&amp;q=Mussenhoevelaan%20101%2C%202530%20Boechout+(Via%20Sofie)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=A&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a href="http://www.mapsdirections.info/fr/mesurer-distance-surface-google-maps.html">Mesurer distance avec Google Maps</a> en <a href="http://www.mapsdirections.info/fr/">www.mapsdirections.info/nl/</a></iframe>
 </div>
 {% endblock content %}
