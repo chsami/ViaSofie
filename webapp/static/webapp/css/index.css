@@ -123,6 +123,10 @@
   #long-service-top h3:after, #long-service-top h3:before {
     width: auto;
   }
+
+  .medium {
+    font-size: 16px;
+  }
 }
 
 /****************/
@@ -165,76 +169,41 @@ section.client .section-title {
   width: 50%;
 }
 
-/****************/
-/* side-circles */
-/****************/
+/*BOLLEN*/
 
-.side-circle-left {
-  position: fixed;
-  top: 50%;
-  left: 0%;
-  display: block;
-  border-radius: 0 150px 150px 0;
-  -webkit-transition: all 2s ease;
+.columns.four {
+    width: 50%;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
-.side-circle-left:hover {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  border-radius: 0;
+.padding {
+    padding: 15px;
 }
 
-.side-circle-right {
-  position: fixed;
-  top: 50%;
-  right: 0%;
-  display: block;
-  border-radius: 150px 0 0 150px;
-  -webkit-transition: all 2s ease;
+.columns {
+    float: left;
 }
 
-.side-circle-right:hover {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  border-radius: 0;
+.padding-top {
+    padding-top: 35px;
 }
 
-.traffic-light-right {
-	float: right;
-	position: relative;
-	width: 25%;
-	margin-right: 20%;
-  
-	padding-right: 0;
-	padding-left: 0;
-	padding-bottom: 25%;
-	border-radius: 50%;
-	overflow: hidden;
-  background-image: url(http://www.dewaele.com/assets/files/made/assets/files/circles/salondagen_202_202_s_c1_c_c_0_0_1.jpg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-	/*ckground: linear-gradient(#61bf61, #4c944c);*/
+.bg-white {
+    background-color: #fff;
 }
 
-.traffic-light-left {
-	float: left;
-	position: relative;
-	width: 25%;
-	margin-left: 20%;
-  
-	padding-right: 0;
-	padding-left: 0;
-	padding-bottom: 25%;
-	border-radius: 50%;
-	overflow: hidden;
-  background-image: url(http://www.dewaele.com/assets/files/made/assets/files/circles/salondagen_202_202_s_c1_c_c_0_0_1.jpg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-	/*ckground: linear-gradient(#61bf61, #4c944c);*/
+.text-center {
+    text-align: center;
 }
 
-.traffic-light-text {
-	position: absolute;
-	text-align: center;
-	color: #FFF;
+img.round {
+    -moz-border-radius: 100px;
+    -webkit-border-radius: 100px;
+    border-radius: 100px;
+    max-width: 100%;
+    height: auto !important;
+    vertical-align: middle;
+    width: 142px;
 }
+
