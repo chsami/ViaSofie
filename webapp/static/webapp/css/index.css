@@ -161,3 +161,80 @@ section.client .section-title {
     border-radius: 5px;
 }
 
+.carousel-client .slide img{
+  width: 50%;
+}
+
+/****************/
+/* side-circles */
+/****************/
+
+.side-circle-left {
+  position: fixed;
+  top: 50%;
+  left: 0%;
+  display: block;
+  border-radius: 0 150px 150px 0;
+  -webkit-transition: all 2s ease;
+}
+
+.side-circle-left:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border-radius: 0;
+}
+
+.side-circle-right {
+  position: fixed;
+  top: 50%;
+  right: 0%;
+  display: block;
+  border-radius: 150px 0 0 150px;
+  -webkit-transition: all 2s ease;
+}
+
+.side-circle-right:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border-radius: 0;
+}
+
+.traffic-light-right {
+	float: right;
+	position: relative;
+	width: 25%;
+	margin-right: 20%;
+  
+	padding-right: 0;
+	padding-left: 0;
+	padding-bottom: 25%;
+	border-radius: 50%;
+	overflow: hidden;
+  background-image: url(http://www.dewaele.com/assets/files/made/assets/files/circles/salondagen_202_202_s_c1_c_c_0_0_1.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+	/*ckground: linear-gradient(#61bf61, #4c944c);*/
+}
+
+.traffic-light-left {
+	float: left;
+	position: relative;
+	width: 25%;
+	margin-left: 20%;
+  
+	padding-right: 0;
+	padding-left: 0;
+	padding-bottom: 25%;
+	border-radius: 50%;
+	overflow: hidden;
+  background-image: url(http://www.dewaele.com/assets/files/made/assets/files/circles/salondagen_202_202_s_c1_c_c_0_0_1.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+	/*ckground: linear-gradient(#61bf61, #4c944c);*/
+}
+
+.traffic-light-text {
+	position: absolute;
+	text-align: center;
+	color: #FFF;
+}

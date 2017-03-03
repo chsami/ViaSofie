@@ -31,3 +31,59 @@ $(window).load(function() {
         controls: false
     });
 });
+
+
+/**********************/
+/*   	Bollen        */
+/**********************/
+
+$(function() {
+	$(window).resize(function() {
+		resizeTrafficLightText();
+	});
+
+	resizeTrafficLightText();
+});
+
+function resizeTrafficLightText() {
+	$(".traffic-light-right").each(function(i, circle) {
+		var text = $(circle).find("span");
+		var circleW, circleH, textW, textH, textSize, leftPos, topPos;
+
+		circleW = $(circle).width();
+		circleH = $(circle).height();
+
+		textSize = circleW * 0.7;
+		$(text).css('font-size', textSize);
+		while (($(text).width() * 1.2) > circleW ) {
+			$(text).css('font-size', --textSize);
+		}    
+
+		leftPos = (circleW - $(text).width()) / 2; 
+		topPos = (circleW - $(text).height()) / 2;
+
+		$(text).css('left', leftPos);
+		$(text).css('top', topPos);
+	});
+
+
+    $(".traffic-light-left").each(function(i, circle) {
+		var text = $(circle).find("span");
+		var circleW, circleH, textW, textH, textSize, leftPos, topPos;
+
+		circleW = $(circle).width();
+		circleH = $(circle).height();
+
+		textSize = circleW * 0.7;
+		$(text).css('font-size', textSize);
+		while (($(text).width() * 1.2) > circleW ) {
+			$(text).css('font-size', --textSize);
+		}    
+
+		leftPos = (circleW - $(text).width()) / 2; 
+		topPos = (circleW - $(text).height()) / 2;
+
+		$(text).css('left', leftPos);
+		$(text).css('top', topPos);
+	});
+}
