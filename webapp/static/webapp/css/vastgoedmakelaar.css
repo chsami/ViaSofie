@@ -1,0 +1,292 @@
+    
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+
+html,
+body {
+  /*font-family: "Open Sans","Roboto",helvetica, arial,sans-serif;*/
+  /*font-size: 62.5%;*/
+}
+
+body {
+  background: #fafafa;
+  /*color: #333;*/
+}
+
+.vastgoedmakelaar a {
+  text-decoration: none;
+  color:#17d;
+}
+
+.vastgoedmakelaar p,
+.vastgoedmakelaar li,
+.vastgoedmakelaar time {
+  font-size: 1rem;
+  margin: 0 0 2.4rem;
+}
+
+.vastgoedmakelaar h2 {
+  /*font: 400 2.4rem/3.6rem "PT Serif", palatino, times, serif;*/
+  margin: 0 0 2.4rem;
+}
+
+.vastgoedmakelaar img {
+  border: 0;
+  height: auto;
+  max-width: 100%;
+}
+
+.vastgoedmakelaar img:hover {
+  filter: alpha(opacity=9000);
+  opacity: 0.90;
+  filter: alpha(opacity=90);
+}
+
+.vastgoedmakelaar figure {
+  margin: 0;
+  line-height: 0;
+}
+
+article,
+figure,
+footer,
+header,
+.vastgoedmakelaar {
+  display: block;
+}
+/*--- Clearings ---*/
+
+.vastgoedmakelaar header:before,
+.vastgoedmakelaar header:after,
+.vastgoedmakelaar:before,
+.vastgoedmakelaar:after {
+  content: "";
+  display: table;
+}
+
+.vastgoedmakelaar header:after,
+.vastgoedmakelaar:after {
+  clear: both;
+}
+
+.vastgoedmakelaar {
+  position: relative;
+  width: 1200px;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+
+/*===
+MAGIC (Auto adjust + Equal Height) === */
+.flexgrid {
+margin: 0 auto;
+padding: 0;
+display: -webkit-box; 
+display: -moz-box;
+display: -ms-flexbox;
+display: -webkit-flex;
+display: flex;
+flex-wrap: wrap;
+}
+.flexgrid li {
+position: relative;
+list-style: none;
+display: -webkit-flex;
+display: flex;
+margin: 0;
+flex:auto;
+width: 100%;  /* <-- more control */
+}
+
+.flexgrid li>a {
+position: relative;
+padding: 2.3rem 2.4rem;/*float: left;*/ 
+/*why 23px because border-top;border-bottom - colors.css;*/
+/*making paragraphs and linked block*/
+width: 100%;
+-webkit-flex-direction: column;
+flex-direction: column;
+}
+
+@media (min-width:768px){
+ .flexgrid li {width: 33.333%;
+ }
+}
+.flexgrid li h2,.flexgrid li h3{margin: 0;}
+
+
+/*==== Mini Cards & Related === */
+
+.flexgrid.minicard li>a {
+display: -webkit-flex;
+display: flex;
+padding: 0;
+
+}
+.flexgrid.minicard li {
+  width: 100%;
+  margin-bottom: 4.8rem;
+}
+
+.minicard figure {
+  position: relative;
+  width: 100%;
+  display: block;
+}
+
+.minicard header {
+  position: relative;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  padding: 2.4rem;
+  /*Vertical Centered*/
+  justify-content: center;
+}
+
+.minicard p,
+.minicard time {
+  margin: 0;
+}
+
+.minicard h2 {
+font-size: 1.2em;
+}
+
+.minicard li header:before {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+@media (min-width:600px) {
+  .flexgrid.minicard li>a {
+    -webkit-flex-direction: row;
+    flex-direction: row;
+  }
+  .minicard figure {
+    width: 40%;
+  }
+  .minicard header {
+    width: 60%;
+  }
+  .minicard li:nth-child(odd) figure {
+    order: 0
+  }
+  .minicard li:nth-child(even) figure {
+    order: 1;
+  }
+  .minicard li header:before {
+    top: 50%;
+    margin-top: -12px;
+  }
+  .minicard li:nth-child(odd) header:before {
+    left: -12px;
+    border-right: solid 12px #ffffff;
+    border-top: solid 12px transparent;
+    border-bottom: solid 12px transparent;
+  }
+  .minicard li:nth-child(even) header:before {
+    right: -12px;
+    border-left: solid 12px #ffffff;
+    border-top: solid 12px transparent;
+    border-bottom: solid 12px transparent;
+  }
+}
+
+@media (max-width:599px) {
+  .minicard li header:before {
+    top: -11px;
+    left: 50%;
+    margin-left: -12px;
+    border-bottom: 12px solid #fff;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+  }
+}
+@media (min-width: 600px) and (max-width: 1099px) {
+.minicard figure {
+    vertical-align: middle;
+    text-align: center;
+    min-width: 180px;
+    max-height: 100%;
+}
+.minicard figure img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    }
+}
+@media (min-width:900px) {
+.flexgrid.minicard {
+  margin: 0 -2%;
+}
+.flexgrid.minicard li {
+  margin-right:2%;margin-left: 2%;
+  width: 46%;
+ }
+}
+
+.minicard .long-info {
+    color: #333;
+}
+
+/*=== Minicard Colors === */
+
+.minicard li {
+  /*border: 1px solid #eee;*/
+  background-color: #fff;
+}
+
+.minicard li:hover {
+  /*-webkit-box-shadow: 3px 3px 3px #eee;
+  box-shadow: 3px 3px 3px #eee;*/
+}
+
+.minicard li a {
+  color: inherit;
+}
+
+.minicard li p,
+.minicard li time {
+  color: #bbb;
+}
+
+.minicard figure {
+  background: #f7f7f7;
+}
+
+@media (max-width:1200px){
+  .content-grid h3:after, .content-grid h3:before {
+    width: auto !important;
+  }
+}
+@media (max-width:800px){
+  .content-grid h3:after, .content-grid h3:before {
+    width: auto !important;
+  }
+}
+@media (max-width:600px){
+  .content-grid h3:after, .content-grid h3:before {
+    width: auto !important;
+  }
+}
+@media (max-width: 480px) {
+  .content-grid h3:after, .content-grid h3:before {
+    width: auto !important;
+  }
+}
