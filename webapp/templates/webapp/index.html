@@ -33,17 +33,17 @@
             
                   <div class="four tablet-twelve columns padding" style="height: auto;">
                     <div class="bg-white text-center same-height-child padding padding-top" style="height: 329px;">
-                        <img src="{% static 'webapp/images/bollen/huis_schatten.jpg' %}" width="142" height="142" alt="" class="round">
+                        <a href="/contact"><img src="{% static 'webapp/images/bollen/huis_schatten.jpg' %}" width="142" height="142" alt="" class="round"></a>
                         <h3 class="medium">Laat je huis schatten</h3>
-                        <p>Mail naar <a href="mailto:info@dewaele.com">hello@viasofie.be</a> of neem contact op via de <a href="/contact">contact</a> pagina.</p>
+                        <p>Mail naar <a href="mailto:info@dewaele.com" style="color: #0d3532; font-style: italic;">hello@viasofie.be</a> of neem contact op via de <a href="/contact" style="color: #0d3532; font-style: italic;">contact pagina</a>.</p>
                     </div>
                 </div>
             
                   <div class="four tablet-twelve columns padding" style="height: auto;">
                     <div class="bg-white text-center same-height-child padding padding-top" style="height: 329px;">
-                        <img src="{% static 'webapp/images/bollen/waarom_vastgoedmakelaar.jpg' %}" width="142" height="142" alt="" class="round">
-                        <h3 class="medium">Waarom een vastgoedmakelaar?</h3>
-                        <p>Ontdek <a href="/vastgoedmakelaar">hier</a> de voordelen van een vatgoedmakelaar</p>
+                        <a href="/vastgoedmakelaar"><img src="{% static 'webapp/images/bollen/waarom_vastgoedmakelaar.jpg' %}" width="142" height="142" alt="" class="round"></a>
+                        <h3 class="medium">Waarom Via Sofie?</h3>
+                        <p>Ontdek <a href="/vastgoedmakelaar" style="color: #0d3532; font-style: italic;">hier</a> de voordelen van een vatgoedmakelaar</p>
                     </div>
                 </div>
             
@@ -90,14 +90,14 @@
                     <p>
                         Jouw pand verkocht? Via Sofie zet zich graag in voor de samenleving. Een deel van de commissie wordt weggeschonken aan organisaties die zich inzetten voor een goed doel:
                         <br>
-                        Moeders voor moeders en Ondernemers zonder grenzen
+                        <a href="http://www.moedersvoormoeders.be/" style="color: #0d3532;">Moeders voor moeders</a> en <a href="http://www.ozg.be/" style="color: #0d3532;">Ondernemers zonder grenzen</a>
                     </p>
                 </div>
 
                 <div class="services-grid">
                     <div class="tiles">
                         {% for goed_doel in goede_doelen %}
-                            <a class="tile" href="{{goed_doel.url}}"><img width="225" height="350" src="{{goed_doel.foto_url}}"/>
+                            <a class="tile" href="{{goed_doel.link}}"><img width="225" height="350" src="{{goed_doel.foto_url}}"/>
                                 <div class="details">
                                     <span class="title"></span><span class="info">Bezoek de website van {% inplace_edit "goed_doel.naam|safe" %}</span>
                                 </div>
