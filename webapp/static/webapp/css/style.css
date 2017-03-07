@@ -207,12 +207,13 @@ p {
 }*/
 
 .bottom-head .buy-media:hover {
-    background: url(../images/key_small3.png) center no-repeat;
+    /*background: url(../images/key_small3.png) center no-repeat;*/
+    background: url(../images/key_small3_single_right.png) center no-repeat;
     /*background-size: 100% 100%;*/
 }
 
 .bottom-head .buy-media:hover h6 {
-    text-decoration: line-through;
+    /*text-decoration: line-through;*/
 }
 
 .bottom-head .buy-media h6 {
