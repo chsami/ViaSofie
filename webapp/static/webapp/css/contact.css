@@ -147,6 +147,8 @@ body {
   border-bottom: 1px solid #0d3532;
   -webkit-transition: border 300ms ease-in-out;
   transition: border 300ms ease-in-out;
+
+  border-radius: 0px;
 }
 .main .contact form input:focus,
 .main .contact form textarea:focus {
