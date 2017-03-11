@@ -1,0 +1,21 @@
+.detail-line .left {
+    display: inline-block;
+    width: 50%;
+    line-height: 25px;
+    vertical-align: top;
+}
+
+.detail-line .right {
+    display: inline-block;
+    width: 50%;
+    line-height: 25px;
+    text-align: right;
+}
+
+#details-body {
+    margin-top: 1em;
+}
+
+.detail-line {
+    border-bottom: 1px solid #eee;
+}

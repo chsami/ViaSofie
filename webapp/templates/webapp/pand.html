@@ -5,9 +5,10 @@
 
 <link rel="stylesheet" href="{% static 'webapp/css/flexslider.css' %}" type="text/css" media="screen" />
 <link rel="stylesheet" href="{% static 'webapp/css/gallery.css' %}" type="text/css" media="screen" />
+<link rel="stylesheet" href="{% static 'webapp/css/pand.css' %}" type="text/css" media="screen" />
 
 <!--Facebook meta data-->
-<meta property="og:url"                content="www.localhost:8000/pand/{{ pand.referentienummer|cut:"-"}}" />
+<meta property="og:url"                content="www.viasofie.be/pand/{{ pand.referentienummer|cut:"-"}}" />
 <meta property="og:type"               content="article" />
 <meta property="og:title"              content="Pand in {{pand.straatnaam}} te {{pand.handelstatus}} " />
 <meta property="og:description"        content="{{pand.beschrijving}}" />
@@ -87,73 +88,92 @@
 
                     <div class="col">
 
-                        <div class="col-sm-8">
-                            <h3>{{pand.straatnaam}} {{pand.huisnr}} - {{pand.postcodeID.postcode}} {{pand.postcodeID.stadsnaam}}</h3>
-                            <!--<h4>Beschrijving</h4>-->
-                            <p class="pand-description">{% inplace_edit "pand.beschrijving|safe" %}</p>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active-on-load"><a href="#beschrijving" aria-controls="beschrijving" role="tab" data-toggle="tab">Beschrijving</a></li>
+                            <li role="presentation"><a href="#details" aria-controls="details" role="tab" data-toggle="tab">Details</a></li>
+                            <li role="presentation"><a href="#plan" aria-controls="plan" role="tab" data-toggle="tab">Plan</a></li>
+                            <li role="presentation"><a href="#documenten" aria-controls="documenten" role="tab" data-toggle="tab">Documenten</a></li>
+                            <li role="presentation"><a href="#epc" aria-controls="epc" role="tab" data-toggle="tab">Vlaamse codex R.O. en EPC</a></li>
+                        </ul>
 
-                            <div>
-                                <a href="/contact" class="hvr-sweep-to-right more">Geïnteresseerd in dit pand, neem contact op.</a>
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="beschrijving">
+                                <!--BESCHRIJVING-->
+                                    <div class="col-sm-8">
+                                        <h3>{{pand.straatnaam}} {{pand.huisnr}} - {{pand.postcodeID.postcode}} {{pand.postcodeID.stadsnaam}}</h3>
+                                        <!--<h4>Beschrijving</h4>-->
+                                        <p class="pand-description">{% inplace_edit "pand.beschrijving|safe" %}</p>
+
+                                        <div>
+                                            <a href="/contact" class="hvr-sweep-to-right more">Geïnteresseerd in dit pand, neem contact op.</a>
+                                        </div>
+                                    </div> <!--col-sm-8-->
+
+                                    <div class="col-sm-1" style="margin-left: -15px;">
+                                    </div> <!--col-sm-1-->
+
+                                    <div class="col-sm-3">
+                                        <div class="buy-sin-single">
+                                            <div class="col-sm-5 middle-side immediate">
+
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Prijs: </td>
+                                                            <td>€ {% inplace_edit "pand.prijs" %}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>ref.: </td>
+                                                            <td>{{ pand.referentienummer|cut:'-' }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><i class="fa fa-bed"></i></td>
+                                                            <td>9</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><i class="fa fa-tint"></td>
+                                                            <td>3</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><i class="fa fa-car"></i></td>
+                                                            <td>Ja</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table> <!--table-->
+
+                                            </div> <!--col-sm-5 middle-side immediate-->
+                                            
+                                            <div class="clearfix"></div> <!--clearfix-->
+                                        </div> <!--buy-sin-single-->
+                                    </div> <!--col-sm-3-->
+                                <!--END OF BESCHRIJVING-->
                             </div>
-                        </div> <!--col-sm-8-->
+                            <div role="tabpanel" class="tab-pane" id="details">
+                                <!--DETAILS-->
+                                <div class="col-sm-12">
+                                    <h3>Details</h3>
+                                    <div class="row" id="details-body">
 
-                        <div class="col-sm-1" style="margin-left: -15px;">
-                        </div> <!--col-sm-1-->
+                                        <div class="col-sm-6">
+                                            <div class="detail-line"><div class="left">Gevelbreedte</div><div class="right"> 0.0 m</div></div>
+                                            <div class="detail-line"><div class="left">Straatbreedte</div><div class="right"> 0.0 m</div></div>
+                                            
+                                            <div class="detail-line"><div class="left">Slaapkamers</div><div class="right"> 9 </div></div>
+                                            <div class="detail-line"><div class="left">Badkamers</div><div class="right"> 3 </div></div>
+                                        </div>
 
-                        <div class="col-sm-3">
-                            <div class="buy-sin-single">
-                                <div class="col-sm-5 middle-side immediate">
-
-                                    <table class="table">
-                                        <tbody>
-                                            <tr>
-                                                <td>Prijs: </td>
-                                                <td>€ {% inplace_edit "pand.prijs" %}</td>
-                                            </tr>
-                                            <tr>
-                                                <td>ref.: </td>
-                                                <td>{{ pand.referentienummer|cut:'-' }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td><i class="fa fa-bed"></i></td>
-                                                <td>9</td>
-                                            </tr>
-                                            <tr>
-                                                <td><i class="fa fa-tint"></td>
-                                                <td>3</td>
-                                            </tr>
-                                            <tr>
-                                                <td><i class="fa fa-car"></i></td>
-                                                <td>Ja</td>
-                                            </tr>
-                                        </tbody>
-                                    </table> <!--table-->
-
-                                    <!--<div class="row">
-                                            <a class="btn btn-info btn-xs" href="mailto:?subject=Pand &body={{url}}" style="margin-bottom: 1%;"><span class="glyphicon glyphicon-envelope"></span> Email</a>
-                                            <a data-pin-do="buttonBookmark" data-pin-lang="en" data-pin-save="true" href="https://www.pinterest.com/pin/create/button/" style="margin-bottom: 1%;"></a>
-                                            <div class="fb-share-button" data-href="url" data-layout="button" data-mobile-iframe="true" style="margin-bottom: 1%;"></div>
-
-                                            <div class="twitter-share-posdiv" style="margin-bottom: 1%;">
-                                                <a class="twitter-share-button" href="http://twitter.com/share?text=Pand in {{pand.straatnaam}} te {{pand.handelstatus}}.&url={{url}}&hashtags=Via Sofie">Tweet </a>
-                                            </div>
-                                    </div>-->
-
-                                </div> <!--col-sm-5 middle-side immediate-->
-                                
-                                <div class="clearfix"></div> <!--clearfix-->
-                            </div> <!--buy-sin-single-->
-                        </div> <!--col-sm-3-->
-
-                                    <!--<div class="row">
-                                            <a class="btn btn-info btn-xs" href="mailto:?subject=Pand &body={{url}}"><span class="glyphicon glyphicon-envelope"></span> Email</a>
-                                            <a data-pin-do="buttonBookmark" data-pin-lang="en" data-pin-save="true" href="https://www.pinterest.com/pin/create/button/"></a>
-                                            <a><div class="fb-share-button" data-href="url" data-layout="button" data-mobile-iframe="true"></div></a>
-
-                                            <div class="twitter-share-posdiv">
-                                                <a class="twitter-share-button" href="http://twitter.com/share?text=Pand in {{pand.straatnaam}} te {{pand.handelstatus}}.&url={{url}}&hashtags=Via Sofie">Tweet </a>
-                                            </div>
-                                    </div>-->
+                                        <div class="col-sm-6">
+                                            <div class="detail-line"><div class="left">Referentie nr.</div><div class="right"> 3732 TCV </div></div>
+                                            <div class="detail-line"><div class="left">Beschikbaarheid</div><div class="right"> mits inachtneming huurders </div></div>                                         
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--END OF DETAILS-->
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="plan">...</div>
+                            <div role="tabpanel" class="tab-pane" id="documenten">...</div>
+                            <div role="tabpanel" class="tab-pane" id="epc">...</div>
+                        </div>
 
                     </div> <!--col-->
 
