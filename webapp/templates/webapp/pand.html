@@ -148,6 +148,8 @@
                                     </div> <!--col-sm-3-->
                                 <!--END OF BESCHRIJVING-->
                             </div>
+
+                            
                             <div role="tabpanel" class="tab-pane" id="details">
                                 <!--DETAILS-->
                                 <div class="col-sm-12">
@@ -170,9 +172,32 @@
                                 </div>
                                 <!--END OF DETAILS-->
                             </div>
-                            <div role="tabpanel" class="tab-pane" id="plan">...</div>
-                            <div role="tabpanel" class="tab-pane" id="documenten">...</div>
-                            <div role="tabpanel" class="tab-pane" id="epc">...</div>
+
+
+                            <div role="tabpanel" class="tab-pane" id="plan">
+                                    <div class="row">
+                                        <div class="col-sm-12 product-display">
+                                            <div class="col-sm-12 product-preview">
+                                                <div class="zoom-btn"><span class="fa fa-search" aria-hidden="true"></div>
+                                                <div class="zoom-view">
+                                                    <img id="zoom-image" src="{% static 'webapp/images/plattegrond_demo.jpg' %}">
+                                                </div>
+                                                
+                                                <img id="product-image" src="{% static 'webapp/images/plattegrond_demo.jpg' %}">
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div> <!--<div role="tabpanel" class="tab-pane" id="plan">-->
+
+
+                            <div role="tabpanel" class="tab-pane" id="documenten">
+                                
+                            </div> <!--<div role="tabpanel" class="tab-pane" id="documenten">-->
+
+
+                            <div role="tabpanel" class="tab-pane" id="epc">
+
+                            </div> <!--<div role="tabpanel" class="tab-pane" id="epc">-->
                         </div>
 
                     </div> <!--col-->
@@ -311,4 +336,5 @@
 <!--End of Flexislider-->
 
 <script type='text/javascript' src="{% static 'webapp/scripts/bootstrap-tagsinput.js' %}"></script>
+<script type='text/javascript' src="{% static 'webapp/scripts/pand.js' %}"></script>
 {% endblock content %}

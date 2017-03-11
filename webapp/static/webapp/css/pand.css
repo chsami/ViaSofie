@@ -19,3 +19,61 @@
 .detail-line {
     border-bottom: 1px solid #eee;
 }
+
+/*
+
+
+PLAN*/
+
+.product-display {
+    padding-left:0;
+    display:flex;
+    flex-wrap:wrap;
+}
+
+#product-image { 
+    width:100%; 
+}
+
+
+.zoom-btn { 
+    position:absolute;
+    height:2em;
+    width:2em;
+    border:solid 2px #999;
+    padding:.375em;
+    border-radius:100%;
+    line-height:1em;
+    color:#999;
+    z-index:5;
+}
+
+.zoom-btn.active { 
+    background:#999;
+    color:#fff;
+}
+
+.zoom-view {
+    display:none;
+    position:absolute;
+    height:12em;
+    width:12em;
+    border:solid 2px #999;
+    border-radius:100%;
+    overflow:hiden;
+    z-index:2;
+}
+
+.zoom-view img { 
+    position:absolute;
+}
+
+.activeZoom { 
+    overflow:hidden;
+}
+
+
+/*
+END OF PLAN
+
+    */
