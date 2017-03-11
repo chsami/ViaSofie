@@ -12,7 +12,7 @@
     text-align: right;
 }
 
-#details-body {
+#col-body {
     margin-top: 1em;
 }
 
@@ -77,3 +77,22 @@ PLAN*/
 END OF PLAN
 
     */
+
+
+
+/*DOCUMENTEN
+
+*/
+.documenten a i {
+    color: #b22222;
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.documenten a {
+    color: #0d3532;
+}
+.documenten a:hover {
+    text-decoration: underline !important;
+}
+/*END OF DOCUMENTEN*/
