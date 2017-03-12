@@ -1,3 +1,12 @@
+/*NAVTABS*/
+
+#navtab-li-pand a{
+    color: #0d3532;
+}
+
+/*END OF NAVTABS*/
+
+/*DETAILS*/
 .detail-line .left {
     display: inline-block;
     width: 50%;
@@ -19,6 +28,8 @@
 .detail-line {
     border-bottom: 1px solid #eee;
 }
+
+/*END OF DETAILS*/
 
 /*
 
@@ -96,3 +107,10 @@ END OF PLAN
     text-decoration: underline !important;
 }
 /*END OF DOCUMENTEN*/
+
+
+/*R.O. en EPC*/
+
+
+
+/*END OF R.O. EN EPC*/
