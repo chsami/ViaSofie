@@ -447,12 +447,7 @@ def referenties(request):
         'all_tags': all_tags,
     }
 
-
-
-    template = 'webapp/panden.html'
-    if request.is_ajax():
-        template = 'webapp/panden_item.html'
-    return render_to_response(template, context, context_instance=RequestContext(request))
+    return render_to_response('webapp/referenties.html', context, context_instance=RequestContext(request))
 
 def account(request):
     formlogin = slogin(request)
