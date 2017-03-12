@@ -111,6 +111,85 @@ END OF PLAN
 
 /*R.O. en EPC*/
 
-
+/*UTILISES DETIALS CSS*/
 
 /*END OF R.O. EN EPC*/
+
+
+/*SOCIAL*/
+
+.social-share {
+    text-align: center;
+    display: block;
+    margin: 30px 0;
+    padding: 30px 0;
+    border-top: 1px solid #acacac;
+    border-bottom: 1px solid #acacac;
+}
+
+.social {
+  margin-top: 2em;
+  font-family: Arial;
+  text-align: center;
+}
+.social a {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 34px;
+  line-height: 50px;
+  color: #0d3532;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+}
+
+.fb-share-button {
+    top: 6px;
+}
+
+
+
+
+/*=============================*/
+
+.mn-social-bottom-c {
+}
+.mn-social-bottom-c p{
+    /*margin:-85px 0 20px;*/
+    text-align:center;font-family:'Playball',cursive;
+    font-size:25px;
+    color:#5a5a5a;
+}
+.mn-social-bottom{
+    background:#f5f5f5;
+    width:46px;
+    height:46px;
+    box-sizing:border-box;
+    padding:13px 0 0;
+    color:#0d3532;
+    border-radius:4px;
+    margin:0 7.5px 15px;
+    transition:all .3s;
+    font-size:19px;
+    display:inline-block;
+    text-align:center;
+    position:relative;
+}
+.mn-social-bottom:hover{
+    background:#0d3532;
+    color:#fff;
+    top:-3px;
+}
+#mn-social-bottom-hidden{
+    display:none;
+}
+.fa-plus {
+    transition:-webkit-transform 0.3s;
+}
+.fa-plus.mn-social-r {
+    -webkit-transform:rotate(45deg);
+}
+
+/*END OF SOCIAL*/
