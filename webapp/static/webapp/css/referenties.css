@@ -17,6 +17,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -moz-font-feature-settings: "liga" on;
+  padding-top: 70px;
 }
 img {
   height: auto;
@@ -135,4 +136,10 @@ img {
 .sold-card {
   position: absolute;
     z-index: 10;
+}
+
+@media (max-width: 375px) {
+  .sold-card {
+    height: 86px;
+  }
 }
