@@ -16,8 +16,9 @@ body a {
 /*Landing page*/
 
 #landing{
-  height:82%;
-  background: linear-gradient(rgba(0, 0, 75, 0.2), rgba(30, 0, 0, 0.2)),url(http://www.credotimmobilier.com/fichiers/bg/images/bg.jpg) no-repeat center center fixed;
+  height:84%;
+  /*background: linear-gradient(rgba(0, 0, 75, 0.2), rgba(30, 0, 0, 0.2)),url(http://www.credotimmobilier.com/fichiers/bg/images/bg.jpg) no-repeat center center fixed;*/
+  background: linear-gradient(rgba(0, 0, 75, 0.3), rgba(30, 0, 0, 0.3)),url(../images/home/16.jpg) no-repeat center center fixed;
   background-size:cover;
   -webkit-background-size:cover;
   -o-background-size:cover;
@@ -31,7 +32,7 @@ body a {
 a:hover,a:focus{text-decoration:none;}
 .svg-wrapper {
   position: relative;
-  top: 35%;
+  top: 45%;
   transform: translateY(-50%);
 	margin: 0 auto;
   width: 320px;
