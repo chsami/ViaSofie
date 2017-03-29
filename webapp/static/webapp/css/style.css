@@ -18,7 +18,8 @@ body a {
 #landing{
   height:84%;
   /*background: linear-gradient(rgba(0, 0, 75, 0.2), rgba(30, 0, 0, 0.2)),url(http://www.credotimmobilier.com/fichiers/bg/images/bg.jpg) no-repeat center center fixed;*/
-  background: linear-gradient(rgba(0, 0, 75, 0.3), rgba(30, 0, 0, 0.3)),url(../images/home/16.jpg) no-repeat center center fixed;
+  background: linear-gradient(rgba(0, 0, 75, 0.3), rgba(30, 0, 0, 0.3)),url(../images/home/_K4C3798-bewerkt.jpg) no-repeat top center fixed;
+  /*background: url(../images/home/_K4C3798-bewerkt.jpg) no-repeat top center fixed;*/
   background-size:cover;
   -webkit-background-size:cover;
   -o-background-size:cover;

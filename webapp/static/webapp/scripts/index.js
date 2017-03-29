@@ -9,7 +9,7 @@ function hideURLbar() { window.scrollTo(0, 1); }
 $(window).load(function() {
     $('.carousel-client').bxSlider({
         auto: true,
-        slideWidth: 234,
+        slideWidth: 260,
         minSlides: 2,
         maxSlides: 5,
         controls: false
