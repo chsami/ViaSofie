@@ -118,6 +118,10 @@ END OF PLAN
 
 /*SOCIAL*/
 
+#social-row {
+    margin-right: 0px; 
+}
+
 .social-share {
     text-align: center;
     display: block;
