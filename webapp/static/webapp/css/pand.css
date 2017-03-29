@@ -94,6 +94,10 @@ END OF PLAN
 /*DOCUMENTEN
 
 */
+#doc-row {
+    margin-bottom: 15px;
+}
+
 .documenten a i {
     color: #b22222;
     font-size: 20px;
