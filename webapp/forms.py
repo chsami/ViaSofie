@@ -117,11 +117,6 @@ class Pand(forms.ModelForm):
 		model = Pand
 		fields = ['user', 'straatnaam', 'huisnr', 'postcodeID', 'handelstatus', 'voortgang',]
 
-class Tag(forms.ModelForm):
-    class Meta:
-        model = Tag
-        fields = ['tagnaam']
-
 class Log(forms.ModelForm):
 	class Meta:
 		model = Log
@@ -131,7 +126,7 @@ class Log(forms.ModelForm):
 class Foto(forms.ModelForm):
 	class Meta:
 		model = Foto
-		fields = ['url', 'pand']
+		fields = ['docfile', 'pand']
 
 # class ContactForm(forms.ModelForm):
 # 	"""

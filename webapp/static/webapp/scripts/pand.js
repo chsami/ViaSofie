@@ -41,10 +41,5 @@ $(document).ready(function() {
   mnsocial[2].href = 'https://www.linkedin.com/shareArticle?mini=true&url=' + url;
   mnsocial[3].href = 'https://plus.google.com/share?url=' + url;
   mnsocial[4].href = 'https://pinterest.com/pin/create/link/?url=' + url;
-  mnsocial[6].href = 'http://www.tumblr.com/share/link?url=' + url;
-  mnsocial[7].href = 'https://getpocket.com/save?url=' + url;
-  mnsocial[8].href = 'http://www.stumbleupon.com/submit?url=' + url;
-  mnsocial[9].href = 'http://www.reddit.com/submit?url=' + url;
-  mnsocial[10].href = 'mailto:?&subject=' + url + '&body=' + title + ', ' + url;
-  mnsocial[11].href = 'https://delicious.com/share?url=' + url;
+  mnsocial[5].href = 'mailto:?&subject=Via Sofie&body=' + 'Bekijk dit pand bij Via Sofie!' + '%0D%0A' + url;
 });

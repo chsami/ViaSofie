@@ -13,8 +13,7 @@ from webapp.models import Faq as FaqModel
 from webapp.models import Partner as PartnerModel
 from webapp.models import User as UserModel
 from webapp.models import GoedDoel as GoedDoelModel
-from webapp.models import TagPand as TagPandModel
-from webapp.models import Tag as TagModel
+from webapp.models import PandDetail as PandDetailModel
 from webapp.models import Stad as StadModel
 from webapp.models import StatusBericht as StatusBerichtModel
 from webapp.models import Handelstatus as HandelstatusModel
@@ -54,10 +53,7 @@ def slogin(request):
     else:
         formlogin=AuthenticationForm()
     return formlogin
-# def kopen(request):
-#     return '/panden/handelstatus=1'
-# def huren(request):
-#     return '/panden/handelstatus=0'
+    
 def ssearchform(request):
     if request.method == "POST" and "searchbtngo" in request.POST:
         searchform = SearchForm(request.POST)
@@ -101,10 +97,6 @@ def ssearchform(request):
         searchform = SearchForm()
     return searchform
 
-# def filtertags(request):
-#     if request.method == 'POST' and 'searchbtn' in request.POST:
-        # panden = PandModel.objects.filter()
-
 def get_all_tags(request):
     all_tagpand_list = TagModel.objects.all()
 
@@ -129,6 +121,9 @@ def index(request):
     if isinstance(searchform, basestring):
         return redirect(searchform)
     panden = PandModel.objects.filter(uitgelicht=True)
+
+
+
     panden_lijst = list(panden)
     uitgelichte_panden = []
     for i in range (0,3):
@@ -139,41 +134,8 @@ def index(request):
     #PARTNERS
     partner_list = PartnerModel.objects.all()
 
-    all_tags = get_all_tags(request);
-    return render_to_response('webapp/index.html', {'all_tags': all_tags, 'dpartners': dpartners, 'uitgelichte_panden': uitgelichte_panden, 'goede_doelen': goede_doelen,'searchform':searchform, 'formlogin':formlogin, 'partner_list': partner_list,},  context_instance=RequestContext(request))
-# def index(request):
-#     dpartners = Data.objects.get(id=11)
-#
-#     formlogin = slogin(request)
-#     if formlogin == False:
-#         return redirect('/login')
-#
-#     if request.method == "POST":
-#         smallsearchform = SmallSearchForm(request.POST)
-#         if smallsearchform.is_valid():
-#             kopen = request.POST['kopen']
-#             if kopen == 'true':
-#                 return redirect('/contact')
-#             elif kopen == 'false':
-#                 return redirect('/panden')
-#
-#             # model_instance = smallsearchform.save(commit=False)
-#             # model_instance.save()
-#
-#     else:
-#             searchform =SearchForm()
-#
-#     panden = PandModel.objects.filter(uitgelicht=True)
-#     panden_lijst = list(panden)
-#     uitgelichte_panden = []
-#     for i in range (0,3):
-#         if len(panden_lijst) > 0:
-#             uitgelichte_panden.append(panden_lijst.pop(random.randint(0, len(panden_lijst) -1)))
-#     # GOEDE DOELEN
-#     goede_doelen = GoedDoelModel.objects.all()
-#     #PARTNERS
-#     partner_list = PartnerModel.objects.all()
-#     return render_to_response('webapp/index.html', {'dpartners': dpartners, 'uitgelichte_panden': uitgelichte_panden, 'goede_doelen': goede_doelen,'searchform':searchform, 'formlogin':formlogin, 'partner_list': partner_list,},  context_instance=RequestContext(request))
+    return render_to_response('webapp/index.html', {'dpartners': dpartners, 'uitgelichte_panden': uitgelichte_panden, 'goede_doelen': goede_doelen,'searchform':searchform, 'formlogin':formlogin, 'partner_list': partner_list,},  context_instance=RequestContext(request))
+
 
 def panddetail(request, pand_referentienummer):
     formlogin = slogin(request)
@@ -217,11 +179,12 @@ def panden(request, filters=None):
         panden = []
         result_queryset = PandModel.objects.all()
         if filters == "handelstatus=1":
+            print "lol"
             result_queryset = result_queryset.filter(handelstatus=1)
             for result in result_queryset:
                 panden.append(result)
-        elif filters == "handelstatus=0":
-            result_queryset = result_queryset.filter(handelstatus=0)
+        elif filters == "handelstatus=2":
+            result_queryset = result_queryset.filter(handelstatus=2)
             for result in result_queryset:
                 panden.append(result)
         else:
@@ -365,8 +328,6 @@ def panden(request, filters=None):
     else:
             searchform = SearchForm()
 
-    all_tags = get_all_tags(request);
-
     # Context (endless pagination)
     context = {
         'panden': panden,
@@ -374,52 +335,11 @@ def panden(request, filters=None):
         'formlogin': formlogin,
         'data': data,
         'searchform': searchform,
-        'all_tags': all_tags,
     }
     template = 'webapp/panden.html'
     if request.is_ajax():
         template = 'webapp/panden_item.html'
     return render_to_response(template, context, context_instance=RequestContext(request))
-
-# def panden(request, filters=None):
-#     data = Data.objects.get(id=13)
-#     # Login form
-#     formlogin = slogin(request)
-#     if formlogin == False:
-#         return redirect('/login')
-#     # SmallSearchForm
-#     if request.method == "POST":
-#         smallsearchform = SmallSearchForm(request.POST)
-#         if smallsearchform.is_valid():
-#             model_instance = smallsearchform.save(commit=False)
-#             model_instance.save()
-#             return redirect('formsucces')
-#     else:
-#             smallsearchform = SmallSearchForm()
-#     # SearchForm
-#     if request.method == "POST":
-#         searchform = SearchForm(request.POST)
-#         if searchform.is_valid():
-#
-#             return redirect('/panden')
-#     else:
-#             searchform = SearchForm()
-#
-#     all_tags = get_all_tags(request);
-#
-#     # Context (endless pagination)
-#     context = {
-#         'panden': PandModel.objects.all().values(),
-#         'panden_item': 'webapp/panden_item.html',
-#         'formlogin': formlogin,
-#         'data': data,
-#         'searchform': searchform,
-#         'all_tags': all_tags,
-#     }
-#     template = 'webapp/panden.html'
-#     if request.is_ajax():
-#         template = 'webapp/panden_item.html'
-#     return render_to_response(template, context, context_instance=RequestContext(request))
 
 def referenties(request):
     data = Data.objects.get(id=9)
@@ -435,8 +355,6 @@ def referenties(request):
     if isinstance(searchform, basestring):
         return redirect(searchform)
 
-    all_tags = get_all_tags(request);
-
     context = {
         # 'panden' = PandModel.objects.get(handelstatus='Verkocht',handelstatus='Verhuurd')
         'searchform': searchform,
@@ -444,7 +362,6 @@ def referenties(request):
         'panden_item': 'webapp/panden_item.html',
         'formlogin': formlogin,
         'data': data,
-        'all_tags': all_tags,
     }
 
     return render_to_response('webapp/referenties.html', context, context_instance=RequestContext(request))
@@ -532,8 +449,8 @@ def advies(request):
     dadvies = Data.objects.get(id=8)
     dfaq = Data.objects.get(id=7)
     faq_list = FaqModel.objects.all()
-    all_tags = get_all_tags(request);
-    return render_to_response('webapp/advies.html', {'all_tags': all_tags, 'dadvies': dadvies, 'dfaq': dfaq, 'faq_list': faq_list, 'formlogin': formlogin, 'searchform': searchform,}, context_instance=RequestContext(request))
+
+    return render_to_response('webapp/advies.html', {'dadvies': dadvies, 'dfaq': dfaq, 'faq_list': faq_list, 'formlogin': formlogin, 'searchform': searchform,}, context_instance=RequestContext(request))
 
 def vastgoedmakelaar(request):
     formlogin = slogin(request)

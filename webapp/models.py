@@ -4,7 +4,7 @@ from django.contrib.auth.models import PermissionsMixin
 import uuid, random, hashlib
 
 class Handelstatus(models.Model):
-    status = models.CharField(max_length=128) #verkoop, verhuur, verpachten, ...
+    status = models.CharField(max_length=128) #te koop, te huur
 
     def __str__(self):
         return self.status
@@ -94,43 +94,41 @@ class Pand(models.Model):
 
     referentienummer = models.UUIDField(unique=True, default=uuid.uuid4, editable=False)
 
+    prijs = models.DecimalField(default=0, max_digits=18, decimal_places=2)
+    slaapkamers = models.DecimalField(default=1, max_digits=10, decimal_places=0)
+    badkamers = models.DecimalField(default=1, max_digits=10, decimal_places=0)
+    parkeerplaats = models.BooleanField(default= False)
+
+    handelstatus = models.ForeignKey(Handelstatus)
+    voortgang = models.ForeignKey(Voortgang)
+    uitgelicht = models.BooleanField(default= False)
+    
     straatnaam = models.CharField(max_length=128)
     huisnr = models.SmallIntegerField()
     busnr = models.CharField(max_length=10, null=True, blank=True)
     postcodeID = models.ForeignKey(Stad)
-    handelstatus = models.ForeignKey(Handelstatus)
-    voortgang = models.ForeignKey(Voortgang)
+
     beschrijving = models.TextField()
-    uitgelicht = models.BooleanField(default= False)
-    prijs = models.DecimalField(default=0, max_digits=18, decimal_places=2)
-    thumbnail_url = models.CharField(max_length=256, null=True, blank=True)
-    oppervlakte = models.CharField(max_length=256, null=True, blank=True)
-    bouwjaar = models.SmallIntegerField()
+
     objects = models.Manager()
 
     def __str__(self):
-        return str(self.referentienummer).replace('-', '') + " - " + str(self.postcodeID.postcode) + " " + str(self.postcodeID.stadsnaam) + ", " + str(self.straatnaam) + " " + str(self.huisnr) + " - " + str(self.user.email)
+        return str(self.referentienummer).replace('-', '')
 
-
-class Tag(models.Model):
+class PandDetail(models.Model):
     #id autocreated by django
-    tagnaam = models.CharField(max_length=128, unique=True)
+    naam = models.CharField(max_length=128)
+    waarde = models.CharField(max_length=128)
 
-    def __str__(self):
-        return self.tagnaam
-
-class TagPand(models.Model):
-    tag = models.ForeignKey(Tag)
     pand = models.ForeignKey(Pand)
-    value = models.CharField(max_length=255, default=1)
 
     def __str__(self):
-        return str(self.pand.referentienummer).replace('-', '') + " - " + str(self.tag.tagnaam) + " (" + str(self.value) + ")"
+        return str(self.naam) + ': ' + str(self.waarde)
 
 class Foto(models.Model):
-    url = models.CharField(max_length=255, null=True, blank=True)
-    thumbnail = models.BooleanField(default= False)
     docfile = models.FileField(upload_to='documents/%Y/%m/%d', blank=True)
+    thumbnail = models.BooleanField(default= False)
+    
     pand = models.ForeignKey(Pand)
 
     def __str__(self):

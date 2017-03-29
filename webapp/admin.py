@@ -8,15 +8,18 @@ from django.contrib.admin import AdminSite
 # Admin/root
 admin.site.register(User)
 admin.site.register(Pand)
+admin.site.register(PandDetail)
 admin.site.register(Handelstatus)
 admin.site.register(Voortgang)
 admin.site.register(Stad)
-admin.site.register(Log)
-admin.site.register(Tag)
+# admin.site.register(Log)
 admin.site.register(Foto)
 admin.site.register(Faq)
-admin.site.register(TagPand)
 admin.site.register(StatusBericht)
-admin.site.register(Ebook)
+# admin.site.register(Ebook)
 admin.site.register(GoedDoel)
-admin.site.register(Data)
+# admin.site.register(Data)
+
+class Foto(admin.ModelAdmin):
+    class Media:
+        js = ('webapp/scripts/jquery.min.js', 'inlines.js',)

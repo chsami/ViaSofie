@@ -44,7 +44,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     #'djng',
     #'grappelli',
-    'django_admin_bootstrapped',
+    # 'django_admin_bootstrapped',
     'rosetta',
     'django.contrib.humanize',
     'django.contrib.admin',

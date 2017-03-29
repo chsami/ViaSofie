@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'^privacy/$', views.privacy, name='privacy'),
     url(r'^account/$', views.account, name='account'),
     url(r'^vastgoedmakelaar/$', views.vastgoedmakelaar, name='vastgoedmakelaar'),
+    url(r'^account/$', views.account, name='account'),
     # url(r'^loginpopup/$', views.loginpopup, name='loginpopup'),
 
 
