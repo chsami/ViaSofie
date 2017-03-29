@@ -10,9 +10,9 @@
 <!--Facebook meta data-->
 <meta property="og:url"                content="www.viasofie.be/pand/{{ pand.referentienummer|cut:"-"}}" />
 <meta property="og:type"               content="article" />
-<meta property="og:title"              content="Pand in {{pand.straatnaam}} te {{pand.handelstatus}} " />
+<meta property="og:title"              content="Pand {{pand.handelstatus}}: {{pand.straatnaam}} {{pand.huisnr}}, {{pand.postcodeID.postcode}} {{pand.postcodeID.stadsnaam}}" />
 <meta property="og:description"        content="{{pand.beschrijving}}" />
-<meta property="og:image"              content="{{pand.thumbnail_url}}" />
+<meta property="og:image"              content="{{fotos[0]}}" />
 <meta property="og:site_name"          content="Via Sofie"/>
 <meta property="app_id"                content="1007959369240278"/>
 <!--End of Facebook meta data-->

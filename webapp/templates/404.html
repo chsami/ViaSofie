@@ -1,5 +1,12 @@
 {% extends 'webapp/base.html' %}
 {% load staticfiles %}
+{% block header %}
+<title>Pagina niet gevonden. | Via Sofie</title>
+
+	<!--meta data-->
+	<meta name="author" content="Sacha Van den Wyngaert">
+{% endblock header %}
+
 {% block content %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'webapp/css/404.css' %}" />
@@ -7,7 +14,7 @@
 
 <div class="error">404</div>
 <br /><br />
-<span class="info">Page not found</span>
+<span class="info">De pagina werd niet gevonden.</span>
 
 
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
