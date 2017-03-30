@@ -84,3 +84,7 @@
 #big-gallery-img {
   height: 773px;
 }
+
+#hidden {
+  display: none;
+}

@@ -110,6 +110,8 @@ class Pand(models.Model):
 
     beschrijving = models.TextField()
 
+    plattegrond = models.FileField(upload_to='documents/%Y/%m/%d', blank=True, null=True)
+
     objects = models.Manager()
 
     def __str__(self):
@@ -125,9 +127,28 @@ class PandDetail(models.Model):
     def __str__(self):
         return str(self.naam) + ': ' + str(self.waarde)
 
+class PandEPC(models.Model):
+    #id autocreated by django
+    naam = models.CharField(max_length=128)
+    waarde = models.CharField(max_length=128)
+
+    pand = models.ForeignKey(Pand)
+
+    def __str__(self):
+        return str(self.naam) + ': ' + str(self.waarde)
+
 class Foto(models.Model):
     docfile = models.FileField(upload_to='documents/%Y/%m/%d', blank=True)
     thumbnail = models.BooleanField(default= False)
+    
+    pand = models.ForeignKey(Pand)
+
+    def __str__(self):
+        return str(self.pand.referentienummer).replace('-', '') + " - " + str(self.id)
+
+class PandDocument(models.Model):
+    docfile = models.FileField(upload_to='documents/%Y/%m/%d', blank=True)
+    naam = models.CharField(max_length=256)
     
     pand = models.ForeignKey(Pand)
 

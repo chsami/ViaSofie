@@ -9,6 +9,8 @@ from django.contrib.admin import AdminSite
 admin.site.register(User)
 admin.site.register(Pand)
 admin.site.register(PandDetail)
+admin.site.register(PandEPC)
+admin.site.register(PandDocument)
 admin.site.register(Handelstatus)
 admin.site.register(Voortgang)
 admin.site.register(Stad)

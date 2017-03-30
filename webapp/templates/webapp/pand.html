@@ -7,12 +7,14 @@
 <link rel="stylesheet" href="{% static 'webapp/css/gallery.css' %}" type="text/css" media="screen" />
 <link rel="stylesheet" href="{% static 'webapp/css/pand.css' %}" type="text/css" media="screen" />
 
+<title>{{pand.straatnaam}} {{pand.huisnr}}, {{pand.postcodeID.postcode}} {{pand.postcodeID.stadsnaam}} | ViaSofie</title>
+
 <!--Facebook meta data-->
 <meta property="og:url"                content="www.viasofie.be/pand/{{ pand.referentienummer|cut:"-"}}" />
 <meta property="og:type"               content="article" />
 <meta property="og:title"              content="Pand {{pand.handelstatus}}: {{pand.straatnaam}} {{pand.huisnr}}, {{pand.postcodeID.postcode}} {{pand.postcodeID.stadsnaam}}" />
 <meta property="og:description"        content="{{pand.beschrijving}}" />
-<meta property="og:image"              content="{{fotos[0]}}" />
+<meta property="og:image"              content="/media/{{thumbnail.docfile}}" />
 <meta property="og:site_name"          content="Via Sofie"/>
 <meta property="app_id"                content="1007959369240278"/>
 <!--End of Facebook meta data-->
@@ -83,7 +85,7 @@
                 <div class="row align-items-start" id="pand-details">
 
                     <div class="col">
-                        <img src="/media/documents/2017/02/15/1eef8b41a2464befbe245005b6a512c4.jpg" class="card img-responsive" id="big-gallery-img">
+                        <img src="/media/{{thumbnail.docfile}}" class="card img-responsive" id="big-gallery-img">
                     </div> <!--col-->
 
                     <div class="col">
@@ -129,15 +131,19 @@
                                                         </tr>
                                                         <tr>
                                                             <td><i class="fa fa-bed"></i></td>
-                                                            <td>9</td>
+                                                            <td>{{pand.slaapkamers}}</td>
                                                         </tr>
                                                         <tr>
-                                                            <td><i class="fa fa-tint"></td>
-                                                            <td>3</td>
+                                                            <td><i class="fa fa-bathtub"></td>
+                                                            <td>{{pand.badkamers}}</td>
                                                         </tr>
                                                         <tr>
                                                             <td><i class="fa fa-car"></i></td>
-                                                            <td>Ja</td>
+                                                            {% if pand.parkeerplaats %}
+                                                                <td>Ja</td>
+                                                            {% else %}
+                                                                <td>Nee</td>
+                                                            {% endif %}
                                                         </tr>
                                                     </tbody>
                                                 </table> <!--table-->
@@ -158,17 +164,34 @@
                                     <div class="row" id="col-body">
 
                                         <div class="col-sm-6">
-                                            <div class="detail-line"><div class="left">Gevelbreedte</div><div class="right"> 0.0 m</div></div>
-                                            <div class="detail-line"><div class="left">Straatbreedte</div><div class="right"> 0.0 m</div></div>
-                                            
-                                            <div class="detail-line"><div class="left">Slaapkamers</div><div class="right"> 9 </div></div>
-                                            <div class="detail-line"><div class="left">Badkamers</div><div class="right"> 3 </div></div>
+                                            <div class="detail-line"><div class="left">Slaapkamers</div><div class="right"> {{pand.slaapkamers}}</div></div>
+                                            <div class="detail-line"><div class="left">Badkamers</div><div class="right"> {{pand.badkamers}}</div></div>
+                                            {% if pand.parkeerplaats %}
+                                                <div class="detail-line"><div class="left">Parkeerplaats</div><div class="right"> Ja</div></div>
+                                            {% else %}
+                                                <div class="detail-line"><div class="left">Parkeerplaats</div><div class="right"> Nee</div></div>
+                                            {% endif %}
+
+                                            {% for pand_detail in pand_details %}
+                                                {% if forloop.counter0|divisibleby:"2" %}
+                                                    <div class="detail-line"><div class="left">{{pand_detail.naam}}</div><div class="right"> {{pand_detail.waarde}}</div></div>
+                                                {% endif %}
+                                            {% endfor %}
                                         </div>
 
                                         <div class="col-sm-6">
-                                            <div class="detail-line"><div class="left">Referentie nr.</div><div class="right"> 3732 TCV </div></div>
-                                            <div class="detail-line"><div class="left">Beschikbaarheid</div><div class="right"> mits inachtneming huurders </div></div>                                         
+                                            <div class="detail-line"><div class="left">Prijs</div><div class="right"> € {% inplace_edit "pand.prijs" %}</div></div>
+                                            <div class="detail-line"><div class="left">Referentie nr.</div><div class="right"> {{ pand.referentienummer|cut:'-' }}</div></div>
+
+                                            {% for pand_detail in pand_details %}
+                                                {% if forloop.counter0|divisibleby:"2" %}
+                                                    <!--Impossible to get here-->
+                                                {% else %}
+                                                    <div class="detail-line"><div class="left">{{pand_detail.naam}}</div><div class="right"> {{pand_detail.waarde}}</div></div>
+                                                {% endif %}
+                                            {% endfor %}                                       
                                         </div>
+
                                     </div>
                                 </div>
                                 <!--END OF DETAILS-->
@@ -179,12 +202,15 @@
                                     <div class="row">
                                         <div class="col-sm-12 product-display">
                                             <div class="col-sm-12 product-preview">
-                                                <div class="zoom-btn"><span class="fa fa-search" aria-hidden="true"></div>
-                                                <div class="zoom-view">
-                                                    <img id="zoom-image" src="{% static 'webapp/images/plattegrond_demo.jpg' %}">
-                                                </div>
+                                                {% if pand.plattegrond %}
+                                                    <div class="zoom-btn"><span class="fa fa-search" aria-hidden="true"></div>
                                                 
-                                                <img id="product-image" src="{% static 'webapp/images/plattegrond_demo.jpg' %}">
+                                                    <div class="zoom-view">
+                                                        <img id="zoom-image" src="/media/{{pand.plattegrond}}">
+                                                    </div>
+                                                    
+                                                    <img id="product-image" src="/media/{{pand.plattegrond}}">
+                                                {% endif %}
                                             </div>
                                         </div>
                                     </div>
@@ -198,30 +224,16 @@
                                             <h3>Documenten</h3>
 
                                             <div class="row" id="col-body">
-                                                <div class="col-sm-4" id="doc-row">
-                                                    <a target="_blank" href="http://deboer.websites2.whoman2.be//Utility/Handlers/GetFile.ashx?estateID=3017195&amp;path=Documents/99ed62f5724c475d9e5ba68a0d8700fb-Inplantingsplan.pdf" class="document">
-                                                        <i class="fa fa-file-pdf-o"></i>
-                                                        Inplantingsplan 
-                                                    </a>
-                                                </div>
-                                                <div class="col-sm-4" id="doc-row">
-                                                    <a target="_blank" href="http://deboer.websites2.whoman2.be//Utility/Handlers/GetFile.ashx?estateID=3017195&amp;path=Documents/99ed62f5724c475d9e5ba68a0d8700fb-Inplantingsplan.pdf" class="document">
-                                                        <i class="fa fa-file-pdf-o"></i>
-                                                        Inplantingsplan 
-                                                    </a>
-                                                </div>
-                                                <div class="col-sm-4" id="doc-row">
-                                                    <a target="_blank" href="http://deboer.websites2.whoman2.be//Utility/Handlers/GetFile.ashx?estateID=3017195&amp;path=Documents/99ed62f5724c475d9e5ba68a0d8700fb-Inplantingsplan.pdf" class="document">
-                                                        <i class="fa fa-file-pdf-o"></i>
-                                                        Inplantingsplan 
-                                                    </a>
-                                                </div>
-                                                <div class="col-sm-4" id="doc-row">
-                                                    <a target="_blank" href="http://deboer.websites2.whoman2.be//Utility/Handlers/GetFile.ashx?estateID=3017195&amp;path=Documents/99ed62f5724c475d9e5ba68a0d8700fb-Inplantingsplan.pdf" class="document">
-                                                        <i class="fa fa-file-pdf-o"></i>
-                                                        Inplantingsplan 
-                                                    </a>
-                                                </div>
+                                                
+                                                {% for pand_document in pand_documenten %}
+                                                    <div class="col-sm-4" id="doc-row">
+                                                        <a target="_blank" href="/media/{{pand_document.docfile}}" class="document">
+                                                            <i class="fa fa-file-pdf-o"></i>
+                                                            {{pand_document.naam}} 
+                                                        </a>
+                                                    </div>
+                                                {% endfor %}
+
                                             </div><!--<div class="row">-->
 
                                         </div><!--<div class="col-md-12 col-lg-10 col-lg-offset-2">-->
@@ -237,20 +249,21 @@
                                     <div class="row" id="col-body">
 
                                         <div class="col-sm-6">
-                                            <div class="detail-line"><div class="left">Stedenbouwkundige vergunningen</div><div class="right"> Ja </div></div>
-                                            <div class="detail-line"><div class="left">Bestemming</div><div class="right"> Woongebied </div></div>
-                                            
-                                            <div class="detail-line"><div class="left">Dagvaardingen</div><div class="right"> Nee </div></div>
-                                            <div class="detail-line"><div class="left">Rechterlijke uitspraken</div><div class="right"> Nee </div></div>
-                                            <div class="detail-line"><div class="left">Voorkooprecht</div><div class="right"> Nee </div></div>
-                                            <div class="detail-line"><div class="left">Verkavelingsvergunning</div><div class="right"> Nee </div></div>
-                                            <div class="detail-line"><div class="left">Overstromingsgebied</div><div class="right"> Niet gelegen in een overstromingsgevoelig gebied </div></div>
+                                            {% for epc in pand_epc %}
+                                                {% if forloop.counter0|divisibleby:"2" %}
+                                                    <div class="detail-line"><div class="left">{{epc.naam}}</div><div class="right"> {{epc.waarde}}</div></div>
+                                                {% endif %}
+                                            {% endfor %}
                                         </div>
 
                                         <div class="col-sm-6">
-                                            <div class="detail-line"><div class="left">EPC</div><div class="right"> In aanvraag </div></div>
-                                            <div class="detail-line"><div class="left">EPC code</div><div class="right"> In aanvraag </div></div>
-                                            <div class="detail-line"><div class="left">Isolatie</div><div class="right"> Ja </div></div>                     
+                                            {% for epc in pand_epc %}
+                                                {% if forloop.counter0|divisibleby:"2" %}
+                                                    <!--Impossible to get here-->
+                                                {% else %}
+                                                    <div class="detail-line"><div class="left">{{epc.naam}}</div><div class="right"> {{epc.waarde}}</div></div>
+                                                {% endif %}
+                                            {% endfor %}                   
                                         </div>
                                     </div>
                                 </div>
@@ -265,10 +278,68 @@
 
             <div class="col-sm-5 buy-sin">
                 <div id="gallery" class="container-fluid">
-                    {% for foto in fotos %}
-                        <img src="/media/{{foto.docfile}}" class="card img-responsive">
+                    {% for i in max_picture_count %}
+                        <div class="side-img">
+                            {% for foto in fotos %}
+                                {% if forloop.counter0 == i %}
+                                    <img src="/media/{{foto.docfile}}" class="card img-responsive" id="shown"/>
+                                {% else %}
+                                    <img src="/media/{{foto.docfile}}" class="card img-responsive" id="hidden"/>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
                     {% endfor %}
                 </div>
+
+
+                <script type = "text/javascript">
+              
+                    var changed = false;
+
+                    function displayNextImage() {
+
+                        $( ".side-img" ).each(function( i ) {
+
+                            $(this).children( ".card" ).each(function( j ) {
+                                if (changed == false && $(this).attr('id') == "shown") {
+                                    $(this).attr('id', 'hidden');
+                                    changed = true;
+                                }
+                                else if (changed == true) {
+                                    $(this).attr("id", "shown");
+                                    changed = null;
+                                }
+                            });
+
+                            if (changed == true) {
+                                $(this).children('.card').first().attr("id", "shown");
+                            }
+
+                            changed = false;
+
+                        });
+
+                    }
+
+                    function startTimer() {
+                        setInterval(function() {
+                            displayNextImage();
+                        }, 10000);
+                    }
+
+                    function getRandomInt(min, max) {
+                        return Math.floor(Math.random() * (max - min + 1)) + min;
+                    }
+
+                    $( window ).load(function() {
+                        if ({{ fotos|length }} > 6) {
+                            startTimer();
+                        }
+                        
+                    });
+                </script>
+
+                
                 <div class="map-buy-single1">
                     <!--<iframe
                         src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCR6SBL79-AAn4d1-TMy0871l8JPciXncM&amp;q={{pand.postcodeID.stadsnaam}},{{pand.straatnaam}},{{pand.huisnr}}"
@@ -337,39 +408,6 @@
             </div>-->
             <!--End of QR-Code-->
 
-        <!--<div class="clearfix"></div>
-        <div class="container">
-            <div class="future">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">                        
-                        <h2>Geïnteresseerd? Neem contact op</h2>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xs-offset-3">
-                        <form id="contact-form" class="form" action="#" method="POST" role="form">
-                            <div class="form-group">
-                                <label class="form-label" for="name">Your Name</label>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Your name" tabindex="1" required>
-                            </div>                            
-                            <div class="form-group">
-                                <label class="form-label" for="email">Your Email</label>
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" tabindex="2" required>
-                            </div>                            
-                            <div class="form-group">
-                                <label class="form-label" for="message">Message</label>
-                                <textarea rows="5" cols="50" name="message" class="form-control" id="message" placeholder="Message..." tabindex="4" required></textarea>                                 
-                            </div>
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-start-order">Send Message</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-            </div>
-        </div>-->
-
         <div class="clearfix"></div>
     </div> <!--buy-single-single-->
 
@@ -382,7 +420,12 @@
                     {% for related_pand in relatedPands %}
                         <li>
                             <div class="project-fur">
-                                <a href="/pand/{{ pand.referentienummer|cut:"-"}}"><img class="img-responsive" src="{{ related_pand.thumbnail_url }}" alt="" /> </a>
+
+                                {% for thumbnail in thumbnails_related %}
+                                    {% if thumbnail.pand.referentienummer == related_pand.referentienummer %}
+                                        <a href="/pand/{{ pand.referentienummer|cut:"-"}}"><img class="img-responsive" src="/media/{{thumbnail.docfile}}" alt="" /> </a>
+                                    {% endif %}
+                                {% endfor %}
                                 <div class="fur">
                                     <div class="fur1">
                                         <span class="fur-money">{% inplace_edit "pand.prijs" %}</span>

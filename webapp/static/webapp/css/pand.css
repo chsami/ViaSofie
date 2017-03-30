@@ -94,6 +94,10 @@ END OF PLAN
 /*DOCUMENTEN
 
 */
+.documenten {
+    margin-left: 15px;
+}
+
 #doc-row {
     margin-bottom: 15px;
 }

@@ -14,6 +14,9 @@ from webapp.models import Partner as PartnerModel
 from webapp.models import User as UserModel
 from webapp.models import GoedDoel as GoedDoelModel
 from webapp.models import PandDetail as PandDetailModel
+from webapp.models import PandEPC as PandEPCModel
+from webapp.models import PandDocument as PandDocumentModel
+from webapp.models import PandReview as PandReviewModel
 from webapp.models import Stad as StadModel
 from webapp.models import StatusBericht as StatusBerichtModel
 from webapp.models import Handelstatus as HandelstatusModel
@@ -161,12 +164,48 @@ def panddetail(request, pand_referentienummer):
     #voeg extra gegevens toe
     relatedPands= PandModel.objects.filter(postcodeID=pand.postcodeID)
 
+    # GET URL
+    url = request.build_absolute_uri()
+
     # Get photos + thumbnail picture (if no picture was selected to be a tumbnail, take the first out of all pictures)
     fotos = FotoModel.objects.filter(pand_id=pand.id)
     try:
         thumbnail = fotos.filter(thumbnail=true)[:1]
     except Exception as ex:
         thumbnail = fotos[0]
+
+    max_picture_count = list(range(6))
+
+
+    # Get thumbnail pictures for related pands (if no picture was selected to be a tumbnail, take the first out of all pictures)
+    thumbnails_related = []
+    for related_pand in relatedPands:
+        fotos = FotoModel.objects.filter(pand_id=related_pand.id)
+        try:
+            thumbnail = fotos.filter(thumbnail=true)[:1]
+        except Exception as ex:
+            thumbnail = fotos[0]
+
+        thumbnails_related.append(thumbnail)
+
+
+    fotos = FotoModel.objects.filter(pand_id=pand.id)
+    try:
+        thumbnail = fotos.filter(thumbnail=true)[:1]
+    except Exception as ex:
+        thumbnail = fotos[0]
+
+
+
+    # Get details
+    pand_details = PandDetailModel.objects.filter(pand_id = pand.id)
+
+    # Get PandEPC
+    pand_epc = PandEPCModel.objects.filter(pand_id = pand.id)
+
+    # Get PandDocuments
+    pand_documenten = PandDocumentModel.objects.filter(pand_id = pand.id)
+
 
     # Get lat long from adress
     geo_adress_string = str(pand.huisnr) + " " + str(pand.straatnaam) + " " + str(pand.postcodeID.stadsnaam) + " Belgie"
@@ -176,7 +215,7 @@ def panddetail(request, pand_referentienummer):
     lat = str(location.latitude).replace(',', '.')
     lng = str(location.longitude).replace(',', '.')
 
-    return render_to_response('webapp/pand.html', {'pand': pand, 'fotos' : fotos, 'thumbnail': thumbnail, 'relatedPands' : relatedPands,'url': url , 'formlogin':formlogin, 'searchform': searchform, 'lat': lat, 'lng': lng}, context_instance=RequestContext(request))
+    return render_to_response('webapp/pand.html', {'pand': pand, 'pand_details': pand_details, 'pand_epc': pand_epc, 'pand_documenten': pand_documenten, 'max_picture_count': max_picture_count, 'fotos' : fotos, 'thumbnail': thumbnail, 'thumbnails_related': thumbnails_related, 'relatedPands' : relatedPands,'url': url , 'formlogin':formlogin, 'searchform': searchform, 'lat': lat, 'lng': lng}, context_instance=RequestContext(request))
 
 def panden(request, filters=None):
     # filters ='handelstatus=' + handelstatus + '&plaats_postcode_refnummer=' + plaats_postcode_renummer + '&prijs_range=' + prijs_range + '&tags=' + pand_type + ',Badkamers[' + aantal_badkamers + '],Slaapkamers[' + aantal_slaapkamers + '],'  + tags
