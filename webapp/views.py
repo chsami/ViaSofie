@@ -129,12 +129,25 @@ def index(request):
     for i in range (0,3):
         if len(panden_lijst) > 0:
             uitgelichte_panden.append(panden_lijst.pop(random.randint(0, len(panden_lijst) -1)))
+
+    # Get photos + thumbnail picture (if no picture was selected to be a tumbnail, take the first out of all pictures)
+    thumbnails = []
+    for pand in uitgelichte_panden:
+        fotos = FotoModel.objects.filter(pand_id=pand.id)
+        try:
+            thumbnail = fotos.filter(thumbnail=true)[:1]
+        except Exception as ex:
+            thumbnail = fotos[0]
+
+        thumbnails.append(thumbnail) 
+    
+
     # GOEDE DOELEN
     goede_doelen = GoedDoelModel.objects.all()
     #PARTNERS
     partner_list = PartnerModel.objects.all()
 
-    return render_to_response('webapp/index.html', {'dpartners': dpartners, 'uitgelichte_panden': uitgelichte_panden, 'goede_doelen': goede_doelen,'searchform':searchform, 'formlogin':formlogin, 'partner_list': partner_list,},  context_instance=RequestContext(request))
+    return render_to_response('webapp/index.html', {'dpartners': dpartners, 'uitgelichte_panden': uitgelichte_panden, 'thumbnails': thumbnails, 'goede_doelen': goede_doelen,'searchform':searchform, 'formlogin':formlogin, 'partner_list': partner_list,},  context_instance=RequestContext(request))
 
 
 def panddetail(request, pand_referentienummer):
@@ -147,18 +160,13 @@ def panddetail(request, pand_referentienummer):
     pand = PandModel.objects.get(referentienummer=pand_referentienummer)
     #voeg extra gegevens toe
     relatedPands= PandModel.objects.filter(postcodeID=pand.postcodeID)
+
+    # Get photos + thumbnail picture (if no picture was selected to be a tumbnail, take the first out of all pictures)
     fotos = FotoModel.objects.filter(pand_id=pand.id)
-
-    # Tags van pand moeten op de volgende wijze worden megegeven: "Zwembad,Veranda,Tuin"
-    tagpand_list = TagPandModel.objects.filter(pand_id=pand.id)
-    tag_data = ""
-    for tagpand in tagpand_list:
-        tag_data += "%s (%s)," % (str(tagpand.tag), tagpand.value)
-    # Laatste onnodige comma wordt weggehaald
-    tag_data = tag_data[:-1]
-    url = request.build_absolute_uri()
-
-    all_tags = get_all_tags(request)
+    try:
+        thumbnail = fotos.filter(thumbnail=true)[:1]
+    except Exception as ex:
+        thumbnail = fotos[0]
 
     # Get lat long from adress
     geo_adress_string = str(pand.huisnr) + " " + str(pand.straatnaam) + " " + str(pand.postcodeID.stadsnaam) + " Belgie"
@@ -168,7 +176,7 @@ def panddetail(request, pand_referentienummer):
     lat = str(location.latitude).replace(',', '.')
     lng = str(location.longitude).replace(',', '.')
 
-    return render_to_response('webapp/pand.html', {'pand': pand, 'fotos' : fotos, 'relatedPands' : relatedPands, 'tag_data': tag_data, 'all_tags': all_tags,'url': url , 'formlogin':formlogin, 'searchform': searchform, 'lat': lat, 'lng': lng}, context_instance=RequestContext(request))
+    return render_to_response('webapp/pand.html', {'pand': pand, 'fotos' : fotos, 'thumbnail': thumbnail, 'relatedPands' : relatedPands,'url': url , 'formlogin':formlogin, 'searchform': searchform, 'lat': lat, 'lng': lng}, context_instance=RequestContext(request))
 
 def panden(request, filters=None):
     # filters ='handelstatus=' + handelstatus + '&plaats_postcode_refnummer=' + plaats_postcode_renummer + '&prijs_range=' + prijs_range + '&tags=' + pand_type + ',Badkamers[' + aantal_badkamers + '],Slaapkamers[' + aantal_slaapkamers + '],'  + tags
@@ -232,7 +240,6 @@ def panden(request, filters=None):
                     #groter of gelijk aan minimum value vb.: 500000
                     result_queryset = result_queryset.filter(prijs__lte=int(filterset.split('=')[1].split(',')[1]))
                     print result_queryset
-    #clean tot hier zowiezo correct
                 # Check for tags and fill list with pand_id's
 
 
@@ -264,32 +271,12 @@ def panden(request, filters=None):
                         print "temp:" + str(temp[1].pand_id)
                         temp = temp.filter(value__gte=int(hoeveelheid_tag))
 
-                        # for tagpand in temp:
-                        #     tem = temp.get(id =temp[i].pand_id).filter(value__gte=int(hoeveelheid_tag))
-                        #     tem = tagpand.filter(value__gte= int(hoeveelheid_tag))
-                            # print tem
-                            # tagpand_lijst.append(tem[0])
                         for i in range(0,len(temp)):
                             pand_ids.append(temp[i].pand.id)
 
                         print "pand_ids" + str(pand_ids)
-                        #temp heeft geen verbinding met de result_queryset op dit moment, hij heeft wel 1 tag op zijn eigen model gefilterd
-                        #dit moet worden gecombineerd met de result_queryset later
 
-                            #de hoeveelheid panden die je voor deze tag hebt ga je nu 1 voor 1 checken met de opgegeven value die ook in de tag staat
-                        # for tagpand in tagpand_lijst:
-                        #     panden.append(pk= tagpand.id)
-                        #     print "i" + str(i)
-                        # print "tagpand_lijst: " + str(tagpand_lijst)
-                    #er is nu een aparte lijst tagpand_lijst die alle panden bevat die dezelfde
-                        #lijst
-                        # complete_tag_filtered = []
-                        # for tagpand in tagpand_lijst:
-                        #     for tagpand.id
 
-                        # for tagpand in tagpand_lijst:
-                        #     pand_ids.append(tagpand.pand)
-                        #     print "tagpand.pand.id:" +  str(tagpand.pand)
                     print collections.Counter(pand_ids)
                     i = 0
                     for pand_id in pand_ids:
@@ -303,19 +290,6 @@ def panden(request, filters=None):
                         except:
                             print "out of range"
 
-
-                        # print x
-                        # if len(pand_ids) len(tags) #voor tags te combineren
-
-                    # for pand in result_queryset:
-                    #     # print "pand in result_queryset: " + str(pand.id)
-                    #     for pand_id in pand_ids:
-                    #         # print "pand_id in pand_ids: " + str(pand_id)
-                    #         if result_queryset.filter(id=pand_id):
-                    #             # print "found"
-                    #             if result_queryset.get(id=pand_id) not in panden:
-                    #                 # print "added"
-                    #                 panden.append(result_queryset.get(pk=pand_id))
     data = Data.objects.get(id=13)
     # Login form
     formlogin = slogin(request)
@@ -328,9 +302,21 @@ def panden(request, filters=None):
     else:
             searchform = SearchForm()
 
+    # Get photos + thumbnail picture (if no picture was selected to be a tumbnail, take the first out of all pictures)
+    thumbnails = []
+    for pand in panden:
+        fotos = FotoModel.objects.filter(pand_id=pand.id)
+        try:
+            thumbnail = fotos.filter(thumbnail=true)[:1]
+        except Exception as ex:
+            thumbnail = fotos[0]
+
+        thumbnails.append(thumbnail) 
+
     # Context (endless pagination)
     context = {
         'panden': panden,
+        'thumbnails': thumbnails,
         'panden_item': 'webapp/panden_item.html',
         'formlogin': formlogin,
         'data': data,
