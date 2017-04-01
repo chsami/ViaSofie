@@ -90,7 +90,7 @@ class Log(models.Model):
 
 class Pand(models.Model):
     #id autocreated by django
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, blank=True, null=True)
 
     referentienummer = models.UUIDField(unique=True, default=uuid.uuid4, editable=False)
 
@@ -109,6 +109,8 @@ class Pand(models.Model):
     postcodeID = models.ForeignKey(Stad)
 
     beschrijving = models.TextField()
+
+    review = models.TextField(null=True, blank=True)
 
     plattegrond = models.FileField(upload_to='documents/%Y/%m/%d', blank=True, null=True)
 

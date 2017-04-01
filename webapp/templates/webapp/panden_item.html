@@ -16,8 +16,12 @@
 
                 <div class="top-deal1">
                     <h5><a href="/pand/{{ pand.referentienummer|cut:"-"}}">{{ pand.straatnaam }}</a></h5>
-                    <p>Oppervlakte : {{pand.oppervlakte}}</p>
-                    <p class="prijs">€ {{pand.prijs}}</p>
+                    <!--<p>Oppervlakte : {{pand.oppervlakte}}</p>-->
+                    {% if pand.handelstatus.status == "te koop"%}
+                        <p class="prijs">€ {{pand.prijs}}</p>
+                    {% else %}
+                        <p class="prijs">€ {{pand.prijs}} / maand</p>
+                    {% endif %}
                 </div>
 
                 <div class="top-deal2">

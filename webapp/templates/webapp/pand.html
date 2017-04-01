@@ -122,8 +122,20 @@
                                                 <table class="table">
                                                     <tbody>
                                                         <tr>
+                                                            <td>Status: </td>
+                                                            {% if pand.handelstatus.status == "te koop"%}
+                                                                <td>Te koop</td>
+                                                            {% else %}
+                                                                <td>Te huur</td>
+                                                            {% endif %}                                                            
+                                                        </tr>
+                                                        <tr>
                                                             <td>Prijs: </td>
-                                                            <td>€ {% inplace_edit "pand.prijs" %}</td>
+                                                            {% if pand.handelstatus.status == "te koop"%}
+                                                                <td>€ {{pand.prijs|intcomma}}</td>
+                                                            {% else %}
+                                                                <td>€ {{pand.prijs|intcomma}} / maand</td>
+                                                            {% endif %}
                                                         </tr>
                                                         <tr>
                                                             <td>ref.: </td>
@@ -180,7 +192,11 @@
                                         </div>
 
                                         <div class="col-sm-6">
-                                            <div class="detail-line"><div class="left">Prijs</div><div class="right"> € {% inplace_edit "pand.prijs" %}</div></div>
+                                            {% if pand.handelstatus.status == "te koop"%}
+                                                <div class="detail-line"><div class="left">Prijs</div><div class="right"> € {{pand.prijs|intcomma}}</div></div>
+                                            {% else %}
+                                                <div class="detail-line"><div class="left">Prijs</div><div class="right"> € {{pand.prijs|intcomma}} / maand</div></div>
+                                            {% endif %}
                                             <div class="detail-line"><div class="left">Referentie nr.</div><div class="right"> {{ pand.referentienummer|cut:'-' }}</div></div>
 
                                             {% for pand_detail in pand_details %}
@@ -423,13 +439,17 @@
 
                                 {% for thumbnail in thumbnails_related %}
                                     {% if thumbnail.pand.referentienummer == related_pand.referentienummer %}
-                                        <a href="/pand/{{ pand.referentienummer|cut:"-"}}"><img class="img-responsive" src="/media/{{thumbnail.docfile}}" alt="" /> </a>
+                                        <a href="/pand/{{ related_pand.referentienummer|cut:"-"}}"><img class="img-responsive" src="/media/{{thumbnail.docfile}}" alt="" /> </a>
                                     {% endif %}
                                 {% endfor %}
                                 <div class="fur">
                                     <div class="fur1">
-                                        <span class="fur-money">{% inplace_edit "pand.prijs" %}</span>
-                                        <h6 class="fur-name"><a href="/pand/{{ pand.referentienummer|cut:"-"}}">{% inplace_edit "pand.straatnaam" %}</a></h6>
+                                        {% if related_pand.handelstatus.status == "te koop"%}
+                                            <span class="fur-money">€ {{ related_pand.prijs|intcomma }}</span>
+                                        {% else %}
+                                            <span class="fur-money">€ {{ related_pand.prijs|intcomma }} / maand</span>
+                                        {% endif %}                           
+                                        <h6 class="fur-name"><a href="/pand/{{ related_pand.referentienummer|cut:"-"}}">{% inplace_edit "related_pand.straatnaam" %}</a></h6>
                                         <!-- <span>België</span> -->
                                     </div> <!--fur1-->
                                 </div> <!--fur-->

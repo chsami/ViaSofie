@@ -81,7 +81,11 @@
                         {% endif %}
                     {% endfor %}
                     
-                    <span class="four">{{uitgelicht_pand.prijs|intcomma}}</span>
+                    {% if uitgelicht_pand.handelstatus.status == "te koop"%}
+                        <span class="four">€ {{uitgelicht_pand.prijs|intcomma}}</span>
+                    {% else %}
+                        <span class="four">€ {{uitgelicht_pand.prijs|intcomma}} / maand</span>
+                    {% endif %}
                     </a>
                     <div class="most-1">
                         <h5><a href="/pand/{{ uitgelicht_pand.referentienummer|cut:"-"}}">{{uitgelicht_pand.straatnaam}}</a></h5>

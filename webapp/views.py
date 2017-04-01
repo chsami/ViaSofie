@@ -124,6 +124,7 @@ def index(request):
     if isinstance(searchform, basestring):
         return redirect(searchform)
     panden = PandModel.objects.filter(uitgelicht=True)
+    panden = panden.filter(voortgang=1)
 
 
 
@@ -163,6 +164,8 @@ def panddetail(request, pand_referentienummer):
     pand = PandModel.objects.get(referentienummer=pand_referentienummer)
     #voeg extra gegevens toe
     relatedPands= PandModel.objects.filter(postcodeID=pand.postcodeID)
+    relatedPands= relatedPands.filter(handelstatus=pand.handelstatus)
+    relatedPands = relatedPands.filter(voortgang=1)
 
     # GET URL
     url = request.build_absolute_uri()
@@ -225,6 +228,7 @@ def panden(request, filters=None):
     if filters:
         panden = []
         result_queryset = PandModel.objects.all()
+        result_queryset = result_queryset.filter(voortgang=1)
         if filters == "handelstatus=1":
             print "lol"
             result_queryset = result_queryset.filter(handelstatus=1)
@@ -374,17 +378,27 @@ def referenties(request):
 
     #filter panden op verkocht status
     panden = PandModel.objects.all()
-    panden = panden.filter(voortgang=2)
+    panden = panden.exclude(voortgang=1)
     #searchform
     searchform = ssearchform(request)
     if isinstance(searchform, basestring):
         return redirect(searchform)
 
+    thumbnails = []
+    for pand in panden:
+        fotos = FotoModel.objects.filter(pand_id=pand.id)
+        try:
+            thumbnail = fotos.filter(thumbnail=true)[:1]
+        except Exception as ex:
+            thumbnail = fotos[0]
+
+        thumbnails.append(thumbnail) 
+
     context = {
         # 'panden' = PandModel.objects.get(handelstatus='Verkocht',handelstatus='Verhuurd')
         'searchform': searchform,
         'panden': panden,
-        'panden_item': 'webapp/panden_item.html',
+        'thumbnails': thumbnails,
         'formlogin': formlogin,
         'data': data,
     }
