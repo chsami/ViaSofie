@@ -139,7 +139,7 @@ p {
 }
 
 .bottom-head:nth-child(4) {
-    border-right: none;
+    /*border-right: none;*/
 }
 
 .bottom-head a {
@@ -4160,7 +4160,7 @@ ul.nav.nav-pills {
         top: 35%;
     }*/
     .buy-media {
-        padding: 10px 10px;
+        /*padding: 10px 10px;*/
     }
     .bottom-head a {
         height: 50px;
@@ -4169,7 +4169,7 @@ ul.nav.nav-pills {
         min-height: 81px;
     }
     .bottom-head a:hover .buy-media {
-        height: 70px;
+        /*height: 70px;*/
     }
     .content-grid h3,
     .service-top h3,
@@ -4297,7 +4297,7 @@ ul.nav.nav-pills {
         width: 100%;
     }
     .project {
-        padding: 3em 0 2em;
+        padding: 4em 0 2em;
     }
     p.para-in {
         width: 78%;
@@ -4620,6 +4620,10 @@ ul.nav.nav-pills {
     .adviesSearchForm {
         padding: 0 !important;
     }
+
+    .icon {
+        padding-left: 82%;
+    }
 }
 
 @media(max-width:640px) {
@@ -4639,7 +4643,7 @@ ul.nav.nav-pills {
         font-size: 0.9em;
     }
     .buy-media {
-        padding: 10px 2px;
+        /*padding: 10px 2px;*/
     }
     .content-grid h3,
     .service-top h3,
@@ -4849,6 +4853,10 @@ ul.nav.nav-pills {
         width: 80% !important;
     }
     /*---*/
+
+    .icon {
+        padding-left: 79%;
+    }
 }
 
 @media(max-width:560px) {
@@ -4856,6 +4864,9 @@ ul.nav.nav-pills {
         float: left;
         width: 100%;
         margin-top: 2em;
+    }
+    .icon {
+        padding-left: 74%;
     }
 }
 
@@ -4870,13 +4881,14 @@ ul.nav.nav-pills {
         display: block;
     }
     .bottom-head {
-        width: 20%;
+        width: 25%;
     }
     .middle {
-        height: 50px;
+        /*height: 50px;
         float: left;
         width: 20%;
-        background-color: #0d3532;
+        background-color: #0d3532;*/
+        display: none;
     }
     .banner1,
     .banner2,
@@ -5009,7 +5021,7 @@ ul.nav.nav-pills {
         padding: 2em 0;
     }
     .project {
-        padding: 2em 0 1em;
+        padding: 4em 0 2em;
     }
     .project-top {
         padding: 1em 0 0;
@@ -5063,17 +5075,16 @@ ul.nav.nav-pills {
         width: 100%;
     }
     .buy-media {
-        padding: 5px 2px;
         height: 50px;
     }
     .bottom-head a {
         height: 50px;
     }
     .bottom-head a:hover .buy-media {
-        height: 60px;
+        /*height: 60px;*/
     }
     .bottom-head h6 {
-        display: none;
+        /*display: none;*/
     }
     .banner-bottom-top {
         min-height: 46px;
@@ -5370,6 +5381,10 @@ ul.nav.nav-pills {
     .middle-side p span.bath5 {
         margin: 0 38% 0 0;
     }
+
+    .icon {
+        padding-left: 60%;
+    }
 }
 
 @media(max-width:320px) {
@@ -5431,25 +5446,25 @@ ul.nav.nav-pills {
         background: url(../images/templateImg/img-sprite.png) no-repeat -179px -28px;
     }
     .bottom-head a:hover i.buy {
-        background-position: -2px -60px;
+        /*background-position: -2px -60px;*/
     }
     .bottom-head a:hover i.rent {
-        background-position: -28px -57px;
+        /*background-position: -28px -57px;*/
     }
     .bottom-head a:hover i.pg {
-        background-position: -52px -57px;
+        /*background-position: -52px -57px;*/
     }
     .bottom-head a:hover i.sell {
-        background-position: -102px -57px;
+        /*background-position: -102px -57px;*/
     }
     .bottom-head a:hover i.loan {
-        background-position: -128px -57px;
+        /*background-position: -128px -57px;*/
     }
     .bottom-head a:hover i.apart {
-        background-position: -154px -55px;
+        /*background-position: -154px -55px;*/
     }
     .bottom-head a:hover i.deal {
-        background-position: -179px -57px;
+        /*background-position: -179px -57px;*/
     }
     i.buy,
     i.rent,
@@ -5464,13 +5479,13 @@ ul.nav.nav-pills {
     }
     .buy-media {
         height: 50px;
-        padding: 14px 2px;
+        /*padding: 14px 2px;*/
     }
     .bottom-head a {
         height: 50px;
     }
     .bottom-head a:hover .buy-media {
-        height: 70px;
+        /*height: 70px;*/
     }
     .banner-bottom-top {
         min-height: 49px;
@@ -5626,7 +5641,7 @@ ul.nav.nav-pills {
         padding: 0.5em;
     }
     .project {
-        padding: 1.5em 0 0.5em;
+        padding: 4em 0 2em;
     }
     i.dolor {
         width: 229px;
@@ -6232,7 +6247,7 @@ ul.nav.nav-pills {
     }
     /*----*/
     .bottom-head h6 {
-        display: none;
+        /*display: none;*/
     }
     .media {
         height: 70px;
@@ -6248,7 +6263,7 @@ ul.nav.nav-pills {
         width: 10px;
     }
     .bottom-head a:hover .buy-media {
-        height: 60px;
+        /*height: 60px;*/
     }
     a.more {
         font-size: 0.8em;
@@ -6259,6 +6274,10 @@ ul.nav.nav-pills {
         font-size: 0.8em;
         padding: 0.3em 0.7em;
         margin: 0.5em 0 0;
+    }
+
+    .icon {
+        padding-left: 54%;
     }
 }
 
@@ -6847,7 +6866,7 @@ div.endless_loading {
 }
 
 #spotlightcard {
-    height: 225px;
+    height: 300px;
 }
 
 #pand-details {
@@ -6858,4 +6877,47 @@ div.endless_loading {
 .pand-description {
     /*text-align: left;
     margin-left: 15px;*/
+}
+
+
+
+
+@media(max-width:1366px) {}
+
+@media(max-width:1280px) {}
+
+@media(max-width:1200px) {}
+
+@media(max-width:1024px) {
+
+}
+
+@media(max-width:992px) {
+
+}
+
+@media(max-width:768px) {
+
+}
+
+@media(max-width:640px) {
+
+}
+
+@media(max-width:560px) {
+
+}
+
+@media(max-width:480px) {
+    #header-container {
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+}
+
+@media(max-width:320px) {
+    #header-container {
+        padding-right: 0px;
+        padding-left: 0px;
+    }
 }

@@ -118,7 +118,7 @@
 }
 @media (max-width: 480px) {
   .content-grid {
-    padding-bottom: 75 !important;
+    /*padding-bottom: 75 !important;*/
   }
   #long-service-top h3:after, #long-service-top h3:before {
     width: auto;
@@ -214,3 +214,34 @@ img.round {
     margin-bottom: 5%;
 }
 
+@media(max-width:1366px) {}
+
+@media(max-width:1280px) {}
+
+@media(max-width:1200px) {}
+
+@media(max-width:1024px) {
+
+}
+
+@media(max-width:992px) {
+
+}
+
+@media(max-width:768px) {
+
+}
+
+@media(max-width:640px) {
+
+}
+
+@media(max-width:560px) {
+
+}
+
+@media(max-width:480px) {
+    .columns.four {
+        width: 100%;
+    }
+}
