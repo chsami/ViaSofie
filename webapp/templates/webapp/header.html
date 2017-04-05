@@ -29,7 +29,7 @@
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul id="InplaceEditList" class="nav navbar-nav navbar-right">
                     {% if user.is_authenticated %}
-                    <li><a href="/account"><div class="icon icon-basic-home" style="padding-top: 2px; display: inline-block;"></div><div style="display: block; float: right; margin-left: 5px;"> {{ user.email }}</div></a></li>
+                    <li><a href="##"><div class="icon icon-basic-home" style="padding-top: 2px; display: inline-block;"></div><div style="display: block; float: right; margin-left: 5px;"> {{ user.email }}</div></a></li>
                     <li><a href="/logout"><div class="icon icon-basic-download" style="padding-top: 2px; display: inline-block;"></div><div style="display: block; float: right; margin-left: 5px;"> Afmelden</div></a></li>
                     {%else%}
                     <li><a href="/register"><div class="icon icon-basic-sheet-pen" style="padding-top: 2px; display: inline-block;"></div><div style="display: block; float: right; margin-left: 5px;"> Registreren</div></a></li>
