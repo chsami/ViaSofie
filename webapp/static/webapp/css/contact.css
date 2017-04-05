@@ -290,3 +290,41 @@ body {
             transform: scale(1);
   }
 }
+
+@media(max-width:1366px) {}
+
+@media(max-width:1280px) {}
+
+@media(max-width:1200px) {}
+
+@media(max-width:1024px) {
+}
+
+@media(max-width:992px) {
+
+}
+
+@media(max-width:768px) {
+
+}
+
+@media(max-width:640px) {
+
+}
+
+@media(max-width:560px) {
+  .main {
+    display: block;
+    height: 110vh;
+  }
+  .main .bio {
+    margin-top: 5vh;
+  }
+  .main .bio, .main .contact {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+}
+
+@media(max-width:480px) {
+}
