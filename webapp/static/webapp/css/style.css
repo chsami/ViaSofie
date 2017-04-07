@@ -26,6 +26,16 @@ body a {
   -moz-background-size:cover;
 }
 
+@media(max-width:960px) {
+    #landing{
+       background: linear-gradient(rgba(0, 0, 75, 0.3), rgba(30, 0, 0, 0.3)),url(../images/home/14.jpg) no-repeat top center fixed;
+       background-size:cover;
+       -webkit-background-size:cover;
+       -o-background-size:cover;
+       -moz-background-size:cover;
+    }
+}
+
 /* end landing page */
 
 
@@ -6893,7 +6903,6 @@ div.endless_loading {
 }
 
 @media(max-width:992px) {
-
 }
 
 @media(max-width:768px) {

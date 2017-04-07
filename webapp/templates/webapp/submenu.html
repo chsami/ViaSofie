@@ -168,21 +168,6 @@
 
                     </div>
                 </div>
-                <div class="geavanceerdSearch-thirth">
-                    <input id="tagsSearch" type="text" value="" placeholder="Tags" data-role="tagsinput"/>
-                    <script>
-                    $('#tagsSearch').tagsinput({
-                      typeahead: {
-                        order: "asc",
-                        source: {{all_tags|safe}},
-                        items: 'all'
-                      },
-                      freeInput: false,
-                      allowDuplicates: false
-                    });
-                    </script>
-                </div>
-                <button id="geavanceerdButton" class="geavanceerdButton" type="button">Geavanceerd</button>
             </section>
         </form>
     </div>
