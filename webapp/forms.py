@@ -33,12 +33,14 @@ class RegistrationForm(forms.ModelForm):
     straatnaam = forms.CharField(label="*Straatnaam", widget=forms.TextInput(attrs={'placeholder': 'Straatnaam'}))
     huisnr = forms.CharField(label="*Huisnummer", widget=forms.NumberInput(attrs={'placeholder': 'Bijv: 1'}))
     busnr = forms.CharField(required=False, label="Busnummer", widget=forms.NumberInput(attrs={'placeholder': 'Bijv: 1'}))
+    postcode = forms.CharField(label="*Postcode", widget=forms.TextInput(attrs={'placeholder': 'Postcode'}))
+    plaats = forms.CharField(label="*Plaats", widget=forms.TextInput(attrs={'placeholder': 'Plaats'}))
     telefoonnr = forms.CharField(label="*Telefoonnummer", widget=forms.TextInput(attrs={'placeholder': 'Telefoonnr'}))
     captcha = ReCaptchaField()
 
     class Meta:
         model = User
-        fields = ['email', 'password1', 'password2', 'voornaam', 'naam', 'straatnaam', 'huisnr', 'postcode', 'busnr', 'telefoonnr', 'captcha', ]
+        fields = ['email', 'password1', 'password2', 'voornaam', 'naam', 'straatnaam', 'huisnr', 'busnr', 'postcode', 'plaats', 'telefoonnr', 'captcha', ]
 
     def clean(self):
         """

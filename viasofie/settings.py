@@ -24,7 +24,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = ['localhost','193.191.187.253:8097','127.0.0.1','193.191.187.253']
+ALLOWED_HOSTS = ['localhost','viasofie.be','127.0.0.1','skagoo.ddns.net']
 
 SITE_ID=2
 
@@ -70,8 +70,8 @@ INPLACEEDIT_AUTO_SAVE = True
 INPLACEEDIT_EVENT = 'click'
 
 
-RECAPTCHA_PUBLIC_KEY = '6LerJSMTAAAAAF0Xyb8ZfKEpAgdxAxjsRbQ6jluv'
-RECAPTCHA_PRIVATE_KEY = '6LerJSMTAAAAAD3X-DpSXmkcFP9PB_SwMZFzQy6L'
+RECAPTCHA_PUBLIC_KEY = '6LcUDRwUAAAAAEb4y1s49ArVzyLBIDSRa2EAaVQw'
+RECAPTCHA_PRIVATE_KEY = '6LcUDRwUAAAAAJuHFYZzet4YGctIuLgerYk7GvJj'
 NOCAPTCHA = True
 
 #-------------------------------------django.middleware.security.SecurityMiddleware SETTINGS --------------------------

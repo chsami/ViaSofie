@@ -43,14 +43,16 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     straatnaam = models.CharField(max_length=128)
     huisnr = models.CharField(max_length=10)
-    postcode = models.ForeignKey(Stad)
     busnr = models.CharField(max_length=10, null=True, blank=True)
+
+    postcode = models.CharField(max_length=50)
+    plaats = models.CharField(max_length=128)
 
     telefoonnr = models.IntegerField()
 
     objects = BaseUserManager()
 
-    REQUIRED_FIELDS = ['voornaam', 'naam', 'postcode', 'telefoonnr', ]
+    REQUIRED_FIELDS = ['voornaam', 'naam', 'postcode', 'plaats', 'telefoonnr', ]
 
     def __str__(self):
         return self.email
