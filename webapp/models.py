@@ -189,30 +189,6 @@ class GoedDoel(models.Model):
     def __str__(self):
         return str(self.naam)
 
-class PandReview(models.Model):
-    """docstring for PandReview"""
-    titel = models.CharField(max_length=128)
-    auteur = models.CharField(max_length=128)
-    text = models.CharField(max_length=500)
-    RATING_CHOICES = (
-        (1, '1'),
-        (2, '2'),
-        (3, '3'),
-        (4, '4'),
-        (5, '5')
-    )
-    rating = models.CharField(max_length=2, choices=RATING_CHOICES, default=5)
-
-    created = models.DateTimeField(editable=False)
-    modified = models.DateTimeField()
-
-    def save(self, *args, **kwargs):
-        ''' On save, update timestamps '''
-        if not self.id:
-            self.created = timezone.now()
-        self.modified = timezone.now()
-        return super(User, self).save(*args, **kwargs)
-
 class StatusBericht(models.Model):
     titel = models.CharField(max_length=255)
     inhoud = models.TextField(max_length=1000)

@@ -28,7 +28,9 @@ body a {
 
 @media(max-width:960px) {
     #landing{
-       background: linear-gradient(rgba(0, 0, 75, 0.3), rgba(30, 0, 0, 0.3)),url(../images/home/14.jpg) no-repeat top center fixed;
+        height:84%;
+       background: linear-gradient(rgba(0, 0, 75, 0.3), rgba(30, 0, 0, 0.3)),url(../images/home/_K4C3798-bewerkt.jpg) no-repeat top center fixed;
+       /*background: url(../images/home/_K4C3798-bewerkt.jpg) no-repeat top center fixed;*/
        background-size:cover;
        -webkit-background-size:cover;
        -o-background-size:cover;

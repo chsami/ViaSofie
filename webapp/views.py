@@ -16,7 +16,6 @@ from webapp.models import GoedDoel as GoedDoelModel
 from webapp.models import PandDetail as PandDetailModel
 from webapp.models import PandEPC as PandEPCModel
 from webapp.models import PandDocument as PandDocumentModel
-from webapp.models import PandReview as PandReviewModel
 from webapp.models import Stad as StadModel
 from webapp.models import StatusBericht as StatusBerichtModel
 from webapp.models import Handelstatus as HandelstatusModel

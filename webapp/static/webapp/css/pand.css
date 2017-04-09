@@ -19,6 +19,7 @@
     width: 50%;
     line-height: 25px;
     text-align: right;
+    overflow: auto;
 }
 
 #col-body {
