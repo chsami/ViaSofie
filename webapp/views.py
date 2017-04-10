@@ -376,8 +376,8 @@ def contact(request, data=None):
             phone = form.cleaned_data['phone']
             message = form.cleaned_data['message']
             try:
-                msg_html = render_to_string('webapp/emailcontact.html', {'message': message, 'name': name, 'sender': sender})
-                send_mail("Via Sofie | Contact - " + name, message, sender, ['WyngaertSacha@gmail.com'], html_message=msg_html, fail_silently=True)
+                msg_html = render_to_string('webapp/emailcontact.html', {'message': message, 'name': name, 'sender': sender, 'phone': phone})
+                send_mail("Via Sofie | Contact - " + name, message, sender, ['hello@viasofie.be'], html_message=msg_html, fail_silently=True)
 
             except BadHeaderError:
                 return HttpResponse("invalid.")

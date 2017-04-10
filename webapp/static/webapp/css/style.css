@@ -59,10 +59,8 @@ a:hover,a:focus{text-decoration:none;}
   transition: stroke-width 1s, stroke-dashoffset 1s, stroke-dasharray 1s;
 }
 .text {
-  font-family: serif;
-  font-size: 32px;
-  line-height: 32px;
-  letter-spacing: 8px;
+  font-size: 40px;
+  line-height: 40px;
   color: #fff;
   top: -48px;
   position: relative;
