@@ -354,11 +354,7 @@ def about(request):
     return render_to_response('webapp/about.html', {'formlogin': formlogin, 'dabout': dabout}, context_instance=RequestContext(request))
 
 
-def contact(request):
-    dcontact = Data.objects.get(id=3)
-    dadres = Data.objects.get(id=4)
-    dtelefoon = Data.objects.get(id=5)
-    dmail = Data.objects.get(id=6)
+def contact(request, data=None):
     if request.method == 'POST' and 'loginbtn' in request.POST:
         form = ContactForm()
         formlogin = AuthenticationForm(data=request.POST)
@@ -375,13 +371,13 @@ def contact(request):
         formlogin = AuthenticationForm(data=request.POST)
         form = ContactForm(data=request.POST)
         if form.is_valid():
-            subject = form.cleaned_data['subject']
-            message = form.cleaned_data['message']
-            sender = form.cleaned_data['email']
             name = form.cleaned_data['name']
+            sender = form.cleaned_data['email']
+            phone = form.cleaned_data['phone']
+            message = form.cleaned_data['message']
             try:
-                msg_html = render_to_string('webapp/emailcontact.html', {'message': message, 'name': name})
-                send_mail(subject,"", sender, ['liekensjeff@gmail.com'], html_message=msg_html,)
+                msg_html = render_to_string('webapp/emailcontact.html', {'message': message, 'name': name, 'sender': sender})
+                send_mail("Via Sofie | Contact - " + name, message, sender, ['WyngaertSacha@gmail.com'], html_message=msg_html, fail_silently=True)
 
             except BadHeaderError:
                 return HttpResponse("invalid.")
@@ -392,10 +388,6 @@ def contact(request):
     return render_to_response('webapp/contact.html', {
         'form': form,
         'formlogin': formlogin,
-        'dcontact' : dcontact,
-        'dadres' : dadres,
-        'dmail' : dmail,
-        'dtelefoon' : dtelefoon,
         }, context_instance=RequestContext(request))
 
 def advies(request):

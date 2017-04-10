@@ -12,71 +12,6 @@
 {% endblock header %}
 
 {% block content %}
-<!--<div class="contact">
-    <div class="container">
-        <h3>{% inplace_edit "dcontact.titel|safe" %}</h3>
-        <div class="contact-top">
-            <div class="col-md-6 contact-top1">
-                {% inplace_edit "dcontact.data|safe" %}
-                <div class="contact-address">
-                    <div class="col-md-6 contact-address1">
-                        <h5>{% inplace_edit "dadres.titel|safe" %}</h5>
-                        {% inplace_edit "dadres.data|safe" %}
-                    </div>
-                    <div class="col-md-6 contact-address1">
-                        <h5>{% inplace_edit "dmail.titel|safe" %}</h5>
-                        {% inplace_edit "dmail.data|safe" %}
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="contact-address">
-                    <div class="col-md-6 contact-address1">
-                        <h5>{% inplace_edit "dtelefoon.titel|safe" %}</h5>
-                        {% inplace_edit "dtelefoon.data|safe" %}
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-            </div>
-            <div class="col-md-6 contact-right">
-              <form method="post">
-                {% csrf_token %}
-                <table>
-                  {{ form.non_field_errors }}
-                  <div class="fieldWrapper">
-                      {{ form.subject.errors }}
-                      {{ form.subject }}
-                  </div>
-                  <div class="fieldWrapper">
-                      {{ form.message.errors }}
-                      {{ form.message }}
-                  </div>
-                  <div class="fieldWrapper">
-                      {{ form.email.errors }}
-                      {{ form.email }}
-                  </div>
-                  <div class="fieldWrapper">
-                      {{ form.name.errors }}
-                      {{ form.name }}
-                  </div>
-                  <div class="fieldWrapper">
-                      {{ form.captcha.errors }}
-                      {{ form.captcha }}
-                  </div>
-                </table>
-                <label class="hvr-sweep-to-right">
-                    <input type="submit" value="Verzenden">
-                </label>
-              </form>
-            </div>
-            <div class="clearfix"> </div>
-        </div>
-    </div>
-    <div class="map">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2499.15997834044!2d4.408338515615595!3d51.216128539779035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c3f6fc0f575f23%3A0xe812b07562ac9aa5!2sMeistraat+5%2C+2000+Antwerpen!5e0!3m2!1snl!2sbe!4v1463130836294" frameborder="0" style="border:0" allowfullscreen></iframe>
-    </div>
-</div>-->
-
-
 <div class="main">
   <div class="bio"><img class="profile-img" src="{% static 'webapp/images/Sofie.jpg' %}"/>
     <h3 class="header-contact">Via Sofie</h3>
@@ -88,31 +23,59 @@
     <a class="bio-link" href="mailto:hello@viasofie.be">hello@viasofie.be<i class="fa fa-envelope"></i></a>
   </div>
   <div class="contact">
-    <form id="form" method="post">
+    <form id="form" role="form" method="post">
+      {% csrf_token %}
+      <legend class="header-contact">Een vraag of liever een afspraak op kantoor, laat het me weten!</legend>
+      <table>
+        {{ form.non_field_errors }}
+        <div class="fieldWrapper">
+            {{ form.name.errors }}
+            {{ form.name }}
+        </div>
+        <div class="fieldWrapper">
+            {{ form.email.errors }}
+            {{ form.email }}
+        </div>
+        <div class="fieldWrapper">
+            {{ form.phone.errors }}
+            {{ form.phone }}
+        </div>
+        <div class="fieldWrapper">
+            {{ form.message.errors }}
+            {{ form.message }}
+        </div>
+      </table>
+      <fieldset>
+        <button type="submit" value="Submit" id="btn-submit">Verstuur</button>
+      </fieldset>
+    </form>
+    <!-- <form id="form" role="form" method="post">
+      {% csrf_token %}
       <legend class="header-contact">Een vraag of liever een afspraak op kantoor, laat het me weten!</legend>
       <fieldset>
         <label class="fa fa-user" for="name-input" aria-hidden="true"></label>
-        <input type="text" placeholder="Naam..." id="name-input"/>
+        <input type="text" placeholder="Naam..." id="name-input" name="name"/>
       </fieldset>
       <fieldset>
         <label class="fa fa-envelope" for="email-input" aria-hidden="true"></label>
-        <input type="email" placeholder="Email..." id="email-input"/>
+        <input type="email" placeholder="Email..." id="email-input" name="email"/>
       </fieldset>
       <fieldset>
         <label class="fa fa-phone" for="phone-input" aria-hidden="true"></label>
-        <input type="phone" placeholder="Telefoon/GSM nummer..." id="phone-input"/>
+        <input type="phone" placeholder="Telefoon/GSM nummer..." id="phone-input" name="phone"/>
       </fieldset>
       <fieldset>
         <label class="fa fa-comment" for="message-input" aria-hidden="true"></label>
-        <textarea placeholder="Uw bericht..." id="message-input"></textarea>
+        <textarea placeholder="Uw bericht..." id="message-input" name="message"></textarea>
       </fieldset>
       <fieldset>
-        <button type="submit" id="btn-submit">Verstuur</button>
+        <button type="submit" value="Submit" id="btn-submit">Verstuur</button>
       </fieldset>
-    </form>
+    </form> -->
   </div>
 </div>
 <div class="map">
     <iframe src="http://www.mapi.ie/create-google-map/map.php?width=100%&amp;height=400&amp;hl=en&amp;q=Mussenhoevelaan%20101%2C%202530%20Boechout+(Via%20Sofie)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=A&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"><a href="http://www.mapsdirections.info/fr/mesurer-distance-surface-google-maps.html">Mesurer distance avec Google Maps</a> en <a href="http://www.mapsdirections.info/fr/">www.mapsdirections.info/nl/</a></iframe>
 </div>
+
 {% endblock content %}

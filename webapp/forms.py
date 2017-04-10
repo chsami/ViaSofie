@@ -66,7 +66,7 @@ class RegistrationForm(forms.ModelForm):
     #Handling of activation email sending ------>>>!! Warning : Domain name is hardcoded below !!<<<------
     #I am using a text file to write the email (I write my email in the text file with templatetags and then populate it with the method below)
     def sendEmail(self, datas):
-        link='http://localhost:8000/activate/'+datas['activation_key']
+        link='http://viasofie.be/activate/'+datas['activation_key']
         c=Context({'activation_link':link,'email':datas['email']})
         f = open(settings.MEDIA_ROOT+datas['email_path'], 'r')
         t = Template(f.read())
@@ -155,9 +155,8 @@ class Foto(forms.ModelForm):
 class ContactForm(forms.Form):
 	name = forms.CharField( max_length=100, widget=forms.TextInput(attrs={'placeholder': 'Naam'}))
 	email = forms.EmailField(widget=forms.TextInput(attrs={'placeholder': 'Email'}))
-	subject = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'placeholder': 'Onderwerp'}))
-	message = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Bericht'}))
-	captcha = ReCaptchaField()
+	phone = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'placeholder': 'Telefoon/GSM'}))
+	message = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Bericht', 'rows': 7}))
 
 class SearchForm(forms.Form):
     plaats_postcode_refnummer = forms.CharField(label="", widget=forms.TextInput(attrs={'class': "search-form-input", id: "id_plaats_postcode", 'name': "plaats_postcode", 'placeholder': "Zoek op referentienummer, plaats of postcode", 'type': "text"}), required = False)
