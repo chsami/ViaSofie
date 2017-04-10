@@ -17,9 +17,7 @@ body a {
 
 #landing{
   height:84%;
-  /*background: linear-gradient(rgba(0, 0, 75, 0.2), rgba(30, 0, 0, 0.2)),url(http://www.credotimmobilier.com/fichiers/bg/images/bg.jpg) no-repeat center center fixed;*/
   background: linear-gradient(rgba(0, 0, 75, 0.3), rgba(30, 0, 0, 0.3)),url(../images/home/_K4C3798-bewerkt.jpg) no-repeat top center fixed;
-  /*background: url(../images/home/_K4C3798-bewerkt.jpg) no-repeat top center fixed;*/
   background-size:cover;
   -webkit-background-size:cover;
   -o-background-size:cover;
@@ -28,9 +26,7 @@ body a {
 
 @media(max-width:960px) {
     #landing{
-        height:84%;
-       background: linear-gradient(rgba(0, 0, 75, 0.3), rgba(30, 0, 0, 0.3)),url(../images/home/_K4C3798-bewerkt.jpg) no-repeat top center fixed;
-       /*background: url(../images/home/_K4C3798-bewerkt.jpg) no-repeat top center fixed;*/
+       background: linear-gradient(rgba(0, 0, 75, 0.3), rgba(30, 0, 0, 0.3)),url(../images/home/14.jpg) no-repeat top center scroll;
        background-size:cover;
        -webkit-background-size:cover;
        -o-background-size:cover;
@@ -58,7 +54,7 @@ a:hover,a:focus{text-decoration:none;}
   stroke-width: 8px;
   fill: transparent;
   /* modify this with the color you want */
-  stroke: #19f6e8;  
+  stroke: #19f6e8;
   border-bottom: 5px solid black;
   transition: stroke-width 1s, stroke-dashoffset 1s, stroke-dasharray 1s;
 }
