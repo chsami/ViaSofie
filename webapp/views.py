@@ -55,7 +55,7 @@ def slogin(request):
     else:
         formlogin=AuthenticationForm()
     return formlogin
-    
+
 def ssearchform(request):
     if request.method == "POST" and "searchbtngo" in request.POST:
         searchform = SearchForm(request.POST)
@@ -107,8 +107,8 @@ def index(request):
         except Exception as ex:
             thumbnail = fotos[0]
 
-        thumbnails.append(thumbnail) 
-    
+        thumbnails.append(thumbnail)
+
 
     # GOEDE DOELEN
     goede_doelen = GoedDoelModel.objects.all()
@@ -229,7 +229,7 @@ def panden(request, filters=None):
 
                             except Exception as ex:
                                 result_queryset = result_queryset[:0]
-                            
+
                         #Plaats, indien letters
                         elif value_pl_pos_ref.replace('-', '').isalpha() and value_pl_pos_ref.replace('-', '') != "":
                             #je hebt 1 stad in stadmodel zitten
@@ -251,7 +251,7 @@ def panden(request, filters=None):
                 for result in result_queryset:
                     panden.append(result)
             except TypeError as typeError:
-                panden.append(result_queryset)                
+                panden.append(result_queryset)
 
 
     data = Data.objects.get(id=13)
@@ -275,7 +275,7 @@ def panden(request, filters=None):
         except Exception as ex:
             thumbnail = fotos[0]
 
-        thumbnails.append(thumbnail) 
+        thumbnails.append(thumbnail)
 
     # Context (endless pagination)
     context = {
@@ -313,7 +313,7 @@ def referenties(request):
         except Exception as ex:
             thumbnail = fotos[0]
 
-        thumbnails.append(thumbnail) 
+        thumbnails.append(thumbnail)
 
     context = {
         # 'panden' = PandModel.objects.get(handelstatus='Verkocht',handelstatus='Verhuurd')
@@ -417,6 +417,12 @@ def vastgoedmakelaar(request):
     if formlogin == False:
         return redirect('/login')
     return render_to_response('webapp/vastgoedmakelaar.html', {'formlogin': formlogin}, context_instance=RequestContext(request))
+
+def samenwerken(request):
+    formlogin = slogin(request)
+    if formlogin == False:
+        return redirect('/login')
+    return render_to_response('webapp/samenwerken.html', {'formlogin': formlogin}, context_instance=RequestContext(request))
 
 def huren(request):
     formlogin = slogin(request)

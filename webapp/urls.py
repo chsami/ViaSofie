@@ -20,6 +20,7 @@ urlpatterns = [
     url(r'^disclaimer/$', views.disclaimer, name='disclaimer'),
     url(r'^privacy/$', views.privacy, name='privacy'),
     url(r'^account/$', views.account, name='account'),
+    url(r'^samenwerken/$', views.samenwerken, name='samenwerken'),
     url(r'^vastgoedmakelaar/$', views.vastgoedmakelaar, name='vastgoedmakelaar'),
     url(r'^account/$', views.account, name='account'),
     # url(r'^loginpopup/$', views.loginpopup, name='loginpopup'),

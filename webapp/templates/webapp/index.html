@@ -22,7 +22,7 @@
 {% include "webapp/submenu.html" %}
     <div id="landing">
         <div class="svg-wrapper">
-            <a id="jump" href="##">
+            <a id="jump" href="/samenwerken">
                 <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
                     <rect class="shape" height="60" width="320" />
                     <div class="text">Samenwerken?</div>
@@ -38,7 +38,7 @@
         <!--BOLLEN-->
         <div class="row set-same-height">
 
-            
+
                   <div class="four tablet-twelve columns padding" style="height: auto;">
                     <div class="bg-white text-center same-height-child padding padding-top" style="height: 329px;">
                         <a href="/contact"><img src="{% static 'webapp/images/home/house_circle_wicon.jpg' %}" width="200" height="200" alt="" class="round"></a>
@@ -54,19 +54,19 @@
                         <p><a href="/#" style="color: #0d3532; font-style: italic;">Schrijf je in </a>en blijf op de hoogte van nieuwe eigendommen.</p>
                     </div>
                 </div>
-            
+
                   <div class="four tablet-twelve columns padding" style="height: auto;">
                     <div class="bg-white text-center same-height-child padding padding-top" style="height: 329px;">
                         <a href="/vastgoedmakelaar"><img src="{% static 'webapp/images/home/two_users_circle_wicon.jpg' %}" width="200" height="200" alt="" class="round"></a>
                         <h3 class="medium">Waarom Via Sofie?</h3>
-                        <p>Ontdek <a href="/vastgoedmakelaar" style="color: #0d3532; font-style: italic;">hier</a> de voordelen van een vatgoedmakelaar.</p>
+                        <p>Ontdek <a href="/vastgoedmakelaar" style="color: #0d3532; font-style: italic;">hier</a> de voordelen van Via Sofie.</p>
                     </div>
                 </div>
-            
-            
+
+
         </div>
         <!--End of BOLLEN-->
-        
+
         <!--IN DE KIJKER-->
         <div class="content-grid">
             <div class="container">
@@ -80,7 +80,7 @@
                             <img class="img-responsive zoom-img" id="spotlightimg" src="/media/{{thumbnail.docfile}}" alt="">
                         {% endif %}
                     {% endfor %}
-                    
+
                     {% if uitgelicht_pand.handelstatus.status == "te koop"%}
                         <span class="four">€ {{uitgelicht_pand.prijs|intcomma}}</span>
                     {% else %}
@@ -97,7 +97,7 @@
             </div>
         </div>
         <!--End of IN DE KIJKER-->
-        
+
 
         <!--Bollen-->
         <!--<div class="container">
