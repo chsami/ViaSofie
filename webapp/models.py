@@ -145,7 +145,6 @@ class Pand(models.Model):
         return str(self.referentienummer).replace('-', '') + " | " + str(self.user.naam) + " " + str(self.user.voornaam) + " | " + str(self.user.email)
 
 post_save.connect(Pand.post_save, sender=Pand)
-post_init.connect(Pand.post_save, sender=Pand)
 
 class PandDetail(models.Model):
     #id autocreated by django

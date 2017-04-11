@@ -177,7 +177,7 @@ def panddetail(request, pand_referentienummer):
     location = None
     try:
         location = geolocator.geocode(geo_adress_string)
-    except GeocoderTimedOut as e:
+    except Exception as e:
         pass
 
     try:
