@@ -113,6 +113,7 @@ class Pand(models.Model):
     plaats = models.CharField(max_length=128)
 
     beschrijving = models.TextField()
+    beschrijving_2 = models.TextField(null=True, blank=True)
 
     review = models.TextField(null=True, blank=True)
 
@@ -141,7 +142,7 @@ class Pand(models.Model):
                 print (bodh_user)
 
     def __str__(self):
-        return str(self.referentienummer).replace('-', '')
+        return str(self.referentienummer).replace('-', '') + " | " + str(self.user.naam) + " " + str(self.user.voornaam) + " | " + str(self.user.email)
 
 post_save.connect(Pand.post_save, sender=Pand)
 post_init.connect(Pand.post_save, sender=Pand)

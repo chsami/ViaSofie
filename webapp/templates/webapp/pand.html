@@ -107,7 +107,9 @@
                                         <h3>{{pand.straatnaam}} {{pand.huisnr}} - {{pand.postcode}} {{pand.plaats}}</h3>
                                         <!--<h4>Beschrijving</h4>-->
                                         <p class="pand-description">{{ pand.beschrijving|safe }}</p>
-
+                                        {% if pand.beschrijving_2 %}
+                                        <p class="pand-description">{{ pand.beschrijving_2|safe }}</p>
+                                        {% endif %}
                                         <div>
                                             <a href="/contact" class="hvr-sweep-to-right more">Geïnteresseerd in dit pand, neem contact op.</a>
                                         </div>
