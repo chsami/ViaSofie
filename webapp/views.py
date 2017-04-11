@@ -354,7 +354,7 @@ def about(request):
     return render_to_response('webapp/about.html', {'formlogin': formlogin, 'dabout': dabout}, context_instance=RequestContext(request))
 
 
-def contact(request, data=None):
+def contact(request):
     if request.method == 'POST' and 'loginbtn' in request.POST:
         form = ContactForm()
         formlogin = AuthenticationForm(data=request.POST)
@@ -415,6 +415,42 @@ def samenwerken(request):
     if formlogin == False:
         return redirect('/login')
     return render_to_response('webapp/samenwerken.html', {'formlogin': formlogin}, context_instance=RequestContext(request))
+
+def blijf_op_de_hoogte(request):
+    if request.method == 'POST' and 'loginbtn' in request.POST:
+        form = BlijfOpDeHoogteForm()
+        formlogin = AuthenticationForm(data=request.POST)
+        if formlogin.is_valid():
+            user = authenticate(email=request.POST['email'], password=request.POST['password'])
+            if user is not None:
+                if user.is_active:
+                    django_login(request, user)
+                else:
+                    return redirect("/login")
+            else:
+                return redirect("/login")
+    elif(request.method == 'POST'):
+        formlogin = AuthenticationForm(data=request.POST)
+        form = BlijfOpDeHoogteForm(data=request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            sender = form.cleaned_data['email']
+            phone = form.cleaned_data['phone']
+            message = form.cleaned_data['message']
+            try:
+                msg_html = render_to_string('webapp/emailcontact.html', {'message': message, 'name': name, 'sender': sender, 'phone': phone})
+                send_mail("Via Sofie | Contact - " + name, message, sender, ['hello@viasofie.be'], html_message=msg_html, fail_silently=True)
+
+            except BadHeaderError:
+                return HttpResponse("invalid.")
+        form = BlijfOpDeHoogteForm()
+    else:
+        form = BlijfOpDeHoogteForm()
+        formlogin = AuthenticationForm()
+    return render_to_response('webapp/blijf_op_de_hoogte.html', {
+        'form': form,
+        'formlogin': formlogin,
+        }, context_instance=RequestContext(request))
 
 def huren(request):
     formlogin = slogin(request)

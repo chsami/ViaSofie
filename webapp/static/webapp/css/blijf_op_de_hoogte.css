@@ -1,0 +1,17 @@
+#success_message{ display: none;}
+
+.btn-success {
+    color: #fff;
+    background-color: #0d3532;
+    border-color: #0d3532;
+}
+
+.has-success .input-group-addon {
+    color: #fff;
+    background-color: #0d3532;
+    border-color: #0d3532;
+}
+
+.has-success .form-control-feedback {
+    color: #0d3532;
+}

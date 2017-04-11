@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^account/$', views.account, name='account'),
     url(r'^samenwerken/$', views.samenwerken, name='samenwerken'),
     url(r'^vastgoedmakelaar/$', views.vastgoedmakelaar, name='vastgoedmakelaar'),
+    url(r'^blijf-op-de-hoogte/$', views.blijf_op_de_hoogte, name='blijf_op_de_hoogte'),
     url(r'^account/$', views.account, name='account'),
     # url(r'^loginpopup/$', views.loginpopup, name='loginpopup'),
 

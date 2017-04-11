@@ -179,3 +179,37 @@ class SmallSearchForm(forms.Form):
 
 	class Meta:
 		fields = ['kopen', 'plaats_postcode']
+
+class BlijfOpDeHoogteForm(forms.Form):
+
+    first_name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'placeholder': 'Voornaam', 'class': 'form-control'}))
+    # <input  name="first_name" placeholder="Voornaam" class="form-control"  type="text">
+
+    last_name = forms.CharField(max_length=150, widget=forms.TextInput(attrs={'placeholder': 'Achternaam', 'class': 'form-control'}))
+    # <input name="last_name" placeholder="Achternaam" class="form-control"  type="text">
+
+    email = forms.EmailField(widget=forms.TextInput(attrs={'placeholder': 'Email', 'class': 'form-control'}))
+    # <input name="email" placeholder="E-Mail" class="form-control"  type="text">
+
+    phone = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'placeholder': '04 99 99 99 99', 'class': 'form-control'}), required = False)
+    # <input name="phone" placeholder="04 99 99 99 99" class="form-control" type="text">
+
+    street = forms.CharField(max_length=150, widget=forms.TextInput(attrs={'placeholder': 'Straatnaam', 'class': 'form-control'}))
+    # <input name="street" placeholder="Straatnaam" class="form-control" type="text">
+
+    house_number = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'placeholder': 'Huisnummer', 'class': 'form-control'}))
+    # <input name="house_number" placeholder="Huisnummer" class="form-control" type="text">
+
+    city = forms.CharField(max_length=150, widget=forms.TextInput(attrs={'placeholder': 'Gemeente', 'class': 'form-control'}))
+    # <input name="city" placeholder="Gemeente" class="form-control"  type="text">
+
+    postcode = forms.CharField(max_length=150, widget=forms.TextInput(attrs={'placeholder': 'Postcode', 'class': 'form-control'}))
+    # <input name="postcode" placeholder="Postcode" class="form-control"  type="text">
+
+    min_price = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'placeholder': 'Minimumprijs', 'class': 'form-control'}), required = False)
+    # <input name="min_price" placeholder="Minimumprijs" class="form-control" type="text">
+
+    max_price = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'placeholder': 'Maximumprijs', 'class': 'form-control'}), required = False)
+    # <input name="max_price" placeholder="Maximumprijs" class="form-control" type="text">
+
+    captcha = ReCaptchaField()
