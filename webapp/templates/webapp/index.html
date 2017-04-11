@@ -73,7 +73,7 @@
                 <h3>In de kijker</h3>
                 {% for uitgelicht_pand in uitgelichte_panden %}
                 <div class="col-md-4 box_2" id="spotlightcard">
-                    <a href="/pand/{{ uitgelicht_pand.referentienummer|cut:"-"}}" class="mask">
+                    <a href="/pand/{{ uitgelicht_pand.referentienummer}}" class="mask">
 
                     {% for thumbnail in thumbnails %}
                         {% if thumbnail.pand.referentienummer == uitgelicht_pand.referentienummer %}
@@ -88,7 +88,7 @@
                     {% endif %}
                     </a>
                     <div class="most-1">
-                        <h5><a href="/pand/{{ uitgelicht_pand.referentienummer|cut:"-"}}">{{uitgelicht_pand.straatnaam}}</a></h5>
+                        <h5><a href="/pand/{{ uitgelicht_pand.referentienummer}}">{{uitgelicht_pand.straatnaam}}</a></h5>
                         <p>{{uitgelicht_pand.plaats}}</p>
                     </div>
                 </div>

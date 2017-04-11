@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="{% static 'webapp/css/flexslider.css' %}" type="text/css" media="screen" />
 <link rel="stylesheet" href="{% static 'webapp/css/flexslider.css' %}" type="text/css" media="screen" />
 <!--facebook meta data  -->
-<meta property="og:url"                content="www.localhost:8000/pand/{{ pand.referentienummer|cut:"-"}}" />
+<meta property="og:url"                content="www.localhost:8000/pand/{{ pand.referentienummer}}" />
 <meta property="og:type"               content="article" />
 <meta property="og:title"              content="Pand in {{pand.straatnaam}} te {{pand.handelstatus}} " />
 <meta property="og:description"        content="{{pand.beschrijving}}" />
@@ -173,7 +173,7 @@
             <div class="fb-share-button" data-href="url" data-layout="button" data-mobile-iframe="true"></div>
             <div class="twitter-share-posdiv">
               <a class="twitter-share-button" href="http://twitter.com/share?text=Pand in {{pand.straatnaam}} te {{pand.handelstatus}}.&url={{url}}&hashtags=Via Sofie">Tweet </a>
-            </div>        
+            </div>
           </div>
           <div class="col-md-3" align="right">
             {% qr_from_text url "size" %}
@@ -203,7 +203,7 @@
               {% for related_pand in relatedPands %}
                 <li>
                     <div class="project-fur">
-                        <a href="/pand/{{ pand.referentienummer|cut:"-"}}"><img class="img-responsive" src="{{ related_pand.thumbnail_url }}" alt="" /> </a>
+                        <a href="/pand/{{ pand.referentienummer}}"><img class="img-responsive" src="{{ related_pand.thumbnail_url }}" alt="" /> </a>
                         <div class="fur">
                             <div class="fur1">
                                 <span class="fur-money">{{pand.prijs}}</span>

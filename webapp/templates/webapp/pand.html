@@ -10,7 +10,7 @@
 <title>{{pand.straatnaam}} {{pand.huisnr}}, {{pand.postcode}} {{pand.plaats}} | ViaSofie</title>
 
 <!--Facebook meta data-->
-<meta property="og:url"                content="www.viasofie.be/pand/{{ pand.referentienummer|cut:"-"}}" />
+<meta property="og:url"                content="www.viasofie.be/pand/{{ pand.referentienummer}}" />
 <meta property="og:type"               content="article" />
 <meta property="og:title"              content="Pand {{pand.handelstatus}}: {{pand.straatnaam}} {{pand.huisnr}}, {{pand.postcode}} {{pand.plaats}}" />
 <meta property="og:description"        content="{{pand.beschrijving}}" />
@@ -142,7 +142,7 @@
                                                         </tr>
                                                         <tr>
                                                             <td>ref.: </td>
-                                                            <td>{{ pand.referentienummer|cut:'-' }}</td>
+                                                            <td style="white-space: nowrap;">{{ pand.referentienummer }}</td>
                                                         </tr>
                                                         <tr>
                                                             <td><i class="fa fa-bed"></i></td>
@@ -200,7 +200,7 @@
                                             {% else %}
                                                 <div class="detail-line"><div class="left">Prijs</div><div class="right"> € {{pand.prijs|intcomma}} / maand</div></div>
                                             {% endif %}
-                                            <div class="detail-line"><div class="left">Referentie nr.</div><div class="right"> {{ pand.referentienummer|cut:'-' }}</div></div>
+                                            <div class="detail-line"><div class="left">Referentie nr.</div><div class="right" style="white-space: nowrap;"> {{ pand.referentienummer }}</div></div>
 
                                             {% for pand_detail in pand_details %}
                                                 {% if forloop.counter0|divisibleby:"2" %}

@@ -6,7 +6,7 @@ from . import views
 urlpatterns = [
     url(r'^rosetta/', include('rosetta.urls')),
     url(r'^$', views.index, name='index'),
-    url(r'^pand/(?P<pand_referentienummer>[a-zA-Z0-9_]+)/$', views.panddetail, name='panddetail'),
+    url(r'^pand/(?P<pand_referentienummer>[a-zA-Z0-9_-]+)/$', views.panddetail, name='panddetail'),
     url(r'^new/pand/$', views.new_pand, name='new_pand'),
     url(r'^about/$', views.about, name='about'),
     url(r'^advies/$', views.advies, name='advies'),

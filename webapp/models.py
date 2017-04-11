@@ -4,6 +4,15 @@ from django.contrib.auth.models import PermissionsMixin
 import uuid, random, hashlib
 from django.db.models.signals import post_save, post_init
 
+from datetime import datetime
+
+def get_referentienummer():
+    while True:
+        currentYear = datetime.now().year
+        referentienummer = str(currentYear) + "-" + str(uuid.uuid4())[:5]
+        if not Pand.objects.filter(referentienummer=referentienummer).exists():
+            return referentienummer.upper()
+
 class Handelstatus(models.Model):
     status = models.CharField(max_length=128) #te koop, te huur
 
@@ -95,7 +104,7 @@ class Pand(models.Model):
     #id autocreated by django
     user = models.ForeignKey(User, blank=True, null=True)
 
-    referentienummer = models.UUIDField(unique=True, default=uuid.uuid4, editable=False)
+    referentienummer = models.CharField(unique=True, default=get_referentienummer, editable=False, max_length=10)
 
     prijs = models.DecimalField(default=0, max_digits=18, decimal_places=0)
     slaapkamers = models.DecimalField(default=1, max_digits=10, decimal_places=0)
@@ -140,7 +149,7 @@ class Pand(models.Model):
                 print (bodh_user)
 
     def __str__(self):
-        return str(self.referentienummer).replace('-', '') + " | " + str(self.user.naam) + " " + str(self.user.voornaam) + " | " + str(self.user.email)
+        return str(self.referentienummer) + " | " + str(self.user.naam) + " " + str(self.user.voornaam) + " | " + str(self.user.email)
 
 post_save.connect(Pand.post_save, sender=Pand)
 
@@ -171,7 +180,7 @@ class Foto(models.Model):
     pand = models.ForeignKey(Pand)
 
     def __str__(self):
-        return str(self.pand.referentienummer).replace('-', '') + " - " + str(self.id)
+        return str(self.pand.referentienummer) + " - " + str(self.id)
 
 class PandDocument(models.Model):
     docfile = models.FileField(upload_to='documents/%Y/%m/%d', blank=True)
@@ -181,7 +190,7 @@ class PandDocument(models.Model):
     pand = models.ForeignKey(Pand)
 
     def __str__(self):
-        return str(self.pand.referentienummer).replace('-', '') + " - " + str(self.id)
+        return str(self.pand.referentienummer) + " - " + str(self.id)
 
 class Ebook(models.Model):
     naam = models.CharField(max_length=255)
