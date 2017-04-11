@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.models import PermissionsMixin
 import uuid, random, hashlib
+from django.db.models.signals import post_save, post_init
 
 class Handelstatus(models.Model):
     status = models.CharField(max_length=128) #te koop, te huur
@@ -96,7 +97,7 @@ class Pand(models.Model):
 
     referentienummer = models.UUIDField(unique=True, default=uuid.uuid4, editable=False)
 
-    prijs = models.DecimalField(default=0, max_digits=18, decimal_places=2)
+    prijs = models.DecimalField(default=0, max_digits=18, decimal_places=0)
     slaapkamers = models.DecimalField(default=1, max_digits=10, decimal_places=0)
     badkamers = models.DecimalField(default=1, max_digits=10, decimal_places=0)
     parkeerplaats = models.BooleanField(default= False)
@@ -104,11 +105,12 @@ class Pand(models.Model):
     handelstatus = models.ForeignKey(Handelstatus)
     voortgang = models.ForeignKey(Voortgang)
     uitgelicht = models.BooleanField(default= False)
-    
+
     straatnaam = models.CharField(max_length=128)
     huisnr = models.SmallIntegerField()
     busnr = models.CharField(max_length=10, null=True, blank=True)
-    postcodeID = models.ForeignKey(Stad)
+    postcode = models.CharField(max_length=50)
+    plaats = models.CharField(max_length=128)
 
     beschrijving = models.TextField()
 
@@ -118,8 +120,31 @@ class Pand(models.Model):
 
     objects = models.Manager()
 
+    @staticmethod
+    def post_save(sender, **kwargs):
+        instance = kwargs.get('instance')
+        created = kwargs.get('created')
+
+        bodh_users = BlijfOpDeHoogteUser.objects.all()
+        try:
+            bodh_users = bodh_users.filter(min_prijs <= instance.prijs)
+        except Exception as e:
+            pass
+
+        try:
+            bodh_users = bodh_users.filter(max_prijs >= instance.prijs)
+        except Exception as e:
+            pass
+
+        if bodh_users:
+            for bodh_user in bodh_users:
+                print (bodh_user)
+
     def __str__(self):
         return str(self.referentienummer).replace('-', '')
+
+post_save.connect(Pand.post_save, sender=Pand)
+post_init.connect(Pand.post_save, sender=Pand)
 
 class PandDetail(models.Model):
     #id autocreated by django
@@ -144,7 +169,7 @@ class PandEPC(models.Model):
 class Foto(models.Model):
     docfile = models.FileField(upload_to='documents/%Y/%m/%d', blank=True)
     thumbnail = models.BooleanField(default= False)
-    
+
     pand = models.ForeignKey(Pand)
 
     def __str__(self):
@@ -153,7 +178,7 @@ class Foto(models.Model):
 class PandDocument(models.Model):
     docfile = models.FileField(upload_to='documents/%Y/%m/%d', blank=True)
     naam = models.CharField(max_length=256)
-    
+
     pand = models.ForeignKey(Pand)
 
     def __str__(self):
@@ -200,3 +225,22 @@ class StatusBericht(models.Model):
 class Data(models.Model):
     titel = models.CharField(max_length=255)
     data = models.TextField()
+
+class BlijfOpDeHoogteUser(models.Model):
+    voornaam = models.CharField(max_length=128)
+    naam =  models.CharField(max_length=128)
+    email = models.CharField(max_length=128, unique=True)
+    telefoonnummer = models.CharField(max_length=128, unique=True)
+
+    straatnaam = models.CharField(max_length=128)
+    huisnr = models.CharField(max_length=10)
+    plaats = models.CharField(max_length=10, null=True, blank=True)
+    postcode = models.CharField(max_length=50)
+
+    min_prijs = models.DecimalField(default=0, max_digits=18, decimal_places=0)
+    max_prijs = models.DecimalField(null=True, blank=True, max_digits=18, decimal_places=0)
+
+    REQUIRED_FIELDS = ['voornaam', 'naam', 'email', 'telefoonnummer', 'straatnaam', 'huisnr', 'plaats', 'postcode', ]
+
+    def __str__(self):
+        return str(self.voornaam) + " " + str(self.naam) + " - " + str(self.email)

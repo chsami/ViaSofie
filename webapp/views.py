@@ -12,6 +12,7 @@ from webapp.models import Foto as FotoModel
 from webapp.models import Faq as FaqModel
 from webapp.models import Partner as PartnerModel
 from webapp.models import User as UserModel
+from webapp.models import BlijfOpDeHoogteUser as BlijfOpDeHoogteUserModel
 from webapp.models import GoedDoel as GoedDoelModel
 from webapp.models import PandDetail as PandDetailModel
 from webapp.models import PandEPC as PandEPCModel
@@ -105,9 +106,9 @@ def index(request):
         try:
             thumbnail = fotos.filter(thumbnail=true)[:1]
         except Exception as ex:
-            thumbnail = fotos[0]
-
-        thumbnails.append(thumbnail)
+            if fotos:
+                thumbnail = fotos[0]
+                thumbnails.append(thumbnail)
 
 
     # GOEDE DOELEN
@@ -127,19 +128,22 @@ def panddetail(request, pand_referentienummer):
         return redirect(searchform)
     pand = PandModel.objects.get(referentienummer=pand_referentienummer)
     #voeg extra gegevens toe
-    relatedPands= PandModel.objects.filter(postcodeID=pand.postcodeID)
+    relatedPands= PandModel.objects.filter(postcode=pand.postcode)
     relatedPands= relatedPands.filter(handelstatus=pand.handelstatus)
     relatedPands = relatedPands.filter(voortgang=1)
+    relatedPands = relatedPands.exclude(referentienummer=pand.referentienummer)
 
     # GET URL
     url = request.build_absolute_uri()
 
     # Get photos + thumbnail picture (if no picture was selected to be a tumbnail, take the first out of all pictures)
     fotos = FotoModel.objects.filter(pand_id=pand.id)
+    thumbnail = None
     try:
         thumbnail = fotos.filter(thumbnail=true)[:1]
     except Exception as ex:
-        thumbnail = fotos[0]
+        if fotos:
+            thumbnail = fotos[0]
 
     max_picture_count = list(range(6))
 
@@ -148,21 +152,14 @@ def panddetail(request, pand_referentienummer):
     thumbnails_related = []
     for related_pand in relatedPands:
         fotos = FotoModel.objects.filter(pand_id=related_pand.id)
+        thumbnail = None;
         try:
             thumbnail = fotos.filter(thumbnail=true)[:1]
         except Exception as ex:
-            thumbnail = fotos[0]
+            if fotos:
+                thumbnail = fotos[0]
 
         thumbnails_related.append(thumbnail)
-
-
-    fotos = FotoModel.objects.filter(pand_id=pand.id)
-    try:
-        thumbnail = fotos.filter(thumbnail=true)[:1]
-    except Exception as ex:
-        thumbnail = fotos[0]
-
-
 
     # Get details
     pand_details = PandDetailModel.objects.filter(pand_id = pand.id)
@@ -175,12 +172,20 @@ def panddetail(request, pand_referentienummer):
 
 
     # Get lat long from adress
-    geo_adress_string = str(pand.huisnr) + " " + str(pand.straatnaam) + " " + str(pand.postcodeID.stadsnaam) + " Belgie"
+    geo_adress_string = str(pand.huisnr) + " " + str(pand.straatnaam) + " " + str(pand.plaats) + " Belgie"
     geolocator = Nominatim()
-    location = geolocator.geocode(geo_adress_string)
+    location = None
+    try:
+        location = geolocator.geocode(geo_adress_string)
+    except GeocoderTimedOut as e:
+        pass
 
-    lat = str(location.latitude).replace(',', '.')
-    lng = str(location.longitude).replace(',', '.')
+    try:
+        lat = str(location.latitude).replace(',', '.')
+        lng = str(location.longitude).replace(',', '.')
+    except Exception as e:
+        lat = "51.166440"
+        lng = "4.497170"
 
     return render_to_response('webapp/pand.html', {'pand': pand, 'pand_details': pand_details, 'pand_epc': pand_epc, 'pand_documenten': pand_documenten, 'max_picture_count': max_picture_count, 'fotos' : fotos, 'thumbnail': thumbnail, 'thumbnails_related': thumbnails_related, 'relatedPands' : relatedPands,'url': url , 'formlogin':formlogin, 'searchform': searchform, 'lat': lat, 'lng': lng}, context_instance=RequestContext(request))
 
@@ -217,15 +222,7 @@ def panden(request, filters=None):
                         #Postcode, indien cijfers
                         if value_pl_pos_ref.isdigit():
                             try:
-                                #je hebt 1 stad in stadmodel zitten nu/ update meerdere steden
-                                stadmodels = StadModel.objects.filter(postcode=value_pl_pos_ref)
-                                #je filtert de result_queryset op de postcode
-                                # result_queryset_temp = result_queryset
-                                liststeden = []
-                                for stadmodel in stadmodels:
-                                    liststeden.append(stadmodel.id)
-
-                                queryset = result_queryset.filter(postcodeID__in=liststeden)
+                                queryset = result_queryset.filter(postcode=value_pl_pos_ref)
 
                             except Exception as ex:
                                 result_queryset = result_queryset[:0]
@@ -234,8 +231,7 @@ def panden(request, filters=None):
                         elif value_pl_pos_ref.replace('-', '').isalpha() and value_pl_pos_ref.replace('-', '') != "":
                             #je hebt 1 stad in stadmodel zitten
                             try:
-                                stadmodel = StadModel.objects.get(stadsnaam=value_pl_pos_ref)
-                                result_queryset = result_queryset.filter(postcodeID=stadmodel.id)
+                                result_queryset = result_queryset.filter(plaats=value_pl_pos_ref.lower())
                             except Exception as ex:
                                 result_queryset = result_queryset[:0]
                         #referentienummer
@@ -433,16 +429,21 @@ def blijf_op_de_hoogte(request):
         formlogin = AuthenticationForm(data=request.POST)
         form = BlijfOpDeHoogteForm(data=request.POST)
         if form.is_valid():
-            name = form.cleaned_data['name']
-            sender = form.cleaned_data['email']
-            phone = form.cleaned_data['phone']
-            message = form.cleaned_data['message']
-            try:
-                msg_html = render_to_string('webapp/emailcontact.html', {'message': message, 'name': name, 'sender': sender, 'phone': phone})
-                send_mail("Via Sofie | Contact - " + name, message, sender, ['hello@viasofie.be'], html_message=msg_html, fail_silently=True)
+            # ['voornaam', 'naam', 'email', 'telefoonnummer', 'straatnaam', 'huisnr', 'plaats', 'postcode', 'min_prijs', 'max_prijs', 'captcha',]
+            voornaam = form.cleaned_data['voornaam']
+            naam = form.cleaned_data['naam']
+            email = form.cleaned_data['email']
+            telefoonnummer = form.cleaned_data['telefoonnummer']
+            straatnaam = form.cleaned_data['straatnaam']
+            huisnr = form.cleaned_data['huisnr']
+            plaats = form.cleaned_data['plaats']
+            postcode = form.cleaned_data['postcode']
+            min_prijs = form.cleaned_data['min_prijs']
+            max_prijs = form.cleaned_data['max_prijs']
 
-            except BadHeaderError:
-                return HttpResponse("invalid.")
+            new_user = BlijfOpDeHoogteUserModel(voornaam=voornaam, naam=naam, email=email, telefoonnummer=telefoonnummer, straatnaam=straatnaam, huisnr=huisnr, plaats=plaats, postcode=postcode, min_prijs=min_prijs, max_prijs=max_prijs)
+            new_user.save()
+
         form = BlijfOpDeHoogteForm()
     else:
         form = BlijfOpDeHoogteForm()

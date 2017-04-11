@@ -21,6 +21,7 @@ admin.site.register(StatusBericht)
 # admin.site.register(Ebook)
 admin.site.register(GoedDoel)
 # admin.site.register(Data)
+admin.site.register(BlijfOpDeHoogteUser)
 
 class Foto(admin.ModelAdmin):
     class Media:

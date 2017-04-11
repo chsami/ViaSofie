@@ -1,4 +1,4 @@
-{% extends 'webapp/base.html' %} {% load inplace_edit %} {% load humanize %} {% load staticfiles %} {% load qr_tags %}{% block header %} {% inplace_toolbar %}
+{% extends 'webapp/base.html' %} {% load humanize %} {% load staticfiles %} {% load qr_tags %}{% block header %}
 <script type='text/javascript' src="{% static 'webapp/scripts/jquery.flexslider.js' %}"></script>
 <script type='text/javascript' src="{% static 'webapp/scripts/jquery.flexisel.js' %}"></script>
 <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB6_wuqD24-vpeVcw2hZwwcaWsTz8IgJEM"></script>
@@ -7,12 +7,12 @@
 <link rel="stylesheet" href="{% static 'webapp/css/gallery.css' %}" type="text/css" media="screen" />
 <link rel="stylesheet" href="{% static 'webapp/css/pand.css' %}" type="text/css" media="screen" />
 
-<title>{{pand.straatnaam}} {{pand.huisnr}}, {{pand.postcodeID.postcode}} {{pand.postcodeID.stadsnaam}} | ViaSofie</title>
+<title>{{pand.straatnaam}} {{pand.huisnr}}, {{pand.postcode}} {{pand.plaats}} | ViaSofie</title>
 
 <!--Facebook meta data-->
 <meta property="og:url"                content="www.viasofie.be/pand/{{ pand.referentienummer|cut:"-"}}" />
 <meta property="og:type"               content="article" />
-<meta property="og:title"              content="Pand {{pand.handelstatus}}: {{pand.straatnaam}} {{pand.huisnr}}, {{pand.postcodeID.postcode}} {{pand.postcodeID.stadsnaam}}" />
+<meta property="og:title"              content="Pand {{pand.handelstatus}}: {{pand.straatnaam}} {{pand.huisnr}}, {{pand.postcode}} {{pand.plaats}}" />
 <meta property="og:description"        content="{{pand.beschrijving}}" />
 <meta property="og:image"              content="/media/{{thumbnail.docfile}}" />
 <meta property="og:site_name"          content="Via Sofie"/>
@@ -59,7 +59,7 @@
         // var v = $("video > source");
         // var t = v.attr("src");
         // $(".modal-body").html("<video class='model-vid' controls><source src='"+t+"' type='video/mp4'></source></video>");
-        // $("#myModal").modal();  
+        // $("#myModal").modal();
         // });
         });//EOF Document.ready
 </script>
@@ -79,23 +79,24 @@
 {% include "webapp/submenu.html" %}
     <div class="buy-single-single">
         <div class="buying-top">
-            <!--<p>{% inplace_edit "pand.straatnaam" %} - {% inplace_edit "pand.postcodeID.stadsnaam"%}</p>-->
             <!--NEW-->
             <div class="col-sm-7 buy-sin">
                 <div class="row align-items-start" id="pand-details">
 
-                    <div class="col">
-                        <img src="/media/{{thumbnail.docfile}}" class="card img-responsive" id="big-gallery-img">
-                    </div> <!--col-->
+                  {% if thumbnail %}
+                  <div class="col">
+                      <img src="/media/{{thumbnail.docfile}}" class="card img-responsive" id="big-gallery-img">
+                  </div> <!--col-->
+                  {% endif %}
 
                     <div class="col">
 
                         <ul class="nav nav-tabs" role="tablist">
                             <li role="presentation" id="navtab-li-pand" class="active-on-load"><a href="#beschrijving" aria-controls="beschrijving" role="tab" data-toggle="tab">Beschrijving</a></li>
                             <li role="presentation" id="navtab-li-pand"><a href="#details" aria-controls="details" role="tab" data-toggle="tab">Details</a></li>
-                            <li role="presentation" id="navtab-li-pand"><a href="#plan" aria-controls="plan" role="tab" data-toggle="tab">Plan</a></li>
-                            <li role="presentation" id="navtab-li-pand"><a href="#documenten" aria-controls="documenten" role="tab" data-toggle="tab">Documenten</a></li>
-                            <li role="presentation" id="navtab-li-pand"><a href="#epc" aria-controls="epc" role="tab" data-toggle="tab">Vlaamse codex R.O. en EPC</a></li>
+                            {% if pand.plattegrond %}<li role="presentation" id="navtab-li-pand"><a href="#plan" aria-controls="plan" role="tab" data-toggle="tab">Plan</a></li>{% endif %}
+                            {% if pand_documenten %}<li role="presentation" id="navtab-li-pand"><a href="#documenten" aria-controls="documenten" role="tab" data-toggle="tab">Documenten</a></li>{% endif %}
+                            {% if pand_epc %}<li role="presentation" id="navtab-li-pand"><a href="#epc" aria-controls="epc" role="tab" data-toggle="tab">Vlaamse codex R.O. en EPC</a></li>{% endif %}
                             <li role="presentation" id="navtab-li-pand"><a href="javascript:window.print()">Print</a></li>
                         </ul>
 
@@ -103,9 +104,9 @@
                             <div role="tabpanel" class="tab-pane active" id="beschrijving">
                                 <!--BESCHRIJVING-->
                                     <div class="col-sm-8">
-                                        <h3>{{pand.straatnaam}} {{pand.huisnr}} - {{pand.postcodeID.postcode}} {{pand.postcodeID.stadsnaam}}</h3>
+                                        <h3>{{pand.straatnaam}} {{pand.huisnr}} - {{pand.postcode}} {{pand.plaats}}</h3>
                                         <!--<h4>Beschrijving</h4>-->
-                                        <p class="pand-description">{% inplace_edit "pand.beschrijving|safe" %}</p>
+                                        <p class="pand-description">{{ pand.beschrijving|safe }}</p>
 
                                         <div>
                                             <a href="/contact" class="hvr-sweep-to-right more">Geïnteresseerd in dit pand, neem contact op.</a>
@@ -127,7 +128,7 @@
                                                                 <td>Te koop</td>
                                                             {% else %}
                                                                 <td>Te huur</td>
-                                                            {% endif %}                                                            
+                                                            {% endif %}
                                                         </tr>
                                                         <tr>
                                                             <td>Prijs: </td>
@@ -161,7 +162,7 @@
                                                 </table> <!--table-->
 
                                             </div> <!--col-sm-5 middle-side immediate-->
-                                            
+
                                             <div class="clearfix"></div> <!--clearfix-->
                                         </div> <!--buy-sin-single-->
                                     </div> <!--col-sm-3-->
@@ -205,7 +206,7 @@
                                                 {% else %}
                                                     <div class="detail-line"><div class="left">{{pand_detail.naam}}</div><div class="right"> {{pand_detail.waarde}}</div></div>
                                                 {% endif %}
-                                            {% endfor %}                                       
+                                            {% endfor %}
                                         </div>
 
                                     </div>
@@ -213,26 +214,28 @@
                                 <!--END OF DETAILS-->
                             </div>
 
-
+                            <!-- style="visibility: hidden;" -->
+                            {% if pand.plattegrond %}
                             <div role="tabpanel" class="tab-pane" id="plan">
                                     <div class="row">
                                         <div class="col-sm-12 product-display">
                                             <div class="col-sm-12 product-preview">
                                                 {% if pand.plattegrond %}
                                                     <div class="zoom-btn"><span class="fa fa-search" aria-hidden="true"></div>
-                                                
+
                                                     <div class="zoom-view">
                                                         <img id="zoom-image" src="/media/{{pand.plattegrond}}">
                                                     </div>
-                                                    
+
                                                     <img id="product-image" src="/media/{{pand.plattegrond}}">
                                                 {% endif %}
                                             </div>
                                         </div>
                                     </div>
                             </div> <!--<div role="tabpanel" class="tab-pane" id="plan">-->
+                            {% endif %}
 
-
+                            {% if pand_documenten %}
                             <div role="tabpanel" class="tab-pane" id="documenten">
                                 <div id="documenten" class="documenten">
                                     <div class="row">
@@ -240,12 +243,12 @@
                                             <h3>Documenten</h3>
 
                                             <div class="row" id="col-body">
-                                                
+
                                                 {% for pand_document in pand_documenten %}
                                                     <div class="col-sm-4" id="doc-row">
                                                         <a target="_blank" href="/media/{{pand_document.docfile}}" class="document">
                                                             <i class="fa fa-file-pdf-o"></i>
-                                                            {{pand_document.naam}} 
+                                                            {{pand_document.naam}}
                                                         </a>
                                                     </div>
                                                 {% endfor %}
@@ -256,8 +259,9 @@
                                     </div><!--<div class="row">-->
                                 </div><!--<div id="documenten" class="documenten">-->
                             </div> <!--<div role="tabpanel" class="tab-pane" id="documenten">-->
+                            {% endif %}
 
-
+                            {% if pand_epc %}
                             <div role="tabpanel" class="tab-pane" id="epc">
                                 <!--R.O. EN EPC-->
                                 <div class="col-sm-12">
@@ -279,12 +283,13 @@
                                                 {% else %}
                                                     <div class="detail-line"><div class="left">{{epc.naam}}</div><div class="right"> {{epc.waarde}}</div></div>
                                                 {% endif %}
-                                            {% endfor %}                   
+                                            {% endfor %}
                                         </div>
                                     </div>
                                 </div>
                                 <!--END OF R.O. EN EPC-->
                             </div> <!--<div role="tabpanel" class="tab-pane" id="epc">-->
+                            {% endif %}
                         </div>
 
                     </div> <!--col-->
@@ -309,7 +314,7 @@
 
 
                 <script type = "text/javascript">
-              
+
                     var changed = false;
 
                     function displayNextImage() {
@@ -351,14 +356,14 @@
                         if ({{ fotos|length }} > 6) {
                             startTimer();
                         }
-                        
+
                     });
                 </script>
 
-                
+
                 <div class="map-buy-single1">
                     <!--<iframe
-                        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCR6SBL79-AAn4d1-TMy0871l8JPciXncM&amp;q={{pand.postcodeID.stadsnaam}},{{pand.straatnaam}},{{pand.huisnr}}"
+                        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCR6SBL79-AAn4d1-TMy0871l8JPciXncM&amp;q={{pand.plaats}},{{pand.straatnaam}},{{pand.huisnr}}"
                         streetViewControl=true
                         width="100%"
                         height="370px"
@@ -376,8 +381,8 @@
                         style="border:0"
                         src="http://my.ctrlq.org/maps/#roadmap|16|{{lat}}|{{lng}}">
                     </iframe>
-                </div> <!--map-buy-single-->   
-            </div> <!--col-sm-5 buy-sin-->  
+                </div> <!--map-buy-single-->
+            </div> <!--col-sm-5 buy-sin-->
             <div class="row" id="social-row">
                 <div class="col-sm-12">
                     <div class="social-share">
@@ -416,7 +421,7 @@
                     </div>
                 </div>
             </div>
-        </div> <!--buying-top-->            
+        </div> <!--buying-top-->
 
             <!--QR-Code-->
             <!--<div class="col-md-3" align="right">
@@ -427,6 +432,7 @@
         <div class="clearfix"></div>
     </div> <!--buy-single-single-->
 
+    {% if relatedPands %}
     <div class="container">
         <div class="future">
             <h3>Gerelateerde Panden</h3>
@@ -448,8 +454,8 @@
                                             <span class="fur-money">€ {{ related_pand.prijs|intcomma }}</span>
                                         {% else %}
                                             <span class="fur-money">€ {{ related_pand.prijs|intcomma }} / maand</span>
-                                        {% endif %}                           
-                                        <h6 class="fur-name"><a href="/pand/{{ related_pand.referentienummer|cut:"-"}}">{% inplace_edit "related_pand.straatnaam" %}</a></h6>
+                                        {% endif %}
+                                        <h6 class="fur-name"><a href="/pand/{{ related_pand.referentienummer|cut:"-"}}">{{ related_pand.straatnaam }}</a></h6>
                                         <!-- <span>België</span> -->
                                     </div> <!--fur1-->
                                 </div> <!--fur-->
@@ -460,8 +466,9 @@
             </div> <!--content-bottom-in-->
 
         </div> <!--future-->
-        
+
     </div> <!--container-->
+    {% endif %}
 
 <!--Flexislider-->
 <script type="text/javascript">

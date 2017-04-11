@@ -7,7 +7,7 @@ $(document).ready(function() {
           validating: 'glyphicon glyphicon-refresh'
       },
       fields: {
-          first_name: {
+          voornaam: {
               validators: {
                       stringLength: {
                       min: 2,
@@ -18,7 +18,7 @@ $(document).ready(function() {
                   }
               }
           },
-           last_name: {
+           naam: {
               validators: {
                    stringLength: {
                       min: 2,
@@ -39,7 +39,7 @@ $(document).ready(function() {
                   }
               }
           },
-          street: {
+          straatnaam: {
               validators: {
                    stringLength: {
                       min: 8,
@@ -50,14 +50,14 @@ $(document).ready(function() {
                   }
               }
           },
-          house_number: {
+          huisnr: {
               validators: {
                   notEmpty: {
                       message: 'Vul een geldig huisnummer in alstublieft'
                   }
               }
           },
-          city: {
+          plaats: {
               validators: {
                    stringLength: {
                       min: 3,

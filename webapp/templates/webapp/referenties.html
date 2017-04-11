@@ -25,9 +25,9 @@
                 <div class="card__image" style="background-image: url(/media/{{thumbnail.docfile}});"></div>
             {% endif %}
         {% endfor %}
-        
+
         <div class="card__content">
-            <div class="card__title">{{pand.straatnaam}} {{pand.huisnr}} - {{pand.postcodeID.postcode}} {{pand.postcodeID.stadsnaam}}</div>
+            <div class="card__title">{{pand.straatnaam}} {{pand.huisnr}} - {{pand.postcode}} {{pand.plaats}}</div>
             {% if pand.review %}
               <p class="card__text">{{pand.review}}</p>
             {% else %}
@@ -38,7 +38,7 @@
         </div>
     </li>
     {% endfor %}
-    
+
     </ul>
 </div>
 {% endblock content %}
