@@ -117,8 +117,6 @@ class Pand(models.Model):
 
     review = models.TextField(null=True, blank=True)
 
-    plattegrond = models.FileField(upload_to='documents/%Y/%m/%d', blank=True, null=True)
-
     objects = models.Manager()
 
     @staticmethod
@@ -178,6 +176,7 @@ class Foto(models.Model):
 class PandDocument(models.Model):
     docfile = models.FileField(upload_to='documents/%Y/%m/%d', blank=True)
     naam = models.CharField(max_length=256)
+    plan = models.BooleanField(default=False)
 
     pand = models.ForeignKey(Pand)
 

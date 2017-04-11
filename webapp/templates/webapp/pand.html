@@ -94,7 +94,7 @@
                         <ul class="nav nav-tabs" role="tablist">
                             <li role="presentation" id="navtab-li-pand" class="active-on-load"><a href="#beschrijving" aria-controls="beschrijving" role="tab" data-toggle="tab">Beschrijving</a></li>
                             <li role="presentation" id="navtab-li-pand"><a href="#details" aria-controls="details" role="tab" data-toggle="tab">Details</a></li>
-                            {% if pand.plattegrond %}<li role="presentation" id="navtab-li-pand"><a href="#plan" aria-controls="plan" role="tab" data-toggle="tab">Plan</a></li>{% endif %}
+                            {% if pand_documenten %}<li role="presentation" id="navtab-li-pand"><a href="#plan" aria-controls="plan" role="tab" data-toggle="tab">Plan</a></li>{% endif %}
                             {% if pand_documenten %}<li role="presentation" id="navtab-li-pand"><a href="#documenten" aria-controls="documenten" role="tab" data-toggle="tab">Documenten</a></li>{% endif %}
                             {% if pand_epc %}<li role="presentation" id="navtab-li-pand"><a href="#epc" aria-controls="epc" role="tab" data-toggle="tab">Vlaamse codex R.O. en EPC</a></li>{% endif %}
                             <li role="presentation" id="navtab-li-pand"><a href="javascript:window.print()">Print</a></li>
@@ -217,24 +217,32 @@
                             </div>
 
                             <!-- style="visibility: hidden;" -->
-                            {% if pand.plattegrond %}
+                            {% if pand_documenten %}
                             <div role="tabpanel" class="tab-pane" id="plan">
+                                <div id="plan" class="documenten">
                                     <div class="row">
-                                        <div class="col-sm-12 product-display">
-                                            <div class="col-sm-12 product-preview">
-                                                {% if pand.plattegrond %}
-                                                    <div class="zoom-btn"><span class="fa fa-search" aria-hidden="true"></div>
+                                        <div class="col-sm-12">
+                                            <h3>Plan</h3>
 
-                                                    <div class="zoom-view">
-                                                        <img id="zoom-image" src="/media/{{pand.plattegrond}}">
+                                            <div class="row" id="col-body">
+
+                                                {% for pand_document in pand_documenten %}
+                                                  {% if pand_document.plan %}
+                                                    <div class="col-sm-4" id="doc-row">
+                                                        <a target="_blank" href="/media/{{pand_document.docfile}}" class="document">
+                                                            <i class="fa fa-file-pdf-o"></i>
+                                                            {{pand_document.naam}}
+                                                        </a>
                                                     </div>
+                                                  {% endif %}
+                                                {% endfor %}
 
-                                                    <img id="product-image" src="/media/{{pand.plattegrond}}">
-                                                {% endif %}
-                                            </div>
-                                        </div>
-                                    </div>
-                            </div> <!--<div role="tabpanel" class="tab-pane" id="plan">-->
+                                            </div><!--<div class="row">-->
+
+                                        </div><!--<div class="col-md-12 col-lg-10 col-lg-offset-2">-->
+                                    </div><!--<div class="row">-->
+                                </div><!--<div id="documenten" class="documenten">-->
+                            </div> <!--<div role="tabpanel" class="tab-pane" id="documenten">-->
                             {% endif %}
 
                             {% if pand_documenten %}

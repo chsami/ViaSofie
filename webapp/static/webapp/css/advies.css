@@ -74,8 +74,8 @@ ul {
 }
 
 
-a {
-    font-weight: bold;
+.faqHeader a {
+    font-style: italic;
 }
 
 
