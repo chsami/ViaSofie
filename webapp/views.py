@@ -171,23 +171,7 @@ def panddetail(request, pand_referentienummer):
     pand_documenten = PandDocumentModel.objects.filter(pand_id = pand.id)
 
 
-    # Get lat long from adress
-    geo_adress_string = str(pand.huisnr) + " " + str(pand.straatnaam) + " " + str(pand.plaats) + " Belgie"
-    geolocator = Nominatim()
-    location = None
-    try:
-        location = geolocator.geocode(geo_adress_string)
-    except Exception as e:
-        pass
-
-    try:
-        lat = str(location.latitude).replace(',', '.')
-        lng = str(location.longitude).replace(',', '.')
-    except Exception as e:
-        lat = "51.166440"
-        lng = "4.497170"
-
-    return render_to_response('webapp/pand.html', {'pand': pand, 'pand_details': pand_details, 'pand_epc': pand_epc, 'pand_documenten': pand_documenten, 'max_picture_count': max_picture_count, 'fotos' : fotos, 'thumbnail': thumbnail, 'thumbnails_related': thumbnails_related, 'relatedPands' : relatedPands,'url': url , 'formlogin':formlogin, 'searchform': searchform, 'lat': lat, 'lng': lng}, context_instance=RequestContext(request))
+    return render_to_response('webapp/pand.html', {'pand': pand, 'pand_details': pand_details, 'pand_epc': pand_epc, 'pand_documenten': pand_documenten, 'max_picture_count': max_picture_count, 'fotos' : fotos, 'thumbnail': thumbnail, 'thumbnails_related': thumbnails_related, 'relatedPands' : relatedPands,'url': url , 'formlogin':formlogin, 'searchform': searchform}, context_instance=RequestContext(request))
 
 def panden(request, filters=None):
     # filters ='handelstatus=' + handelstatus + '&plaats_postcode_refnummer=' + plaats_postcode_renummer
