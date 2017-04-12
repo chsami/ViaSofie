@@ -189,7 +189,7 @@
 
                                             {% for pand_detail in pand_details %}
                                                 {% if forloop.counter0|divisibleby:"2" %}
-                                                    <div class="detail-line"><div class="left">{{pand_detail.naam}}</div><div class="right"> {{pand_detail.waarde}}</div></div>
+                                                    <div class="detail-line"><div class="left">{{pand_detail.naam}}</div>{% if pand_detail.waarde %}<div class="right"> {{pand_detail.waarde}}</div>{% endif %}</div>
                                                 {% endif %}
                                             {% endfor %}
                                         </div>

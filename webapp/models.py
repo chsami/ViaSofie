@@ -156,7 +156,7 @@ post_save.connect(Pand.post_save, sender=Pand)
 class PandDetail(models.Model):
     #id autocreated by django
     naam = models.CharField(max_length=128)
-    waarde = models.CharField(max_length=128)
+    waarde = models.CharField(max_length=128, null=True, blank=True)
 
     pand = models.ForeignKey(Pand)
 
