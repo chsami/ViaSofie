@@ -1,4 +1,4 @@
-{% extends 'webapp/base.html' %} {% load inplace_edit %} {% load staticfiles %} {% load endless %} {% block header %} {% inplace_toolbar %}
+{% extends 'webapp/base.html' %}  {% load staticfiles %} {% load endless %} {% block header %}
 <script type='text/javascript' src="{% static 'webapp/scripts/jquery.advancedsearchbox.js' %}"></script>
 
 <title>Panden | Via Sofie</title>
@@ -13,7 +13,7 @@
 <!--//-->
 <div class="project">
     <div class="container">
-        <h3>{% inplace_edit "data.titel" %}</h3> {% inplace_edit "data.data|safe" %}
+        <h3>{{ data.titel }}</h3> {{ data.data|safe }}
         <div class="project-top"> {% include panden_item %}
         </div>
         <div class="clearfix"> </div>

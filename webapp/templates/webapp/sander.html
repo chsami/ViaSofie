@@ -1,4 +1,4 @@
-{% extends 'webapp/base.html' %} {% load inplace_edit %} {% load staticfiles %} {% block header %} {% inplace_toolbar %}
+{% extends 'webapp/base.html' %}  {% load staticfiles %} {% block header %}
 <script type='text/javascript' src="{% static 'webapp/scripts/index.js' %}"></script>
 <script type='text/javascript' src="{% static 'webapp/scripts/jquery.flexslider.js' %}"></script>
 <script type='text/javascript' src="{% static 'webapp/scripts/jquery.flexisel.js' %}"></script>
@@ -7,7 +7,7 @@
 <div class="container">
     <div class="buy-single-single">
         <div class=" buying-top">
-            <p>{% inplace_edit "pand.straatnaam" %} - {{pand.plaats}}</p>
+            <p>{{pand.straatnaam}} - {{pand.plaats}}</p>
             <div class="flexslider">
             <div id="slider" class="flexslider">
                 <ul class="slides">

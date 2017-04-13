@@ -1,4 +1,4 @@
-{% extends 'webapp/base.html' %} {% load inplace_edit %} {% load staticfiles %} {% load humanize %} {% block header %} {% inplace_toolbar %}
+{% extends 'webapp/base.html' %}  {% load staticfiles %} {% load humanize %} {% block header %}
 
 <link rel="stylesheet" href="{% static 'webapp/css/index.css' %}" type="text/css" media="screen" />
 
@@ -125,7 +125,7 @@
                         {% for goed_doel in goede_doelen %}
                             <a class="tile" href="{{goed_doel.link}}"><img width="225" height="350" src="{{goed_doel.foto_url}}"/>
                                 <div class="details">
-                                    <span class="title"></span><span class="info">Bezoek de website van {% inplace_edit "goed_doel.naam|safe" %}</span>
+                                    <span class="title"></span><span class="info">Bezoek de website van {{ "goed_doel.naam|safe" }}</span>
                                 </div>
                             </a>
                         {% endfor %}

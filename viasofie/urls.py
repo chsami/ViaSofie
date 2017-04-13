@@ -11,8 +11,6 @@ urlpatterns = patterns('',
 	#url(r'^grappelli/', include('grappelli.urls')), # grappelli URLS
     url(r'^admin/', include(admin.site.urls)), # admin site
     url(r'^', include('webapp.urls')),
-    #inlineedit
-    (r'^inplaceeditform/', include('inplaceeditform.urls')),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
