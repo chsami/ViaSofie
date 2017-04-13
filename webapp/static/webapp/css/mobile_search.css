@@ -1,0 +1,113 @@
+.search-form-animation {
+  margin-bottom: 30px;
+}
+.search-form-animation:before, .search-form-animation:after {
+  content: " ";
+  display: table;
+}
+.search-form-animation:after {
+  clear: both;
+}
+
+.form-input {
+  cursor: pointer;
+  float: right;
+  height: 50px;
+}
+
+.form-input--open input {
+  padding: 0 30px 0 60px;
+  visibility: visible;
+  width: 100%;
+}
+
+.search-icon {
+  right: 12px;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+.search-icon svg {
+  fill: #fff;
+  display: block;
+  height: auto;
+  width: 35px;
+}
+
+.input {
+  background-color: transparent;
+  border: 0 none;
+  color: #444;
+  height: 100%;
+  padding: 0 30px;
+  visibility: hidden;
+  width: 0;
+  border: 3px solid #0d3532;;
+}
+.input:focus {
+  outline: none;
+}
+
+#animation-one .form-input {
+  -webkit-transition: background-color .25s ease-in-out, width .25s ease-in-out;
+  transition: background-color .25s ease-in-out, width .25s ease-in-out;
+}
+#animation-one .form-input--open {
+  background-color: #fff;
+  -webkit-transition: background-color .25s ease-in-out, width .25s ease-in-out .15s;
+  transition: background-color .25s ease-in-out, width .25s ease-in-out .15s;
+  width: 100%;
+}
+#animation-one .form-input--open svg {
+  fill: #a1a1a1;
+  -webkit-transition: fill .25s ease-in-out;
+  transition: fill .25s ease-in-out;
+}
+
+#animation-two .form-input {
+  -webkit-transition: width .25s ease-in-out;
+  transition: width .25s ease-in-out;
+}
+#animation-two .form-input--open {
+  -webkit-transition: width .25s ease-in-out;
+  transition: width .25s ease-in-out;
+  width: 100%;
+}
+#animation-two input {
+  color: #fff;
+}
+
+#animation-three .form-input {
+  -webkit-transition: background-color .25s ease-in-out, width .25s ease-in-out;
+  transition: background-color .25s ease-in-out, width .25s ease-in-out;
+  background: #0d3532;
+}
+#animation-three .form-input--open {
+  background-color: #fff;
+  -webkit-transition: background-color 0.25s ease-in-out, width 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: background-color 0.25s ease-in-out, width 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  width: 100%;
+}
+#animation-three .form-input--open svg {
+  fill: #a1a1a1;
+  -webkit-transition: fill .25s ease-in-out;
+  transition: fill .25s ease-in-out;
+}
+
+#animation-four .form-input {
+  overflow: hidden;
+  -webkit-transition: background-color .25s ease-in-out, width .25s ease-in-out;
+  transition: background-color .25s ease-in-out, width .25s ease-in-out;
+}
+#animation-four .form-input--open {
+  background-color: #fff;
+  -webkit-transition: background-color 0.25s ease-in-out, width 0.3s cubic-bezier(0.6, 0.04, 0.98, 0.335);
+  transition: background-color 0.25s ease-in-out, width 0.3s cubic-bezier(0.6, 0.04, 0.98, 0.335);
+  width: 100%;
+}
+#animation-four .form-input--open svg {
+  fill: #a1a1a1;
+  -webkit-transition: fill .25s ease-in-out;
+  transition: fill .25s ease-in-out;
+}

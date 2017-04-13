@@ -129,12 +129,9 @@ p {
     background-color: #0d3532;
 }
 
-#searchButtonMobile {
+#animation-three {
     cursor: hand;
-    height: 8%;
     float: left;
-    width: 8%;
-    background-color: #0d3532;
     display: none;
 }
 
@@ -148,7 +145,7 @@ p {
     bottom: 0;
 }
 
-#searchButtonMobile img {
+#animation-three img {
     position: absolute;
     margin: auto;
     padding: 10px;
@@ -4912,10 +4909,10 @@ ul.nav.nav-pills {
     #searchButton {
       display: none;
     }
-    #searchButtonMobile {
+    #animation-three {
       display: inherit !important;
-      width: 15%;
-      margin-left: 85%;
+      width: 100%;
+      /*margin-left: 85%;*/
       position: fixed;
       top: 54%;
       border: none;

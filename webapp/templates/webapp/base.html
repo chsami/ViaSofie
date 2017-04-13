@@ -21,6 +21,7 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/styles.css' %}" />
 	<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/style.css' %}" />
 	<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/header.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'webapp/css/mobile_search.css' %}" />
 	<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/flags.css' %}" />
 	<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/forms.css' %}" />
 	<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/footer.css' %}" />
@@ -48,6 +49,7 @@
 	<script type='text/javascript' src="{% static 'webapp/scripts/jquery.easing.1.3.js' %}"></script>
 	<script type='text/javascript' src="{% static 'webapp/bootstrap/js/bootstrap.min.js' %}"></script>
 	<script type='text/javascript' src="{% static 'webapp/scripts/header.js' %}"></script>
+  <script type='text/javascript' src="{% static 'webapp/scripts/mobile_search.js' %}"></script>
 	<script type='text/javascript' src="{% static 'webapp/scripts/responsiveslides.min.js' %}"></script>
 	<script type="text/javascript" src="{% static 'webapp/scripts/jquery.searchbox.js' %}"></script>
 	<script type="text/javascript" src="{% static 'webapp/scripts/velocity.min.js' %}"></script>
@@ -91,6 +93,22 @@
    }(document, 'script', 'facebook-jssdk'));
 </script>
 	{% include "webapp/header.html" %}
+
+    <form class="search-form-animation" id="animation-three" name="searchbtngo" method="post" action="">
+      {% csrf_token %}
+      <div class="form-input">
+        <div class="search-icon">
+          <svg width="21.423px" height="21.42px" viewBox="0 0 21.423 21.42" enable-background="new 0 0 21.423 21.42" xml:space="preserve">
+            <path clip-path="url(#SVGID_2_)" d="M13.427,15.427C12.037,16.417,10.337,17,8.5,17C3.806,17,0,13.194,0,8.5
+      C0,3.806,3.806,0,8.5,0C13.194,0,17,3.806,17,8.5c0,1.837-0.583,3.537-1.573,4.927l5.585,5.585c0.55,0.55,0.546,1.43,0,1.976
+      l-0.023,0.024c-0.544,0.544-1.431,0.546-1.977,0L13.427,15.427z M8.5,15c3.59,0,6.5-2.91,6.5-6.5C15,4.91,12.09,2,8.5,2
+      S2,4.91,2,8.5C2,12.089,4.91,15,8.5,15" />
+          </svg>
+        </div>
+
+        {{ searchform.plaats_postcode_refnummer_mobile}}
+      </div>
+    </form>
 
 	{% block content %}
 	{% endblock content %}
