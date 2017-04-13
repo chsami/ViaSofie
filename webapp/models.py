@@ -58,7 +58,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     postcode = models.CharField(max_length=50)
     plaats = models.CharField(max_length=128)
 
-    telefoonnr = models.IntegerField()
+    telefoonnr = models.CharField(max_length=128)
 
     objects = BaseUserManager()
 

@@ -1,0 +1,137 @@
+.header-contact, legend.header-contact {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 1.25rem;
+    margin: 0.5em 0;
+    text-align: center;
+}
+
+.contact {
+  color: #7D6962;
+}
+.contact form fieldset {
+  font-size: 1rem;
+  position: relative;
+  border: none;
+  margin-bottom: 0.25em;
+  padding: 0.25em 0;
+}
+.contact form fieldset label {
+  font-size: 0.875rem;
+  display: block;
+  position: absolute;
+  right: 0.125em;
+  top: 1.5em;
+  color: #0d3532;
+}
+.contact form input,
+.contact form textarea,
+.contact form button {
+  border: 0;
+}
+.contact form input:focus,
+.contact form textarea:focus,
+.contact form button:focus {
+  outline: none;
+}
+.contact form input,
+.contact form textarea {
+  display: block;
+  font-size: 1rem;
+  padding: 1.5em 0;
+  width: 100%;
+  background: none;
+  color: #333;
+  border-bottom: 1px solid #0d3532;
+  -webkit-transition: border 300ms ease-in-out;
+  transition: border 300ms ease-in-out;
+
+  border-radius: 0px;
+}
+
+.fieldWrapper {
+  margin-left: 30%;
+  width: 40%;
+}
+
+.g-recaptcha {
+  margin-top: 15px;
+}
+
+.reset_password{
+    margin-left: 15%;
+}
+
+.reset_password a{
+    color: #333 !important;
+}
+
+.reset_password a :hover{
+    color: #0d3532 !important;
+}
+
+.form-control:focus {
+     border-color: #66afe9;
+     box-shadow: none;
+}
+
+.button-submit {
+  width: 40%;
+  margin-left: 30%;
+}
+
+.contact form input:focus,
+.contact form textarea:focus {
+  border-bottom: 1px solid #0d3532;
+}
+.contact form input::-webkit-input-placeholder,
+.contact form textarea::-webkit-input-placeholder {
+  color: #333;
+}
+.contact form input::-moz-placeholder,
+.contact form textarea::-moz-placeholder {
+  color: #333;
+}
+.contact form input:-ms-input-placeholder,
+.contact form textarea:-ms-input-placeholder {
+  color: #333;
+}
+.contact form input::placeholder,
+.contact form textarea::placeholder {
+  color: #333;
+}
+.contact button {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 1rem;
+  display: block;
+  background: #0d3532;
+  color: #EEEEEE;
+  padding: 1em 2em;
+  box-shadow: 0 0 40px 0 rgba(21, 21, 21, 0.6);
+}
+.contact button:hover {
+  -webkit-animation: swell 500ms ease-in-out;
+          animation: swell 500ms ease-in-out;
+  cursor: pointer;
+}
+.contact textarea {
+  resize: none;
+}
+
+.contact {
+  -webkit-animation: Contact 600ms ease-in-out forwards;
+          animation: Contact 600ms ease-in-out forwards;
+}
+
+@media(max-width:992px) {
+  .container {
+       padding-right: 0px;
+       padding-left: 0px;
+  }
+
+  .fieldWrapper {
+    margin-left: 15%;
+    width: 70%;
+  }
+}

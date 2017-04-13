@@ -1,8 +1,8 @@
 {% extends 'webapp/base.html' %}
-{% load staticfiles %} 
+{% load staticfiles %}
 
 {% block header %}
-<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/forms.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'webapp/css/register.css' %}" />
 
 <title>Register | Via Sofie</title>
 
@@ -10,13 +10,13 @@
 	<meta name="description" content="Registreer je bij viasofie.be. Heb je al een account? Meld je hier aan!">
 	<meta name="keywords" content="login, register, registreren, aanmelden, immo, immobilien, immobiliën, vastgoed, advies, vastgoedmakelaar, sofie, andriesen, via sofie, viasofie, mussenhoevenlaan, 2530, boechout, lint, kontich, antwerpen, te koop, te huur, wonen, huren, kopen, makelaar, huis, biv">
 	<meta name="author" content="Sacha Van den Wyngaert">
-{% endblock header %} 
+{% endblock header %}
 
 {% block content %}
-<div class="forms">
+<!-- <div class="forms">
 <div class="registration">
 	<form method="post" action="">
-        <h3>Registreren</h3> 
+        <h3>Registreren</h3>
         {% csrf_token %}
         <table>
             {{form}}
@@ -25,5 +25,68 @@
         <p><a href="/login">Login</a> - <a href="/resetpassword">Wachtwoord vergeten?</a></p>
     </form>
 </div>
-</div>
+</div> -->
+
+<div class="container">
+  <div class="well contact">
+    <legend class="header-contact">Geïnteresseerd in wat Via Sofie te bieden heeft? Registreer hier je account!</legend>
+    <form class="form-horizontal" role="form" method="post"  id="form">
+      {% csrf_token %}
+      <table>
+        {{ form.non_field_errors }}
+        <div class="fieldWrapper">
+            {{ form.email.errors }}
+            {{ form.email }}
+        </div>
+        <div class="fieldWrapper">
+            {{ form.password1.errors }}
+            {{ form.password1 }}
+        </div>
+        <div class="fieldWrapper">
+            {{ form.password2.errors }}
+            {{ form.password2 }}
+        </div>
+        <div class="fieldWrapper">
+            {{ form.voornaam.errors }}
+            {{ form.voornaam }}
+        </div>
+        <div class="fieldWrapper">
+            {{ form.naam.errors }}
+            {{ form.naam }}
+        </div>
+        <div class="fieldWrapper">
+            {{ form.straatnaam.errors }}
+            {{ form.straatnaam }}
+        </div>
+        <div class="fieldWrapper">
+            {{ form.huisnr.errors }}
+            {{ form.huisnr }}
+        </div>
+        <div class="fieldWrapper">
+            {{ form.busnr.errors }}
+            {{ form.busnr }}
+        </div>
+        <div class="fieldWrapper">
+            {{ form.postcode.errors }}
+            {{ form.postcode }}
+        </div>
+        <div class="fieldWrapper">
+            {{ form.plaats.errors }}
+            {{ form.plaats }}
+        </div>
+        <div class="fieldWrapper">
+            {{ form.telefoonnr.errors }}
+            {{ form.telefoonnr }}
+        </div>
+        <div class="fieldWrapper">
+            {{ form.captcha }}
+        </div>
+      </table>
+      <p class="reset_password"><a href="/login">Login</a> - <a href="/resetpassword">Wachtwoord vergeten?</a></p>
+      <fieldset class="button-submit">
+        <button type="submit" value="Submit" id="btn-submit">Registreer</button>
+      </fieldset>
+      </form>
+  </div>
+</div><!-- /.container -->
 {% endblock content %}
