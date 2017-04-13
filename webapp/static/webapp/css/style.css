@@ -4910,7 +4910,9 @@ ul.nav.nav-pills {
       display: none;
     }
     #animation-three {
-      display: inherit !important;
+      /*TODO: DISPLAY BACK TO INHERIT ONCE SEARCH IS FIXED*/
+      /*display: inherit !important;*/
+      display: none;
       width: 100%;
       /*margin-left: 85%;*/
       position: fixed;
