@@ -36,9 +36,6 @@ SITE_ID=2
 INSTALLED_APPS = (
     'webapp',
     'captcha',
-    'inplaceeditform_bootstrap',
-    'inplaceeditform',
-    'inplaceeditform_extra_fields',
     'bootstrap3_datetime',
     'qrcode',
     'django.contrib.sites',
@@ -55,19 +52,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'endless_pagination',
 )
-
-ADAPTOR_INPLACEEDIT = {}
-if 'inplaceeditform_extra_fields' in INSTALLED_APPS:
-    ADAPTOR_INPLACEEDIT['tiny'] = 'inplaceeditform_extra_fields.fields.AdaptorTinyMCEField'
-    # You can add the other adaptors of inplaceeditform_extra_fields
-    # https://pypi.python.org/pypi/django-inplaceedit-extra-fields#installation
-if 'bootstrap3_datetime' in INSTALLED_APPS:
-    ADAPTOR_INPLACEEDIT['date'] = 'inplaceeditform_bootstrap.fields.AdaptorDateBootStrapField'
-    ADAPTOR_INPLACEEDIT['datetime'] = 'inplaceeditform_bootstrap.fields.AdaptorDateTimeBootStrapField'
-
-INPLACEEDIT_EDIT_TOOLTIP_TEXT = 'Please doubleclick to edit'
-INPLACEEDIT_AUTO_SAVE = True
-INPLACEEDIT_EVENT = 'click'
 
 
 RECAPTCHA_PUBLIC_KEY = '6LcUDRwUAAAAAEb4y1s49ArVzyLBIDSRa2EAaVQw'
@@ -185,10 +169,3 @@ TEMPLATES = [
 ]
 
 ROSETTA_REQUIRES_AUTH= True;
-
-# INSTALLED_APPS += ('lockdown', )
-# MIDDLEWARE_CLASSES += ('lockdown.middleware.LockdownMiddleware', )
-# LOCKDOWN_PASSWORDS = ('BlackLabelZero', )
-# LOCKDOWN_FORM = 'lockdown.forms.LockdownForm'
-
-# inplaceedit
