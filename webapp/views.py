@@ -204,6 +204,8 @@ def panddetail(request, pand_referentienummer):
     if epc != epc_code:
         pand_epc_col1.append(pand_epc_col2.pop())
 
+    pand_epc_col2 = pand_epc_col2[::-1]
+
     # Get PandDocuments
     pand_documenten = PandDocumentModel.objects.filter(pand_id = pand.id)
 
