@@ -121,7 +121,7 @@ p {
     float: right;
 }
 
-.middle {
+#searchButton {
     cursor: hand;
     height: 50px;
     float: left;
@@ -129,7 +129,26 @@ p {
     background-color: #0d3532;
 }
 
-.middle img {
+#searchButtonMobile {
+    cursor: hand;
+    height: 8%;
+    float: left;
+    width: 8%;
+    background-color: #0d3532;
+    display: none;
+}
+
+#searchButton img {
+    position: absolute;
+    margin: auto;
+    padding: 10px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+#searchButtonMobile img {
     position: absolute;
     margin: auto;
     padding: 10px;
@@ -4890,12 +4909,16 @@ ul.nav.nav-pills {
     .bottom-head {
         width: 25%;
     }
-    .middle {
-        /*height: 50px;
-        float: left;
-        width: 20%;
-        background-color: #0d3532;*/
-        display: none;
+    #searchButton {
+      display: none;
+    }
+    #searchButtonMobile {
+      display: inherit !important;
+      width: 15%;
+      margin-left: 85%;
+      position: fixed;
+      top: 54%;
+      border: none;
     }
     .banner1,
     .banner2,
