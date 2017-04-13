@@ -1,4 +1,4 @@
-{% extends 'webapp/base.html' %}  {% load staticfiles %} {% block header %} 
+{% extends 'webapp/base.html' %}  {% load staticfiles %} {% block header %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'webapp/css/contact.css' %}" />
 
@@ -49,29 +49,6 @@
         <button type="submit" value="Submit" id="btn-submit">Verstuur</button>
       </fieldset>
     </form>
-    <!-- <form id="form" role="form" method="post">
-      {% csrf_token %}
-      <legend class="header-contact">Een vraag of liever een afspraak op kantoor, laat het me weten!</legend>
-      <fieldset>
-        <label class="fa fa-user" for="name-input" aria-hidden="true"></label>
-        <input type="text" placeholder="Naam..." id="name-input" name="name"/>
-      </fieldset>
-      <fieldset>
-        <label class="fa fa-envelope" for="email-input" aria-hidden="true"></label>
-        <input type="email" placeholder="Email..." id="email-input" name="email"/>
-      </fieldset>
-      <fieldset>
-        <label class="fa fa-phone" for="phone-input" aria-hidden="true"></label>
-        <input type="phone" placeholder="Telefoon/GSM nummer..." id="phone-input" name="phone"/>
-      </fieldset>
-      <fieldset>
-        <label class="fa fa-comment" for="message-input" aria-hidden="true"></label>
-        <textarea placeholder="Uw bericht..." id="message-input" name="message"></textarea>
-      </fieldset>
-      <fieldset>
-        <button type="submit" value="Submit" id="btn-submit">Verstuur</button>
-      </fieldset>
-    </form> -->
   </div>
 </div>
 <div class="map">

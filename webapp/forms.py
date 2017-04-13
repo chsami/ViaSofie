@@ -212,8 +212,6 @@ class BlijfOpDeHoogteForm(forms.ModelForm):
     max_prijs = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'placeholder': 'Maximumprijs', 'class': 'form-control'}), required = False)
     # <input name="max_price" placeholder="Maximumprijs" class="form-control" type="text">
 
-    captcha = ReCaptchaField()
-
     class Meta:
         model = BlijfOpDeHoogteUser
-        fields = ['voornaam', 'naam', 'email', 'telefoonnummer', 'straatnaam', 'huisnr', 'plaats', 'postcode', 'min_prijs', 'max_prijs', 'captcha',]
+        fields = ['voornaam', 'naam', 'email', 'telefoonnummer', 'straatnaam', 'huisnr', 'plaats', 'postcode', 'min_prijs', 'max_prijs',]

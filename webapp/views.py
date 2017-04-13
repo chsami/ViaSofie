@@ -450,8 +450,10 @@ def blijf_op_de_hoogte(request):
                 return redirect("/login")
     elif(request.method == 'POST'):
         formlogin = AuthenticationForm(data=request.POST)
-        form = BlijfOpDeHoogteForm(data=request.POST)
+        form = BlijfOpDeHoogteForm(request.POST)
+
         if form.is_valid():
+            print "Valid form submitted"
             # ['voornaam', 'naam', 'email', 'telefoonnummer', 'straatnaam', 'huisnr', 'plaats', 'postcode', 'min_prijs', 'max_prijs', 'captcha',]
             voornaam = form.cleaned_data['voornaam']
             naam = form.cleaned_data['naam']
@@ -464,7 +466,14 @@ def blijf_op_de_hoogte(request):
             min_prijs = form.cleaned_data['min_prijs']
             max_prijs = form.cleaned_data['max_prijs']
 
-            new_user = BlijfOpDeHoogteUserModel(voornaam=voornaam, naam=naam, email=email, telefoonnummer=telefoonnummer, straatnaam=straatnaam, huisnr=huisnr, plaats=plaats, postcode=postcode, min_prijs=min_prijs, max_prijs=max_prijs)
+            if min_prijs != "":
+                if max_prijs != "":
+                    new_user = BlijfOpDeHoogteUserModel(voornaam=voornaam, naam=naam, email=email, telefoonnummer=telefoonnummer, straatnaam=straatnaam, huisnr=huisnr, plaats=plaats, postcode=postcode, min_prijs=min_prijs, max_prijs=max_prijs)
+                else:
+                    new_user = BlijfOpDeHoogteUserModel(voornaam=voornaam, naam=naam, email=email, telefoonnummer=telefoonnummer, straatnaam=straatnaam, huisnr=huisnr, plaats=plaats, postcode=postcode, min_prijs=None, max_prijs=max_prijs)
+            else:
+                new_user = BlijfOpDeHoogteUserModel(voornaam=voornaam, naam=naam, email=email, telefoonnummer=telefoonnummer, straatnaam=straatnaam, huisnr=huisnr, plaats=plaats, postcode=postcode, min_prijs=None, max_prijs=None)
+
             new_user.save()
 
         form = BlijfOpDeHoogteForm()

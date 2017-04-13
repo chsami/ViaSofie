@@ -241,14 +241,14 @@ class BlijfOpDeHoogteUser(models.Model):
     voornaam = models.CharField(max_length=128)
     naam =  models.CharField(max_length=128)
     email = models.CharField(max_length=128, unique=True)
-    telefoonnummer = models.CharField(max_length=128, unique=True)
+    telefoonnummer = models.CharField(max_length=128)
 
     straatnaam = models.CharField(max_length=128)
     huisnr = models.CharField(max_length=10)
     plaats = models.CharField(max_length=10, null=True, blank=True)
     postcode = models.CharField(max_length=50)
 
-    min_prijs = models.DecimalField(default=0, max_digits=18, decimal_places=0)
+    min_prijs = models.DecimalField(null=True, blank=True, max_digits=18, decimal_places=0)
     max_prijs = models.DecimalField(null=True, blank=True, max_digits=18, decimal_places=0)
 
     REQUIRED_FIELDS = ['voornaam', 'naam', 'email', 'telefoonnummer', 'straatnaam', 'huisnr', 'plaats', 'postcode', ]
