@@ -1,4 +1,4 @@
-{% extends 'webapp/base.html' %}  {% load staticfiles %} {% block header %} 
+{% extends 'webapp/base.html' %}  {% load staticfiles %} {% block header %}
 
 <link rel="stylesheet" href="{% static 'webapp/css/referenties.css' %}" type="text/css" media="screen" />
 
@@ -19,10 +19,12 @@
     {% for pand in panden %}
       <li class="cards__item">
         <div class="card">
-        <img class="sold-card image-responsive" src="{% static 'webapp/images/verkocht_bw.png' %}" alt="">
         {% for thumbnail in thumbnails %}
             {% if thumbnail.pand.referentienummer == pand.referentienummer %}
+              {% if thumbnail %}
+                <img class="sold-card image-responsive" src="{% static 'webapp/images/verkocht_bw.png' %}" alt="">
                 <div class="card__image" style="background-image: url(/media/{{thumbnail.docfile}});"></div>
+              {% endif %}
             {% endif %}
         {% endfor %}
 

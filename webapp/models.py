@@ -149,7 +149,10 @@ class Pand(models.Model):
                 print (bodh_user)
 
     def __str__(self):
-        return str(self.referentienummer) + " | " + str(self.user.naam) + " " + str(self.user.voornaam) + " | " + str(self.user.email)
+        if self.user:
+            return str(self.referentienummer) + " | " + str(self.user.naam) + " " + str(self.user.voornaam) + " | " + str(self.user.email)
+        else:
+            return str(self.referentienummer)
 
 post_save.connect(Pand.post_save, sender=Pand)
 

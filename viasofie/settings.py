@@ -24,7 +24,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = ['localhost','viasofie.be','127.0.0.1','skagoo.ddns.net', '188.226.137.121']
+ALLOWED_HOSTS = ['localhost','viasofie.be','127.0.0.1','skagoo.ddns.net']
 
 SITE_ID=2
 
@@ -52,7 +52,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'endless_pagination',
 )
-
 
 RECAPTCHA_PUBLIC_KEY = '6LcUDRwUAAAAAEb4y1s49ArVzyLBIDSRa2EAaVQw'
 RECAPTCHA_PRIVATE_KEY = '6LcUDRwUAAAAAJuHFYZzet4YGctIuLgerYk7GvJj'
@@ -133,13 +132,13 @@ USE_L10N = True
 USE_TZ = True
 
 
-MEDIA_ROOT = '/home/django/ViaSofie/media'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/home/django/ViaSofie/webapp/static'
+STATIC_ROOT = os.path.join(BASE_DIR, 'webapp/static')
 
 AUTH_USER_MODEL = 'webapp.User'
 AUTHENTICATION_BACKENDS = ['webapp.backends.EmailAuthBackend', 'django.contrib.auth.backends.ModelBackend',]

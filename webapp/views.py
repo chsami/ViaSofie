@@ -325,10 +325,12 @@ def referenties(request):
     thumbnails = []
     for pand in panden:
         fotos = FotoModel.objects.filter(pand_id=pand.id)
+        thumbnail = None;
         try:
             thumbnail = fotos.filter(thumbnail=true)[:1]
         except Exception as ex:
-            thumbnail = fotos[0]
+            if fotos:
+                thumbnail = fotos[0]
 
         thumbnails.append(thumbnail)
 
