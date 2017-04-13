@@ -36,8 +36,6 @@ from django.contrib.auth.tokens import default_token_generator
 from django.shortcuts import resolve_url
 import collections
 
-from geopy.geocoders import Nominatim
-
 #sander is awesome
 #removed 171 lines of code
 def slogin(request):
