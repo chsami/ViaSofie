@@ -162,32 +162,55 @@ def panddetail(request, pand_referentienummer):
         thumbnails_related.append(thumbnail)
 
     # Get details
-    pand_details = PandDetailModel.objects.filter(pand_id = pand.id)
+    pand_details = PandDetailModel.objects.filter(pand_id = pand.id).order_by('id')
+
+    details_left_col_count = len(pand_details)//2
+    details_right_col_count = len(pand_details) - details_left_col_count
+
+    if not details_left_col_count % 2 == 0:
+        details_left_col_count + 1
+        details_right_col_count - 1
+
+    pand_details_col1 = list(pand_details[:details_left_col_count])
+    pand_details_col2 = list(pand_details.reverse()[:details_right_col_count])
+
 
     # Get PandEPC
-    pand_epc = PandEPCModel.objects.filter(pand_id = pand.id)
+    pand_epcs = PandEPCModel.objects.filter(pand_id = pand.id).order_by('id')
+
+    epc_left_col_count = len(pand_epcs)//2
+    epc_right_col_count = len(pand_epcs) - epc_left_col_count
+
+    if not epc_left_col_count % 2 == 0:
+        epc_left_col_count + 1
+        epc_right_col_count - 1
+
+    pand_epc_col1 = list(pand_epcs[:epc_left_col_count])
+    pand_epc_col2 = list(pand_epcs.reverse()[:epc_right_col_count])
+
+    epc = None
+    epc_code = None
+    for pand_epc in pand_epc_col1:
+        if str(pand_epc.naam).lower() == "epc":
+            epc = 1;
+        elif str(pand_epc.naam).lower() == "epc-code":
+            epc_code = 1;
+
+    if not epc and not epc_code:
+        for pand_epc in pand_epc_col2:
+            if str(pand_epc.naam).lower() == "epc":
+                epc = 2;
+            elif str(pand_epc.naam).lower() == "epc-code":
+                epc_code = 2;
+
+    if epc != epc_code:
+        pand_epc_col1.append(pand_epc_col2.pop())
 
     # Get PandDocuments
     pand_documenten = PandDocumentModel.objects.filter(pand_id = pand.id)
 
 
-    # Get lat long from adress
-    geo_adress_string = str(pand.huisnr) + " " + str(pand.straatnaam) + " " + str(pand.plaats) + " Belgie"
-    geolocator = Nominatim()
-    location = None
-    try:
-        location = geolocator.geocode(geo_adress_string)
-    except Exception as e:
-        pass
-
-    try:
-        lat = str(location.latitude).replace(',', '.')
-        lng = str(location.longitude).replace(',', '.')
-    except Exception as e:
-        lat = "51.166440"
-        lng = "4.497170"
-
-    return render_to_response('webapp/pand.html', {'pand': pand, 'pand_details': pand_details, 'pand_epc': pand_epc, 'pand_documenten': pand_documenten, 'max_picture_count': max_picture_count, 'fotos' : fotos, 'thumbnail': thumbnail, 'thumbnails_related': thumbnails_related, 'relatedPands' : relatedPands,'url': url , 'formlogin':formlogin, 'searchform': searchform, 'lat': lat, 'lng': lng}, context_instance=RequestContext(request))
+    return render_to_response('webapp/pand.html', {'pand': pand, 'pand_details_col1': pand_details_col1, 'pand_details_col2': pand_details_col2, 'pand_epc_col1': pand_epc_col1, 'pand_epc_col2': pand_epc_col2, 'pand_documenten': pand_documenten, 'max_picture_count': max_picture_count, 'fotos' : fotos, 'thumbnail': thumbnail, 'thumbnails_related': thumbnails_related, 'relatedPands' : relatedPands,'url': url , 'formlogin':formlogin, 'searchform': searchform}, context_instance=RequestContext(request))
 
 def panden(request, filters=None):
     # filters ='handelstatus=' + handelstatus + '&plaats_postcode_refnummer=' + plaats_postcode_renummer

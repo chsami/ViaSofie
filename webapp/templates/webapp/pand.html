@@ -93,10 +93,10 @@
 
                         <ul class="nav nav-tabs" role="tablist">
                             <li role="presentation" id="navtab-li-pand" class="active-on-load"><a href="#beschrijving" aria-controls="beschrijving" role="tab" data-toggle="tab">Beschrijving</a></li>
-                            <li role="presentation" id="navtab-li-pand"><a href="#details" aria-controls="details" role="tab" data-toggle="tab">Details</a></li>
+                            {% if pand_details_col1 or pand_details_col2 %}<li role="presentation" id="navtab-li-pand"><a href="#details" aria-controls="details" role="tab" data-toggle="tab">Details</a></li>{% endif %}
                             {% if pand_documenten %}<li role="presentation" id="navtab-li-pand"><a href="#plan" aria-controls="plan" role="tab" data-toggle="tab">Plan</a></li>{% endif %}
                             {% if pand_documenten %}<li role="presentation" id="navtab-li-pand"><a href="#documenten" aria-controls="documenten" role="tab" data-toggle="tab">Documenten</a></li>{% endif %}
-                            {% if pand_epc %}<li role="presentation" id="navtab-li-pand"><a href="#epc" aria-controls="epc" role="tab" data-toggle="tab">Vlaamse codex R.O. en EPC</a></li>{% endif %}
+                            {% if pand_epc_col1 or pand_epc_col2 %}<li role="presentation" id="navtab-li-pand"><a href="#epc" aria-controls="epc" role="tab" data-toggle="tab">Vlaamse codex R.O. en EPC</a></li>{% endif %}
                             <li role="presentation" id="navtab-li-pand"><a href="javascript:window.print()">Print</a></li>
                         </ul>
 
@@ -171,7 +171,7 @@
                                 <!--END OF BESCHRIJVING-->
                             </div>
 
-
+                            {% if pand_details_col1 or pand_details_col2 %}
                             <div role="tabpanel" class="tab-pane" id="details">
                                 <!--DETAILS-->
                                 <div class="col-sm-12">
@@ -179,35 +179,14 @@
                                     <div class="row" id="col-body">
 
                                         <div class="col-sm-6">
-                                            <div class="detail-line"><div class="left">Slaapkamers</div><div class="right"> {{pand.slaapkamers}}</div></div>
-                                            <div class="detail-line"><div class="left">Badkamers</div><div class="right"> {{pand.badkamers}}</div></div>
-                                            {% if pand.parkeerplaats %}
-                                                <div class="detail-line"><div class="left">Parkeerplaats</div><div class="right"> Ja</div></div>
-                                            {% else %}
-                                                <div class="detail-line"><div class="left">Parkeerplaats</div><div class="right"> Nee</div></div>
-                                            {% endif %}
-
-                                            {% for pand_detail in pand_details %}
-                                                {% if forloop.counter0|divisibleby:"2" %}
-                                                    <div class="detail-line"><div class="left">{{pand_detail.naam}}</div>{% if pand_detail.waarde %}<div class="right"> {{pand_detail.waarde}}</div>{% endif %}</div>
-                                                {% endif %}
+                                            {% for pand_detail in pand_details_col1 %}
+                                                <div class="detail-line"><div class="left">{{pand_detail.naam}}</div>{% if pand_detail.waarde %}<div class="right"> {{pand_detail.waarde}}</div>{% endif %}</div>
                                             {% endfor %}
                                         </div>
 
                                         <div class="col-sm-6">
-                                            {% if pand.handelstatus.status == "te koop"%}
-                                                <div class="detail-line"><div class="left">Prijs</div><div class="right"> € {{pand.prijs|intcomma}}</div></div>
-                                            {% else %}
-                                                <div class="detail-line"><div class="left">Prijs</div><div class="right"> € {{pand.prijs|intcomma}} / maand</div></div>
-                                            {% endif %}
-                                            <div class="detail-line"><div class="left">Referentie nr.</div><div class="right" style="white-space: nowrap;"> {{ pand.referentienummer }}</div></div>
-
-                                            {% for pand_detail in pand_details %}
-                                                {% if forloop.counter0|divisibleby:"2" %}
-                                                    <!--Impossible to get here-->
-                                                {% else %}
-                                                    <div class="detail-line"><div class="left">{{pand_detail.naam}}</div><div class="right"> {{pand_detail.waarde}}</div></div>
-                                                {% endif %}
+                                            {% for pand_detail in pand_details_col2 %}
+                                                <div class="detail-line"><div class="left">{{pand_detail.naam}}</div>{% if pand_detail.waarde %}<div class="right"> {{pand_detail.waarde}}</div>{% endif %}</div>
                                             {% endfor %}
                                         </div>
 
@@ -215,6 +194,7 @@
                                 </div>
                                 <!--END OF DETAILS-->
                             </div>
+                            {% endif %}
 
                             <!-- style="visibility: hidden;" -->
                             {% if pand_documenten %}
@@ -255,12 +235,15 @@
                                             <div class="row" id="col-body">
 
                                                 {% for pand_document in pand_documenten %}
-                                                    <div class="col-sm-4" id="doc-row">
-                                                        <a target="_blank" href="/media/{{pand_document.docfile}}" class="document">
-                                                            <i class="fa fa-file-pdf-o"></i>
-                                                            {{pand_document.naam}}
-                                                        </a>
-                                                    </div>
+                                                  {% if pand_document.plan %}
+                                                  {% else %}
+                                                  <div class="col-sm-4" id="doc-row">
+                                                      <a target="_blank" href="/media/{{pand_document.docfile}}" class="document">
+                                                          <i class="fa fa-file-pdf-o"></i>
+                                                          {{pand_document.naam}}
+                                                      </a>
+                                                  </div>
+                                                  {% endif %}
                                                 {% endfor %}
 
                                             </div><!--<div class="row">-->
@@ -271,7 +254,7 @@
                             </div> <!--<div role="tabpanel" class="tab-pane" id="documenten">-->
                             {% endif %}
 
-                            {% if pand_epc %}
+                            {% if pand_epc_col1 or pand_epc_col2 %}
                             <div role="tabpanel" class="tab-pane" id="epc">
                                 <!--R.O. EN EPC-->
                                 <div class="col-sm-12">
@@ -279,20 +262,14 @@
                                     <div class="row" id="col-body">
 
                                         <div class="col-sm-6">
-                                            {% for epc in pand_epc %}
-                                                {% if forloop.counter0|divisibleby:"2" %}
-                                                    <div class="detail-line"><div class="left">{{epc.naam}}</div><div class="right"> {{epc.waarde}}</div></div>
-                                                {% endif %}
+                                            {% for epc in pand_epc_col1 %}
+                                                <div class="detail-line"><div class="left">{{epc.naam}}</div>{% if epc.waarde %}<div class="right"> {{epc.waarde}}</div>{% endif %}</div>
                                             {% endfor %}
                                         </div>
 
                                         <div class="col-sm-6">
-                                            {% for epc in pand_epc %}
-                                                {% if forloop.counter0|divisibleby:"2" %}
-                                                    <!--Impossible to get here-->
-                                                {% else %}
-                                                    <div class="detail-line"><div class="left">{{epc.naam}}</div><div class="right"> {{epc.waarde}}</div></div>
-                                                {% endif %}
+                                            {% for epc in pand_epc_col2 %}
+                                                <div class="detail-line"><div class="left">{{epc.naam}}</div>{% if epc.waarde %}<div class="right"> {{epc.waarde}}</div>{% endif %}</div>
                                             {% endfor %}
                                         </div>
                                     </div>
@@ -371,25 +348,16 @@
                 </script>
 
 
+
                 <div class="map-buy-single1">
-                    <!--<iframe
-                        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCR6SBL79-AAn4d1-TMy0871l8JPciXncM&amp;q={{pand.plaats}},{{pand.straatnaam}},{{pand.huisnr}}"
-                        streetViewControl=true
-                        width="100%"
-                        height="370px"
-                        style="border:0"
-                    >-->
-                    </iframe>
                     <iframe
-                        id="map"
-                        width="100%"
-                        height="370px"
-                        frameborder="0"
-                        scrolling="no"
-                        marginheight="0"
-                        marginwidth="0"
-                        style="border:0"
-                        src="http://my.ctrlq.org/maps/#roadmap|16|{{lat}}|{{lng}}">
+                    src="http://www.mapi.ie/create-google-map/map.php?width=100%&amp;height=400&amp;hl=en&amp;q={{pand.straatnaam}}%20{{pand.huisnr}}%2C%20{{pand.postcode}}%20{{pand.plaats}}+({{pand.straatnaam}}%20{{pand.huisnr}})&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=A&amp;output=embed"
+                    frameborder="0"
+                    scrolling="no"
+                    marginheight="0"
+                    marginwidth="0"
+                    >
+                      <a href="http://www.mapsdirections.info/fr/mesurer-distance-surface-google-maps.html">Mesurer distance avec Google Maps</a> en <a href="http://www.mapsdirections.info/fr/">www.mapsdirections.info/nl/</a>
                     </iframe>
                 </div> <!--map-buy-single-->
             </div> <!--col-sm-5 buy-sin-->

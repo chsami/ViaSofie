@@ -1,4 +1,4 @@
-{% load staticfiles %} {% load endless %} {% paginate panden %}
+{% load humanize %} {% load staticfiles %} {% load endless %} {% paginate panden %}
 
 {% for pand in panden %}
     <div class="col-md-3 top-deal-top">
@@ -15,12 +15,12 @@
             <div class="deal-bottom">
 
                 <div class="top-deal1">
-                    <h5><a href="/pand/{{ pand.referentienummer}}">{{ pand.straatnaam }}</a></h5>
+                    <h5><a href="/pand/{{ pand.referentienummer}}">{{ pand.straatnaam }} {{ pand.huisnr }}<br>{{ pand.postcode }}, {{ pand.plaats }}</a></h5>
                     <!--<p>Oppervlakte : {{pand.oppervlakte}}</p>-->
                     {% if pand.handelstatus.status == "te koop"%}
-                        <p class="prijs">€ {{pand.prijs}}</p>
+                        <p class="prijs">€ {{pand.prijs|intcomma}}</p>
                     {% else %}
-                        <p class="prijs">€ {{pand.prijs}} / maand</p>
+                        <p class="prijs">€ {{pand.prijs|intcomma}} / maand</p>
                     {% endif %}
                 </div>
 
