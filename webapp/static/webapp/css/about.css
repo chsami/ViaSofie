@@ -248,13 +248,28 @@ form input[type="submit"] {
   border-radius: 40px;
 }
 
-@media(max-width:1366px) {}
+@media(max-width:1399px) {
+  .logo-container {
+    left:50%;
+  }
+}
 
-@media(max-width:1280px) {}
+@media(max-width:1280px) {
+  .logo-container {
+    left:50%;
+  }
+}
 
-@media(max-width:1200px) {}
+@media(max-width:1200px) {
+  .logo-container {
+    left:50%;
+  }
+}
 
 @media(max-width:1024px) {
+  .logo-container {
+    display: none;
+  }
 }
 
 @media(max-width:992px) {
