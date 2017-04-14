@@ -4,7 +4,7 @@
         margin-bottom: 20px;
     }
 
-    .panel-heading [data-toggle="collapse"]:after {
+    .panel-heading [data-toggle="collapse"]:before {
         font-family: 'Glyphicons Halflings';
         content: "+"; /* "play" icon */
         float: right;
@@ -19,7 +19,7 @@
         transform: rotate(-90deg);
     }
 
-    .panel-heading [data-toggle="collapse"].collapsed:after {
+    .panel-heading [data-toggle="collapse"].collapsed:before {
         /* rotate "play" icon from > (right arrow) to ^ (up arrow) */
         -webkit-transform: rotate(90deg);
         -moz-transform: rotate(90deg);
