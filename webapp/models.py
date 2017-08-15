@@ -128,6 +128,22 @@ class Pand(models.Model):
 
     objects = models.Manager()
 
+    def pandDetails(self):
+        pand_pand_details = PandPandDetail.objects.filter(pand=self)
+        return pand_pand_details
+
+    def pandEPCs(self):
+        pand_pand_epcs = PandPandEPC.objects.filter(pand=self)
+        return pand_pand_epcs
+
+    def pandDocuments(self):
+        pand_pand_documents = PandPandDocument.objects.filter(pand=self)
+        return pand_pand_documents
+
+    def pandVoortgang(self):
+        pand_pand_voortgang = Voortgang.objects.filter(pand=self)
+        return pand_pand_voortgang
+
     @staticmethod
     def post_save(sender, **kwargs):
         instance = kwargs.get('instance')
@@ -161,20 +177,26 @@ class PandDetail(models.Model):
     naam = models.CharField(max_length=128)
     waarde = models.CharField(max_length=128, null=True, blank=True)
 
-    pand = models.ForeignKey(Pand)
+    
 
     def __str__(self):
         return str(self.naam) + ': ' + str(self.waarde)
+#tussenrelatie
+class PandPandDetail(models.Model):
+    pand = models.ForeignKey(Pand)
+    detail = models.ForeignKey(PandDetail, on_delete=models.CASCADE)
 
 class PandEPC(models.Model):
     #id autocreated by django
     naam = models.CharField(max_length=128)
     waarde = models.CharField(max_length=128)
 
-    pand = models.ForeignKey(Pand)
-
     def __str__(self):
         return str(self.naam) + ': ' + str(self.waarde)
+
+class PandPandEPC(models.Model):
+    pand = models.ForeignKey(Pand)
+    epc = models.ForeignKey(PandEPC, on_delete=models.CASCADE)
 
 class Foto(models.Model):
     docfile = models.FileField(upload_to='documents/%Y/%m/%d', blank=True)
@@ -190,10 +212,12 @@ class PandDocument(models.Model):
     naam = models.CharField(max_length=256)
     plan = models.BooleanField(default=False)
 
-    pand = models.ForeignKey(Pand)
-
     def __str__(self):
-        return str(self.pand.referentienummer) + " - " + str(self.id)
+        return str(self.naam) + " - " + str(self.id)
+
+class PandPandDocument(models.Model):
+    pand = models.ForeignKey(Pand)
+    document = models.ForeignKey(PandDocument, on_delete=models.CASCADE)
 
 class Ebook(models.Model):
     naam = models.CharField(max_length=255)

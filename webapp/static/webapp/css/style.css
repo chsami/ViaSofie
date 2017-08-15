@@ -121,7 +121,7 @@ p {
     float: right;
 }
 
-#searchButton {
+.middle {
     cursor: hand;
     height: 50px;
     float: left;
@@ -129,23 +129,7 @@ p {
     background-color: #0d3532;
 }
 
-#animation-three {
-    cursor: hand;
-    float: left;
-    display: none;
-}
-
-#searchButton img {
-    position: absolute;
-    margin: auto;
-    padding: 10px;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-}
-
-#animation-three img {
+.middle img {
     position: absolute;
     margin: auto;
     padding: 10px;
@@ -4906,18 +4890,15 @@ ul.nav.nav-pills {
     .bottom-head {
         width: 25%;
     }
-    #searchButton {
-      display: none;
+    .middle {
+        right:0;
+        position:fixed;
+        margin-top: 46%;
+        width: 12%;
+        height: 40px;
     }
-    #animation-three {
-      /*TODO: DISPLAY BACK TO INHERIT ONCE SEARCH IS FIXED*/
-      /*display: inherit !important;*/
-      display: none;
-      width: 100%;
-      /*margin-left: 85%;*/
-      position: fixed;
-      top: 54%;
-      border: none;
+    #mega-search {
+        position:relative;
     }
     .banner1,
     .banner2,
@@ -6666,7 +6647,7 @@ div.endless_loading {
     }
     .mega-search fieldset .button {
         font-size: 1em;
-        width: 25px;
+        width: 32px;
         padding-top: 10px;
     }
     .searchhr {

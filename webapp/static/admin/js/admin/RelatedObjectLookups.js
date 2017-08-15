@@ -42,8 +42,7 @@
                 href += '&_popup=1';
             }
         }
-        // GRAPPELLI CUSTOM: changed width
-        var win = window.open(href, name, 'height=500,width=1000,resizable=yes,scrollbars=yes');
+        var win = window.open(href, name, 'height=500,width=800,resizable=yes,scrollbars=yes');
         win.focus();
         return false;
     }
@@ -60,8 +59,6 @@
         } else {
             document.getElementById(name).value = chosenId;
         }
-        // GRAPPELLI CUSTOM: element focus
-        elem.focus();
         win.close();
     }
 
@@ -70,7 +67,7 @@
     }
 
     function updateRelatedObjectLinks(triggeringLink) {
-        var $this = grp.jQuery(triggeringLink);
+        var $this = django.jQuery(triggeringLink);
         var siblings = $this.nextAll('.change-related, .delete-related');
         if (!siblings.length) {
             return;
@@ -78,7 +75,7 @@
         var value = $this.val();
         if (value) {
             siblings.each(function() {
-                var elm = grp.jQuery(this);
+                var elm = django.jQuery(this);
                 elm.attr('href', elm.attr('data-href-template').replace('__fk__', value));
             });
         } else {
@@ -103,11 +100,9 @@
                 } else {
                     elem.value = newId;
                 }
-                // GRAPPELLI CUSTOM: element focus
-                elem.focus();
             }
             // Trigger a change event to update related links if required.
-            grp.jQuery(elem).trigger('change');
+            django.jQuery(elem).trigger('change');
         } else {
             var toId = name + "_to";
             var o = new Option(newRepr, newId);
@@ -122,15 +117,13 @@
         newRepr = html_unescape(newRepr);
         var id = windowname_to_id(win.name).replace(/^edit_/, '');
         var selectsSelector = interpolate('#%s, #%s_from, #%s_to', [id, id, id]);
-        var selects = grp.jQuery(selectsSelector);
+        var selects = django.jQuery(selectsSelector);
         selects.find('option').each(function() {
             if (this.value === objId) {
                 this.innerHTML = newRepr;
                 this.value = newId;
             }
         });
-        // GRAPPELLI CUSTOM: element focus
-        elem.focus();
         win.close();
     }
 
@@ -138,25 +131,14 @@
         objId = html_unescape(objId);
         var id = windowname_to_id(win.name).replace(/^delete_/, '');
         var selectsSelector = interpolate('#%s, #%s_from, #%s_to', [id, id, id]);
-        var selects = grp.jQuery(selectsSelector);
+        var selects = django.jQuery(selectsSelector);
         selects.find('option').each(function() {
             if (this.value === objId) {
-                grp.jQuery(this).remove();
+                django.jQuery(this).remove();
             }
         }).trigger('change');
-        // GRAPPELLI CUSTOM: element focus
-        elem.focus();
         win.close();
     }
-
-    // GRAPPELLI CUSTOM
-    function removeRelatedObject(triggeringLink) {
-        var id = triggeringLink.id.replace(/^remove_/, '');
-        var elem = document.getElementById(id);
-        elem.value = "";
-        elem.focus();
-    }
-    window.removeRelatedObject = removeRelatedObject;
 
     // Global for testing purposes
     window.html_unescape = html_unescape;
@@ -193,10 +175,15 @@
                 updateRelatedObjectLinks(this);
             }
         });
-        // GRAPPELLI CUSTOM
-        /* triggering select means that update_lookup is triggered with
-        generic autocompleted (which would empty the field) */
-        // $('.related-widget-wrapper select').trigger('change');
+        $('.related-widget-wrapper select').trigger('change');
+        $('.related-lookup').click(function(e) {
+            e.preventDefault();
+            var event = $.Event('django:lookup-related');
+            $(this).trigger(event);
+            if (!event.isDefaultPrevented()) {
+                showRelatedObjectLookupPopup(this);
+            }
+        });
     });
 
-})(grp.jQuery);
+})(django.jQuery);

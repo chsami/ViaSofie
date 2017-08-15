@@ -73,7 +73,7 @@ class RegistrationForm(forms.ModelForm):
         f.close()
         message=t.render(c)
         #print unicode(message).encode('utf8')
-        send_mail(datas['email_subject'], message, 'ViaSofie <viasofie.groep5@gmail.com>', [datas['email']], fail_silently=False)
+        send_mail(datas['email_subject'], message, 'ViaSofie <hello@viasofie.be>', [datas['email']], fail_silently=False)
 
 class AuthenticationForm(forms.Form):
     """

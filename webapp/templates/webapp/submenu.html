@@ -176,18 +176,29 @@
 </div>
 <script>
 
-$("#searchButton").click(function() {
-    $(".buy-media").toggleClass("no-pointerevent");
-    $("#mega-search").toggleClass("setSearchHeight");
-    $("#geavanceerdButton").toggleClass("geavanceerdButtonVisible");
-    if ($(".geavanceerdSearch-first").hasClass("visible")) {
-        $("#geavanceerdSearch").removeClass("geavanceerdSearchHeight");
-        $(".geavanceerdSearch-first").removeClass("visible");
-        $(".geavanceerdSearch-second").removeClass("visible");
-        $(".geavanceerdSearch-thirth").removeClass("visible");
-    }
-    $("#prijsSliderHurenID").css("display", "none");
-});
+$(function() {
+    $("#advancedSearchForm").hide();
+    $('.form-input > .search-icon').hide();
+    $("#searchButton").click(function() {
+        if ($("#advancedSearchForm").css('display') == 'none') {
+            if ($( window ).width() <= 480) {
+                $("html, body").animate({ scrollTop: 0 }, "normal");
+            }
+            $("#advancedSearchForm").show();
+        } else {
+            $("#advancedSearchForm").hide();
+        }
+        $(".buy-media").toggleClass("no-pointerevent");
+        $("#mega-search").toggleClass("setSearchHeight");
+        $("#geavanceerdButton").toggleClass("geavanceerdButtonVisible");
+        if ($(".geavanceerdSearch-first").hasClass("visible")) {
+            $("#geavanceerdSearch").removeClass("geavanceerdSearchHeight");
+            $(".geavanceerdSearch-first").removeClass("visible");
+            $(".geavanceerdSearch-second").removeClass("visible");
+            $(".geavanceerdSearch-thirth").removeClass("visible");
+        }
+        $("#prijsSliderHurenID").css("display", "none");
+    });
 
 
 $("#mega-productsearch").click(function() {
@@ -238,6 +249,7 @@ function change(){
   });
   }
 
-  console.log(hiddenfield.val());
+console.log(hiddenfield.val());
 }
+});
 </script>

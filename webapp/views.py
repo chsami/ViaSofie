@@ -6,7 +6,9 @@ from django.core.urlresolvers import reverse
 from django import forms
 from django.shortcuts import render, redirect, render_to_response, RequestContext, get_object_or_404
 from django.db import models
+from django.db.models import Q
 from webapp.models import *
+from webapp.models import Voortgang as VoortgangModel
 from webapp.models import Pand as PandModel
 from webapp.models import Foto as FotoModel
 from webapp.models import Faq as FaqModel
@@ -160,21 +162,31 @@ def panddetail(request, pand_referentienummer):
         thumbnails_related.append(thumbnail)
 
     # Get details
-    pand_details = PandDetailModel.objects.filter(pand_id = pand.id).order_by('id')
-
+    # pand_details = PandDetailModel.objects.filter(id = pand.id).order_by('id')
+    pand_details = list()
+    pand_ids = pand.pandDetails().values_list('detail', flat=True).order_by('id')
+    for id in pand_ids:
+        pand_details.append(PandDetailModel.objects.filter(id = id)[0])
+    #print(pand_details)    
     details_left_col_count = len(pand_details)//2
     details_right_col_count = len(pand_details) - details_left_col_count
+    #print(pand_details[:details_left_col_count])
 
     if not details_left_col_count % 2 == 0:
         details_left_col_count + 1
         details_right_col_count - 1
 
-    pand_details_col1 = list(pand_details[:details_left_col_count])
-    pand_details_col2 = list(pand_details.reverse()[:details_right_col_count])
+    pand_details_col1 = pand_details[:details_left_col_count]
+    pand_details = pand_details[::-1]
+    pand_details_col2 = pand_details[:details_right_col_count]
 
 
     # Get PandEPC
-    pand_epcs = PandEPCModel.objects.filter(pand_id = pand.id).order_by('id')
+    pand_epcs = list()
+    pand_epc_ids = pand.pandEPCs().values_list('epc', flat=True).order_by('id')
+    for id in pand_epc_ids:
+        pand_epcs.append(PandEPCModel.objects.filter(id=id)[0])
+    print(pand_epcs)
 
     epc_left_col_count = len(pand_epcs)//2
     epc_right_col_count = len(pand_epcs) - epc_left_col_count
@@ -183,8 +195,9 @@ def panddetail(request, pand_referentienummer):
         epc_left_col_count + 1
         epc_right_col_count - 1
 
-    pand_epc_col1 = list(pand_epcs[:epc_left_col_count])
-    pand_epc_col2 = list(pand_epcs.reverse()[:epc_right_col_count])
+    pand_epc_col1 = pand_epcs[:epc_left_col_count]
+    pand_epcs = pand_epcs[::-1]
+    pand_epc_col2 = pand_epcs[:details_right_col_count]
 
     epc = None
     epc_code = None
@@ -204,10 +217,12 @@ def panddetail(request, pand_referentienummer):
     if epc != epc_code:
         pand_epc_col1.append(pand_epc_col2.pop())
 
-    pand_epc_col2 = pand_epc_col2[::-1]
-
     # Get PandDocuments
-    pand_documenten = PandDocumentModel.objects.filter(pand_id = pand.id)
+    pand_documenten = list()
+    pand_documenten_ids = pand.pandDocuments().values_list('document', flat=True).order_by('id')
+    print(pand_documenten_ids)
+    for id in pand_documenten_ids:
+        pand_documenten.append(PandDocumentModel.objects.filter(id=id)[0])
 
 
     return render_to_response('webapp/pand.html', {'pand': pand, 'pand_details_col1': pand_details_col1, 'pand_details_col2': pand_details_col2, 'pand_epc_col1': pand_epc_col1, 'pand_epc_col2': pand_epc_col2, 'pand_documenten': pand_documenten, 'max_picture_count': max_picture_count, 'fotos' : fotos, 'thumbnail': thumbnail, 'thumbnails_related': thumbnails_related, 'relatedPands' : relatedPands,'url': url , 'formlogin':formlogin, 'searchform': searchform}, context_instance=RequestContext(request))
@@ -254,7 +269,7 @@ def panden(request, filters=None):
                         elif value_pl_pos_ref.replace('-', '').isalpha() and value_pl_pos_ref.replace('-', '') != "":
                             #je hebt 1 stad in stadmodel zitten
                             try:
-                                result_queryset = result_queryset.filter(plaats=value_pl_pos_ref.lower())
+                                result_queryset = result_queryset.filter(plaats__icontains = value_pl_pos_ref.encode('utf8').lower())
                             except Exception as ex:
                                 result_queryset = result_queryset[:0]
                         #referentienummer
@@ -317,8 +332,21 @@ def referenties(request):
         return redirect('/login')
 
     #filter panden op verkocht status
-    panden = PandModel.objects.all()
-    panden = panden.exclude(voortgang=1)
+    panden = list()
+    #panden = panden.exclude(voortgang='verkocht')
+
+     # Get pand voortgangen 'verkocht' or 'verhuurd'
+    try:
+        pand_voortgangen = VoortgangModel.objects.filter(Q(status='Verkocht') | Q(status='Verhuurd'))
+    except VoortgangModel.DoesNotExist:
+        pand_voortgangen = None
+
+    for voortgang_id in pand_voortgangen.values_list('id', flat=True):
+        try:
+            pand = PandModel.objects.get(voortgang = voortgang_id)
+            panden.append(pand)
+        except PandModel.DoesNotExist:
+            pand = None
     #searchform
     searchform = ssearchform(request)
     if isinstance(searchform, basestring):
@@ -326,16 +354,14 @@ def referenties(request):
 
     thumbnails = []
     for pand in panden:
+        print(pand.straatnaam)
         fotos = FotoModel.objects.filter(pand_id=pand.id)
-        thumbnail = None;
         try:
             thumbnail = fotos.filter(thumbnail=true)[:1]
         except Exception as ex:
-            if fotos:
-                thumbnail = fotos[0]
+            thumbnail = fotos[0]
 
         thumbnails.append(thumbnail)
-
     context = {
         # 'panden' = PandModel.objects.get(handelstatus='Verkocht',handelstatus='Verhuurd')
         'searchform': searchform,
@@ -452,10 +478,8 @@ def blijf_op_de_hoogte(request):
                 return redirect("/login")
     elif(request.method == 'POST'):
         formlogin = AuthenticationForm(data=request.POST)
-        form = BlijfOpDeHoogteForm(request.POST)
-
+        form = BlijfOpDeHoogteForm(data=request.POST)
         if form.is_valid():
-            print "Valid form submitted"
             # ['voornaam', 'naam', 'email', 'telefoonnummer', 'straatnaam', 'huisnr', 'plaats', 'postcode', 'min_prijs', 'max_prijs', 'captcha',]
             voornaam = form.cleaned_data['voornaam']
             naam = form.cleaned_data['naam']
@@ -468,14 +492,7 @@ def blijf_op_de_hoogte(request):
             min_prijs = form.cleaned_data['min_prijs']
             max_prijs = form.cleaned_data['max_prijs']
 
-            if min_prijs != "":
-                if max_prijs != "":
-                    new_user = BlijfOpDeHoogteUserModel(voornaam=voornaam, naam=naam, email=email, telefoonnummer=telefoonnummer, straatnaam=straatnaam, huisnr=huisnr, plaats=plaats, postcode=postcode, min_prijs=min_prijs, max_prijs=max_prijs)
-                else:
-                    new_user = BlijfOpDeHoogteUserModel(voornaam=voornaam, naam=naam, email=email, telefoonnummer=telefoonnummer, straatnaam=straatnaam, huisnr=huisnr, plaats=plaats, postcode=postcode, min_prijs=None, max_prijs=max_prijs)
-            else:
-                new_user = BlijfOpDeHoogteUserModel(voornaam=voornaam, naam=naam, email=email, telefoonnummer=telefoonnummer, straatnaam=straatnaam, huisnr=huisnr, plaats=plaats, postcode=postcode, min_prijs=None, max_prijs=None)
-
+            new_user = BlijfOpDeHoogteUserModel(voornaam=voornaam, naam=naam, email=email, telefoonnummer=telefoonnummer, straatnaam=straatnaam, huisnr=huisnr, plaats=plaats, postcode=postcode, min_prijs=min_prijs, max_prijs=max_prijs)
             new_user.save()
 
         form = BlijfOpDeHoogteForm()
